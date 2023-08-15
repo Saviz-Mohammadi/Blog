@@ -785,3 +785,129 @@ Function headers, or prototypes, are often referred to as signatures due to a pa
 <p>
 The function body serves as the container for the specific instructions and statements that are executed when the function is called. This block of code defines the actual behavior of the function and is commonly referred to as the function definition. In essence, the function definition outlines how the function operates and what actions it performs. This process is also known as the function implementation, as it involves the concrete realization of the function's intended behavior.
 </p>
+
+
+
+
+
+
+
+
+
+
+### Function life cycle
+
+
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+<hr>
+
+<br>
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+
+
+<p>
+When you invoke a function in your code, the compiler or interpreter matches the function call with the corresponding function signature to ensure that the function is used correctly. The compiler then generates code that handles the function call, including any necessary parameter passing and memory management.
+
+However, the process is more complex than simply "pasting" the function code at the call site. Instead, the compiler typically generates machine code or intermediate representations, which represent the function's logic in a more optimized and efficient manner. These representations may include optimizations, such as inlining, where the compiler decides to replace a function call with the actual function body at the call site.
+
+Inlining is an optimization technique where the compiler replaces a function call with the corresponding function's code at the call site itself. This eliminates the overhead of the function call, such as parameter passing and stack frame setup. In some cases, the compiler may decide to inline small or frequently used functions automatically to improve performance. However, not all function calls are inlined, and the decision is usually made based on various factors, including code size, performance considerations, and the compiler's optimization settings.
+
+It's important to note that inlining is just one of many optimization techniques used by compilers, and its application depends on the specific compiler, language, and compiler settings. The actual behavior and optimizations may vary across programming languages and different compiler implementations.
+</p>
+
+
+
+<br>
+
+
+
+<p>
+ Each time a function
+is called, an activation record containing function parameters, local variables,
+and the return address is pushed onto the stack;
+</p>
+
+
+
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+<div class="line-divider-bottom">
+  <hr class="left-line">
+  <span>|</span>
+  <span class="middle">Introduction</span>
+  <span>|</span>
+  <hr class="right-line">
+</div>
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+
+
+
+
+
+
+
+
+
+### Entry point function
+
+
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+<hr>
+
+<br>
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+
+
+<p>
+Certainly! In a C++ (or any programming language) program, the "entry point" refers to the specific point in the code where the program's execution begins. It's the first function that gets called when the program is run. In C++ programs, the entry point is traditionally named "main". The "main" function is where the program starts its execution and from where it usually branches out to perform various tasks. The entry point is crucial because it's the starting point of program execution, and from here, the program can call other functions, create objects, allocate memory, and perform any other necessary tasks. Without a defined entry point, the program wouldn't know where to start its execution and would have no way of performing any actions.
+</p>
+
+
+
+<br>
+
+
+
+<p>
+Yes, in some build systems and environments, you can specify a different function to be the entry point of your program instead of the default "main" function. This can be useful in certain scenarios, such as when working with specialized environments or when integrating code from different sources. However, keep in mind that deviating from the conventional "main" entry point might make your code less portable and harder to understand for other developers who are accustomed to the standard practices. It's generally a good idea to use such customizations only when necessary and to document them clearly to aid collaboration and maintainability.
+</p>
+
+<p>
+The name "main" for the entry function in C++ programs is a convention that has been inherited from the C programming language. There are historical and practical reasons behind this choice:
+
+C Compatibility: C++ is designed to be compatible with the C programming language, and one of the goals was to make it possible for C code to be easily integrated into C++ programs. In C, the entry point of a program is traditionally called "main". By keeping the same naming convention, C++ ensured that C code could be seamlessly integrated into C++ programs without requiring changes to the entry function's name.
+
+Ease of Understanding: Using a standard name like "main" for the entry function makes the code more readable and understandable for programmers who are familiar with the conventions of the C/C++ languages. It provides a clear indication of where the program's execution begins.
+
+Consistency: Naming conventions contribute to the overall consistency of the language. When multiple programmers use the same conventions, it becomes easier to collaborate on projects and understand each other's code. Consistency in naming also helps when sharing code, looking up examples, and learning from existing codebases.
+
+Toolchain Expectations: The compilers and development tools for C and C++ expect the entry function to be named "main" by default. The tools are designed to search for the "main" function as the starting point for execution. While some compilers allow you to specify a different name for the entry function, "main" is the default and most commonly used.
+
+Convention Over Configuration: The "main" function naming convention follows the principle of "convention over configuration." This principle simplifies development by providing sensible defaults and reducing the need for manual configuration or specification. When you follow established conventions, you can focus more on writing code rather than configuring settings.
+
+It's worth noting that while "main" is the conventional name for the entry function, C++ standards do not mandate this name. Some compilers may allow you to use different names for the entry function, but doing so might make your code less portable and harder to understand for others who are familiar with the conventions.
+</p>
+
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+<div class="line-divider-bottom">
+  <hr class="left-line">
+  <span>|</span>
+  <span class="middle">Introduction</span>
+  <span>|</span>
+  <hr class="right-line">
+</div>
+
+<!-- ############################################# Separator - Bottom ############################################# -->

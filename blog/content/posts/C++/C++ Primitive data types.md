@@ -1,7 +1,9 @@
 ---
-title: "C++ Primitive data types"
-date: 2023-05-01T17:13:09-07:00
+title: "C++ basics part 02 - Data types"
+date: 2023-05-12T14:06:22-07:00
 draft: true
+
+weight: 2
 ---
 
 
@@ -27,7 +29,7 @@ draft: true
 
 
 <p>
-If I present a mathematical question, such as "What is 2x2=?" on a piece of paper to a human being, they will likely respond with the correct answer, which is 4 (or am I hallucinating?). Humans understand that numbers possess specific operations that can be performed on them. However, if I were to ask the question, "What is yellow multiplied by brown?" they would likely find it strange. This is because I am attempting to multiply two sets of characters, which is not a valid operation. We encounter these problems and find solutions in our daily lives without always realizing or caring about it.
+If I present a mathematical question, such as "What is 2 multiplied by 2?" on a piece of paper to a human being, they will likely respond with the correct answer, which is 4. Humans understand that numbers possess specific operations that can be performed on them. However, if I were to ask the question, "What is yellow multiplied by brown?" they would likely find it strange. This is because I am attempting to multiply two sets of colors, which is not a valid operation. We encounter these problems and find solutions in our daily lives without always realizing or caring about it.
 </p>
 
 
@@ -138,6 +140,7 @@ What we have effectively done at this stage is commonly refered to as Morse code
 <br>
 
 
+
 <code><h3>COMPUTERS:</h3></code>
 
 <p>
@@ -163,7 +166,7 @@ The reason computers use a binary number system is due to the nature of these co
 <code><h3>INFORMATION IN BINARY:</h3></code>
 
 <p>
-Similar to human language, where individual letters hold limited significance, binary becomes truly valuable when we combine multiple sets of 0s and 1s. The individual 0s and 1s are more than enough to accomodate conditional values where we need to decide weather something is true and should happen or not and should not happen (boolean). And numbers in the decimal base format (97, 122, ...) can also be easilly converted to the binary system. However, what about other types of information like characters?
+Computers operate using the binary language, it is the foundation of computer communication. The ultimate challenge is enabling computers to understand and comprehend a wide range of information. How do we convert a human-readable decimal number like 157 into binary format? How do we translate logical concepts, such as "do" or "do not", in binary? And what about encoding characters or even images into binary form? Let's delve into the process of representing various types of data within the binary number system.
 </p>
 
 
@@ -173,13 +176,216 @@ Similar to human language, where individual letters hold limited significance, b
 
 
 <p>
-Let's ask a fundemental question, in the English alhpabet there are 26 characters. If we were to use the same strategy of assigning as many combiniations of bits to represent these characters, we would end up needing at least 5 bits since two to the power of 5 gives us 32 possibiliets. However, what about the uppercaes possibilties? Or even numbers (1, 2, 3, ..., 9), punctuation marks, control characters, and some special characters? We would need a lot more bits to accomodate all of them. The exact number of bits required is 8 which allows us to do a combination of 256 characters. This standard is commonly known as the ASCII table (American Standard Code for Information Interchange) where each character in the table is given a unique number that allows us to identify the character. This special number is associated and converted into binary  for the computer to understand and represent.
+To understand the binary number system, we should start by revisiting the commonly used decimal-based number system that we as humans employ. In the decimal system, we have a total of ten digits ranging from 0 to 9. If we only consider the number of elements, we can represent a maximum of nine elements. However, when we combine these digits in specific ways, we can easily represent larger quantities. For instance, combining the digits of 1 and 0 gives us the number 10, which represents ten elements. Similarly, combining 3 and 2 gives us 32, representing 32 individual elements.
 </p>
 
 
 
+<br>
+
+
+
 <p>
-At a fundemental level, this is how the computer manages to handle different types of information, by either directly converting their number system and converting it to binary or associating a certain numberr
+In the decimal-based system, the position of a number determines its worth. In the previous example, 32 represents three sets of ten elements and two individual ones. This pattern is known as a weighted pattern, where each number's position carries a weighted value that determines its significance. For example, in the number 879, the digit 8 has a weight of 100, indicating that each number in this position is multiplied by 100. The worth of each position is deterimned by the total number of digits available, in this case 10, multiplied by itself each time the position increases.
+</p>
+
+
+
+<br>
+
+
+
+<p>
+This concept applies to almost every other number system known to humankind such as hexidecimal, octal, and binary system. In the binary system, the only difference is that we have fewer digits to work with. Instead of ten digits, we only have 0 and 1. Therefore, each position in the binary number system increases by multiples of 2, as opposed to 10 in the decimal system. Here's an example of how to convert decimal numbers to binary:
+</p>
+
+
+
+<br>
+
+
+
+<p>
+The individual 0s and 1s are more than enough to accomodate conditional values where we need to decide weather something is true and should happen or not and should not happen (boolean). And numbers in the decimal base format (97, 122, ...) can also be easilly converted to the binary system. However, what about other types of information like characters?
+</p>
+
+
+
+<br>
+
+
+
+<p>
+Similar to human language, where individual letters hold limited significance, binary becomes truly valuable when we combine multiple sets of 0s and 1s. 
+</p>
+
+<br>
+
+
+<p>
+Wonderful! until now we have obtained a way to represent logic, and numbers in binary. But, what about more complex things such as text or characters or images? How do we represnt them in the binary system? Let's ask a fundemental question, in the English alhpabet there are 26 characters. If we were to use the same strategy of assigning as many combiniations of bits to represent these characters, we would end up needing at least 5 bits since two to the power of 5 gives us 32 possibiliets. However, what about the uppercaes possibilties? Or even numbers (1, 2, 3, ..., 9), punctuation marks, control characters, and some special characters? We would need a lot more bits to accomodate all of them. The exact number of bits required is 8 which allows us to do a combination of 256 characters. This standard is commonly known as the ASCII table (American Standard Code for Information Interchange) where each character in the table is given a unique number that allows us to identify the character. This special number is associated and converted into binary  for the computer to understand and represent.
+</p>
+
+
+If everyhing from Text, to characters, images and numbers get evolved into binary number system, which is essentially a bunch of 0s and 1s, then how does the computer know about what it is dealing with? I mean... how does it deterimen the data type if it only sees numbers?
+ChatGPT
+Great question! In a computer system, data types are typically determined by the context in which the data is used and by the way the program or operating system interprets that data. While everything is ultimately represented as binary numbers in a computer's memory, the computer uses different conventions and algorithms to interpret and handle different types of data.
+
+Here are a few ways computers determine the data type:
+
+Data declarations: When a programmer writes a computer program, they define variables with specific data types. For example, they might declare a variable as an integer, a floating-point number, a string, or a Boolean value. These declarations provide information to the computer about how to interpret and handle the data.
+
+File formats: Different file formats have specific structures and conventions for representing data. For example, an image file may use a particular format like JPEG or PNG, which includes header information indicating the image dimensions, color depth, and other relevant details. When a computer reads a file, it looks at this format-specific information to determine the data type and how to interpret it.
+
+Metadata: In some cases, data is accompanied by metadata—additional information that describes the characteristics and structure of the data. For example, a database may have schema definitions that specify the data types of various fields. Similarly, multimedia files often contain metadata tags that provide information about the content, such as the artist, album, or duration of a song.
+
+Parsing and interpretation: When a computer program processes data, it typically follows predefined algorithms or rules for parsing and interpreting the data. For example, if a program encounters a sequence of 0s and 1s, it might interpret that sequence as an ASCII-encoded character, a numerical value, or part of an instruction depending on the context.
+
+By combining these techniques and relying on the program's logic, computers can determine the data type based on the information available to them. The interpretation of binary data is ultimately driven by the software and algorithms that process it, making use of contextual cues, predefined rules, and metadata when available.
+
+
+
+
+
+User
+You mentioned a set of rules that help with interpretation. How do these rules work? I mean... how can you apply a rule to a bunch of numbers if the rule itself is a number?
+ChatGPT
+
+2 / 2
+
+The rules I mentioned are not just numbers themselves; they are algorithms or procedures that are implemented in software. These algorithms define a set of operations or steps that a computer program follows to interpret and manipulate data.
+
+While computers ultimately work with binary numbers, the rules or algorithms are designed to operate on patterns of binary numbers that represent specific data types. The computer program applies these rules to the binary data based on the expected structure and conventions associated with that data type.
+
+Let's take an example to illustrate this. Consider the ASCII encoding system, which represents characters using 7-bit binary numbers. In ASCII, each character is assigned a unique binary code. The computer program that deals with text might have an algorithm that interprets a sequence of 7-bit binary numbers as ASCII characters. It follows the steps specified in the algorithm to convert the binary representation into the corresponding character.
+
+Similarly, for other data types like integers, floating-point numbers, or images, there are specific algorithms designed to interpret the binary patterns correctly. These algorithms take into account the expected structure, byte order, and conventions associated with each data type.
+
+The rules or algorithms are implemented as part of the programming language, libraries, or operating system. Programmers can leverage these predefined rules to work with different data types without having to manually interpret raw binary data themselves.
+
+In summary, the rules or algorithms used by computers to interpret binary data are implemented as software instructions. They define the steps and logic required to correctly interpret and manipulate the binary numbers based on the expected structure and conventions associated with each data type.
+
+
+
+
+
+User
+I get it that we can use some conventions such as the ASCII or number systems to interprate and use data. But, my main question is how does the computer even know in the first place if it is dealing with a scenario of characters instead of numbers if all that it sees is binary numbers?
+ChatGPT
+Apologies for any confusion caused. Allow me to clarify further.
+
+In a computer system, the determination of whether data represents characters or numbers is primarily based on how the data is used and interpreted by the software. While the computer itself does not inherently "know" the specific data type, the software provides the necessary context and instructions for the interpretation.
+
+When a program is written, the programmer specifies how the data should be treated, including its intended data type. For example, if the programmer wants to work with characters, they may declare a variable as a character type in the code. By providing this information, the programmer is essentially telling the computer how to handle and interpret the data.
+
+During program execution, the computer follows the instructions provided by the programmer and applies the appropriate operations and algorithms based on the declared data types. For instance, if a particular instruction is meant for character manipulation, the computer will perform operations specifically designed for characters, such as comparing characters, concatenating strings, or printing textual output.
+
+It's important to understand that the computer's ability to work with different data types is ultimately governed by the software and the algorithms implemented within it. The software provides the rules and instructions for the computer to process the binary data in a meaningful way according to the intended data types specified by the programmer.
+
+In summary, the computer doesn't inherently "know" the data type, but it relies on the software and the instructions given by the programmer to interpret and handle the binary data appropriately. By providing explicit declarations and using algorithms designed for specific data types, the computer can differentiate between characters and numbers, enabling the execution of appropriate operations for each type.
+
+
+
+
+
+User
+But, I mean... all I write is data type in a code editor. But, how does the computer actually see a binary number and goes ... hmm that is a character?
+ChatGPT
+I apologize for any confusion caused. Let me provide a more detailed explanation.
+
+At the lowest level, computers represent all data, including characters and numbers, as binary numbers—sequences of 0s and 1s. These binary numbers are stored in the computer's memory and processed by its circuits.
+
+When you write code and specify a data type, such as a character or a number, you are essentially providing instructions to the compiler or interpreter, which is a program that translates your code into machine instructions that the computer can understand and execute.
+
+During the compilation or interpretation process, the compiler or interpreter uses the provided data types to generate the appropriate machine code instructions. These instructions include information about how to interpret and handle the binary data stored in memory.
+
+For example, when you declare a variable as a character type in your code, the compiler or interpreter generates machine code instructions that treat the corresponding memory location as a character. It may apply specific character encoding schemes like ASCII or Unicode to interpret the binary values stored in that memory location as characters.
+
+When the program is executed, the computer's processor follows these machine code instructions and performs operations based on the data type information embedded in those instructions. It uses the provided rules and algorithms to manipulate the binary data in a manner appropriate for the specified data type.
+
+So, while you don't see the computer explicitly identifying binary data as a character, the instructions generated during the compilation or interpretation process include the necessary information to interpret and handle the binary data correctly based on the specified data types.
+
+In essence, the computer's ability to recognize the data type is a result of the compilation or interpretation process, where the provided data types are used to generate machine code instructions that guide the computer in interpreting and manipulating the binary data appropriately.
+
+
+
+
+
+User
+I mean... does every block of data in computer have another block attached to it in binary that represents it's data? I mean... let's say that I specify "char" data type, does that mean that beside the actual binary numbers that represent the data itself there is another bolck that says what  data it is in binary?
+ChatGPT
+No, there isn't an additional block attached to each block of binary data that explicitly states its data type. The data type information is not stored separately in binary form within the computer's memory.
+
+The data type information is primarily used and understood by the software and the programming language/compiler/interpreter that processes the code. It is used during the compilation or interpretation phase to generate appropriate machine code instructions.
+
+When you specify a data type like "char" in your code, it informs the compiler or interpreter how to treat and interpret the corresponding memory location where the character data is stored. The compiler or interpreter generates machine code instructions that manipulate the binary data in a manner consistent with the specified data type.
+
+During the execution of the program, the computer's processor works with the binary data stored in memory according to the instructions generated by the compiler or interpreter. It doesn't require an explicit additional block to identify the data type because the instructions themselves indicate how to interpret the data.
+
+To summarize, the data type information is used during the compilation or interpretation process to generate machine code instructions that handle the binary data appropriately. The data type itself is not stored separately as another block of binary data alongside the actual data in the computer's memory.
+
+
+
+
+
+User
+I mean... since everything is binary numbers, how does the computer even go about understanding what data type it is dealing with? I mean... what is there to stop it from thinking that a character is a number? What's more is how do instructions such as "char" or "int" get intrepreted? What do they interprent to?
+ChatGPT
+I apologize for any confusion caused. Let me explain in more detail how the computer understands and interprets data types.
+
+At the hardware level, a computer processes data as binary numbers, and it doesn't inherently "know" the data type of a specific sequence of binary digits. The interpretation of data types is facilitated by the software layers, including the programming language and the underlying system libraries.
+
+When you write code and specify a data type, such as "char" or "int," you are using a programming language that provides a set of rules and conventions for interpreting and manipulating different data types. These rules are predefined and implemented in the programming language and its associated libraries.
+
+During the compilation or interpretation process, the compiler or interpreter recognizes the data type keywords you have used, such as "char" or "int." It maps these keywords to the corresponding data type definitions and associated operations defined in the language and libraries.
+
+For example, when you declare a variable as a "char" type, the compiler or interpreter understands that you intend to work with character data. It allocates a specific amount of memory to store the character and associates the appropriate rules for manipulating characters based on the programming language specifications.
+
+Similarly, when you declare a variable as an "int" type, the compiler or interpreter understands that you intend to work with integer numeric data. It allocates memory to store integers and associates the appropriate rules for arithmetic operations, comparisons, and other relevant operations related to integers.
+
+The rules and conventions associated with each data type are built into the programming language and the underlying system libraries. They define how the computer should interpret and handle the binary data based on the specified data type. These rules provide the necessary context for the computer to distinguish between different data types during execution.
+
+In summary, the computer's understanding of data types is facilitated by the programming language, its associated libraries, and the rules defined within them. The compiler or interpreter maps the data type keywords used in the code to the corresponding rules and operations defined for each data type. This allows the computer to correctly interpret and manipulate binary data according to the specified data type during program execution.
+
+
+
+
+
+User
+I mean... what is there to stop the computer from applying arithmetic to an incorrect type such as char if everything is seen and treated as binary numbers?
+ChatGPT
+That's a valid question. In many low-level programming languages, such as C or C++, the computer doesn't have built-in safeguards to prevent certain operations from being applied to incompatible data types. It is indeed possible to perform arithmetic operations on data types that may not be intended for arithmetic, such as performing arithmetic on a character.
+
+In such cases, the behavior can be undefined or produce unexpected results. The reason for this is that these languages provide a high degree of flexibility and direct access to memory, allowing you to perform operations that may not be semantically correct.
+
+However, higher-level programming languages and modern programming paradigms often incorporate type-checking mechanisms and runtime environments that help prevent or handle such issues. These languages include Java, Python, C#, and many others.
+
+In these languages, the compiler or interpreter enforces stricter type-checking, ensuring that operations are only applied to compatible data types. If you try to perform arithmetic operations on a character type, for example, the compiler or interpreter would raise a type error or warning during the compilation or interpretation phase.
+
+Additionally, modern programming languages often include type systems that provide static type checking, dynamic type checking, or a combination of both. These systems help catch type-related errors and ensure type safety during program execution.
+
+So, while it is possible for the computer to perform operations on incompatible data types at a low level, modern programming languages and type systems aim to prevent such issues through various mechanisms, providing better type safety and reducing the likelihood of unintended operations being applied to incorrect data types.
+
+
+
+
+
+User
+So, are you saying that it is the code and libarries that others wrote that prevents this from happening? But, what about the compiler? I mean that thing must be really low-level so how does that understand the situation?
+ChatGPT
+Yes, you're correct. The prevention of applying operations to incompatible data types is primarily facilitated by the combination of the programming language, libraries, and the compiler.
+
+The compiler plays a crucial role in understanding the code and enforcing type checking during the compilation process. It analyzes the code, including the type declarations and operations, and verifies their compatibility according to the language rules and standards.
+
+During the compilation phase, the compiler performs static type checking. It checks that the operations you perform on variables and expressions are consistent with their declared types. If it detects any type mismatches or incompatible operations, it raises compilation errors or warnings.
+
+The compiler utilizes the language's grammar, syntax rules, and type system to understand the code and ensure type safety. It interprets the type declarations, such as "char" or "int," and associates the appropriate rules and behaviors for each data type. This allows it to detect type-related issues and prevent operations that are not supported or expected for a particular data type.
+
+The compiler is built to understand the language's semantics, including the rules for type compatibility and operation applicability. It leverages this understanding to generate machine code instructions that handle the data correctly and efficiently based on the specified data types.
+
+Therefore, it is a combination of the programming language, libraries, and the compiler working together that prevents the application of incompatible operations to data types and helps ensure type safety in the compiled program.
+<p>
+At a fundemental level, this is how the computer manages to handle different types of information, by either directly converting their number system and converting it to binary or associating a certain numberr. At the end of the day, whatever piece of information you give to the computer, it will be able to convert it enidabley down to a number. So, here is the fundemantal question. If everything is a number, then how can we ensure that someth informtion needs to be treated and observed differently from others, meaning that they should have different sets of operations and different meaning to them? The answer is by using data types.
 </p>
 <br>
 <br>
@@ -206,6 +412,9 @@ One of the reasons as to why hexidecimal is so important when dealing with compu
 
 
 Now let's talk about how to interact with information that is not a numebr such as text.
+
+
+It is within the nature of a computer to use two states and therfore binary. Electricity can either be flowing or not flowing like a switch and guess what! a computer is made of components that use electrictity. We humans have 10 fingers it is within our nature to use decimal. Each position is increasing by a value wich is the power of your base that represents the number of posibilities 10 to the power of 0 and 1 and 2 and... 
 </p>
 
 

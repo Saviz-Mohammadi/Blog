@@ -1,116 +1,10 @@
 ---
-title: "C++ Variables"
+title: "C++ basics part 01 - Variables"
 date: 2023-05-12T14:06:22-07:00
 draft: true
+
+weight: 1
 ---
-
-<style>
-
-  .line-divider-top {
-	
-	display: flex;
-	align-items: center;
-	text-align: center;
-	
-	margin: 0px 0px 2.5rem 0px;
-  }
-
-  .line-divider-top .left-div {
-  
-	flex-grow: 1;
-	background: currentColor;
-	height: 1px;
-  }
-  
-  .line-divider-top .right-div {
-  
-	flex-grow: 1;
-	background: currentColor;
-	height: 1px;
-  }
-
-  .line-divider-top .middle {
-  
-	margin: 0px 0px;
-  }
-  
-  
-  
-  
-  .line-divider-bottom:not(:last-child) {
-	
-    display: flex;
-    align-items: center;
-    text-align: center;
-	
-	margin: 2.5rem 0 20rem 0;
-  }
-  
-  .line-divider-bottom:last-child {
-	
-    display: flex;
-    align-items: center;
-    text-align: center;
-	
-	margin: 2.5rem 0 0 0;
-  }
-
-  .line-divider-bottom .left-div {
-  
-	flex-grow: 1;
-	background: currentColor;
-    height: 1px;
-  }
-  
-  .line-divider-bottom .right-div {
-  
-	flex-grow: 1;
-	background: currentColor;
-    height: 1px;
-  }
-
-  .line-divider-bottom .middle {
-  
-	margin: 0px 20px;
-  }
-  
-  
-  p {
-  
-	text-indent: 3rem;
-	text-align: justify;
-  }
-  
-  ins {
-  
-	font-weight: 500;text-underline-offset: 5px;
-  }
-  
-  strong {
-	
-	font-weight: 700;
-  }
-  
-  
-  
-  .justified-list {
-    list-style-type: disc;
-  }
-
-  .justified-list li {
-    text-align: justify;
-  }
-  
-  
-  .justified-ordered-list {
-    list-style-type: decimal;
-  }
-
-  .justified-ordered-list li {
-    text-align: justify;
-  }
-
-</style>
 
 
 
@@ -126,13 +20,9 @@ draft: true
 
 <!-- ############################################# Separator - Top ############################################# -->
 
-<div class="line-divider-top">
-  <div class="left-div"></div>
-  <span></span>
-  <span class="middle"></span>
-  <span></span>
-  <div class="right-div"></div>
-</div>
+<hr>
+
+<br>
 
 <!-- ############################################# Separator - Top ############################################# -->
 
@@ -177,11 +67,11 @@ If a programmer needs to modify the contents of a specific cell in RAM, referrin
 <!-- ############################################# Separator - Bottom ############################################# -->
 
 <div class="line-divider-bottom">
-  <div class="left-div"></div>
+  <hr class="left-line">
   <span>|</span>
   <span class="middle">Introduction</span>
   <span>|</span>
-  <div class="right-div"></div>
+  <hr class="right-line">
 </div>
 
 <!-- ############################################# Separator - Bottom ############################################# -->
