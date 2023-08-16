@@ -45,27 +45,25 @@ Let's take an instance where the utilization of numerous individual variables ca
 
 
 <br>
+<br>
 
 
 
 ```C++
 int main(int argc, char* argv[])
-{
-	// Honestly, how many times did we obtain 1.99, just to strive for 2 as our GPA?
-	
-	
+{	
 	// First student.
 	std::string student_01_name = "William Harris";
 	
 	int student_01_age = 18;
-	int student_01_gpa = 2;		// Could also be float, but for obvious reasons it is int.
+	int student_01_gpa = 2;
 
 	
 	// Second student.
 	std::string student_02_name = "Thomas Robinson";
 	
 	int student_02_age = 19;
-	int student_02_gpa = 3;		// Could also be float, but for obvious reasons it is int.
+	int student_02_gpa = 3;
 	
 	
 	return (0);
@@ -74,6 +72,7 @@ int main(int argc, char* argv[])
 
 
 
+<br>
 <br>
 
 
@@ -136,6 +135,8 @@ In every industry, there exists a specific collection of terms, phrases, and sta
 
 
 <br>
+<br>
+<br>
 
 
 
@@ -157,6 +158,7 @@ As a demonstraition, the following two algorithms both attempt to write a set of
 
 
 
+<br>
 <br>
 
 
@@ -205,7 +207,7 @@ int calculate_factorial_iterative(int number)
 
 
 <br>
-
+<br>
 
 
 <p>
@@ -214,6 +216,7 @@ Algorithms can solve the same problem in different ways, and their efficiency ca
 
 
 
+<br>
 <br>
 
 
@@ -262,6 +265,7 @@ int calculate_factorial_recursive(int number)
 
 
 <br>
+<br>
 
 
 
@@ -272,94 +276,72 @@ As you may have witnessed, the above two mentioned algorithms complete the same 
 
 
 <br>
+<br>
+<br>
+
+
+<code><h3>Data structures:</h3></code>
+
+<p>
+Data structures are considered entities with the capability of grouping data based on similarity of type and behaviour together, enabling efficient manipulation of datasets. These structures are commonly referred to as collections, containers, and the like. Data structures are fascinating because they uphold to one of the most important concepts in the programming bible, which is the principle of abstraction. Data structures shield us from the unnecessary details and complexities associated with manipulating extensive datasets, offering only the essential interfaces needed to work with them to programmers.
+</p>
+
+
+
+<br>
 
 
 
 <p>
-Data structures are considered entities with the capability of grouping data based on similarity of type and behaviour together, enabling efficient manipulation of datasets. These structures are commonly referred to as collections, containers, and the like.
+ There is not a universal data structure suitable for all tasks; therefore, understanding the strengths and limitations of various structures is essential. Choosing the correct data structure is not easy. There are a lot of elements involved in deciding which data structure is the best to use for each scenario. However, there are some things that we can consider to judge which data structure is better suited to be used for each scenario:
 </p>
+
+
+
+<br>
+<br>
+
+
+
+<ul class="justified-list">
+	<li><strong>Performance</strong></li>
+	<li><strong>Functionality</strong></li>
+</ul>
+
+
+
+<br>
+<br>
+
 
 
 <p>
-Data structures are fascinating because they uphold to one of the most important concepts in the programming bible, which is the principle of abstraction. Data structures shield us from the unnecessary details and complexities associated with manipulating extensive datasets, offering only the essential interfaces needed to work with them to programmers. There is not a universal data structure suitable for all tasks; therefore, understanding the strengths and limitations of various structures is essential.
+Performance is really important. If a certain data structure is faster and more performant, then it is more likely to be used by the programmer. However, performance is not everything. Sometimes, we may want our data structure to provide us more functions and capabilities rather than being more performant. Maybe we want to choose one data structure over another over the condition of having some amazing function that no other data structure has that can make our lives easier. The following are however, some of the most basic expectations for every data strucuter in terms of functionality to have:
 </p>
 
-<p>
-Choosing the correct data structure is not easy. There are a lot of elements involved in deciding which data structure is the best to use for each scenario. However, there are some things that we can consider to judge which data structure is better to use and they include:
 
-The Performance of a data structure
-The functions and abilities that the data structure provides
 
-Performance is really important. If a certain data structure is faster and more performant, then it is more likely to be used by the programmer. However, performance is not everything. Sometimes, we may want our data structure to provide us more functions and capabilities rather than being more performant. Maybe we want our data structure to provide us with some amazing function that can find and replace all instances of a certain data.
+<br>
+<br>
 
-</p>
+
+
+| Operation  | Description                                                                                            |
+|------------|--------------------------------------------------------------------------------------------------------|
+| `Insert`   | Provide ability to add an element to the data set                                                      |
+| `Remove`   | Provide ability to Delete an element from the data set                                                 |
+| `Search`   | Provide ability to find an element in the data set if possible                                         |
+| `Traverse` | Provide the ability to go through each element, usually for the purpose of printing the entire data set|
+
+
+
+<br>
+<br>
+
+
 
 <p>
 The performance of different data structures are determined by the algorithms and methods they employ to fulfill their tasks. Similar to all other components within a computer, data structures follow specific sets of instructions to achieve their objectives. For this very reason, we introduce the concept of analyzing algorithms and seeking to compare their efficiency. Data structures and algorithms have been a huge part of computer science since the dawn of computers as managing large amounts of data is trickier than it looks and can have siginifcant impact on the perforamnce of our programs. In the upcoming sections, we will focus on how to determine the effecniecy of differnet algorthims.
-</p>
-
-<p>
-
-What are my expectaions from a data structure?
-What functions do we require from a Data Structure?
-
-Normally, we expect a Data Structure to have at least the following functions available for us:
-⦁	A function to:		Access the elements
-⦁	A function to:		Search for an element
-⦁	A function to:		Insert or add an element
-⦁	A function to:		Delete an element
-
-
-</p>
-
-
-
-<br>
-
-
-
-```C++
-int main(int argc, char* argv[])
-{
-	// Honestly, how many times did we obtain 1.99, just to strive for 2 as our GPA?
-	
-	
-	// First student.
-	std::string student_01_name = "William Harris";
-	
-	int student_01_age = 18;
-	int student_01_gpa = 2;		// Could also be float, but for obvious reasons it is int.
-
-	
-	// Second student.
-	std::string student_02_name = "Thomas Robinson";
-	
-	int student_02_age = 19;
-	int student_02_gpa = 3;		// Could also be float, but for obvious reasons it is int.
-	
-	
-	return (0);
-}
-```
-
-
-
-<br>
-
-
-
-<p>
-This is just the start – currently, we're dealing with only two student entities in total, treating these fields as combined attributes. But what if we aim to tweak and handle hundreds, or even thousands, of students? The code could quickly turn into a headache to manage. We'd have to create many unique fields and variables, each requiring individual attention. And let's not forget about the potential scenario where we're tasked with frequently modifying each of these fields.
-</p>
-
-
-
-<br>
-
-
-
-<p>
-As program designers, we often strive to connect pieces of data in a way that they have some form of relationship, even if the only commonality is their data type. In today's era of C++ programming, understanding how to deal with signifacnt amounts of data and how to manipulate them effectively is vitally important. For these reasons, we will explore data structures and the various algorithms they employ to efficiently manage large volumes of data. So, without any hesitation, let's begin.
 </p>
 
 
