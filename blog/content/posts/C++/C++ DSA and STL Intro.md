@@ -380,58 +380,76 @@ The performance of different data structures are determined by the algorithms an
 
 
 <p>
-Before we can even get started on measuring the performance of an entity that attempts to store and manipulate a large set of data, we need to ask ourselves what aspects are we measuring? On other words, what are the different aspects and viewes when it comes to performance. One of the biggest concerns when it comes to ananlyzing how good an entity is in manipulating a large set of data is obviously its performance in regards to how much resource it uses. So, here is the big question "In the world of data strucutres and alogrithms what things do we need to measure in regards to performance and resource useage?"
-
-The answer to this question is time and space. Where time demonstrates how quickly something can be accomplished and space is how much resources it takes to accomplisth that task such as memory usage.
-
-Talk about why timing is not a good way of measuring and the problems related to it. Onec you are done end the discussion and talk about Big-o bigtheta and others in the next section.
-
-alos talk about space complexity.
-
-"In the world of data strucutres and alogrithms what tool, notation, etc. can we use to mesure the performance and capability of a container or collection?"
-
-
-At first glance most programmers will assume that the answer is by timing them when they perform differrent operations, and while this is a completely natural thing to assume, however, there are a couple of problems with this.
-
-
-
-In order to answer these questions and to come up with a unified way to express performance and resource usage, computer scientists have come up with something commonly refered to as asomptotic notations which are mathematical tools used ot describe the capabilites of algorithms and the data strucuters that use those alogrithms.
+Before we can get started on measuring the performance of an entity that attempts to store and manipulate a large set of data, a fundamental question emerges: Why should we be concerned with the efficiency and resource demands of the algorithm employed by the data structure? The answer is: Because it makes a difference! While the argument can be made that computers are becoming exceedingly faster and more powerful, the scale and complexity of the challenges have increasingly escalated. What adds further intrigue is the fact that the perforamnce of today's computers is largely thanks to the endeavours of programmers who took the time to create new and improved methods and alogrithms for solving these problems! We must care to develop and refine alogrithms.
 </p>
 
 
-Time & Space Complexity
 
-
-What are the important facts in Algorithms Analysis?
-
-⦁	Time Complexity.
-⦁	Space Complexity. 
-
-Both Time and Space are important factors. Sometimes the algorithm may be faster at the cost of taking more memory and vice versa. Depending on the situation, the program may need to be faster or take less space.
-
-What is Time complexity?
-
-Time complexity is the amount of time the algorithm takes to solve the problem.
-
-In the previous example if we were to replace 5 with 9999 the amount of time taken for each algorithm to solve the problem is as follows: 
-⦁	Algorithm 1 takes (2.0 milliseconds)
-⦁	Algorithm 2 takes (0.0 milliseconds)
+<br>
 
 
 
+<p>
+One of the primary considerations when evaluating the effectiveness of a data structure in fulfilling its tasks is undoubtedly its performance. This leads to a fundamental question: "In the world of data structures and alogrithms what is the meaning of performance, and how can we measure it?" The solution to this question involves categorizing performance into two key dimensions: <strong>Time complexity</strong> and <strong>Space complexity</strong>. Time signifies how quickly tasks can be executed and accomplished, measured in seconds, minutes, hours, days, or even weeks. On the other hand, Space represents the resources needed to accomplisth that task, such as total memory consumption. Let's take a look at how we can measure each of these concepts more accurately.
+</p>
 
 
 
-Space Complexity refers to the amount of memory or space that the algorithm uses when it is solving the problem.
-
-If one algorithm is faster than another algorithm but takes much more space and memory to accomplish the task it is not considered necessarily better.
-
-The reason why we say “necessarily” is because the goals of an algorithm may be different for that situation. Maybe it doesn’t matter too much if the algorithm takes more memory and space. Maybe just the speed is important.
+<br>
 
 
+<p>
+Understanding these two categories is important because they typically involve a trade-off. When aiming to improve program execution speed, chances are there is going to be a corresponding increase in space and resource utilization. On the other hand, if the goal is to minimize space and resource consumption, it might lead to longer execution times. For instance, when uisng a powerful Google computer, resource and space efficiency might be of minimal concern, whereas execution speed takes precedence. In contrast, with a personal desktop computer at home, space limitations will be more important to consider, and execution speed being of less concern. Therefore, determining which factor is more important relies entirely on the situation, objectives, and requirements.
+</p>
 
 
-An ideal data structure takes the least amount of time and space (memory) to complete the task or solve the problem.
+
+<br>
+
+
+
+<code><h3>Time complexity</h3></code>
+
+<p>
+The central question at hand is: "How can we measure or predict the time required by an algorithm to solve a problem?". At first glance, most programmers will assume that the solution lies in timing the algorithm as it executes its operations, awaiting its completion. While this assumption is completely natural; After all, if one wishes to measure how much faster one car is compared to another, they would probably have them being timed based on a race track they complete. However, delving deeper reveals a few complications associated with this approach. For example, Let's try and create a piece of code that will enable us to measure the time that takes for a function to sum up numbers from 1 to 10000 and then print the solution:
+</p>
+
+
+
+<br>
+
+
+
+<p>
+The issue does not lie in the act of measuring time itself, but rather in the misconceptions surrounding time-based comparisons. Typically, we tend to measure the time differences among distinct machines, rather than evaluating a particular machine's performance across multiple instances. For example, if we execute a piece of software on a high-performance Google computer and it completes in 0.00001 milliseconds, can we assume that the algorithm will run fast anywhere? This assumption is misguided as it is like saying that a Ferrari supercar is quicker than a compact economy car - an evident truth. The main question is: "Have the improvements in the algorithm actually influenced the execution speed compared to the previous runs?".
+</p>
+
+
+
+<br>
+
+
+
+<p>
+Of course while this is not a complete accurate method, it is working non the less. But, the issue is that we do not have the time and luxury nor the resources available to us to examine every computer that we try to deploy the alogrithm for. Anothre problem, is that we do not see the big picture. For small scale problems the exectution is usually over before we even get started. Would our algorithms perform the same if the scale gets larger? All these factors and variations are reasons as to why we need to come up with some other solution. Would'nt it be easier to have a universal way to measure Time complexity? This is where Asomptotic notations come into play.
+</p>
+
+
+
+<br>
+
+
+
+<p>
+computer scientists have come up with something commonly refered to as asomptotic notations which are mathematical tools used ot describe the capabilites of algorithms and the data strucuters that use those alogrithms. a unified way to express performance and resource usage that can be separated into 3 parst: omega, thetha, big-o. They enable us to do exactyl what we did in the example, to see how time changes as the size of the problems changes, but without the need to go in deep everytime and having to examine it on a machine.
+
+
+Write code and explanation for creating a struct that can measure time when you are at it as well.
+alos talk about space complexity.
+
+"In the world of data strucutres and alogrithms what tool, notation, etc. can we use to mesure the performance and capability of a container or collection?"
+</p>
+
 
 
 <br>
