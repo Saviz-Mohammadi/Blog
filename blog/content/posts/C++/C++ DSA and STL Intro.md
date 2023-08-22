@@ -29,41 +29,87 @@ weight: 3
 
 
 <p>
-I am confident that programmers possess a solid understanding of what a program is and what it does. A program essentially consists of a sequential execution of instructions, with each instruction operating on distinct piece of data. As our programs grow in size and complexity, it becomes increasingly challenging to effectively monitor and manage these datasets solely using conventional variables. Opting for an exclusive use of variables in such scenarios can rapidly lead to an unmanageable situation. This is because variables aren't engineered to handle extensive data loads; their design centers around managing singular units of information.
+A program consists of a sequential set of instructions that are executed one after the other, with each instruction operating on a distinct piece of data. As our programs grow in size and complexity, it becomes increasingly challenging to effectively monitor and manage these datasets solely using conventional variables, objects, and structs. Opting to use these types of solutions can rapidly lead to unmanageable situations. This is because these storages are not engineered to handle extensive data loads; their design centers around managing and representing singular units of information or entities. Let's demonstrate this concept with a simple example. Imagine you have a classroom full of students, and you intend to store information about every student, including their name, age, and SIN number. If you decide to employ distinct variables for each student, the code will be similar to the following:
 </p>
 
 
 
 <br>
-
-
-
-<p>
-Let's take an instance where the utilization of numerous individual variables can result in a complex situation when it comes to managing large volumes of data. Imagine you have a classroom full of students, and you intend to store information about every student, including their name, age, and GPA. If you opt to employ distinct variables for each student, the code could resemble the following:
-</p>
-
-
-
 <br>
 <br>
 
 
 
 ```C++
+#include <iostream>
+
 int main(int argc, char* argv[])
-{	
-	// First student.
-	std::string student_01_name = "William Harris";
-	
+{
+	std::string student_01_name = "William jackson";
 	int student_01_age = 18;
-	int student_01_gpa = 2;
+	int student_01_sin = 11328467;
 
 	
-	// Second student.
 	std::string student_02_name = "Thomas Robinson";
-	
 	int student_02_age = 19;
-	int student_02_gpa = 3;
+	int student_02_sin = 03998451;
+	
+	
+	std::string student_03_name = "Michael Jackson";
+	int student_03_age = 23;
+	int student_03_sin = 03448391;
+	
+	
+	// This continues...
+	
+	return (0);
+}
+```
+
+
+
+<br>
+<br>
+<br>
+
+
+<p>
+A more experienced programmer might choose to combine these distinct data elements into a meaningful complex data type, such as a struct named "Student". This approach allows them to treat each student as a distinct entity, complete with attributes like "name", "age", and "sin." This organization simplifies the task, as it combines the individual data elements. Alternatively, programmers could opt to use classes and objects, but given that we are dealing with only data so far, employing a straightforward data container structure makes more sense. However, using a class remains a valid option. Personally, I prefer employing structs for entities that exclusively contain data, as it aligns better with my understanding of the concept. Let's see an example of how our code would look like if we decided to use structs and create "Student" entities instead of using individual variables:
+</p>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+```C++
+#include <iostream>
+
+struct Student
+{
+    
+	std::string name;
+    int age;
+	int sin;
+
+    Student(const std::string& _name, int _age, int _sin)
+        : name(_name), age(_age), sin(_sin)  {}
+};
+
+
+int main(int argc, char* argv[])
+{
+	// This feels much cleaner already...
+	
+	Student student_1("William jackson", 18, 11328467);
+	Student student_2("Thomas Robinson", 19, 03998451);
+	Student student_3("Michael jackson", 23, 03448391);
+	
+	
+	// This continues...
 	
 	
 	return (0);
@@ -74,21 +120,23 @@ int main(int argc, char* argv[])
 
 <br>
 <br>
-
-
-
-<p>
-This is just the start – currently, we're dealing with only two student entities in total, treating these fields as combined attributes. But what if we aim to tweak and handle hundreds, or even thousands, of students? The code could quickly turn into a headache to manage. We'd have to create many unique fields and variables, each requiring individual attention. And let's not forget about the potential scenario where we're tasked with frequently modifying each of these fields.
-</p>
-
-
-
 <br>
 
 
 
 <p>
-As program designers, we often strive to connect pieces of data in a way that they have some form of relationship, even if the only commonality is their data type. In today's era of C++ programming, understanding how to deal with signifacnt amounts of data and how to manipulate them effectively is vitally important. For these reasons, we will explore data structures and the various algorithms they employ to efficiently manage large volumes of data. So, without any hesitation, let's begin.
+Whether we decide to use the initial approach with individual variables or opt to employ more complex entities like structs or objects, we still face a fundamental question: "How do we effectively manage a substantial volume of data?". This question becomes even more important when we aim to integrate specific and critical functionalities that can be applied to the set of data as well. Consider a scenario in which your organization needs to update a student named "Alice" among a pool of 2500 enrolled students. In this case, you will need to manually search through the student structures or variables to locate the one that matches the description and make the necessary modifications. This is just a single, straightforward task within a relatively modest dataset. What if there are more operations, such as identifying the student with a specific SIN number, identifying the student with the youngest age, and various other tasks?
+</p>
+
+
+
+<br>
+<br>
+
+
+
+<p>
+It becomes clear quite quickly that dealing with substantial datasets can become overwhelming. As program designers, we often strive to connect pieces of data in a way that they have some form of relationship, even if the only commonality is their data type. In addition, we aim to incorporate specific and essential shared functionalities into the entities that manage large data sets. In today's era of C++ programming, understanding how to deal with signifacnt amounts of data and how to manipulate them effectively is vitally important. For these reasons, we will explore data structures and the various algorithms they employ to efficiently manage large volumes of data. If this sounds like something you might be interested in learning about, then let's begin without any hesitation.
 </p>
 
 
@@ -129,7 +177,7 @@ As program designers, we often strive to connect pieces of data in a way that th
 
 
 <p>
-In every industry, there exists a specific collection of terms, phrases, and standards that enable effective communication between different developers and creators. The field of data structures is no different in this regard. Before we proceed with delving into the specifics of various data structures, it's essential to establish a shared understanding of the fundamental terminology used in this domain to ensure that all developers are on the same page.
+Your enthusiasm to dive headfirst into learning is admirable. However, in every industry, there exists a specific collection of terms, phrases, and standards that enable effective communication between different developers and creators. The realm of data structures and algorithms is no exception to this principle. Prior to discussing the different properties and capabilities of data structures and their respective functionalities, it is important to first establish a common ground in our understanding of the fundamental terminology employed in this field. This foundational step ensures that all developers involved are aligned in their understanding of the concept, thus setting the stage for effective collaboration and comprehension as we navigate through the complexities of this domain.
 </p>
 
 
@@ -143,21 +191,12 @@ In every industry, there exists a specific collection of terms, phrases, and sta
 <code><h3>Algorithms:</h3></code>
 
 <p>
-An algorithm is a collection of precise steps and instructions designed to guide a computer in solving a particular problem. Within computer programming, a single problem often spawns multiple solutions crafted by different programmers and researchers. The challenge lies in determining how to predict which approach will exhibit superior performance while utilizing fewer resources. Analysis of Algorithms is the process of finding the best algorithm that runs the fastest and takes less memory to perform the same task in comparison to other competitors.
+An algorithm is a collection of percise steps and instructions designed to guide a computer in solving a particular problem. Interestingly, we've essentially been employing an algorithm all along, up to this point. In the realm of computer programming, a single problem often spawns multiple solutions crafted by different programmers and researchers. The challenge lies in determining which algorithm will demonstrate superior performance and most importantly produce correct results all while utilizing fewer resources. Analyzing algorithms is a process that involves identifying the most efficient algorithm that accomplishes the same task as its competitors in the shortest time and with the least memory usage. As a demonstraition, the following two algorithms both attempt to write a set of instructions that allow the computer to calculate the factorial of a give number by the user. The first alogrithm uses an iterative approach with loops while the scond one attempts to do this with a recurisve function calls:
 </p>
 
 
 
 <br>
-
-
-
-<p>
-As a demonstraition, the following two algorithms both attempt to write a set of instructions that allow the computer to calculate the factorial of a give number by the user. The first alogrithm attempts to solve this problem using an iterative approach with loops while the scond one attempts to do this with a recurisve function call.
-</p>
-
-
-
 <br>
 <br>
 
@@ -208,14 +247,17 @@ int calculate_factorial_iterative(int number)
 
 <br>
 <br>
+<br>
+
 
 
 <p>
-Algorithms can solve the same problem in different ways, and their efficiency can vary significantly. By understanding and comparing their performance characteristics, developers can choose algorithms that are better suited for specific tasks. This leads to faster and more responsive software applications. Different algorithms might require varying amounts of computational resources, such as memory and processing power. By analyzing and comparing these resource requirements, developers can ensure that their software runs smoothly on different hardware configurations. Let's take a look at the second method which uses recursive functions:
+Different algorithms can solve the same problem in many different ways using different types of solutions, and their efficiency can vary significantly. By understanding and comparing their performance characteristics, developers can choose algorithms that are better suited for specific tasks. This leads to faster and more responsive software applications. Different algorithms might require varying amounts of computational resources, such as memory and processing power. It is important to understand that there is no ideal and best algorithm, some algorithms are better suited for some situations than others. By analyzing and comparing these resource requirements, developers can ensure that their software runs smoothly on different hardware configurations. Let's take a look at the second method which uses recursive function calls to accomplish the exact same functionality:
 </p>
 
 
 
+<br>
 <br>
 <br>
 
@@ -266,15 +308,19 @@ int calculate_factorial_recursive(int number)
 
 <br>
 <br>
+<br>
 
 
 
 <p>
-As you may have witnessed, the above two mentioned algorithms complete the same taks in totolaly different ways. The first way attempts to use a loop, which in comparison takes way less resources compareded to it's recursive counter part. This is due to the fact that recursive calls take more space per function call to accomodate the needs of the  function regarding memory as well as more time to setup the whole process of allocating everything appropriately as discussed in the function chapter of this blog post. It is due to these reason why we have comparisons to see which alogrithms are better.
+As you may have witnessed, the above two mentioned algorithms complete the same taks in totolaly different ways. The first way attempts to use a loop, which in comparison takes way less resources compareded to it's recursive counter part. This is due to the fact that recursive calls take more space per function call to accomodate the needs of the  function regarding memory as well as more time to setup the whole process of allocating everything appropriately as discussed in the function blog post. However, recursive methods are increadibly easier to manage and understand in comparison to iterative loops. It is due to these reason why we have comparisons to see what the advantages and drawbacks of each of these algorithms is to decide which solution is better suited for the situation and resources at hand.
 </p>
 
 
 
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -283,17 +329,7 @@ As you may have witnessed, the above two mentioned algorithms complete the same 
 <code><h3>Data structures:</h3></code>
 
 <p>
-Data structures are considered entities with the capability of grouping data based on similarity of type and behaviour together, enabling efficient manipulation of datasets. These structures are commonly referred to as collections, containers, and the like. Data structures are fascinating because they uphold to one of the most important concepts in the programming bible, which is the principle of abstraction. Data structures shield us from the unnecessary details and complexities associated with manipulating extensive datasets, offering only the essential interfaces needed to work with them to programmers.
-</p>
-
-
-
-<br>
-
-
-
-<p>
- There is not a universal data structure suitable for all tasks; therefore, understanding the strengths and limitations of various structures is essential. Choosing the correct data structure is not easy. There are a lot of elements involved in deciding which data structure is the best to use for each scenario. However, there are some things that we can consider to judge which data structure is better suited to be used for each scenario:
+Data structures are considered entities with the capability of grouping data based on similarity of type and behaviour together, enabling efficient manipulation of datasets as well as providing some common functionality to better operate upon the data set. These structures are commonly referred to as collections, containers, and the like. Data structures are fascinating because they uphold to one of the most important concepts in the programming bible, which is the principle of abstraction. Data structures shield us from the unnecessary details and complexities associated with manipulating and managing extensive datasets, offering only the essential interfaces needed to work with them to programmers. Elements within a data strucuter have something in common even if that thing is as simple as being of the same data type such as integers, chars, etc. THis enables us to expect and predict common functionality between them.
 </p>
 
 
@@ -303,45 +339,76 @@ Data structures are considered entities with the capability of grouping data bas
 
 
 
-<ul class="justified-list">
-	<li><strong>Performance</strong></li>
-	<li><strong>Functionality</strong></li>
-</ul>
-
-
-
-<br>
-<br>
-
-
-
 <p>
-Performance is really important. If a certain data structure is faster and more performant, then it is more likely to be used by the programmer. However, performance is not everything. Sometimes, we may want our data structure to provide us more functions and capabilities rather than being more performant. Maybe we want to choose one data structure over another over the condition of having some amazing function that no other data structure has that can make our lives easier. The following are however, some of the most basic expectations for every data strucuter in terms of functionality to have:
+ There is not a universal data structure suitable for all tasks; therefore, understanding the strengths and limitations of various structures is essential. Choosing the correct data structure is not easy. There are a lot of elements involved in deciding which data structure is the best to use for each scenario. However, there are some things that we can consider to judge which data structure is better suited to be used such as: <strong>Performance</strong> and <strong>Functionality</strong>. If a certain data structure is faster and more performant, then it is more likely to be used by the programmer. However, performance is not everything. Sometimes, we may want our data structure to provide us with more functionalities and capabilities rather than being more performant to save us from coming up with a solution that can perform such a task in the first place. The following are however, some of the most basic expectations for every data strucuter in terms of functionality:
 </p>
 
 
 
 <br>
 <br>
+<br>
 
 
 
-| Operation  | Description                                                                                            |
-|------------|--------------------------------------------------------------------------------------------------------|
-| `Insert`   | Provide ability to add an element to the data set                                                      |
-| `Remove`   | Provide ability to Delete an element from the data set                                                 |
-| `Search`   | Provide ability to find an element in the data set if possible                                         |
-| `Traverse` | Provide the ability to go through each element, usually for the purpose of printing the entire data set|
+<table>
+
+  <colgroup>
+    <col style="width: 20%;">
+    <col style="width: auto;">
+  </colgroup>
+  
+  <thead>
+    <tr>
+      <th style="text-align: left; padding: 10px 0px 10px 20px;">Operation</th>
+      <th style="text-align: left; padding: 10px 0px 10px 20px;">Description</th>
+    </tr>
+  </thead>
+  
+  <!-- Insert -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Insert</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">The ability to add an element to the collection</td>
+    </tr>
+  </tbody>
+  
+  <!-- Remove -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Remove</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">The ability to delete an element from the collection</td>
+    </tr>
+  </tbody>
+  
+  <!-- Search -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Search</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">The ability to find an element in the collection if possible</td>
+    </tr>
+  </tbody>
+  
+  <!-- Traverse -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Traverse</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">The ability to go through each element, usually for the purpose of printing the entire collection</td>
+    </tr>
+  </tbody>
+  
+</table>
 
 
 
+<br>
 <br>
 <br>
 
 
 
 <p>
-The performance of different data structures are determined by the algorithms and methods they employ to fulfill their tasks. Similar to all other components within a computer, data structures follow specific sets of instructions to achieve their objectives. For this very reason, we introduce the concept of analyzing algorithms and seeking to compare their efficiency. Data structures and algorithms have been a huge part of computer science since the dawn of computers as managing large amounts of data is trickier than it looks and can have siginifcant impact on the perforamnce of our programs. In the upcoming sections, we will focus on how to determine the effecniecy of differnet algorthims.
+The performance of different data structures are determined by the algorithms and methods they employ to fulfill their tasks. Similar to all other components within a computer, data structures follow specific sets of instructions to achieve their objectives. For this very reason, we introduce the concept of analyzing algorithms and seeking to compare their efficiency. Data structures and algorithms have been a huge part of computer science since the dawn of computers as managing large amounts of data is trickier than it looks and can have siginifcant impact on the perforamnce of our programs. In the upcoming sections, we will focus on how to determine the effecniecy of differnet algorthims by using special tools and mathematical notations that have been set as the standard and accepted among the programming world as the main tools to be used for this task. But, before that we need to understand what performance is.
 </p>
 
 
@@ -365,7 +432,7 @@ The performance of different data structures are determined by the algorithms an
 
 
 
-### Performance and measurement
+### Performance
 
 
 
@@ -380,7 +447,7 @@ The performance of different data structures are determined by the algorithms an
 
 
 <p>
-Before we can get started on measuring the performance of an entity that attempts to store and manipulate a large set of data, a fundamental question emerges: Why should we be concerned with the efficiency and resource demands of the algorithm employed by the data structure? The answer is: Because it makes a difference! While the argument can be made that computers are becoming exceedingly faster and more powerful, the scale and complexity of the challenges have increasingly escalated. What adds further intrigue is the fact that the perforamnce of today's computers is largely thanks to the endeavours of programmers who took the time to create new and improved methods and alogrithms for solving these problems! We must care to develop and refine alogrithms.
+Before we can get started on measuring the performance of a data structure, we need to answer a fundamental question: "Why should we be concerned with the efficiency and resource demands of the algorithm employed by a data structure?" The answer is: "Because it makes a difference!". While the argument can be made that computers are becoming exceedingly faster and more powerful, the scale and complexity of the challenges have increasingly escalated along with the advancements. What adds further intrigue is the fact that the perforamnce of today's computers is largely thanks to the endeavours of programmers who took the time to create new and improved methods and alogrithms for solving these problems! We must care to develop and refine alogrithms as they can have a significant impact on how well our machines perform their tasks in real time.
 </p>
 
 
@@ -390,7 +457,7 @@ Before we can get started on measuring the performance of an entity that attempt
 
 
 <p>
-One of the primary considerations when evaluating the effectiveness of a data structure in fulfilling its tasks is undoubtedly its performance. This leads to a fundamental question: "In the world of data structures and alogrithms what is the meaning of performance, and how can we measure it?" The solution to this question involves categorizing performance into two key dimensions: <strong>Time complexity</strong> and <strong>Space complexity</strong>. Time signifies how quickly tasks can be executed and accomplished, measured in seconds, minutes, hours, days, or even weeks. On the other hand, Space represents the resources needed to accomplisth that task, such as total memory consumption. Let's take a look at how we can measure each of these concepts more accurately.
+One of the primary considerations when evaluating the effectiveness of a data structure in completing its tasks is undoubtedly its performance. This leads to a fundamental question: "In the world of data structures and alogrithms what is the meaning of performance, and how can we measure it?" The solution to this question involves categorizing performance into two key dimensions: <strong>Time complexity</strong> and <strong>Space complexity</strong>. Time signifies how quickly tasks can be executed and accomplished, measured in seconds, minutes, hours, days, weeks, or even longer and bigger scales such as months and even years if the problem is really complicated. On the other hand, Space represents the resources needed to accomplisth that task, such as the total amount of memory that needs to be consumed during execution. Let's take a look at how we can measure each of these concepts more accurately.
 </p>
 
 
@@ -399,11 +466,13 @@ One of the primary considerations when evaluating the effectiveness of a data st
 
 
 <p>
-Understanding these two categories is important because they typically involve a trade-off. When aiming to improve program execution speed, chances are there is going to be a corresponding increase in space and resource utilization. On the other hand, if the goal is to minimize space and resource consumption, it might lead to longer execution times. For instance, when uisng a powerful Google computer, resource and space efficiency might be of minimal concern, whereas execution speed takes precedence. In contrast, with a personal desktop computer at home, space limitations will be more important to consider, and execution speed being of less concern. Therefore, determining which factor is more important relies entirely on the situation, objectives, and requirements.
+Understanding these two categories is important because they typically involve a trade-off. When aiming to improve program execution speed, chances are there is going to be a corresponding increase in space and resource utilization. On the other hand, if the goal is to minimize space and resource consumption, it might lead to longer execution times. For instance, when uisng a powerful Google computer, resource and space efficiency might be of minimal concern, whereas execution speed takes precedence. In contrast, with a personal desktop computer at home, space limitations will be more important to consider, and execution speed being of less concern, but still important non the less. Therefore, determining which factor is more important relies entirely on the situation, objectives, and requirements. Sometimes, the best situation is to create a balance between the time and space complexities.
 </p>
 
 
 
+<br>
+<br>
 <br>
 
 
@@ -444,6 +513,37 @@ Of course while this is not a complete accurate method, it is working non the le
 computer scientists have come up with something commonly refered to as asomptotic notations which are mathematical tools used ot describe the capabilites of algorithms and the data strucuters that use those alogrithms. a unified way to express performance and resource usage that can be separated into 3 parst: omega, thetha, big-o. They enable us to do exactyl what we did in the example, to see how time changes as the size of the problems changes, but without the need to go in deep everytime and having to examine it on a machine.
 
 
+
+Algorithm performance can be affected by the hardware it's running on and the environment it's executed in. The same algorithm might execute faster on a high-end machine compared to a low-end one, even if the underlying algorithmic efficiency remains the same.
+
+Example: A sorting algorithm may perform well on a computer with a fast processor and ample memory but might experience significant slowdowns on a different machine with less powerful hardware.
+
+Another complication is that a particular algorithm trying to solve the same problem on the same machine will take different times depending on how large of that problem we are trying to solve. For example, sorting an array with 100000000 elements will take more time than sorting an array with 100000 elements. In other words, the actual time it takes for an algorithm to solve a particular problem depends on the size of the problem.
+
+It would be perfectly fair if you're after some optimal (either time / space) requirement. Remember complexity analysis is only an indication, and a final test is always a good idea - especially if there's wildly different data sets to compare.
+
+E.g. you may well find that a N^2 algorithm performs faster with less RAM usage than an N log N up to a certain amount for N. Thus it might be more suitable in specific scenarios to go with a brute force algorithm. And the only way you'll know for sure is to test it.
+
+And actually a physical test is always a good idea. Even if your test is not about performance or resource requirements. E.g. a test for correctness (at least for the foreseen data) is a near requirement for most programs.
+
+But you should never just test one algorithm in isolation. You could do it just to get some indication of its suitability. But you will need to perform a "real" test inside of the use case.
+
+
+
+
+What does fair have to do with this? You can compare two algorithms in any measurable way. Heck, you can compare them by readability, or teach two algorithms to two groups of students and measure which is easier to grok.
+
+Run time is a pretty normal way of comparing algorithms. That, result accuracy, memory consumption, and storage operation counts are the typical ways algorithms are compared. Perhaps you could compare by maintainability but code size by itself is not that interesting.
+
+
+
+At the end of the day, running an alogrithm is a real-world evidance and example of how your computer is performing!!! Just like mixing chemical stuff in a labratory instead of talking about it on paper!
+
+
+
+Asympotitc notations is not about timing how long the algorithm takes. Instead, how many operations are executed. The number of instructions executed by a program is affected by the size of the input and how their elements are arranged. If you think about it deeply, you will start to realize that Asympotitc notations are actually very similar to what we have done in terms that, instead of concretely saying that something happens in N seconds, we instead see how the total amount of time changes as we change the conditions and input sizes.
+
+
 Write code and explanation for creating a struct that can measure time when you are at it as well.
 alos talk about space complexity.
 
@@ -453,11 +553,51 @@ alos talk about space complexity.
 
 
 <br>
+<br>
+<br>
+
+
+
+<code><h3>Space complexity</h3></code>
+
+<p>
+</p>
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+<div class="line-divider-bottom">
+  <hr class="left-line">
+  <span>|</span>
+  <span class="middle">Introduction</span>
+  <span>|</span>
+  <hr class="right-line">
+</div>
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+
+
+
+
+
+
+
+### Asymptotic analysis
+
+
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+<hr>
+
+<br>
+
+<!-- ############################################# Separator - Top ############################################# -->
 
 
 
 <p>
-Let's take an instance where the utilization of numerous individual variables can result in a complex situation when it comes to managing large volumes of data. Imagine you have a classroom full of students, and you intend to store information about every student, including their name, age, and GPA. If you opt to employ distinct variables for each student, the code could resemble the following:
+Clearly, time-based assessments of algorithms, especially those conducted by larger companies with a lot of resources, are a viable approach. However, not all programmers have the ability, time, nor the resources to conduct such sufficticated measurements. Most programmers seek a quick and approximate evaluation of their algorithm's performance in terms of time complexity. This is where asymptotic analysis comes into play. Asymptotic analysis involves the use of mathematical tools to study an algorithm's performance as the input size approaches infinity. Rather than fixating solely on time measurements, which can be heavily influenced by the factors discussed earlier, we can instead focus on observing how computational operations and steps increase in relation to the volume of requests and input changes.
 </p>
 
 
@@ -466,25 +606,260 @@ Let's take an instance where the utilization of numerous individual variables ca
 
 
 
+<p>
+These notations operate at a high level of abstraction, aiming to enable a rough evaluation of an algorithm in terms of performance while concealing the precise details. They treat fundamental and trivial operations, such as assignment statements, additions, and subtractions, as atomic and constant operations that consistently consume the same amount of time, even though, in reality, the execution time of these operations may vary. This is since they are relatively insignificant compared to more complex code structures that can have a greater influence, such as loops, functions, and classes. allowing us to focus on grasping the bigger picture rather than dwelling on elementary operations that have a negligible impact. Asymptotic notations will remind us of 3 important states that every programmer must take into considertaionn when they attempt to see how well their alogirthm is doing. This includes Big-O, Big-Theta, and Big-Omega. Let's take a look and analyze each of them in more depth.
+</p>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<code><h3>Big-Omega (Ω)</h3></code>
+
+<p>
+Omega notation, often denoted as Ω (pronounced "big omega"), is a mathematical notation used in computer science and mathematics to describe the lower bound of the time complexity of an algorithm or the growth rate of a function. In the context of time complexity, it characterizes the best-case scenario, representing the minimum amount of time required for an algorithm to execute a specified number of instructions. Omega notation is frequently referred to as the "ideal" scenario, though it is important to note that such ideal conditions are rarely encountered in practice.
+</p>
+
+
+
+<br>
+
+
+
+<code><h3>Big-Theta (Θ)</h3></code>
+
+<p>
+Theta notation, often denoted as Θ (pronounced "Big Theta"), is a mathematical notation used in computer science and mathematics to describe the lower and upper bound of the time complexity of an algorithm or the growth rate of a function. In the context of time complexity, it characterizes the average-case scenario, representing the average amount of time required for an algorithm to execute a specified number of instructions. Theta notation is frequently referred to as the "comman" scenario. Theta notation is much more common to be discussed in comparison to Omega notation.
+</p>
+
+
+
+<br>
+
+
+
+<code><h3>Big-O (O)</h3></code>
+
+<p>
+Big-O notation, often denoted as Θ (often referred to as just "Big O"), is a mathematical notation used in computer science and mathematics to describe the upper bound of the time complexity of an algorithm or the growth rate of a function. In the context of time complexity, it characterizes the worst-case scenario, representing the maximum amount of time required for an algorithm to execute a specified number of instructions. Big-O notation is more commonly used among programmers as it desribes the worst possible case their algoritm can run.
+</p>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<code><h3>Standard conventions</h3></code>
+
+<p>
+Among the trio of asymptotic notations, Big-O stands out as the most frequently employed notation for characterizing algorithm performance. Whenever programmers mention terms like "My algorithm's performance is linear" or say that "This algorithm operates in constant time," they are likely refering to Big-O notation. But why is this the case? Big-O notation places emphasis on an algorithm's worst-case time complexity. In other words, understanding how an algorithm behaves under worst-case conditions is often critical because these scenarios are where performance bottlenecks are most likely to manifest. This notation enables you to concentrate on the most significant factors influencing the runtime of your algorithm. If you can make the worst-case of an alogritm be better, then chances are that other notations and conditions such as average-case and best-case will benefit twice as much.
+</p>
+
+
+
+<br>
+
+
+
+<p>
+While Big-O notation is the predominant method for articulating algorithmic complexity, it's worth noting that other notations, such as Big-Theta (Θ) and Big-Omega (Ω), serve specific purposes as well. In most cases it is the combination of all these notations together at the end that can make a difference. However, for the sake of simplicity, we will describe the performance of algorithms in all upcoming tutorials in terms of Big-O. In the forthcoming and concluding section of this page, we will see into common patterns, best practices, and provide code examples for identifying Big-O in various scenarios.
+</p>
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+<div class="line-divider-bottom">
+  <hr class="left-line">
+  <span>|</span>
+  <span class="middle">Introduction</span>
+  <span>|</span>
+  <hr class="right-line">
+</div>
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+
+
+
+
+
+
+
+### Determine time complexity with Big-O notation
+
+
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+<hr>
+
+<br>
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+
+
+<p>
+While there is no comprehensive reference list that provides exact quantitative measurements for the performance of algorithms, there is encouraging news. Many programmers and scientists have conducted extensive research and experiments in the past, resulting in well-established common scenarios related to Big-O notation and performance. These insights provide general guidelines and categorizations that programmers can use to understand the relative performance of their alogrithms. When attempting to evaluate the time complexity of an algorithm using Big-O Notation, we can refer to the list below to gain a broad understanding of the algorithm's current performance status:
+</p>
+
+
+
+<br>
+<br>
+
+
+<table>
+
+  <colgroup>
+    <col style="width: 20%;">
+    <col style="width: 20%;">
+    <col style="width: auto;">
+  </colgroup>
+  
+  <thead>
+    <tr>
+      <th style="text-align: left; padding: 10px 0px 10px 20px;">Name</th>
+      <th style="text-align: left; padding: 10px 0px 10px 20px;">Symbol</th>
+      <th style="text-align: left; padding: 10px 0px 10px 20px;">Performance description</th>
+    </tr>
+  </thead>
+  
+  <!-- Constant -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Constant</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 2</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 3</td>
+    </tr>
+  </tbody>
+  
+  <!-- Logarithmic -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Logarithmic</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 2</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 3</td>
+    </tr>
+  </tbody>
+  
+  <!-- Linear -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Linear</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 2</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 3</td>
+    </tr>
+  </tbody>
+  
+  <!-- Linearithmic -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Linearithmic</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 2</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 3</td>
+    </tr>
+  </tbody>
+  
+  <!-- Quadratic -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Quadratic</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 2</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 3</td>
+    </tr>
+  </tbody>
+  
+  <!-- Exponential -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Exponential</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 2</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 3</td>
+    </tr>
+  </tbody>
+  
+  <!-- Factorial -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Factorial</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 2</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Content 3</td>
+    </tr>
+  </tbody>
+  
+</table>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<code><h3>Constant</h3></code>
+
+
+
+<p>
+The optimal performance that an algorithm can achieve in terms of Big-O notation is constant time, denoted as O(1). This signifies that the algorithm consistently completes its task in the same amount of time, regardless of the size of the input data. Achieving a truly constant algorithm is exceedingly challenging. While we can come very close to it, most of the time, achieving a full constant performance is not possible unless the algorithm's task is exceptionally basic. Examples of operations that can be of constant performance include basic arithmetic operations, such as addition, subtraction, multiplication, and division involving fixed-size integers or floating-point numbers. Furthermore, straightforward variable declaration and assignment statements also go under the category of constant performance. 
+</p>
+
+
+
+<br>
+
+
+
+<p>
+It is important to note that there is a common misconception among programmers regarding the distinction between being constant and being fast. When we talk about a constant algorithm, we mean that it maintains a consistent runtime with every execution. However, this does not imply that the algorithm is necessarily fast. For example, it might take the alogrithm 1 minute and 37 seconds to accomplish its task. The advantage lies in the fact that regardless of whether it is processing a single data point or a million data points, it will consistently take the same 1 minute and 37 seconds. The true power of this characteristic becomes apparent as the volume of data increases. Let's take a look at an example:
+</p>
+
+
+
+<br>
+<br>
+
+
+
 ```C++
+#include <iostream>
+#include <iomanip>
+#include <random>
+
+
 int main(int argc, char* argv[])
 {
-	// Honestly, how many times did we obtain 1.99, just to strive for 2 as our GPA?
+	std::random_device random;
+	std::uniform_int_distribution<int> distribution(1, 30);
 	
 	
-	// First student.
-	std::string student_01_name = "William Harris";
+	std::cout << "Winning Numbers are:" << "\n\n";
 	
-	int student_01_age = 18;
-	int student_01_gpa = 2;		// Could also be float, but for obvious reasons it is int.
+	// Generating 10 random numbers and print them.
+    for (int iteration = 0; iteration < 10; ++iteration)
+	{
+        std::cout << std::setw(2) << std::setfill('0') << distribution(random) << "\n";
+    }
 
-	
-	// Second student.
-	std::string student_02_name = "Thomas Robinson";
-	
-	int student_02_age = 19;
-	int student_02_gpa = 3;		// Could also be float, but for obvious reasons it is int.
-	
+    std::cout << "\n" << "Congratulations to the winners!" << std::endl;
+    
 	
 	return (0);
 }
@@ -493,11 +868,29 @@ int main(int argc, char* argv[])
 
 
 <br>
+<br>
 
 
 
 <p>
-This is just the start – currently, we're dealing with only two student entities in total, treating these fields as combined attributes. But what if we aim to tweak and handle hundreds, or even thousands, of students? The code could quickly turn into a headache to manage. We'd have to create many unique fields and variables, each requiring individual attention. And let's not forget about the potential scenario where we're tasked with frequently modifying each of these fields.
+The code above uses "std::random_device" to produce random numbers constrainted to the range of 1 to 30 via a "std::uniform_int_distribution". The time complexity associated with declaring, creating, and utilizing these two objects, along with the assignment and print operations, can all be regarded as constant. However, our primary focus lies on the for-loop structure. Despite the fact that the for-loop attempts to iterate 10 times, generating and printing a random number on each iteration, it consistently repeats this process 10 times whenever the program is executed. In other words, the number of iterations that the for-loop does have no relationship with any kind of input data. The for-loop's time complexity remains constant.
+</p>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<code><h3>Logarithmic</h3></code>
+
+<p>
+A logarithmic algorithm is one whose time complexity increases as the input size grows, but this increase occurs at a significantly slower rate than expected. They are often represented as O(log n), where "n" signifies the size of the input data. These algorithms typically involve dividing the input into smaller chunks and processing one segment at a time. This approach allows the algorithm to substantially reduce the problem size with each step, often halving it compared to the original size. Logarithmic algorithms are exceptionally efficient for handling large datasets because their time complexity grows much slower than others in the table set. They are frequently employed for tasks that entail a divide-and-conquer strategy, progressively eliminating half of the remaining possibilities at each step. Logarithmic algorithms represent the closest approximation to constant time complexity in terms of performance.
 </p>
 
 
@@ -507,9 +900,116 @@ This is just the start – currently, we're dealing with only two student entiti
 
 
 <p>
-As program designers, we often strive to connect pieces of data in a way that they have some form of relationship, even if the only commonality is their data type. In today's era of C++ programming, understanding how to deal with signifacnt amounts of data and how to manipulate them effectively is vitally important. For these reasons, we will explore data structures and the various algorithms they employ to efficiently manage large volumes of data. So, without any hesitation, let's begin.
+Detecting whether an algorithm shows logarithmic behavior can be quite challenging, particularly when dealing with complex algorithms. One reason for this challenge in understanding logarithmic behavior is that it diverges from our everyday experiences. For instance, in our daily lives, we typically handle situations sequentially, serving customers one by one in a linear fashion at a restaurant, rather than attempting to divide them into halves and employing a divide-and-conquer approach. This tendency to approach tasks linearly is mirrored in other aspects of life, like serving customers at a bank or parking cars in a parking lot. Due to these linear processes, programmers often struggle to identify a logarithmic algorithm. Let's look at one example and try to see why it evaluates to an logarithmic time complexity:
 </p>
 
+
+
+<br>
+
+
+
+<p>
+Imagine you have purchased a new book about romance and are eager to find a specific paragraph within a certain chapter. You have two choices for finding the paragrpah: Start from the very first page and keep turning pages until you eventually find the chapter you desire. This method involves checking each page one by one, which could be time-consuming, especially in a long book. Alternatively, you can use a more efficient method. Begin by examining the table of contents, which is organized alphabetically by chapters. This step allows you to immediately pinpoint the chapter you want to read. By doing so, you've effectively reduced your search by nearly half of the book's content, as many chapters have been skipped. Within the selected chapter, you might find subcategories or subsections. You can continue to apply the approach. Divide the content into two, focus on one half based on the alphabetical order or any other criterion, and repeat until you locate the specific sentence you are seeking.
+</p>
+
+
+
+<br>
+
+
+
+<p>
+The key idea here is that at each step, you are halving the search space, which leads to a logarithmic reduction in the number of possibilities you need to examine. This method demonstrates logarithmic time complexity because the time it takes to find your desired paragraph grows slowly, proportional to the logarithm of the number of possibilities (in this case, the number of pages or chapters in the book). This is much faster than a linear search, especially for large datasets. Another example of logarithmic time complexity is a common algorthim known as the "Binary search" which will be explained later on in the "Array" section. In general, it is very difficult to explain logarthimic algorithms as they are very rare since they introduce increadible performance. However, rest ashored as we will cover many of them throughout this entire tutorial.
+</p>
+
+
+# Linear search checks each element in the array one by one, making it O(n).
+Linearithmic Time (O(n log n)):
+
+Description: Linearithmic time complexity grows slower than quadratic but faster than linear. It's often seen in efficient sorting algorithms.
+
+Example:
+
+python
+Copy code
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left_half = merge_sort(arr[:mid])
+    right_half = merge_sort(arr[mid:])
+    return merge(left_half, right_half)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+# Merge sort divides the input in half recursively and then merges the halves.
+# Its time complexity is O(n log n).
+Quadratic Time (O(n^2)):
+
+Description: Quadratic time complexity means that the algorithm's running time grows with the square of the input size. It's often seen in algorithms with nested loops.
+
+Example:
+
+python
+Copy code
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+# Bubble sort compares and swaps elements, leading to O(n^2) time complexity.
+Exponential Time (O(2^n) or O(k^n)):
+
+Description: Exponential time complexity means that the running time grows exponentially with the input size, making it highly inefficient.
+
+Example:
+
+python
+Copy code
+def fibonacci_recursive(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
+
+# The Fibonacci recursive function has exponential time complexity O(2^n).
+Factorial Time (O(n!)):
+
+Description: Factorial time complexity means that the running time grows at a rate of n factorial. It's extremely inefficient and is often impractical for large inputs.
+
+Example:
+
+python
+Copy code
+def permutation_recursive(arr):
+    if len(arr) == 1:
+        return [arr]
+    permutations = []
+    for i in range(len(arr)):
+        first_elem = arr[i]
+        remaining_elems = arr[:i] + arr[i+1:]
+        for perm in permutation_recursive(remaining_elems):
+            permutations.append([first_elem] + perm)
+    return permutations
+
+# This recursive function generates all permutations of an array.
+# It has factorial time complexity O(n!).
+These examples should provide you with a better understanding of time complexities and how they relate to the efficiency of algorithms. Remember that choosing the right algorithm for a specific problem often involves considering both time and space complexities, as well as other practical factors.
 
 
 <!-- ############################################# Separator - Bottom ############################################# -->
