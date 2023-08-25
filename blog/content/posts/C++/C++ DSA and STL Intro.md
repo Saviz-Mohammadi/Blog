@@ -29,7 +29,7 @@ weight: 3
 
 
 <p>
-A program consists of a sequential set of instructions that are executed one after the other, with each instruction operating on a distinct piece of data. As our programs grow in size and complexity, it becomes increasingly challenging to effectively monitor and manage these datasets solely using conventional variables, objects, and structs. Opting to use these types of solutions can rapidly lead to unmanageable situations. This is because these storages are not engineered to handle extensive data loads; their design centers around managing and representing singular units of information or entities. Let's demonstrate this concept with a simple example. Imagine you have a classroom full of students, and you intend to store information about every student, including their name, age, and SIN number. If you decide to employ distinct variables for each student, the code will be similar to the following:
+A program consists of a sequential set of instructions that are executed one after the other, with each instruction operating on a distinct piece of data. As our programs grow in size and complexity, it becomes increasingly challenging to effectively monitor and manage these datasets solely using conventional variables, objects, and structs. Opting to utilize such solutions can quickly lead to unmanageable situations. This is because these storages are not engineered to handle extensive data loads; their design centers around managing and representing singular units of information or entities. Let's demonstrate this concept with a simple example. Imagine you have a classroom full of students, and you intend to store information about every student, including their name, age, and SIN number. If you decide to employ distinct variables for each student, the code will be similar to the following:
 </p>
 
 
@@ -125,7 +125,7 @@ int main(int argc, char* argv[])
 
 
 <p>
-Whether we decide to use the initial approach with individual variables or opt to employ more complex entities like structs or objects, we still face a fundamental question: "How do we effectively manage a substantial volume of data?". This question becomes even more important when we aim to integrate specific and critical functionalities that can be applied to the set of data as well. Consider a scenario in which your organization needs to update a student named "Alice" among a pool of 2500 enrolled students. In this case, you will need to manually search through the student structures or variables to locate the one that matches the description and make the necessary modifications. This is just a single, straightforward task within a relatively modest dataset. What if there are more operations, such as identifying the student with a specific SIN number, identifying the student with the youngest age, and various other tasks?
+Whether we decide to use the initial approach with individual variables or opt to employ more complex entities like structs or objects, we still face a fundamental challenge: "How do we effectively manage a substantial volume of data?". This challenge becomes even more important when we aim to integrate specific and critical functionalities that can be applied to the set of data as well. Consider a scenario in which your organization needs to update a student named "Alice" among a pool of 2500 enrolled students. In this case, you will need to manually search through the student structures or variables to locate the one that matches the description and make the necessary modifications. This is just a single, straightforward task within a relatively modest dataset. What if there are more operations, such as identifying the student with a specific SIN number, identifying the student with the youngest age, and various other tasks?
 </p>
 
 
@@ -381,6 +381,14 @@ Data structures are considered entities with the capability of grouping data bas
     </tr>
   </tbody>
   
+  <!-- Access -->
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">Access</td>
+      <td style="text-align: left; padding: 10px 0px 10px 20px;">The ability to access an element in the collection</td>
+    </tr>
+  </tbody>
+  
   <!-- Search -->
   <tbody>
     <tr>
@@ -474,6 +482,9 @@ Understanding these two categories is important because they typically involve a
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
 
 
 
@@ -486,11 +497,111 @@ The central question at hand is: "How can we measure or predict the time require
 
 
 <br>
+<br>
+<br>
 
+
+
+```C++
+#include <iostream>
+#include <chrono>
+
+
+void my_function(std::size_t total_iterations)
+{
+	for(std::size_t iteration = 0; iteration < total_iterations; ++iteration)
+	{
+		continue;
+	}
+}
+
+
+int main(int argc, char* argv[])
+{
+	// Creating time_points to record times.
+	std::chrono::time_point<std::chrono::steady_clock> start_point;
+	std::chrono::time_point<std::chrono::steady_clock> break_point;
+	
+	
+	
+	start_point = std::chrono::steady_clock::now(); // Recording the time before function starts.
+	my_function(1'000'000);
+	break_point = std::chrono::steady_clock::now(); // Recording the time after function finishes.
+	
+	
+	
+	// Calculating duration. (with floating-point accuracy and milisecond format)
+	std::chrono::duration<float, std::milli> duration = break_point - start_point;
+	
+	// Printing the duration.
+	std::cout << "Duration was: " << duration.count() << "ms" << std::endl;
+	
+	
+	return (0);
+}
+```
+
+
+
+<br>
+<br>
+<br>
 
 
 <p>
-The issue does not lie in the act of measuring time itself, but rather in the misconceptions surrounding time-based comparisons. Typically, we tend to measure the time differences among distinct machines, rather than evaluating a particular machine's performance across multiple instances. For example, if we execute a piece of software on a high-performance Google computer and it completes in 0.00001 milliseconds, can we assume that the algorithm will run fast anywhere? This assumption is misguided as it is like saying that a Ferrari supercar is quicker than a compact economy car - an evident truth. The main question is: "Have the improvements in the algorithm actually influenced the execution speed compared to the previous runs?".
+Chrono is a library for working with time and clocks. Within Chrono, there are three types of clocks available: "system_clock," "steady_clock," and "high_resolution_clock." The "system_clock" type is typically employed for handling dates in a calendar format, while "steady_clock" and "high_resolution_clock" are more suitable for precise timing mechanisms, making them ideal choices for measuring durations. To calculate the total time it takes for a function or piece of code to execute, we create two time points: one before the function begins and one after it completes. These time points record the precise time when the statements are executed. We determine the total duration by calculating the difference between these two time points. The Chrono library is quite sophisticated, and covering its entirety in one explanation is not feasible. Nevertheless, the knowledge provided here should be sufficient for us to create a basic timer and evaluate the performance of our functions.
+</p>
+
+
+
+<br>
+
+
+
+```C++
+#include <iostream>
+#include <chrono>
+
+
+void my_function(std::size_t total_iterations)
+{
+	for(std::size_t iteration = 0; iteration < total_iterations; ++iteration)
+	{
+		continue;
+	}
+}
+
+
+int main(int argc, char* argv[])
+{
+	// Creating time_points to record times.
+	std::chrono::time_point<std::chrono::steady_clock> start_point;
+	std::chrono::time_point<std::chrono::steady_clock> break_point;
+	
+	
+	
+	start_point = std::chrono::steady_clock::now(); // Recording the time before function starts.
+	my_function(1'000'000);
+	break_point = std::chrono::steady_clock::now(); // Recording the time after function finishes.
+	
+	
+	
+	// Calculating duration. (with floating-point accuracy and milisecond format)
+	std::chrono::duration<float, std::milli> duration = break_point - start_point;
+	
+	// Printing the duration.
+	std::cout << "Duration was: " << duration.count() << "ms" << std::endl;
+	
+	
+	return (0);
+}
+```
+
+<br>
+
+
+<p>
+The time it takes an alogrithm to complete its task can be affected by the hardware it is running on and the environment it is executed in. The same algorithm might execute faster on a high-end machine compared to a low-end one, even if the underlying algorithmic efficiency remains the same. If you attempt to run this code on different devices with different hardaware capabiliets you will soon realize that you will obtain back different types of numbers each time. The issue does not lie in the act of measuring time itself, but rather in the misconceptions surrounding time-based comparisons. Typically, we tend to measure the time differences among distinct machines, rather than evaluating a particular machine's performance across multiple instances. Let's take a look at some examples that are obtained from runing this code on differetn manchenes:
 </p>
 
 
@@ -500,7 +611,7 @@ The issue does not lie in the act of measuring time itself, but rather in the mi
 
 
 <p>
-Of course while this is not a complete accurate method, it is working non the less. But, the issue is that we do not have the time and luxury nor the resources available to us to examine every computer that we try to deploy the alogrithm for. Anothre problem, is that we do not see the big picture. For small scale problems the exectution is usually over before we even get started. Would our algorithms perform the same if the scale gets larger? All these factors and variations are reasons as to why we need to come up with some other solution. Would'nt it be easier to have a universal way to measure Time complexity? This is where Asomptotic notations come into play.
+if we execute a piece of software on a high-performance computer and it completes in 0.00001 milliseconds, can we assume that the algorithm will run fast anywhere? This assumption is misguided as it is like saying that a Ferrari supercar is quicker than a compact economy car - an evident truth. The main question is: "Have the improvements in the algorithm actually influenced the execution speed compared to the previous runs on the same machine?". Altough time based approchase are nice and they can be certainly used to compare the execution times from previous attempts, but ulitmately they are not perferred way of estimating teh performance as many things such as size of the input, hardaware-capability, compiler optimizations, and many more things can influence the number that we obtain from it.
 </p>
 
 
@@ -510,44 +621,7 @@ Of course while this is not a complete accurate method, it is working non the le
 
 
 <p>
-computer scientists have come up with something commonly refered to as asomptotic notations which are mathematical tools used ot describe the capabilites of algorithms and the data strucuters that use those alogrithms. a unified way to express performance and resource usage that can be separated into 3 parst: omega, thetha, big-o. They enable us to do exactyl what we did in the example, to see how time changes as the size of the problems changes, but without the need to go in deep everytime and having to examine it on a machine.
 
-
-
-Algorithm performance can be affected by the hardware it's running on and the environment it's executed in. The same algorithm might execute faster on a high-end machine compared to a low-end one, even if the underlying algorithmic efficiency remains the same.
-
-Example: A sorting algorithm may perform well on a computer with a fast processor and ample memory but might experience significant slowdowns on a different machine with less powerful hardware.
-
-Another complication is that a particular algorithm trying to solve the same problem on the same machine will take different times depending on how large of that problem we are trying to solve. For example, sorting an array with 100000000 elements will take more time than sorting an array with 100000 elements. In other words, the actual time it takes for an algorithm to solve a particular problem depends on the size of the problem.
-
-It would be perfectly fair if you're after some optimal (either time / space) requirement. Remember complexity analysis is only an indication, and a final test is always a good idea - especially if there's wildly different data sets to compare.
-
-E.g. you may well find that a N^2 algorithm performs faster with less RAM usage than an N log N up to a certain amount for N. Thus it might be more suitable in specific scenarios to go with a brute force algorithm. And the only way you'll know for sure is to test it.
-
-And actually a physical test is always a good idea. Even if your test is not about performance or resource requirements. E.g. a test for correctness (at least for the foreseen data) is a near requirement for most programs.
-
-But you should never just test one algorithm in isolation. You could do it just to get some indication of its suitability. But you will need to perform a "real" test inside of the use case.
-
-
-
-
-What does fair have to do with this? You can compare two algorithms in any measurable way. Heck, you can compare them by readability, or teach two algorithms to two groups of students and measure which is easier to grok.
-
-Run time is a pretty normal way of comparing algorithms. That, result accuracy, memory consumption, and storage operation counts are the typical ways algorithms are compared. Perhaps you could compare by maintainability but code size by itself is not that interesting.
-
-
-
-At the end of the day, running an alogrithm is a real-world evidance and example of how your computer is performing!!! Just like mixing chemical stuff in a labratory instead of talking about it on paper!
-
-
-
-Asympotitc notations is not about timing how long the algorithm takes. Instead, how many operations are executed. The number of instructions executed by a program is affected by the size of the input and how their elements are arranged. If you think about it deeply, you will start to realize that Asympotitc notations are actually very similar to what we have done in terms that, instead of concretely saying that something happens in N seconds, we instead see how the total amount of time changes as we change the conditions and input sizes.
-
-
-Write code and explanation for creating a struct that can measure time when you are at it as well.
-alos talk about space complexity.
-
-"In the world of data strucutres and alogrithms what tool, notation, etc. can we use to mesure the performance and capability of a container or collection?"
 </p>
 
 
