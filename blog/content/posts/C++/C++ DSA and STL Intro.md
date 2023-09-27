@@ -42,6 +42,8 @@ A program consists of a sequential set of instructions that are executed one aft
 
 ```C++
 #include <iostream>
+#include <string>
+
 
 int main(int argc, char* argv[])
 {
@@ -51,7 +53,7 @@ int main(int argc, char* argv[])
 
 	
 	std::string student_02_name = "Thomas Robinson";
-	int student_02_age = 19;
+	int student_02_age = 27;
 	int student_02_sin = 03998451;
 	
 	
@@ -74,7 +76,7 @@ int main(int argc, char* argv[])
 
 
 <p>
-A more experienced programmer might choose to combine these distinct data elements into a meaningful complex data type, such as a struct named "Student". This approach allows them to treat each student as a distinct entity, complete with attributes like "name", "age", and "sin." This organization simplifies the task, as it combines the individual data elements. Alternatively, programmers could opt to use classes and objects, but given that we are dealing with only data so far, employing a straightforward data container structure makes more sense. However, using a class remains a valid option. Personally, I prefer employing structs for entities that exclusively contain data, as it aligns better with my understanding of the concept. Let's see an example of how our code would look like if we decided to use structs and create "Student" entities instead of using individual variables:
+For a more experienced programmer, it may be benefetial to combine these distinct data elements into one meaningful complex data type, such as a <span class="special">struct named "Student"</span>. As a result of this approach, each student can be treated as a distinct entity, complete with attributes such as "name", "age", and "sin". Because this organization combines the individual data elements, the task is simplified. It is also possible for programmers to use classes and objects, but since we are concerned with only the data so far, a straightforward data container structure seems to make the most sense. <span class="special">Nevertheless, a class can be used if desired</span>. In my opinion, structs are better suited for entities whose sole purpose is to contain data, as they align better with my understanding of the concept. The following is an example of what our code would look like if we used structs and created "Student" entities instead of using individual variables:
 </p>
 
 
@@ -87,32 +89,36 @@ A more experienced programmer might choose to combine these distinct data elemen
 
 ```C++
 #include <iostream>
+#include <string>
+
 
 struct Student
 {
-    
-	std::string name;
+    std::string name;
     int age;
-	int sin;
+    int sin;
 
     Student(const std::string& _name, int _age, int _sin)
-        : name(_name), age(_age), sin(_sin)  {}
+        : name(_name), age(_age), sin(_sin)
+    {
+        std::cout << "Student name: " << name << "\n";
+        std::cout << "Student age:  " << age  << "\n";
+        std::cout << "Student sin:  " << sin  << "\n" << std::endl;
+    }
 };
 
 
 int main(int argc, char* argv[])
 {
-	// This feels much cleaner already...
-	
-	Student student_1("William jackson", 18, 11328467);
-	Student student_2("Thomas Robinson", 19, 03998451);
-	Student student_3("Michael jackson", 23, 03448391);
-	
-	
-	// This continues...
-	
-	
-	return (0);
+    // This feels much cleaner already...
+
+    Student student_1("William jackson", 18, 11328467);
+    Student student_2("Thomas Robinson", 19, 73998451);
+    Student student_3("Michael jackson", 23, 63448391);
+
+    // This continues...
+
+    return (0);
 }
 ```
 
@@ -125,7 +131,7 @@ int main(int argc, char* argv[])
 
 
 <p>
-Whether we decide to use the initial approach with individual variables or opt to employ more complex entities like structs or objects, we still face a fundamental challenge: "How do we effectively manage a substantial volume of data?". This challenge becomes even more important when we aim to integrate specific and critical functionalities that can be applied to the set of data as well. Consider a scenario in which your organization needs to update a student named "Alice" among a pool of 2500 enrolled students. In this case, you will need to manually search through the student structures or variables to locate the one that matches the description and make the necessary modifications. This is just a single, straightforward task within a relatively modest dataset. What if there are more operations, such as identifying the student with a specific SIN number, identifying the student with the youngest age, and various other tasks?
+No matter whether we choose to utilize the initial approach with individual variables or to employ more complex entities such as structs or objects, we are still faced with a fundamental challenge: <span class="special">"How do we effectively manage a substantial volume of data?"</span>. It becomes even more challenging when we seek to integrate specific and critical functionalities that can also be applied to the set of data. Let us consider the scenario in which your organization needs to update a student named "Alice" among a pool of 2500 students. To locate the student structure that matches the description, you will need to manually search through the student variables or structures which can take quite the effort and time to accomplish. This is just one, straightforward task contained within a relatively small dataset. What if we are asked to complete other operations, such as identifying students with specific Social Security numbers, identifying students with the youngest ages, and other tasks among a much larger set of data, such as 100,000 students?
 </p>
 
 
@@ -136,7 +142,7 @@ Whether we decide to use the initial approach with individual variables or opt t
 
 
 <p>
-It becomes clear quite quickly that dealing with substantial datasets can become overwhelming. As program designers, we often strive to connect pieces of data in a way that they have some form of relationship, even if the only commonality is their data type. In addition, we aim to incorporate specific and essential shared functionalities into the entities that manage large data sets. In today's era of C++ programming, understanding how to deal with signifacnt amounts of data and how to manipulate them effectively is vitally important. For these reasons, we will explore data structures and the various algorithms they employ to efficiently manage large volumes of data. If this sounds like something you might be interested in learning about, then let's begin without any hesitation.
+The complexity of dealing with large datasets becomes apparent quite quickly. It is often our goal, as programmers, to link pieces of data so that they have some kind of relationship, <span class="special">even if their only connection is their data type</span>. Additionally, <span class="special">we aim to incorporate specific and essential shared functionalities into entities that manage large data sets</span>. The ability to analyze and manipulate large amounts of data is a vitally important skill to have in today's C++ programming environment. Therefore, we will examine data structures and the various algorithms they employ in order to efficiently manage large amounts of data. If this sounds like something you might be interested in learning more about, then this series of articles is what you are looking for.
 </p>
 
 
@@ -191,7 +197,7 @@ Your enthusiasm to dive headfirst into learning is admirable. However, in every 
 <code><h3>Algorithms:</h3></code>
 
 <p>
-An algorithm is a collection of percise steps and instructions designed to guide a computer in solving a particular problem. Interestingly, we've essentially been employing an algorithm all along, up to this point. In the realm of computer programming, a single problem often spawns multiple solutions crafted by different programmers and researchers. The challenge lies in determining which algorithm will demonstrate superior performance and most importantly produce correct results all while utilizing fewer resources. Analyzing algorithms is a process that involves identifying the most efficient algorithm that accomplishes the same task as its competitors in the shortest time and with the least memory usage. As a demonstraition, the following two algorithms both attempt to write a set of instructions that allow the computer to calculate the factorial of a give number by the user. The first alogrithm uses an iterative approach with loops while the scond one attempts to do this with a recurisve function calls:
+Interestingly, we've essentially been employing an algorithm all along, up to this point. <span class="special">An algorithm is a collection of percise steps and instructions designed to guide a computer in solving a particular problem.</span> In the realm of computer programming, a single problem often spawns multiple solutions crafted by different programmers and researchers. The challenge lies in determining which algorithm will demonstrate <span class="special">superior performance</span> and most importantly <span class="special">produce correct results</span> all <span class="special">while utilizing fewer resources</span>. Analyzing algorithms is a process that involves identifying the most efficient algorithm that accomplishes the same task as its competitors in the shortest time and with the least memory usage. As a demonstraition, Let's imagine that we are given the task of creating an algorithm that can calculate the factorial of a given number by the user. We can approach this problem in two different ways: <span class="special">Recursively</span>, <span class="special">Iteratively</span>. Let's visualize the iterative approach first:
 </p>
 
 
@@ -204,6 +210,7 @@ An algorithm is a collection of percise steps and instructions designed to guide
 
 ```C++
 #include <iostream>
+#include <string>
 
 
 int calculate_factorial_iterative(int number);
@@ -226,7 +233,6 @@ int main(int argc, char* argv[])
     
 	return (0);
 }
-
 
 
 int calculate_factorial_iterative(int number)
@@ -252,7 +258,7 @@ int calculate_factorial_iterative(int number)
 
 
 <p>
-Different algorithms can solve the same problem in many different ways using different types of solutions, and their efficiency can vary significantly. By understanding and comparing their performance characteristics, developers can choose algorithms that are better suited for specific tasks. This leads to faster and more responsive software applications. Different algorithms might require varying amounts of computational resources, such as memory and processing power. It is important to understand that there is no ideal and best algorithm, some algorithms are better suited for some situations than others. By analyzing and comparing these resource requirements, developers can ensure that their software runs smoothly on different hardware configurations. Let's take a look at the second method which uses recursive function calls to accomplish the exact same functionality:
+Different algorithms can solve the same problem in many different ways using different types of solutions, and their efficiency can vary significantly. By understanding and comparing their performance characteristics, developers can choose algorithms that are better suited for specific tasks. This leads to faster and more responsive software applications. Different algorithms might require varying amounts of computational resources, such as memory and processing power. <span class="special">It is important to understand that there is no ideal and best algorithm, some algorithms are better suited for some situations than others.</span> Therfore, whenever an interviewer asks you the question of <span class="special">"Which data structure or algorithm do you think is best suited for this problem?"</span>, then your answer should always be <span class="special">"It depends! We need to analyze our solutions"</span>. By analyzing and understanding how to compare these resource requirements, developers can ensure that their software runs smoothly on different hardware configurations. Let's take a look at the second method which uses recursive function calls to accomplish the exact same functionality:
 </p>
 
 
@@ -265,6 +271,7 @@ Different algorithms can solve the same problem in many different ways using dif
 
 ```C++
 #include <iostream>
+#include <string>
 
 
 int calculate_factorial_recursive(int number);
@@ -287,7 +294,6 @@ int main(int argc, char* argv[])
     
 	return (0);
 }
-
 
 
 int calculate_factorial_recursive(int number)
@@ -313,8 +319,103 @@ int calculate_factorial_recursive(int number)
 
 
 <p>
-As you may have witnessed, the above two mentioned algorithms complete the same taks in totolaly different ways. The first way attempts to use a loop, which in comparison takes way less resources compareded to it's recursive counter part. This is due to the fact that recursive calls take more space per function call to accomodate the needs of the  function regarding memory as well as more time to setup the whole process of allocating everything appropriately as discussed in the function blog post. However, recursive methods are increadibly easier to manage and understand in comparison to iterative loops. It is due to these reason why we have comparisons to see what the advantages and drawbacks of each of these algorithms is to decide which solution is better suited for the situation and resources at hand.
+You may have noticed that the above two algorithms accomplish the same task in a completely different ways. Using a loop is the first method, which takes far fewer resources than its recursive counterpart. As discussed in the function blog post, recursive calls take more space per function call in order to accommodate the memory needs of the function as well as additional time to set up the entire process of allocating everything appropriately. Nevertheless, recursive methods are much more straightforward to understand and manage than iterative loops. These are the reasons why we have comparisons in order to see what the advantages and disadvantages of each algorithm are in order to determine which is more appropriate for the situation and resources available. Another example would be a program that can display the set of Fibonnaci numbers:
 </p>
+
+
+<br>
+<br>
+<br>
+
+
+
+```C++
+#include <iostream>
+
+
+int Fibonacci_recursive(int number);
+
+
+int main(int argc, char* argv[])
+{
+    // Print the first 10 Fibonacci numbers.
+    
+    for(std::size_t index = 0; index < 10; ++index)
+    {
+        std::cout << Fibonacci_recursive(index) << " ";
+    }
+    
+    std::cout << std::flush;
+    
+    return (0);
+}
+
+
+int Fibonacci_recursive(int number)
+{
+    if(number <=1)
+    {
+        return (number);
+    }
+    
+    return Fibonacci_recursive(number -1) + Fibonacci_recursive(number -2);
+}
+```
+
+
+
+<br>
+<br>
+<br>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+```C++
+#include <iostream>
+
+
+void fibonacci_iterative(int number);
+
+
+int main(int argc, char* argv[])
+{
+    fibonacci_iterative(10);
+
+    return (0);
+}
+
+
+void fibonacci_iterative(int number)
+{
+    int memory_1 = 0;
+    int memory_2 = 1;
+    int memory_3 = 0;
+
+    for (std::size_t index = 0; index < number; ++index)
+    {
+        std::cout << memory_1 << " ";
+
+        memory_3 = memory_1 + memory_2;
+        memory_1 = memory_2;
+        memory_2 = memory_3;
+    }
+
+    std::cout << std::flush;
+}
+```
+
+
+
+<br>
+<br>
+<br>
+
 
 
 
@@ -329,7 +430,7 @@ As you may have witnessed, the above two mentioned algorithms complete the same 
 <code><h3>Data structures:</h3></code>
 
 <p>
-Data structures are considered entities with the capability of grouping data based on similarity of type and behaviour together, enabling efficient manipulation of datasets as well as providing some common functionality to better operate upon the data set. These structures are commonly referred to as collections, containers, and the like. Data structures are fascinating because they uphold to one of the most important concepts in the programming bible, which is the principle of abstraction. Data structures shield us from the unnecessary details and complexities associated with manipulating and managing extensive datasets, offering only the essential interfaces needed to work with them to programmers. Elements within a data strucuter have something in common even if that thing is as simple as being of the same data type such as integers, chars, etc. THis enables us to expect and predict common functionality between them.
+Data structures are considered <span class="special">entities with the capability of grouping data together based on similarity in type and behavior, enabling efficient manipulation of datasets along with providing some common functionality for better manipulation of data</span>. These structures are commonly referred to as <span class="special">collections</span>, <span class="special">containers</span>, and the like. Data structures are fascinating because they uphold to one of the most important concepts in the programming bible, which is the principle of <span class="special">abstraction</span>. Data structures shield us from unnecessary details and the complexities associated with manipulating and managing extensive datasets. They offer only the essential interfaces needed to work with them for programmers. Elements within a data structure have something in common even if that thing is as simple as being of the same data type. So, which data structure is the best?
 </p>
 
 
@@ -340,7 +441,7 @@ Data structures are considered entities with the capability of grouping data bas
 
 
 <p>
- There is not a universal data structure suitable for all tasks; therefore, understanding the strengths and limitations of various structures is essential. Choosing the correct data structure is not easy. There are a lot of elements involved in deciding which data structure is the best to use for each scenario. However, there are some things that we can consider to judge which data structure is better suited to be used such as: <strong>Performance</strong> and <strong>Functionality</strong>. If a certain data structure is faster and more performant, then it is more likely to be used by the programmer. However, performance is not everything. Sometimes, we may want our data structure to provide us with more functionalities and capabilities rather than being more performant to save us from coming up with a solution that can perform such a task in the first place. The following are however, some of the most basic expectations for every data strucuter in terms of functionality:
+It is important to understand the strengths and limitations of various data structures since there is not a universal data structure that is appropriate for all tasks. In order to choose the appropriate data structure, there are a number of factors that must be considered. Choosing the best data structure for each scenario involves many factors. There are, however, certain factors we can consider in order to determine which data structure is best suited to be used, including performance and functionality. In general, the programmer will use a certain data structure more frequently if it is faster and more performant. However, performance is not the only factor. In order to save us from having to come up with a solution to perform such a task, we may sometimes wish for our data structure to provide us with more functionality and capabilities rather than being more performant. It is, however, important to note that the following functions should be expected of every data structure:
 </p>
 
 
