@@ -429,3 +429,705 @@ We possess several key pieces of information about our array: its starting point
 </div>
 
 <!-- ############################################# Separator - Bottom ############################################# -->
+
+
+
+
+
+
+
+
+
+
+
+
+### Custom Vector
+
+
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+<hr>
+
+<br>
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+
+
+<code><h3>C approach</h3></code>
+
+<p>
+Accessing elements within a container or collection is indeed one of the fundamental functionalities offered by a data structure. After all, when we store something somewhere, we naturally expect to retrieve it at a later point; otherwise, there would be no purpose in storing it initially. To retrieve information from a specific location within an array in the C approach, we employ the <span class="special">name</span> of the array in conjunction with a commonly referred-to entity called an <span class="special">index</span>. The method that we demonstarted above is commonly refered to as <span class="special">"Array Subscripting"</span>. Where we use the name of the array in combination with a set of square brackets that contain the index of teh element that we wish to access. An index is an integer that corresponds to the position of an element within the array. It is crucial to note that, unlike the real world where we typically label the first element as 1 in the context of arrays, we start counting from 0. In the example below, if we wished to obtain the first element, we would use an index of 0:
+</p>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+```C++
+#ifndef VECTOR_H
+#define VECTOR_H
+
+#define DEFAULT_VECTOR_SIZE std::size_t(10)
+
+#include <iostream>
+
+namespace algorithms
+{
+	namespace containers
+	{
+		template <typename T>
+		class Vector
+		{
+		private:
+			T* m_array;
+			std::size_t m_size;
+			std::size_t m_capacity;
+
+		// Constructors
+		public:
+			Vector();
+			Vector(std::size_t p_size = std::size_t(0), const T& p_value = T());
+
+		// Copy
+		public:
+			Vector(const Vector<T>& p_other);
+			const Vector<T>& operator=(const Vector<T>& p_other);
+
+		// Destructor
+		public:
+			~Vector();
+
+		public:
+			void push_back(const T& p_element);
+			void pop_back();
+			const T& back() const noexcept;
+
+			void push_front(const T& p_element);
+			void pop_front();
+			const T& front() const noexcept;
+
+			void insert_at(std::size_t p_index, const T& p_element);
+			void erase_at(std::size_t p_index);
+
+			T& at(std::size_t p_index);
+			const T& at(std::size_t p_index);
+
+			T& operator[](std::size_t p_index);
+			const T& operator[](std::size_t p_index) const;
+
+			T* data();
+			const T* data() const;
+
+			void realloc(std::size_t p_capacity);
+			void fill(const T& p_value);
+			void clear();
+
+			constexpr std::size_t size() const noexcept;
+			constexpr std::size_t capacity() const noexcept;
+			constexpr bool is_empty() const noexcept;
+
+			bool operator==(const Array<T, S>& p_other) const;
+			bool operator!=(const Array<T, S>& p_other) const;
+			bool operator> (const Array<T, S>& p_other) const;
+			bool operator< (const Array<T, S>& p_other) const;
+			bool operator>=(const Array<T, S>& p_other) const;
+			bool operator<=(const Array<T, S>& p_other) const;
+
+			std::string to_string();
+			friend std::istream& operator>>(std::istream& p_istream, Array<T, S>& p_array);
+			friend std::ostream& operator<<(std::ostream& p_ostream, const Array<T, S>& p_array);
+		};
+	};
+};
+
+
+
+
+// Implementations
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+
+template <typename T>
+algorithms::containers::Vector<T>::Vector() : m_size(std::size_t(0)), m_capacity(DEFAULT_VECTOR_SIZE)
+{
+	this->m_array = new T[(this->m_capacity)];
+};
+
+
+template <typename T>
+algorithms::containers::Vector<T>::Vector(std::size_t p_size, const T& p_value) : m_size(p_size), m_capacity(p_size * 2)
+{
+	this->m_array = new T[(this->m_capacity)];
+
+	this->fill(p_value);
+};
+
+
+template <typename T>
+algorithms::containers::Vector<T>::Vector(const Vector<T>& p_other) : m_size(p_other.size())
+{
+	// This needs to be changed, look at copy assignment operator...
+	for (std::size_t index = std::size_t(0); index < (this->m_size); ++index)
+	{
+		this->m_array[index] = p_other[index];
+	}
+};
+
+
+template <typename T>
+const algorithms::containers::Vector<T>& algorithms::containers::Vector<T>::operator=(const Vector<T>& p_other)
+{
+	// If the other array is bigger than ours...
+	if (p_other.size() > this->m_size)
+	{
+		delete[] (this->m_array);
+
+		T* new_array = T[p_other.capacity()];
+
+		this->m_array = new_array;
+	}
+
+	this->m_size = p_other.size();
+
+	for (std::size_t index = std::size_t(0); index < (this->m_size); ++index)
+	{
+		this->m_array[index] = p_other[index];
+	}
+
+	return (*this);
+};
+
+
+template <typename T>
+algorithms::containers::Vector<T>::~Vector()
+{
+	delete[] this->m_array;
+};
+
+
+template <typename T>
+void algorithms::containers::Vector<T>::push_back(const T& p_value)
+{
+	// Expand the capacity....
+	if (this->m_size == this->m_capacity)
+	{
+		realloc(this->m_capacity * 2);
+	}
+
+	this->m_array[this->m_size] = p_value;
+
+	++(this->m_size);
+};
+
+
+template <typename T>
+void algorithms::containers::Vector<T>::pop_back()
+{
+	if (this->m_size > 0)
+	{
+		--(this->m_size);
+	}
+
+	// Shrink the capacity...
+	if (this->m_size <= this->m_capacity / 2)
+	{
+		realloc(this->m_capacity / 2);
+	}
+};
+
+
+template <typename T>
+const T& algorithms::containers::Vector<T>::back() const noexcept
+{
+	return (this->m_array[m_size - 1]);
+};
+
+// Done until here
+
+template <typename T>
+void algorithms::containers::Vector<T>::push_front(const T& p_value)
+{
+	insert_at(0, p_value);
+};
+
+
+template <typename T>
+void algorithms::containers::Vector<T>::pop_front()
+{
+	erase_at(0);
+};
+
+
+template<typename T>
+const T& algorithms::containers::Vector<T>::front() const noexcept
+{
+	return (this->m_array[0]);
+};
+
+
+template<typename T>
+void algorithms::containers::Vector<T>::insert_at(std::size_t p_index, const T& p_element)
+{
+	// Check bounds...
+	if (p_index < this->m_size || p_index >= this->m_size)
+	{
+		std::out_of_range("Index out of bounds!");
+	}
+
+	++(this->m_size);
+
+	if (this->m_size >= this->m_capacity)
+	{
+		realloc(this->m_capacity * 2);
+	}
+
+	// Shift to the right...
+	for (std::size_t index = (this->m_size); index > p_index ; --index)
+	{
+		this->m_array[index] = this->m_array[index - 1];
+	}
+
+	this->m_array[p_index] = p_element;
+};
+
+
+template <typename T>
+void algorithms::containers::Vector<T>::erase_at(std::size_t p_index)
+{
+	// Check bounds...
+	if (p_index < this->m_size || p_index >= this->m_size)
+	{
+		std::out_of_range("Index out of bounds!");
+	}
+
+	// Shift elements to the right...
+	for (std::size_t index = p_index; index < (this->m_size) - 1; ++index)
+	{
+		this->m_array[index] = this->m_array[index + 1];
+	}
+
+	--(this->m_size);
+};
+
+
+template<typename T, std::size_t S>
+T& algorithms::containers::Array<T, S>::at(std::size_t p_index)
+{
+	if (p_index < 0 || p_index >= m_size)
+	{
+		throw std::out_of_range("Attempting to access index out of bounds!");
+	}
+
+	return (
+		this->m_array[p_index]
+		);
+};
+
+
+template<typename T, std::size_t S>
+const T& algorithms::containers::Array<T, S>::at(std::size_t p_index)
+{
+	if (p_index < 0 || p_index >= m_size)
+	{
+		throw std::out_of_range("Attempting to access index out of bounds!");
+	}
+
+	return (
+		this->m_array[p_index]
+		);
+};
+
+
+template <typename T>
+T& algorithms::containers::Vector<T>::operator[](std::size_t p_index)
+{
+	return (this->m_array[p_index]);
+};
+
+
+template<typename T>
+const T& algorithms::containers::Vector<T>::operator[](std::size_t p_index) const
+{
+	return (this->m_array[p_index]);
+};
+
+
+template<typename T, std::size_t S>
+T* algorithms::containers::Array<T, S>::data()
+{
+	// Very useful when using with something like "memset".
+	return(
+		this->m_array
+		);
+};
+
+
+template<typename T, std::size_t S>
+const T* algorithms::containers::Array<T, S>::data() const
+{
+	// Very useful when using with something like "memset".
+	return(
+		this->m_array
+		);
+};
+
+
+template <typename T>
+void algorithms::containers::Vector<T>::realloc(std::size_t p_capacity)
+{
+	// Creating new array...
+	T* new_array = new T[p_capacity];
+
+	// Copy/Move over elements.
+	for (std::size_t index = std::size_t(0); index < (this->m_size); ++index)
+	{
+		new_array[index] = m_array[index];
+	}
+
+	// Deleting old array...
+	delete[](this->m_array);
+
+	// Changing members...
+	this->m_array = new_array;
+	this->m_capacity = p_capacity;
+};
+
+
+template<typename T>
+void algorithms::containers::Vector<T>::fill(const T& p_value)
+{
+	for (std::size_t index = std::size_t(0); index < (this->m_size); ++index)
+	{
+		this->m_array[index] = T(p_value);
+	}
+};
+
+
+template <typename T>
+void algorithms::containers::Vector<T>::clear()
+{
+	T* new_array = new T[DEFAULT_VECTOR_SIZE];
+
+	this->m_size = std::size_t(0);
+	this->m_capacity = DEFAULT_VECTOR_SIZE;
+
+	delete[](this->m_array);
+
+	this->m_array = new_array;
+};
+
+
+template <typename T>
+constexpr std::size_t algorithms::containers::Vector<T>::size() const noexcept
+{
+	return (this->m_size);
+};
+
+
+template <typename T>
+constexpr std::size_t algorithms::containers::Vector<T>::capacity() const noexcept
+{
+	return (this->m_size);
+};
+
+
+template <typename T>
+constexpr bool algorithms::containers::Vector<T>::is_empty() const noexcept
+{
+	return (this->m_size == std::size_t(0));
+};
+
+
+template<typename T, std::size_t S>
+bool algorithms::containers::Array<T, S>::operator==(const Array<T, S>& p_other) const
+{
+	// Comparing size of arrays first.
+	if (m_size != p_other.size())
+	{
+		return (false);
+	}
+
+	// Comparing individual elements next.
+	for (std::size_t index = 0; index < m_size; ++index)
+	{
+		if (m_array[index] != p_other[index])
+		{
+			return (false);
+		}
+	}
+
+	return (true);
+};
+
+
+template<typename T, std::size_t S>
+bool algorithms::containers::Array<T, S>::operator!=(const Array<T, S>& p_other) const
+{
+	// Comparing size of arrays first.
+	if (m_size != p_other.size())
+	{
+		return (true);
+	}
+
+	// Comparing individual elements next.
+	for (std::size_t index = 0; index < m_size; ++index)
+	{
+		if (m_array[index] != p_other[index])
+		{
+			return (true);
+		}
+	}
+
+	return (false);
+};
+
+
+template<typename T, std::size_t S>
+bool algorithms::containers::Array<T, S>::operator> (const Array<T, S>& p_other) const
+{
+	// Comparing size of arrays first.
+	if (this->m_size > p_other.size())
+	{
+		return (true);
+	}
+
+	if (this->m_size < p_other.size())
+	{
+		return (false);
+	}
+
+	// Comparing individual elements next.
+	for (std::size_t index = 0; index < m_size; ++index)
+	{
+		if (m_array[index] <= p_other[index])
+		{
+			return (false);
+		}
+	}
+
+	return (true);
+};
+
+
+template<typename T, std::size_t S>
+bool algorithms::containers::Array<T, S>::operator< (const Array<T, S>& p_other) const
+{
+		// Comparing size of arrays first.
+	if (this->m_size < p_other.size())
+	{
+		return (true);
+	}
+
+	if (this->m_size > p_other.size())
+	{
+		return (false);
+	}
+
+	// Comparing individual elements next.
+	for (std::size_t index = 0; index < m_size; ++index)
+	{
+		if (m_array[index] >= p_other[index])
+		{
+			return (false);
+		}
+	}
+
+	return (true);
+};
+
+
+template<typename T, std::size_t S>
+bool algorithms::containers::Array<T, S>::operator>=(const Array<T, S>& p_other) const
+{
+	return !(*this < p_other);
+};
+
+
+template<typename T, std::size_t S>
+bool algorithms::containers::Array<T, S>::operator<=(const Array<T, S>& p_other) const
+{
+	return !(*this > p_other);
+}
+
+
+template<typename T, std::size_t S>
+std::string algorithms::containers::Array<T, S>::std::string to_string()
+{
+	std::string result = std::string();
+
+	for (std::size_t index = 0; index < m_size - 1; ++index)
+	{
+		result << "[" << this->m_array[index] << "] ";
+	}
+
+	result << "[" << this->m_array[m_size - 1] << "]";
+
+	return (result);
+};
+
+
+template<typename T, std::size_t S>
+std::istream& algorithms::containers::Array<T, S>::operator>>(std::istream& p_istream, Array<T, S>& p_array)
+{
+	for (std::size_t index = 0; index < array.size(); ++index)
+	{
+		p_istream >> p_array[index];
+	}
+
+	return (p_istream);
+};
+
+
+template<typename T, std::size_t S>
+std::ostream& algorithms::containers::Array<T, S>::operator<<(std::ostream& p_ostream, const Array<T, S>& p_array)
+{
+	for (std::size_t index = 0; index < array.size(); ++index)
+	{
+		p_ostream << p_array[index];
+	}
+
+	return (p_ostream);
+};
+
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+// Implementations
+
+#endif // VECTOR_H
+```
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<code><h3>STL approach</h3></code>
+
+<p>
+In the realm of C++, there are multiple methods for accomplishing tasks, and one alternative approach for retrieving an element from an array involves what is commonly referred to as <span class="special">"Arithmetic operations"</span>. In this method we obtain an element by performing mathematical operations on the pointers that reference the storage location of each element. <span class="special">Iterators</span> serve the purpose of enabling programmers to access and manipulate individual elements within a container. They achieve this by facilitating iteration through the elements using pointers. In some ways, iterators resemble the C way of working with and manipulating pointers, but they offer a more refined approach. If we wish to achieve the same objective using an object-oriented approach in C++, we can employ the following method with iterators:
+</p>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+```C++
+#include <iostream>
+#include <array>
+
+
+int main(int argc, char* argv[])
+{
+	std::array<int, 5> numbers = {1, 2, 3, 4, 5};
+
+    // Create an "Iterator" pointing to the first element in the array.
+    std::array<int, 5>::iterator it = numbers.begin();
+    
+    // Printing elements at positions 0 and 2.
+    std::cout << "Element at index 0: " << *(it + 0) << std::endl;
+    std::cout << "Element at index 2: " << *(it + 2) << std::endl;
+
+    return (0);
+}
+```
+
+
+
+<br>
+<br>
+<br>
+
+<p>
+Iterators serve as a universal means of accessing elements within STL (Standard Template Library) containers, offering a consistent interface for element access. This uniformity means that we need not concern ourselves with the inner workings or characteristics of the container, as iterators provide a consistent method of retrieving elements across all container types. 
+
+It's easy to overlook the concept of iterators when working with simpler data structures like arrays, which already offer straightforward ways of access, such as the aforementioned method. In such cases, it may not seem necessary to introduce yet another approach for accessing data structures. However, as we delve into more complex data structures that lack straightforward methods for element retrieval, our appreciation for iterators will grow.
+</p>
+
+<p>
+It may appear incredibly convenient when we simply place a number within square brackets, and presto! We retrieve the desired element. So, why introduce yet another approach to tackle this problem? Well, the issue lies in the fact that this method pertains solely to arrays at the moment. As we venture into more intricate data structures, we'll encounter the challenge of having to remember and manage various methods for obtaining elements from them.
+
+The dilemma arises because not everything is stored contiguously and neatly, like arrays that allow for straightforward access through simple number increments or decrements.
+</p>
+
+<p>
+In the provided code snippet, on line 7, we declare and initialize a "std::array" called "numbers" containing five integer elements: 1, 2, 3, 4, and 5. Following this, we create an iterator named "it", which is declared and initialized using the "begin()" function of the "std::array". This iterator now references the first element within the "numbers" array. Subsequently, we attempt to print the various elements within the array, starting with the first element. To do this, we use the expression *(it + 0), which dereferences the iterator "it" and adds 0 to its position, effectively keeping it at the same element it initially pointed to (index 0). Then, it prints the value at that position, which is 1. In a similar manner, when we use *(it + 2), the iterator "it" is dereferenced and incremented by 2, causing it to point to the third element of the array (index 2). It then prints the value at that position, which is 3.
+
+
+
+Iterators in C++ function in a manner analogous to pointers, and they allow the use of pointer arithmetic. When you add or subtract an integer value to/from an iterator, it advances or retreats the iterator by a number of positions equivalent to the memory size occupied by the type the iterator points to. In this context, adding 2 to an iterator pointing to a 4-byte integer type advances it by 8 bytes. In C++, when you perform iterator arithmetic, such as it + 2, the iterator advances by 2 positions, with each position corresponding to the size of the type the iterator is pointing to. In the case of a std::array of integers, where each integer typically occupies 4 bytes (assuming a typical 32-bit integer), this means that iterator arithmetic like it + 2 effectively moves the iterator 8 bytes forward in memory. It's worth noting that *(it + 0) is functionally identical to *(it), as adding zero doesn't alter the iterator's position. However, some developers find this notation helpful as it resembles array subscripting, where the number following the iterator addition corresponds to the index within square brackets.
+
+
+*(it + 0) == array[0]
+*(it + 2) == array[2]
+</p>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<code><h3>Big-O for accessing elements</h3></code>
+
+<p>
+In the realm of C++, there are multiple methods for accomplishing tasks, and one alternative approach for retrieving an element from an array involves what is commonly referred to as <span class="special">"Arithmetic operations"</span>. In this method we obtain an element by performing mathematical operations on the pointers that reference the storage location of each element. <span class="special">Iterators</span> serve the purpose of enabling programmers to access and manipulate individual elements within a container. They achieve this by facilitating iteration through the elements using pointers. In some ways, iterators resemble the C way of working with and manipulating pointers, but they offer a more refined approach. If we wish to achieve the same objective using an object-oriented approach in C++, we can employ the following method with iterators:
+</p>
+
+<br>
+
+<p>
+I understand that some of you may be feeling a bit puzzled about the reasons behind the constraints and characteristics we've discussed regarding arrays so far. While you might already be familria with arrays, you may not have delved into the specific rationale behind these requirements and limitations. Until this point, we focused on establishing a fundamental understanding of working with arrays and their basic syntax, which is why we didn't delve into the reasoning behind these rules. However, fear not, as we are now prepared to address your questions. Explaining these concepts will help us grasp the time complexity and Big-O notation associated with accessing elements in arrays.
+
+
+Because each element in an array is placed directly adjacent to one another, accessing individual elements becomes not only easier but also completely independent from the others. This independence stems from the fact that to access an element, we don't need to traverse or consider the previous elements in any way. This characteristic is precisely why arrays are referred to as offering random access. With the assurance that each element is sequentially positioned due to the contiguous arrangement, coupled with our knowledge of the exact size of each element and the total memory allocated, we can perform intriguing operations using straightforward mathematical calculations. In essence, this means that any element can be accessed by simply adding an offset to the base value of the array or the position of the first element.
+
+
+Let's consider accessing the third element in the array. We already have the initial position, so all that's required is to move forward by three steps. In this context, assuming a 32-bit system where an integer typically occupies 4 bytes, we can calculate the distance by multiplying the desired position (in this case, 3) by the step size (4 bytes). This computation results in 12 bytes. Consequently, we can swiftly reposition ourselves to the beginning of the seventh element within our array. These are the fundamental principles that underlie the constraints we've discussed. They facilitate the efficient and rapid retrieval of elements we are already aware of. It's these attributes that empower compilers to execute various optimizations and clever techniques on our arrays.
+
+
+The size of an array is fixed and cannot be altered after declaration. This constraint is not intended to frustrate programmers but serves a crucial purpose in optimizing array performance, particularly regarding element access. To fulfill its commitment to us, the array data structure must ensure that the final size is declared and provided from before-hand.
+
+
+Every element within an array must adhere to the same data type, whether they are integers, floats, characters, or even custom types like structs and classes. This enforced uniformity serves a dual purpose. Firstly, it allows the array to accurately predict and calculate the total memory it requires by multiplying the size of a single element by the desired count. Moreover, having all elements of the same type offers another significant advantage: rapid element retrieval from the array. This is achieved by leveraging the knowledge of the element type, which indicates its size. Since the array comprises elements of identical types, we can efficiently determine the location of any element through straightforward arithmetic operations. In essence, finding an element within the array becomes a quick and efficient process.
+
+
+We possess several key pieces of information about our array: its starting point, the desired number of elements to store, and the uniform data types contained within it. This knowledge allows us to accurately determine the size of each data type, all of which are equal. Armed with this information, we can efficiently forecast and manage our array. This is precisely why the time complexity or Big-O notation for accessing elements in arrays is considered constant, denoted as O(1). It is because we can retrieve each element independently of others by simply knowing the starting location and performing basic mathematical operations to calculate the element's position, regardless of the array's size.
+
+</p>
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+<div class="line-divider-bottom">
+  <hr class="left-line">
+  <span>|</span>
+  <span class="middle">Introduction</span>
+  <span>|</span>
+  <hr class="right-line">
+</div>
+
+<!-- ############################################# Separator - Bottom ############################################# -->

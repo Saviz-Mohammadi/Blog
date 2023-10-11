@@ -258,7 +258,7 @@ int calculate_factorial_iterative(int number)
 
 
 <p>
-Different algorithms can solve the same problem in many different ways using different types of solutions, and their efficiency can vary significantly. By understanding and comparing their performance characteristics, developers can choose algorithms that are better suited for specific tasks. This leads to faster and more responsive software applications. Different algorithms might require varying amounts of computational resources, such as memory and processing power. <span class="special">It is important to understand that there is no ideal and best algorithm, some algorithms are better suited for some situations than others.</span> Therfore, whenever an interviewer asks you the question of <span class="special">"Which data structure or algorithm do you think is best suited for this problem?"</span>, then your answer should always be <span class="special">"It depends! We need to analyze our solutions"</span>. By analyzing and understanding how to compare these resource requirements, developers can ensure that their software runs smoothly on different hardware configurations. Let's take a look at the second method which uses recursive function calls to accomplish the exact same functionality:
+Different algorithms can solve the same problem in many different ways using different types of solutions, and their efficiency can vary significantly. By understanding and comparing their performance characteristics, developers can choose algorithms that are better suited for specific tasks. This leads to faster and more responsive software applications. Different algorithms might require varying amounts of computational resources, such as memory and processing power. <span class="special">It is important to understand that there is no ideal and best algorithm, some algorithms are better suited for some situations than others.</span> Therfore, whenever an interviewer asks you the question of <span class="special">"Which data structure or algorithm do you think is best suited for this problem?"</span>, then your answer should always be <span class="special">"It depends! We need to analyze our solutions"</span>. Let's take a look at the second method which uses recursive function calls to accomplish the exact same goal of finding the factorial of a number:
 </p>
 
 
@@ -317,7 +317,7 @@ int calculate_factorial_recursive(int number)
 <br>
 
 
-
+Maybe talk a little more in depth as to why recursive calls can take more resources right here instead of saying refer to somplace else.
 <p>
 You may have noticed that the above two algorithms accomplish the same task in a completely different ways. Using a loop is the first method, which takes far fewer resources than its recursive counterpart. As discussed in the function blog post, recursive calls take more space per function call in order to accommodate the memory needs of the function as well as additional time to set up the entire process of allocating everything appropriately. Nevertheless, recursive methods are much more straightforward to understand and manage than iterative loops. These are the reasons why we have comparisons in order to see what the advantages and disadvantages of each algorithm are in order to determine which is more appropriate for the situation and resources available. Another example would be a program that can display the set of Fibonnaci numbers:
 </p>
@@ -368,6 +368,10 @@ int Fibonacci_recursive(int number)
 <br>
 <br>
 
+
+<p>
+Of course in scenarios such as these it is quiet simple to know which one is better and more perforable. However, sometimes our problems can become so complex and difficult to achieve that we rather perfer to come up with a method of approaching the problem which is not neccessarilly the most performant approach, but is perfomant enough and most impornantly helps us to understand and solve the problem in the most understandable way possible. For these reasons, we will  perfer the recursive approach for solving problems much later in our discussinos once we encounter complex data structures. the following is the recusive approcah, which one do you believe is better, the one that is more performant or the one that is more understandable:
+</p>
 
 
 <br>
