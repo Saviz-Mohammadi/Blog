@@ -81,14 +81,7 @@ we will delve into various sorting techniques within data structures and explore
 <code><h3>Theory</h3></code>
 
 <p>
-This is an in-place algorithm (Research why).
-
-
-Bubble sort is an algorthim in which we attempt to contionusly switch the position of neighbooring elements until the final position of the current element is determined which usually results in the biggest elements being placed at the very end of the container. It is one if not the most straight forward and brute force approach to ever exist. This method is so easy to remmeber and implement that is recommend to implement in an interview that does not require any special needs just to show that you can do it. It then can be used as a good argument to provide more performant algorithms. Remember the point of an interview is to get you the job, and not show how good your algorithm is and if you can just finish a question successfully that is way better than implementing a complex algorithm that may potentially not work. Therfore, whenever given the chance never hestitate to use this algorithm despite it's shortcomings in terms of performance. If anything, the shortcomings of this algorithm may give you a chance to demonstrate your analysis skills in terms of Big-O and provide you with an opportunity to implement a slightly more performant algorithm and proove your skills in making something better.
-
-
-
-Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high. Luckilly bubble sort is stable by default.
+Bubble sort is a straightforward sorting algorithm that iterates through a list of elements to be sorted, checks adjcent elements, and exchanges them if they are in the incorrect order. This process continues until no further swaps are required, indicating that the list has been successfully sorted. While bubble sort isn't the most efficient sorting algorithm available, it stands out for its simplicity and ease of implementation. In interviewes it is actually recommended to use this sorting algorithm as the chances of success are high with this easy sorting algorithm. You can then use the argument of this sort not being effecient to implement more effecient ones. Bubble sort is an in-place sorting algorithm and is stable. The worst-case time complexity of this algorithm is O(n^2).
 </p>
 
 
@@ -197,10 +190,10 @@ static void algorithms::sort::bubble_reverse(T(&p_container)[S])
 
 
 <p>
-Initializing an array involves populating it with default initial values, as it may contain unpredictable and garbage values in each cell. When initializing a C-style array, we have two methods at our disposal. We can either provide all the elements beforehand, as demonstrated by "numbers_1" in the following example, or we can initialize all elements of an array to a default value, such as 0 in this case, and later populate them one by one, as shown in the "number_2" example. Another short hand method of trying to accomplish the same action as the second method is provided as "numbers_3", which does the same thing. The second method is more commonly used because often, we do not have the values available to us in advance, but we can specify how many elements we need, which is a fundamental requirement of an array data structure:
+The outer for-loop in Bubble sort represents the current element that is trying to be sorted. The total number of iterations is equivilant with the number of elements in our container. The inner for-loop is  repsonsibel for contiously comparing the current element with the onen adjcent to it and swapping them if nccessarry. this way when the inner for-loop finishes we are guarenteed that the current element is placed at it's final position. For simplicity sake we take advantage of the std::swap for swapping the twe elements instead of implementing our own swap. In this implementation we use an enum that rerpresents the order by which we want to sort. We could also take adavnatge of a simple boolean to accomplish this, but I find an enum to work better for this as there is a predefined set of options for it.
 </p>
 
-Since the STL array container is an object, as we all know from the concept of Object oriented designs and classes and objects, we an use an initilizer list to inject the elements that we want into an array container at the time of declaration. The following is a represesntation of how this would look like:
+
 
 <br>
 <br>
@@ -897,8 +890,8 @@ Eventhough C-style arrays are, as many times mentioned before, not ideal to use 
 
 
 ```C++
-#ifndef QUICK_SORT
-#define QUICK_SORT
+#ifndef MERGE_SORT
+#define MERGE_SORT
 
 #include <iostream>
 #include <algorithm>
@@ -914,132 +907,241 @@ namespace algorithms
 	namespace sort
 	{
 		template<typename T, std::size_t S>
-		void quick(T(&p_container)[S], const algorithms::order& p_order = algorithms::order::forward, std::size_t p_lower_bound = std::size_t(0), std::size_t p_upper_bound = S - 1);
+		void merge(T(&p_container)[S], const algorithms::order& p_order = algorithms::order::forward, std::size_t p_lower_bound = std::size_t(0), std::size_t p_upper_bound = S - 1);
 
 		template<typename T, std::size_t S>
-		static void quick_forward(T(&p_container)[S], std::size_t p_lower_bound = std::size_t(0), std::size_t p_upper_bound = S - 1);
+		static void merge_forward(T(&p_container)[S], std::size_t p_lower_bound = std::size_t(0), std::size_t p_upper_bound = S - 1);
 
 		template<typename T, std::size_t S>
-		static void quick_reverse(T(&p_container)[S], std::size_t p_lower_bound = std::size_t(0), std::size_t p_upper_bound = S - 1);
+		static void merge_reverse(T(&p_container)[S], std::size_t p_lower_bound = std::size_t(0), std::size_t p_upper_bound = S - 1);
 	};
 };
 
 
 template<typename T, std::size_t S>
-void algorithms::sort::quick(T(&p_container)[S], const algorithms::order& p_order, std::size_t p_lower_bound, std::size_t p_upper_bound)
+void algorithms::sort::merge(T(&p_container)[S], const algorithms::order& p_order, std::size_t p_lower_bound, std::size_t p_upper_bound)
 {
-	bool is_forward_order = (p_order == algorithms::order::forward);
+	bool is_forward = (p_order == algorithms::order::forward);
 
-	if (is_forward_order)
+	if (is_forward)
 	{
-		algorithms::sort::quick_forward(p_container, p_lower_bound, p_upper_bound);
+		algorithms::sort::merge_forward(p_container, p_lower_bound, p_upper_bound);
 
 		return;
 	}
 
-	algorithms::sort::quick_reverse(p_container, p_lower_bound, p_upper_bound);
+	algorithms::sort::merge_reverse(p_container, p_lower_bound, p_upper_bound);
 };
 
 template<typename T, std::size_t S>
-static void algorithms::sort::quick_forward(T(&p_container)[S], std::size_t p_lower_bound, std::size_t p_upper_bound)
+static void algorithms::sort::merge_forward(T(&p_container)[S], std::size_t p_lower_bound, std::size_t p_upper_bound)
 {
-	// If the container is of size 1 or 0, then just return
+	// Recursive section
+	///////////////////////////////////
+
+
 	if (p_lower_bound >= p_upper_bound)
 	{
 		return;
 	}
 
-	// Choosing the last element as the pivot
-	const T& pivot_element = p_container[p_upper_bound];
+	std::size_t middle_index = p_lower_bound + (p_upper_bound - p_lower_bound) / 2;
 
-	std::size_t rhs_pointer = p_upper_bound;
-	std::size_t lhs_pointer = p_lower_bound;
+	merge_forward(p_container, p_lower_bound, middle_index + 0);
+	merge_forward(p_container, middle_index + 1, p_upper_bound);
 
-	while (lhs_pointer < rhs_pointer)
+
+	///////////////////////////////////
+	// Recursive section
+
+
+
+	// Sorting section
+	///////////////////////////////////
+
+
+	// Finding the length of each sub array...
+	std::size_t lhs_length = (middle_index - p_lower_bound) + 1;
+	std::size_t rhs_length = (p_upper_bound - middle_index) + 0;
+
+
+	// Creating sub arrays...
+	T* sub_array_l = new T[lhs_length];
+	T* sub_array_r = new T[rhs_length];
+
+
+	// Copy elements to each sub array...
+	for (std::size_t index = std::size_t(0); index < lhs_length; ++index)
 	{
-		while (p_container[lhs_pointer] <= pivot_element && lhs_pointer < rhs_pointer)
-		{
-			++(lhs_pointer);
-		}
-
-		while (p_container[rhs_pointer] >= pivot_element && rhs_pointer > lhs_pointer)
-		{
-			--(rhs_pointer);
-		}
-
-		std::swap(
-			p_container[lhs_pointer],
-			p_container[rhs_pointer]
-		);
+		sub_array_l[index] = p_container[index + p_lower_bound];
 	}
 
-	// Now just swap the position of the pivot element with one of the pointer elements.
-	std::swap(
-		p_container[lhs_pointer],
-		p_container[p_upper_bound]
-	);
-
-	// As a safety check for `std::size_t`. If you use an int, this wont' be nccessary.
-	if (lhs_pointer == std::size_t(0))
+	for (std::size_t index = std::size_t(0); index < rhs_length; ++index)
 	{
-		return;
+		sub_array_r[index] = p_container[index + 1 + middle_index];
 	}
 
-	algorithms::sort::quick_forward(p_container, p_lower_bound, lhs_pointer - 1);
-	algorithms::sort::quick_forward(p_container, lhs_pointer + 1, p_upper_bound);
+
+	// Creating 3 indexes to keep track in each array when iterating.
+	std::size_t index_l = std::size_t(0);
+	std::size_t index_r = std::size_t(0);
+	std::size_t index_s = p_lower_bound;
+
+	bool element_l_is_smaller = false;
+	bool element_r_is_smaller = false;
+
+
+	// Merging
+	while (index_l < lhs_length && index_r < rhs_length)
+	{
+		element_l_is_smaller = (sub_array_l[index_l] < sub_array_r[index_r]);
+		element_r_is_smaller = (sub_array_l[index_l] > sub_array_r[index_r]);
+
+		if (element_l_is_smaller)
+		{
+			p_container[index_s] = sub_array_l[index_l];
+			++index_l;
+			++index_s;
+
+			continue;
+		}
+
+		if (element_r_is_smaller)
+		{
+			p_container[index_s] = sub_array_r[index_r];
+			++index_r;
+			++index_s;
+
+			continue;
+		}
+	}
+
+
+	// Possibly, there are still some elements remaining in each sub array...
+	while (index_l < lhs_length)
+	{
+		p_container[index_s] = sub_array_l[index_l];
+		++index_l;
+		++index_s;
+	}
+
+	while (index_r < rhs_length)
+	{
+		p_container[index_s] = sub_array_r[index_r];
+		++index_r;
+		++index_s;
+	}
+
+
+	///////////////////////////////////
+	// Sorting section
 };
 
 template<typename T, std::size_t S>
-static void algorithms::sort::quick_reverse(T(&p_container)[S], std::size_t p_lower_bound, std::size_t p_upper_bound)
+static void algorithms::sort::merge_reverse(T(&p_container)[S], std::size_t p_lower_bound, std::size_t p_upper_bound)
 {
-	// If the container is of size 1 or 0, then just return
+	// Recursive section
+	///////////////////////////////////
+
+
 	if (p_lower_bound >= p_upper_bound)
 	{
 		return;
 	}
 
-	// Choosing the last element as the pivot
-	const T& pivot_element = p_container[p_upper_bound];
+	std::size_t middle_index = p_lower_bound + (p_upper_bound - p_lower_bound) / 2;
 
-	std::size_t rhs_pointer = p_upper_bound;
-	std::size_t lhs_pointer = p_lower_bound;
+	merge_reverse(p_container, p_lower_bound, middle_index + 0);
+	merge_reverse(p_container, middle_index + 1, p_upper_bound);
 
-	while (lhs_pointer < rhs_pointer)
+
+	///////////////////////////////////
+	// Recursive section
+
+
+
+	// Sorting section
+	///////////////////////////////////
+
+
+	// Finding the length of each sub array...
+	std::size_t lhs_length = (middle_index - p_lower_bound) + 1;
+	std::size_t rhs_length = (p_upper_bound - middle_index) + 0;
+
+
+	// Creating sub arrays...
+	T* sub_array_l = new T[lhs_length];
+	T* sub_array_r = new T[rhs_length];
+
+
+	// Copy elements to each sub array...
+	for (std::size_t index = std::size_t(0); index < lhs_length; ++index)
 	{
-		while (p_container[lhs_pointer] >= pivot_element && lhs_pointer < rhs_pointer)
-		{
-			++(lhs_pointer);
-		}
-
-		while (p_container[rhs_pointer] <= pivot_element && rhs_pointer > lhs_pointer)
-		{
-			--(rhs_pointer);
-		}
-
-		std::swap(
-			p_container[lhs_pointer],
-			p_container[rhs_pointer]
-		);
+		sub_array_l[index] = p_container[index + p_lower_bound];
 	}
 
-	// Now just swap the position of the pivot element with one of the pointer elements.
-	std::swap(
-		p_container[lhs_pointer],
-		p_container[p_upper_bound]
-	);
-
-
-	// As a safety check for `std::size_t`. If you use an int, this wont' be nccessary.
-	if (lhs_pointer == std::size_t(0))
+	for (std::size_t index = std::size_t(0); index < rhs_length; ++index)
 	{
-		return;
+		sub_array_r[index] = p_container[index + 1 + middle_index];
 	}
 
-	algorithms::sort::quick_reverse(p_container, p_lower_bound, lhs_pointer - 1);
-	algorithms::sort::quick_reverse(p_container, lhs_pointer + 1, p_upper_bound);
+
+	// Creating 3 indexes to keep track in each array when iterating.
+	std::size_t index_l = std::size_t(0);
+	std::size_t index_r = std::size_t(0);
+	std::size_t index_s = p_lower_bound;
+
+	bool element_l_is_bigger = false;
+	bool element_r_is_bigger = false;
+
+
+	// Merging
+	while (index_l < lhs_length && index_r < rhs_length)
+	{
+		element_l_is_bigger = (sub_array_l[index_l] > sub_array_r[index_r]);
+		element_r_is_bigger = (sub_array_l[index_l] < sub_array_r[index_r]);
+
+		if (element_l_is_bigger)
+		{
+			p_container[index_s] = sub_array_l[index_l];
+			++index_l;
+			++index_s;
+
+			continue;
+		}
+
+		if (element_r_is_bigger)
+		{
+			p_container[index_s] = sub_array_r[index_r];
+			++index_r;
+			++index_s;
+
+			continue;
+		}
+	}
+
+
+	// Possibly, there are still some elements remaining in each sub array...
+	while (index_l < lhs_length)
+	{
+		p_container[index_s] = sub_array_l[index_l];
+		++index_l;
+		++index_s;
+	}
+
+	while (index_r < rhs_length)
+	{
+		p_container[index_s] = sub_array_r[index_r];
+		++index_r;
+		++index_s;
+	}
+
+
+	///////////////////////////////////
+	// Sorting section
 };
 
-#endif	// QUICK_SORT
+#endif	// MERGE_SORT
 ```
 
 
