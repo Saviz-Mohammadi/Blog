@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
 
 
 <p>
-For a more experienced programmer, it may be benefetial to combine these distinct data elements into one meaningful complex data type, such as a <span class="special">struct named "Student"</span>. As a result of this approach, each student can be treated as a distinct entity, complete with attributes such as "name", "age", and "sin". Because this organization combines the individual data elements, the task is simplified. It is also possible for programmers to use classes and objects, but since we are concerned with only the data so far, a straightforward data container structure seems to make the most sense. <span class="special">Nevertheless, a class can be used if desired</span>. In my opinion, structs are better suited for entities whose sole purpose is to contain data, as they align better with my understanding of the concept. The following is an example of what our code would look like if we used structs and created "Student" entities instead of using individual variables:
+For a more experienced programmer, it may be benefetial to combine these distinct variables into one meaningful complex data type, such as a <span class="special">struct named "Student"</span>. As a result of this approach, each student can be treated as a distinct entity, complete with attributes such as "name", "age", and "sin". Because this organization combines the individual data elements, the task is simplified. It is also possible for programmers to use classes and objects, but since we are concerned with only the data so far, a straightforward data container structure seems to make the most sense. <span class="special">Nevertheless, a class can be used if desired</span>. In my opinion, structs are better suited for entities whose sole purpose is to contain data, as they align better with my understanding of the concept. The following is an example of what our code would look like if we used structs and created "Student" entities instead of using individual variables:
 </p>
 
 
@@ -596,10 +596,18 @@ Understanding these two categories is important because they typically involve a
 <code><h3>Time complexity</h3></code>
 
 <p>
-The central question at hand is: "How can we measure or predict the time required by an algorithm to solve a problem?". At first glance, most programmers will assume that the solution lies in timing the algorithm as it executes its operations, awaiting its completion. While this assumption is completely natural; After all, if one wishes to measure how much faster one car is compared to another, they would probably have them being timed based on a race track they complete. However, delving deeper reveals a few complications associated with this approach. For example, Let's try and create a piece of code that will enable us to measure the time that takes for a function to sum up numbers from 1 to 10000 and then print the solution:
+to be able to judge the performance of an algorithm and to classify them as “good”, we must have the capability of analyzing them. Running time is a natural measure of “goodness,” since time is a precious resource—computer solutions should run as fast as possible. this is exactly what time complextiy is conscenrend about. Time complextiy refers to the mesuremnet and approximation of teh amonut of time an algoritm takes to accomplish its task.
+
+The central question at hand is: "How can we measure or predict the Time Comxlpexty of an algorithm?". At first glance, most programmers will assume that the solution lies in timing the algorithm as it executes its operations, awaiting its completion. this assumption is a completely natural one to make; After all, if one wishes to measure how much faster one car is compared to another, they would probably have them being timed based on a race track they complete. For example, Let's try and create a piece of code that will enable us to measure the time that takes for a function to sum up numbers from 1 to 10000 and then print the solution:
 </p>
 
 
+If an algorithm has been implemented, we can study its running time by executing
+it on various test inputs and recording the actual time spent in each execution. Fortunately, such measurements can be taken in an accurate manner by using system
+calls that are built into the language or operating system
+
+
+of course in this instance trying to use the native timing frameworks of each operating system and platform can be difficult. Luckilly, C++ has taken the initiavtive to create a library that allows us to use the default APIs of the native platform for measuring the amount of time it takes through using the clock system of each. The chrono library is such that is made available to us.
 
 <br>
 <br>
@@ -704,12 +712,19 @@ int main(int argc, char* argv[])
 
 <br>
 
+You can talk about how to add sum of numbers using the special way (N+1)N/2 when discussing algorithm efficienciy next to the factorial method.
 
 <p>
 The time it takes an alogrithm to complete its task can be affected by the hardware it is running on and the environment it is executed in. The same algorithm might execute faster on a high-end machine compared to a low-end one, even if the underlying algorithmic efficiency remains the same. If you attempt to run this code on different devices with different hardaware capabiliets you will soon realize that you will obtain back different types of numbers each time. The issue does not lie in the act of measuring time itself, but rather in the misconceptions surrounding time-based comparisons. Typically, we tend to measure the time differences among distinct machines, rather than evaluating a particular machine's performance across multiple instances. Let's take a look at some examples that are obtained from runing this code on differetn manchenes:
 </p>
 
 
+However, delving deeper reveals a few complications associated with this approach. Such tests assign a specific running time to a specific input size, but we are interested in
+determining the general dependence of running time on the size of the input. In order to determine this dependence, we should perform several experiments on many
+different test inputs of various sizes. From this data that supports it, we
+can perform a statistical analysis that seeks to fit the best function of the input size
+to the experimental data. To be meaningful, this analysis requires that we choose
+good sample inputs and test enough of them to be able to make sound statistical conclusion.
 
 <br>
 
@@ -721,12 +736,24 @@ if we execute a piece of software on a high-performance computer and it complete
 
 
 
+
 <br>
 
 
 
 <p>
 
+
+
+To illustrate a constant-time algorithm, consider the following C++ function, which
+returns the size of an STL vector, that is, the current number of cells in the array:
+int multiply(const int& number, number_2) {
+return number * number_2;
+}
+This is a very simple algorithm, because the size of a vector is stored as a
+member variable in the vector object, so it takes only a constant-time lookup to
+return this value. Thus, the capacity function runs in O(1) time; that is, the running
+time of this function is independent of the value of n, the size of the array.
 </p>
 
 
@@ -740,7 +767,21 @@ if we execute a piece of software on a high-performance computer and it complete
 <code><h3>Space complexity</h3></code>
 
 <p>
+
 </p>
+
+
+
+
+While experimental studies of running times and measureing the memory usage using tools such as visual Studio and others are useful, they have three major
+limitations:
+• Experiments can be done only on a limited set of test inputs; hence, they
+leave out the running times of inputs not included in the experiment (and
+these inputs may be important).
+• We have difficulty comparing the experimental running times of two algorithms unless the experiments were performed in the same hardware and
+software environments.
+• We have to fully implement and execute an algorithm in order to study its
+running time experimentally. For these reasons we will see some other tool in the next part that will help us in determining thsee complexties in a much more better and suitable way
 
 <!-- ############################################# Separator - Bottom ############################################# -->
 
@@ -776,7 +817,7 @@ if we execute a piece of software on a high-performance computer and it complete
 
 
 <p>
-Clearly, time-based assessments of algorithms, especially those conducted by larger companies with a lot of resources, are a viable approach. However, not all programmers have the ability, time, nor the resources to conduct such sufficticated measurements. Most programmers seek a quick and approximate evaluation of their algorithm's performance in terms of time complexity. This is where asymptotic analysis comes into play. Asymptotic analysis involves the use of mathematical tools to study an algorithm's performance as the input size approaches infinity. Rather than fixating solely on time measurements, which can be heavily influenced by the factors discussed earlier, we can instead focus on observing how computational operations and steps increase in relation to the volume of requests and input changes.
+Clearly, time-based assessments of algorithms, especially those conducted by larger companies with a lot of resources, are a viable approach. However, not all programmers have the ability, time, nor the resources to conduct such sufficticated measurements. Most programmers seek a quick and approximate evaluation of their algorithm's performance in terms of both time and space complexity. This is where asymptotic analysis comes into play. Asymptotic analysis involves the use of mathematical tools to study an algorithm's performance as the input size approaches infinity. Rather than fixating solely on time measurements, which can be heavily influenced by the factors discussed earlier, we can instead focus on observing how computational operations and steps increase in relation to the volume of requests and input changes.
 </p>
 
 
@@ -789,7 +830,86 @@ Clearly, time-based assessments of algorithms, especially those conducted by lar
 These notations operate at a high level of abstraction, aiming to enable a rough evaluation of an algorithm in terms of performance while concealing the precise details. They treat fundamental and trivial operations, such as assignment statements, additions, and subtractions, as atomic and constant operations that consistently consume the same amount of time, even though, in reality, the execution time of these operations may vary. This is since they are relatively insignificant compared to more complex code structures that can have a greater influence, such as loops, functions, and classes. allowing us to focus on grasping the bigger picture rather than dwelling on elementary operations that have a negligible impact. Asymptotic notations will remind us of 3 important states that every programmer must take into considertaionn when they attempt to see how well their alogirthm is doing. This includes Big-O, Big-Theta, and Big-Omega. Let's take a look and analyze each of them in more depth.
 </p>
 
+In general, the running time of an algorithm or data structure method increases with the input size, although it may also vary for different inputs of the same size. the running time is affected by the hardware environment such as: processor, clock rate, memory, disk, etc... and the software environment such as: the operating system, programming language, compiler, interpreter, etc... in which the algorithm is implemented, compiled, and executed. Nevertheless, in spite of the possible variations that
+come from different environmental factors, we would like to focus on the relationship between the running time of an algorithm and the size of its input. We are interested in characterizing an algorithm’s running time as a function of the input size. But what is the proper way of measuring it?
 
+
+
+We use asymptotic notations and Big-O because:
+• Takes into account all possible inputs.
+• Allows us to evaluate the relative efficiency of any two algorithms in a way
+that is independent from the hardware and software environment.
+• Can be performed by studying a high-level description of the algorithm without actually implementing it or running experiments on it
+
+
+
+As noted above, experimental analysis is valuable, but it has its limitations. If
+we wish to analyze a particular algorithm without performing experiments on its
+running time, we can perform an analysis directly on the high-level pseudo-code
+instead. We define a set of primitive operations such as the following:
+• Assigning a value to a variable
+• Calling a function
+• Performing an arithmetic operation (for example, adding two numbers)
+• Comparing two numbers
+• Indexing into an array
+• Following an object reference
+• Returning from a function
+
+A primitive operation corresponds to a low-level instruction with an execution time that is constant. Instead of trying to determine the specific execution
+time of each primitive operation, we simply disregard the individual and meannigless little differerences in time of each simple operation and instead use them as a counting measurment of  how many primitive operations are executed, and use this number t as a measure of the running time of the algorithm. This brings to a fundementally important conclusion:
+
+The implicit assumption in this
+approach is that the running times of different primitive operations is fairly similar.
+
+
+If all simple operations are the same and be considered as equal, then the piece of code that has the most effect on our programs performance is going the be the piece that performs the heaviset amount of primitive operations. Like a game where if you have gold bars to collect the winner will be the one with the most gold bars.
+
+
+
+
+
+
+An average-case analysis usually requires that we calculate expected running times
+based on a given input distribution, which usually involves sophisticated probability
+theory. Therefore, for the remainder of this book, unless we specify otherwise, we
+characterize running times in terms of the worst case, as a function of the input
+size, n, of the algorithm.
+
+Worst-case analysis is much easier than average-case analysis, as it requires
+only the ability to identify the worst-case input, which is often simple. Also, this
+approach typically leads to better algorithms. Making the standard of success for
+an algorithm to perform well in the worst case necessarily requires that it does well
+on every input. That is, designing for the worst case leads to stronger algorithmic
+“muscles,” much like a track star who always practices by running up an incline.
+
+
+
+Suppose two algorithms solving the same problem are available: an algorithm A,
+which has a running time of O(n), and an algorithm B, which has a running time
+of O(n
+2
+). Which algorithm is better? We know that n is O(n
+2
+), which implies that
+algorithm A is asymptotically better than algorithm B, although for a small value
+of n, B may have a lower running time than A.
+We can use the big-Oh notation to order classes of functions by asymptotic
+growth rate.
+
+
+
+A few words of caution about asymptotic notation are in order at this point. First,
+note that the use of the big-Oh and related notations can be somewhat misleading
+should the constant factors they “hide” be very large. For example, while it is
+true that the function 10100n is O(n), if this is the running time of an algorithm
+being compared to one whose running time is 10nlog n, we prefer the O(nlogn)
+time algorithm, even though the linear-time algorithm is asymptotically faster. This
+preference is because the constant factor, 10100, which is called “one googol,” is
+believed by many astronomers to be an upper bound on the number of atoms in
+the observable universe. So we are unlikely to ever have a real-world problem that
+has this number as its input size. Thus, even when using the big-Oh notation, we
+should at least be somewhat mindful of the constant factors and lower order terms
+we are “hiding.”
 
 <br>
 <br>
@@ -856,6 +976,8 @@ Among the trio of asymptotic notations, Big-O stands out as the most frequently 
 <p>
 While Big-O notation is the predominant method for articulating algorithmic complexity, it's worth noting that other notations, such as Big-Theta (Θ) and Big-Omega (Ω), serve specific purposes as well. In most cases it is the combination of all these notations together at the end that can make a difference. However, for the sake of simplicity, we will describe the performance of algorithms in all upcoming tutorials in terms of Big-O. In the forthcoming and concluding section of this page, we will see into common patterns, best practices, and provide code examples for identifying Big-O in various scenarios.
 </p>
+
+
 
 <!-- ############################################# Separator - Bottom ############################################# -->
 
@@ -1010,6 +1132,8 @@ The optimal performance that an algorithm can achieve in terms of Big-O notation
 It is important to note that there is a common misconception among programmers regarding the distinction between being constant and being fast. When we talk about a constant algorithm, we mean that it maintains a consistent runtime with every execution. However, this does not imply that the algorithm is necessarily fast. For example, it might take the alogrithm 1 minute and 37 seconds to accomplish its task. The advantage lies in the fact that regardless of whether it is processing a single data point or a million data points, it will consistently take the same 1 minute and 37 seconds. The true power of this characteristic becomes apparent as the volume of data increases. Let's take a look at an example:
 </p>
 
+
+Another example of O(1) are if you are asked to find out how many beans are in a jar, and the jars are labled with the amount on them. It will take a person the same amount of time each run to determine how many beans are in each jar regardless of the size of the jar and the amount of beans in it.
 
 
 <br>
@@ -1190,6 +1314,156 @@ def permutation_recursive(arr):
 # It has factorial time complexity O(n!).
 These examples should provide you with a better understanding of time complexities and how they relate to the efficiency of algorithms. Remember that choosing the right algorithm for a specific problem often involves considering both time and space complexities, as well as other practical factors.
 
+
+
+Certainly! An algorithm that is considered to be linear typically refers to its time complexity. In computer science and mathematics, the term "linear" is often used to describe an algorithm's behavior in relation to the size of its input data. Specifically, a linear algorithm has a time complexity that grows linearly with the size of the input. This means that as the input data increases, the time it takes for the algorithm to complete also increases at a constant rate.
+
+Let's delve deeper into the meaning and behavior of a linear algorithm:
+
+1. Time Complexity:
+
+In Big O notation, a linear algorithm is denoted as O(n), where "n" represents the size of the input data. This notation provides an upper bound on the growth rate of the algorithm's running time concerning the input size.
+2. Behavior:
+
+Linear algorithms have a direct and proportional relationship between the input size and the number of operations or steps required to solve the problem.
+For each additional data element in the input, a linear algorithm typically performs a fixed number of operations. This means that if you double the input size, the algorithm will roughly take twice as long to execute.
+3. Examples:
+
+Linear search: When searching for an element in an unsorted list, you may need to examine each element one by one. This is a linear operation because the time it takes is directly proportional to the size of the list.
+Calculating the sum of elements in an array: To find the sum of all elements in an array, you need to iterate through each element once. The time taken is linear in relation to the number of elements in the array.
+4. Characteristics:
+
+Linear algorithms are generally straightforward and easy to implement.
+They are well-suited for problems where you need to process each element of the input data exactly once.
+Linear algorithms tend to have good performance for small to moderately sized datasets but may become inefficient for very large datasets because the time required grows proportionally with the data size.
+5. Visual Representation:
+
+If you were to plot the time taken by a linear algorithm on a graph, you would typically see a straight line, which reflects the linear growth in time as the input size increases.
+6. Complexity Analysis:
+
+When analyzing the complexity of a linear algorithm, you can often count the number of iterations or operations in a loop that processes the input data. The number of iterations will be directly proportional to the size of the input.
+In summary, a linear algorithm has a time complexity of O(n), meaning its running time grows linearly with the size of the input. This behavior is characterized by a constant relationship between the input size and the number of operations performed, making linear algorithms suitable for many practical tasks, especially when dealing with reasonably sized datasets.
+
+
+
+In terms of space complexity, the code doesn't use any data structures that grow with the input, so it can be considered O(1) in terms of space.
+
+
+
+
+Final notes:
+
+I often view C++ as the combination of "C" and "++". I know this may sound wierd, but the reasno for this is because usually for every solution that uses a "C" based approach, there is usually a corresponding modern "++" way of doing it. For this reason in the next part and the parts to come after that when we talk about STL containers I will try and show both ways of doing the "C" way and the "++" way, so you can choose which way to do it. But, wait a minute! What is STL?... Look at udemy C++ video and write about here briefly.
+
+C++ is a powerful and flexible programming language, which was designed to
+build upon the constructs of the C programming language. Thus, with minor exceptions, C++ is a superset of the C programming language. C++ shares C’s ability
+to deal efficiently with hardware at the level of bits, bytes, words, addresses, etc.
+In addition, C++ adds several enhancements over C (which motivates the name
+“C++”), with the principal enhancement being the object-oriented concept of a
+class
+
+
+
+
+
+
+
+You may notice that as we create the functionality and algorthims in this walktrough, we will try to create them as separate functions to the data types and calsses and containers that they handle as much as possible. This is since we generally want our functions to be able to be portable and work with any data type without being specifically tide or implemented into a specific container type. Furthermoer, many containers are either baked into the language or weer defined previously which restricts us from being able to modify them in the first place.
+
+
+
+
+
+
+
+
+
+
+
+
+
+When trying to explain each of the functionalities mentioned above (insert, search, access, traverse, deletion, etc...) we will not nccessarilly do them in a predefined order as explaining some of them may influnece and have a big impact of understanding alot of other operations. Therefore, I will explain each one as I see fit first that may have the biggest impact in understanding others.
+
+
+
+One more important note of the basic operational expectations for each data structure is that each of them may created multiple sub set of operations aswell. Meaning that each operation can have 2, 3, or even more variations as to hawe they approch the functionality. For example, we could have 3 different methods of inserting an element into a data structure depending on the needs and characteristics of the operations.
+
+
+
+
+
+
+Examples of finding the Big-O notation:
+
+
+
+2n^2+ 7n + 65
+
+n(n+4) + 40
+nlogn + 10logn^2
+
+
+
+
+
+
+
+
+
+
+
+Example for constant O(1):
+
+Imagine you have a sorted array of numbers from lowest to highest. Finding the lowest or highest number is constant because their positions are always at the front and back respectively.
+
+
+
+
+We use asypmtotic notations and Big-O not because we love math, but rathre we would like to use these tools to quickly and effeciently find a rough estimate of how our program will perform without having to setup complex testing environmest nor having to implement our algorithm completely and finalizing it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Algorithms can either be very performant or be very elegant. elegnat means that either very readabel and understandable.
+
+
+Time complexity: The amount of work that an algorithm performs as the number of input requests increas over time. Every algorithm can be represented using a mathematical function called "Growth Rate Function" which enables us to establish a relationship between how the increase in the number of input requests can influence the outcome or performance of our algorithm. Big-O notation studies the upper bound limitation of the growth rate function. Meaning how much time the algorithm will take at the maximum without crossing a praticular boundary.
+
+
+
+
+
+Recursive functions are commonly used in a methodology called "Divide and Conquor"
+
+
+
+
+
+
+// Maybe it would be better to have one ADT called "Container" that has general purpose funcitons for all container types. You could start by just making simple classes and at the end talk about how to turn all of them [array, vector, list, etc.] into one common interface.
+
+
+Traversing data structures can also be useful if you want to figure out the size of that data structure because you may not neccessarilly want to keep track of the size individiually for whatever reason. Maybe you want to search for an element and you need go through each element, maybe you want to find the correct place for inserting an element or to find an element that needs to be deleted. Traversing is very important because it influences other operations heavilly.
+
+
+When creating your array, vector, linked list, etc... custom classes you could specify at the very top using comments what the Big-O() of each of them shoud be and whta they do...
+
+
+use  return EXIT SUCCESS;  where possible
+
+
+
+Add a section or an entire new part that talks about templates in depth as well.
 
 <!-- ############################################# Separator - Bottom ############################################# -->
 
