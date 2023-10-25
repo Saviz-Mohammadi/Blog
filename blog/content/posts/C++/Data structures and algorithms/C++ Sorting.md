@@ -82,6 +82,48 @@ we will delve into various sorting techniques within data structures and explore
 
 <p>
 Bubble sort is a straightforward sorting algorithm that iterates through a list of elements to be sorted, checks adjcent elements, and exchanges them if they are in the incorrect order. This process continues until no further swaps are required, indicating that the list has been successfully sorted. While bubble sort isn't the most efficient sorting algorithm available, it stands out for its simplicity and ease of implementation. In interviewes it is actually recommended to use this sorting algorithm as the chances of success are high with this easy sorting algorithm. You can then use the argument of this sort not being effecient to implement more effecient ones. Bubble sort is an in-place sorting algorithm and is stable. The worst-case time complexity of this algorithm is O(n^2).
+
+
+Bubble sort is a simple and inefficient sorting algorithm used to arrange elements in a specific order within a list or array. It is named "bubble sort" because smaller elements gradually "bubble" to the top of the list as the algorithm iterates through the data. Despite its simplicity, bubble sort is rarely used in practice due to its poor time complexity, making it impractical for large datasets.
+
+Here are some key properties and characteristics of bubble sort:
+
+Basic Principle:
+
+Bubble sort works by repeatedly swapping adjacent elements if they are in the wrong order until the entire list is sorted.
+Algorithm:
+
+Start at the beginning of the list.
+Compare the first two elements, and if they are in the wrong order, swap them.
+Move to the next pair of elements and repeat the comparison and swapping process until you reach the end of the list.
+After one pass through the list, the largest element will have "bubbled" to the end.
+Repeat this process for the entire list until no more swaps are needed.
+Time Complexity:
+
+The worst-case time complexity of bubble sort is O(n^2), where n is the number of elements in the list.
+The best-case time complexity occurs when the list is already sorted, and in this case, it's still O(n^2).
+Adaptive:
+
+Bubble sort is adaptive, meaning it performs better when the list is partially sorted. This is because fewer swaps are required in this scenario.
+Stable:
+
+Bubble sort is a stable sorting algorithm, meaning it preserves the relative order of equal elements.
+Inefficient:
+
+Bubble sort is highly inefficient, especially for large datasets, due to its quadratic time complexity. It is not suitable for practical use when dealing with sizable or unsorted data.
+Comparisons and Swaps:
+
+Bubble sort performs a significant number of comparisons and swaps, which makes it less efficient than more advanced sorting algorithms like quicksort, merge sort, or heapsort.
+In-Place Sorting:
+
+Bubble sort is an in-place sorting algorithm, meaning it does not require additional memory space to sort the list.
+Popular for Educational Purposes:
+
+Bubble sort is commonly used in educational settings to teach sorting algorithms and their principles due to its simplicity and easy-to-understand nature.
+Variants:
+
+Variations of bubble sort exist, such as the cocktail shaker sort, which sorts the list in both directions, reducing the number of passes required in some cases.
+
 </p>
 
 
@@ -278,6 +320,42 @@ Selection sort can be made Stable if instead of swapping, the minimum element is
 
 
 The problem is not really the concept of swapping itself, but rather how we approach swapping! You see, in bubble sort we will inidivdable hit a situation where two values that are equal need to be swapped which does not happen therefore preserving their relationship. But, in selection sort we do not care and completely disregard the relationship of the elements to one another and simply swap the position of one element with aonther completely disregarding the relationship of the swapped element with its surrounding neighboor elements.
+
+
+Certainly! Selection sort is another simple comparison-based sorting algorithm, like bubble sort, but with some differences in its approach. Here are the properties and characteristics of selection sort:
+
+Basic Principle:
+
+Selection sort divides the input list into two parts: the sorted part and the unsorted part. It repeatedly selects the smallest (or largest) element from the unsorted part and moves it to the end of the sorted part.
+Algorithm:
+
+Divide the list into two parts: the sorted subarray on the left and the unsorted subarray on the right.
+Find the minimum (or maximum) element in the unsorted subarray.
+Swap the minimum element with the leftmost element in the unsorted subarray, which effectively extends the sorted subarray by one.
+Repeat the above steps for the remaining unsorted subarray until the entire list is sorted.
+Time Complexity:
+
+The time complexity of selection sort is O(n^2), both in the worst and best cases, where n is the number of elements in the list. This makes it inefficient for large datasets.
+Inefficient:
+
+Selection sort is not efficient for large datasets due to its quadratic time complexity. It performs a fixed number of swaps (n-1) even if the list is partially sorted.
+In-Place Sorting:
+
+Selection sort is an in-place sorting algorithm, which means it doesn't require additional memory to sort the list.
+Stable:
+
+Selection sort is not a stable sorting algorithm, as it may change the relative order of equal elements during sorting.
+Simplicity:
+
+Similar to bubble sort, selection sort is easy to understand and implement, making it a popular choice for educational purposes.
+Unaffected by Input Distribution:
+
+Unlike some sorting algorithms that perform better or worse depending on the initial order of elements, selection sort's performance remains the same for any input distribution.
+Variants:
+
+Variations of selection sort exist, such as bidirectional selection sort, which selects both the minimum and maximum elements in each pass.
+
+
 </p>
 
 
@@ -469,6 +547,40 @@ std::array<int, 3> arr {...};
 
 <p>
 Insertion sort work by adding one element at a time to the sorted portion of our container. The most common scenario that will be asked in interviews that should instantly remind any programmer this algorithm is sorting a deck of cards.
+
+Certainly! Insertion sort is another simple sorting algorithm that, in some cases, can be more efficient than bubble sort and selection sort. It is especially efficient for small datasets or partially sorted lists. Here are the properties and characteristics of insertion sort:
+
+Basic Principle:
+
+Insertion sort builds the final sorted array one element at a time. It takes each element from the unsorted part of the list and inserts it into its correct position within the sorted part of the list.
+Algorithm:
+
+Start with a list where the first element is considered sorted, and the rest is unsorted.
+For each unsorted element, compare it with the elements in the sorted part to find its correct position.
+Shift the larger elements in the sorted part to make room for the new element.
+Insert the new element into its correct position in the sorted part.
+Repeat these steps until the entire list is sorted.
+Time Complexity:
+
+The time complexity of insertion sort is O(n^2), both in the worst and best cases. However, it can be more efficient than bubble sort and selection sort in some scenarios, particularly for small datasets or nearly sorted lists.
+Adaptive:
+
+Insertion sort is adaptive, meaning its performance is improved when the list is partially sorted. In such cases, it approaches a linear time complexity.
+Stable:
+
+Insertion sort is a stable sorting algorithm, meaning it preserves the relative order of equal elements.
+In-Place Sorting:
+
+Similar to bubble sort and selection sort, insertion sort is an in-place sorting algorithm, meaning it doesn't require additional memory space to sort the list.
+Variants:
+
+Variations of insertion sort exist, such as binary insertion sort, which uses a binary search to find the correct position for the new element, potentially reducing the number of comparisons.
+Simplicity:
+
+Insertion sort is easy to understand and implement, making it a good choice for educational purposes or when simplicity is preferred over sorting efficiency.
+Efficient for Small Data:
+
+Insertion sort is a practical choice for sorting small lists or arrays where its simplicity and stability make it a reasonable option.
 </p>
 
 
@@ -641,6 +753,42 @@ std::array<int, 3> arr {...};
 
 <p>
 Quicksort is an efficient sorting algorithm with an average time complexity of O(n log n). However, by default, quicksort is not stable, which means that it may change the relative order of equal elements in the input array. This means that the worst-case is different and you should research what it is.
+
+Certainly! Quick sort is a highly efficient and widely used sorting algorithm that uses a divide-and-conquer approach to sort a list or array. It is known for its average-case time complexity of O(n log n) and is often the preferred choice for sorting large datasets. Here are the properties and characteristics of quick sort:
+
+Basic Principle:
+
+Quick sort follows the divide-and-conquer paradigm. It selects a "pivot" element and rearranges the elements in the list so that all elements less than the pivot are on the left, and all elements greater than the pivot are on the right. This process is recursively applied to the sublists on both sides of the pivot.
+Algorithm:
+
+Choose a pivot element from the list.
+Partition the list into two sublists: elements less than the pivot and elements greater than the pivot.
+Recursively apply quick sort to the sublists.
+Combine the sorted sublists and the pivot to produce the final sorted list.
+Time Complexity:
+
+The average-case time complexity of quick sort is O(n log n), which is significantly faster than O(n^2) algorithms like bubble sort, selection sort, and insertion sort.
+The worst-case time complexity is O(n^2) when the pivot selection consistently results in unbalanced sublists, but this is uncommon in practice.
+Quick sort's best-case time complexity is O(n log n).
+In-Place Sorting:
+
+Quick sort is an in-place sorting algorithm, meaning it sorts the list without requiring additional memory space.
+Unstable:
+
+Quick sort is not a stable sorting algorithm, as it may change the relative order of equal elements during sorting.
+Efficiency:
+
+Quick sort is known for its efficiency, especially for large datasets. It is often faster than many other sorting algorithms, thanks to its average-case time complexity.
+Randomized Pivot Selection:
+
+To mitigate the risk of worst-case behavior, some quick sort implementations use randomized pivot selection to reduce the probability of consistently selecting a poorly positioned pivot.
+Variants:
+
+Variants of quick sort include the three-way quick sort and dual-pivot quick sort, which further optimize the algorithm's performance.
+Divide-and-Conquer:
+
+Quick sort's divide-and-conquer approach makes it well-suited for parallel and multi-threaded implementations, which can further enhance its efficiency on modern computer architectures.
+
 </p>
 
 
@@ -871,6 +1019,43 @@ std::array<int, 3> arr {...};
 
 <p>
 Quicksort is an efficient sorting algorithm with an average time complexity of O(n log n). However, by default, quicksort is not stable, which means that it may change the relative order of equal elements in the input array. This means that the worst-case is different and you should research what it is.
+
+Certainly! Merge sort is a highly efficient and stable sorting algorithm that also follows the divide-and-conquer approach to sort a list or array. It is known for its consistent O(n log n) time complexity and is often used for large datasets and in situations where stability is crucial. Here are the properties and characteristics of merge sort:
+
+Basic Principle:
+
+Merge sort divides the input list into smaller sublists, sorts each sublist, and then merges the sorted sublists back together to produce the final sorted list.
+Algorithm:
+
+Divide the list into two halves.
+Recursively apply merge sort to each half.
+Merge the two sorted halves back together to produce a single sorted list.
+Time Complexity:
+
+Merge sort has a consistent time complexity of O(n log n) in all cases, making it one of the most efficient sorting algorithms.
+It is a comparison-based sorting algorithm and does not have a worst-case scenario that is significantly worse than its average-case performance.
+Stable:
+
+Merge sort is a stable sorting algorithm, meaning it preserves the relative order of equal elements during sorting.
+In-Place Sorting:
+
+Merge sort is not an in-place sorting algorithm; it requires additional memory space for its temporary arrays during the merging step.
+Efficiency:
+
+Merge sort is known for its efficiency, particularly for large datasets. It is often used in situations where stability is a requirement, such as sorting objects with multiple properties.
+Parallel Processing:
+
+Merge sort is well-suited for parallel and multi-threaded implementations, making it efficient on modern computer architectures.
+Not Affected by Input Distribution:
+
+Unlike some other sorting algorithms, merge sort's performance is not significantly affected by the initial order of elements.
+External Sorting:
+
+Merge sort is also used in external sorting, a technique for sorting very large datasets that do not fit entirely in memory.
+Variants:
+
+Variants of merge sort include the bottom-up merge sort, which sorts the list iteratively without recursion.
+
 </p>
 
 

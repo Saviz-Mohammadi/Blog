@@ -29,7 +29,7 @@ weight: 4
 
 
 <p>
-As we begin our exploration of the Standard Template Library, we will analyze <span class="special">an entity that, although not commonly regarded as a container, certainly displays container-like characteristics</span>.  The trust worthy <span class="special">"Array"</span>! In many programming languages, arrays are a fundamentally valuable and straightforward method for grouping data, so much so that they are inherently integrated and do not require external libraries in order to function. C++ is no exception. No matter whether we embrace the array voluntarily or not, it remains one of the most significant and fundamental components of a programming language, allowing us to manipulate large amounts of data effectively and efficiently. In order to begin our exploration, we will examine the array from different aspects as a data structure and explain in detail its strength and weaknesses.
+As we begin our exploration of the various data structures and their alogrithms, we will analyze <span class="special">an entity that, although not commonly regarded as a container, certainly displays container-like characteristics</span>.  The trust worthy <span class="special">Array</span>! In many programming languages, arrays are a fundamentally valuable and straightforward method for grouping data, so much so that they are inherently integrated and do not require external libraries in order to function. C++ is no exception. No matter whether we embrace the array voluntarily or not, it remains one of the most significant and fundamental components of a programming language, allowing us to manipulate large amounts of data effectively and efficiently. In order to begin our exploration, we will examine the array from different aspects as a data structure and explain in detail its strength and weaknesses.
 </p>
 
 
@@ -62,7 +62,7 @@ image
 
 
 <p>
-The C++ language, as mentioned earlier, is comprised of two key components: "C" and "++", with the "++" part representing classes and objects. For this reason, arrays in C++ can be utilized and manipulated in two distinct manners: using built-in C-style arrays or employing the array class provided within the STL library as a container. It is critical to understand and grasp both approaches since many programmers and existing codebases may employ either methods interchangeably. As we try to understand the five fundamental functionalities expected of arrays as a container - namely, Insert, Remove, Access, Search, and Traverse - we will explore them through both the "C" and "++" perspectives. However, before we can explain the array data structure from these diverse angles, we must first have an array to begin with. Let us start by exploring their distinctions by performing the two most fundamental operations familiar to every programmer in this field: Declaring and Initializing arrays.
+The C++ language, as mentioned earlier, is comprised of two key components: "C" and "++", with the "++" part representing the concept of classes and objects within the OOP (Object Oriented Programming) world. For this reason, arrays in C++ can be utilized and manipulated in two distinct manners: using built-in <span class="special">C arrays</span> or employing the <span class="special">std::array</span> class provided within the STL library as a container. It is critical to understand and grasp both approaches since many programmers and existing codebases may employ either methods interchangeably. As we try to understand the five fundamental functionalities expected of arrays as a container - namely, Insert, Remove, Access, Search, and Traverse - we will explore them through both the "C" and "++" perspectives.
 </p>
 
 
@@ -102,10 +102,21 @@ The C++ language, as mentioned earlier, is comprised of two key components: "C" 
 
 
 
-<code><h3>C-style approach</h3></code>
+<p>
+Before we can explain the array data structure and the set of operations associated with it, it's essential to have an array to work with in the first place. Let's start off our exploration by attempting to create an array capable of holding 5 integer elements and name it <span class="special">numbers</span> using two distinct methods: C arrays and std::array from the Standard Template Library (STL). It is a common practice to set array names as plural form such as numbers, elements, etc to indicate that they refer to a set of elements instead of just one. We will accomplish this by performing the two fundamental operations of <span class="special">declaration</span> and <span class="special">initialization</span> which should be common knowledge to programmers in this field by now.
+</p>
+
+
+
+<br>
+<br>
+
+
+
+<code><h3>Declaration (C approach)</h3></code>
 
 <p>
-In order to create and work with arrays in C++, it is essential to understand the concept of array declarations. C++ array declarations serve as a means of signaling to the compiler that you intend to use a collection of elements of the same type, and that you wish to reserve memory for them.  A declaration of an array entails specifying the array's characteristics, such as: Specifying the <span class="special">data type of the elements</span> that the array will contain which defines the type of values the array can hold, a <span class="special">name for the array</span> that will be used throughout our program, and last but not least, the <span class="special">number of elements</span> the array will accommodate, which determines the number of elements the array will hold. The array must be declared with all of this information in order to function correctly.
+C++ array declarations serve as a means of signaling to the compiler that you intend to use a collection of elements of the same type, and that you wish to reserve memory for them. A declaration of an array in the C approach entails specifying the array's characteristics, such as: Specifying the <span class="special">data type of the elements</span> that the array will contain which defines the type of values the array can hold, a <span class="special">name for the array</span> that will be used throughout our program, and last but not least, the <span class="special">number of elements</span> the array will accommodate. The array must be declared with all of this information in order to function correctly. Once declared, the characteristics of the array cannot be changed later on!
 </p>
 
 
@@ -119,10 +130,10 @@ In order to create and work with arrays in C++, it is essential to understand th
 ```C++
 #include <iostream>
 
-
 int main(int argc, char* argv[])
 {
-	int numbers[5]; // Declaring an array that can hold 5 integer elements.
+	// Declaring an array to hold 5 integer elements.
+	int numbers[5];
 	
 	return (0);
 }
@@ -135,6 +146,60 @@ int main(int argc, char* argv[])
 <br>
 
 
+<code><h3>Declaration (STL approach)</h3></code>
+
+<p>
+Declaring an array in the STL container manner is, in theory, no different from the C-style version. Declaration serves the same purpose; it instructs the compiler to allocate and reserve sufficient space for storing 10 integer elements. However, since we are working with an STL container array, the syntax differs from that of a C-style array. The STL container array object employs templates to operate. The characterisitcs of the array do not defer, we are still required to provide and specify both the data type of the elements that the array will store and the total number of elements within the template brackets, as demonstrated in the following approach:
+</p>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+```C++
+#inculde <iostream>
+#include <array>
+
+int main(int argc, char* argv[])
+{
+	// Declaring an array to hold 5 integer elements.
+	std::array<int, 5> numbers;
+	
+	return (0);
+}
+```
+
+
+
+<br>
+<br>
+<br>
+
+
+talk about how arrays can be a little more confusing compared to other data structures right here as they occupy the entire space needed for the elements right there and then instead of adding them one by one. Also talk about how the size of an array is determined right here. (arrays are always full, even if what they contain in garbage!)
+
+
+
+<br>
+<br>
+<br>
+
+
+<code><h3>Initialization (C approach)</h3></code>
+
+<p>
+Declaring an array in the STL container manner is, in theory, no different from the C-style version. Declaration serves the same purpose; it instructs the compiler to allocate and reserve sufficient space for storing 10 integer elements. However, since we are working with an STL container array, the syntax differs from that of a C-style array. The STL container array object employs templates to operate. The characterisitcs of the array do not defer, we are still required to provide and specify both the data type of the elements that the array will store and the total number of elements within the template brackets, as demonstrated in the following approach:
+</p>
+
+
+
+<br>
+<br>
+<br>
 
 <p>
 Initializing an array involves populating it with default values, as it may contain unpredictable and garbage elements in each cell. When initializing a C-style array, we have two options. We can either provide all the elements ahead of time, as shown in the example "number_1", or we can set the elements of an array to a default value, such as 0, and then populate the elements one by one later in our code, as shown in "number_2". The example of "numbers_3" demonstrates a shorthand way of accomplishing the same thing as the second method. However, it is much easier as we do not need to write every element individually. It is more common to use the second method because we often do not know the values in advance. However, we can specify the elements later on in our program by accessing and manipulating each one of them as we see fit.
@@ -167,19 +232,12 @@ int main(int argc, char* argv[])
 }
 ```
 
-
-
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
 
 
-
-
-<code><h3>STL-style approach</h3></code>
+<code><h3>Initialization (STL approach)</h3></code>
 
 <p>
 Declaring an array in the STL container manner is, in theory, no different from the C-style version. Declaration serves the same purpose; it instructs the compiler to allocate and reserve sufficient space for storing 10 integer elements. However, since we are working with an STL container array, the syntax differs from that of a C-style array. The STL container array object employs templates to operate. The characterisitcs of the array do not defer, we are still required to provide and specify both the data type of the elements that the array will store and the total number of elements within the template brackets, as demonstrated in the following approach:
@@ -190,28 +248,6 @@ Declaring an array in the STL container manner is, in theory, no different from 
 <br>
 <br>
 <br>
-
-
-
-```C++
-#include <iostream>
-#include <array>
-
-int main(int argc, char* argv[])
-{
-	// Declaring an array to hold 10 integer elements.
-	std::array<int, 5> numbers;
-	
-	return (0);
-}
-```
-
-
-
-<br>
-<br>
-<br>
-
 
 
 <p>
@@ -235,7 +271,6 @@ std::array<int, 3> arr {...};
 <br>
 <br>
 <br>
-
 
 
 <!-- ############################################# Separator - Bottom ############################################# -->

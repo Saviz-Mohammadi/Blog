@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
 
 
 <p>
-For a more experienced programmer, it may be benefetial to combine these distinct variables into one meaningful complex data type, such as a <span class="special">struct named "Student"</span>. As a result of this approach, each student can be treated as a distinct entity, complete with attributes such as "name", "age", and "sin". Because this organization combines the individual data elements, the task is simplified. It is also possible for programmers to use classes and objects, but since we are concerned with only the data so far, a straightforward data container structure seems to make the most sense. <span class="special">Nevertheless, a class can be used if desired</span>. In my opinion, structs are better suited for entities whose sole purpose is to contain data, as they align better with my understanding of the concept. The following is an example of what our code would look like if we used structs and created "Student" entities instead of using individual variables:
+As we can witness, the only connection between these separate variables is a name assigned by the programmer, which is vulnerable to being altered, potentially breaking the relationship and hindering proper maintenance. For more experienced programmers, it can be beneficial to combine these distinct variables into a meaningful and complex data type, such as a struct <span class="special">(e.g Student)</span>. This approach allows each student to be treated as a discrete entity, complete with attributes <span class="special">(e.g name, age and SIN)</span>. By organizing the individual data elements in this way, the task becomes more straightforward. While classes and objects can also be used, our current focus is solely on data, making a straightforward data container structure the most logical choice. However, a class can be employed if preferred. Below is an example of what our code would look like when using structs to create entities instead of individual variables:
 </p>
 
 
@@ -98,6 +98,7 @@ struct Student
     int age;
     int sin;
 
+	// Constructor for the struct.
     Student(const std::string& _name, int _age, int _sin)
         : name(_name), age(_age), sin(_sin)
     {
@@ -129,9 +130,19 @@ int main(int argc, char* argv[])
 <br>
 
 
+<p>
+This method is definitely much more managable. However, there are still problems. Whether we choose the initial approach of using individual variables or the second approach of employing more sophisticated constructs like structs or objects, a fundamental challenge remains: "How can we efficiently manage a substantial volume of data?" I understand that many of you are already familiar with basic containers that facilitate the storage and retrieval of individual elements within a dataset. However, let's briefly consider a scenario in which you only have access to structs, objects, and variables. How would you try and approach such a problem?
+</p>
+
+
+
+<br>
+<br>
+
+
 
 <p>
-No matter whether we choose to utilize the initial approach with individual variables or to employ more complex entities such as structs or objects, we are still faced with a fundamental challenge: <span class="special">"How do we effectively manage a substantial volume of data?"</span>. It becomes even more challenging when we seek to integrate specific and critical functionalities that can also be applied to the set of data. Let us consider the scenario in which your organization needs to update a student named "Alice" among a pool of 2500 students. To locate the student structure that matches the description, you will need to manually search through the student variables or structures which can take quite the effort and time to accomplish. This is just one, straightforward task contained within a relatively small dataset. What if we are asked to complete other operations, such as identifying students with specific Social Security numbers, identifying students with the youngest ages, and other tasks among a much larger set of data, such as 100,000 students?
+In the absence of any prior knowledge or the availability of data structures and containers, not even basic arrays, the only solution would be for the programmer to manually search for the desired element using the variable names. This process can be quite difficult. For example, let's envision a situation where your organization needs to update information for a student named "Alice" among a pool of 2,500 students. To locate the student structure matching this description, you would need to manually search through the student variables or structures, which could be a time-consuming task. And this is just one simple task within a relatively small dataset.
 </p>
 
 
@@ -183,7 +194,7 @@ The complexity of dealing with large datasets becomes apparent quite quickly. It
 
 
 <p>
-Your enthusiasm to dive headfirst into learning is admirable. However, in every industry, there exists a specific collection of terms, phrases, and standards that enable effective communication between different developers and creators. The realm of data structures and algorithms is no exception to this principle. Prior to discussing the different properties and capabilities of data structures and their respective functionalities, it is important to first establish a common ground in our understanding of the fundamental terminology employed in this field. This foundational step ensures that all developers involved are aligned in their understanding of the concept, thus setting the stage for effective collaboration and comprehension as we navigate through the complexities of this domain.
+Your enthusiasm to dive headfirst into learning the various types of data structures and containers along with their capabilities is admirable. However, in every industry, there exists a specific collection of terms, phrases, and standards that enable effective communication between different developers and creators. The realm of data structures and algorithms is no exception to this principle. Prior to discussing the different properties and capabilities of data structures and their respective functionalities, it is important to first establish a common ground in our understanding of the fundamental terminology employed in this field. This foundational step ensures that all developers involved are aligned in their understanding of the concept, thus setting the stage for effective collaboration and comprehension as we navigate through the complexities of this domain.
 </p>
 
 
@@ -197,7 +208,7 @@ Your enthusiasm to dive headfirst into learning is admirable. However, in every 
 <code><h3>Algorithms:</h3></code>
 
 <p>
-Interestingly, we've essentially been employing an algorithm all along, up to this point. <span class="special">An algorithm is a collection of percise steps and instructions designed to guide a computer in solving a particular problem.</span> In the realm of computer programming, a single problem often spawns multiple solutions crafted by different programmers and researchers. The challenge lies in determining which algorithm will demonstrate <span class="special">superior performance</span> and most importantly <span class="special">produce correct results</span> all <span class="special">while utilizing fewer resources</span>. Analyzing algorithms is a process that involves identifying the most efficient algorithm that accomplishes the same task as its competitors in the shortest time and with the least memory usage. As a demonstraition, Let's imagine that we are given the task of creating an algorithm that can calculate the factorial of a given number by the user. We can approach this problem in two different ways: <span class="special">Recursively</span>, <span class="special">Iteratively</span>. Let's visualize the iterative approach first:
+Interestingly, we've essentially been employing an algorithm all along, up to this point. <span class="special">An algorithm is a collection of percise steps and instructions designed to guide a computer in solving a particular problem.</span> In the realm of computer programming, a single problem often spawns multiple solutions crafted by different programmers. The challenge lies in determining which algorithm will demonstrate <span class="special">superior performance</span> and most importantly <span class="special">produce correct results</span> all <span class="special">while utilizing fewer resources</span>. Analyzing algorithms is a process that involves identifying the most efficient algorithm that accomplishes the same task as its competitors in the shortest time and with the least memory usage. As a demonstraition, Let's imagine that we are given the task of creating an algorithm that can calculate the factorial of a given number by the user. We can approach this problem in two different ways: <span class="special">Recursively</span>, <span class="special">Iteratively</span>. Let's visualize the iterative approach first:
 </p>
 
 
