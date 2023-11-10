@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
 
 
 <p>
-As we can witness, the only connection between these separate variables is a name assigned by the programmer, which is vulnerable to being altered, potentially breaking the relationship and hindering proper maintenance. For more experienced programmers, it can be beneficial to combine these distinct variables into a meaningful and complex data type, such as a struct <span class="special">(e.g Student)</span>. This approach allows each student to be treated as a discrete entity, complete with attributes <span class="special">(e.g name, age and SIN)</span>. By organizing the individual data elements in this way, the task becomes more straightforward. While classes and objects can also be used, our current focus is solely on data, making a straightforward data container structure the most logical choice. However, a class can be employed if preferred. Below is an example of what our code would look like when using structs to create entities instead of individual variables:
+As we can witness, the only connection between these separate variables is a name assigned by the programmer, which is vulnerable to being altered, potentially breaking the relationship and hindering proper maintenance. For more experienced programmers, it can be beneficial to combine these distinct variables into a meaningful and complex data type, such as a struct (e.g Student). This approach allows each student to be treated as a discrete entity, complete with attributes mentioned before. By organizing the individual data elements in this way, the task becomes more straightforward. While classes and objects can also be used, our current focus is solely on data, making a straightforward data wrapper like structs the most logical choice. However, a class can be employed if preferred. Below is an example of what our code would look like when using structs to create entities instead of individual variables:
 </p>
 
 
@@ -131,7 +131,7 @@ int main(int argc, char* argv[])
 
 
 <p>
-This method is definitely much more managable. However, there are still problems. Whether we choose the initial approach of using individual variables or the second approach of employing more sophisticated constructs like structs or objects, a fundamental challenge remains: "How can we efficiently manage a substantial volume of data?" I understand that many of you are already familiar with basic containers that facilitate the storage and retrieval of individual elements within a dataset. However, let's briefly consider a scenario in which you only have access to structs, objects, and variables. How would you try and approach such a problem?
+This method is indeed more manageable; however, challenges still exist. Whether we opt for the initial approach of utilizing individual variables or the alternative approach involving more advanced constructs like structs or objects, a fundamental question arises: "How do we efficiently handle a significant volume of data?" I assume many of you already possess some level of programming knowledge and are familiar with basic containers that aid in storing and retrieving individual elements within a dataset, such as arrays. Nevertheless, let's briefly imagine a scenario in which you only have access to structs, objects, and variables. How would you approach such a problem?
 </p>
 
 
@@ -142,7 +142,7 @@ This method is definitely much more managable. However, there are still problems
 
 
 <p>
-In the absence of any prior knowledge or the availability of data structures and containers, not even basic arrays, the only solution would be for the programmer to manually search for the desired element using the variable names. This process can be quite difficult. For example, let's envision a situation where your organization needs to update information for a student named "Alice" among a pool of 2,500 students. To locate the student structure matching this description, you would need to manually search through the student variables or structures, which could be a time-consuming task. And this is just one simple task within a relatively small dataset.
+In the absence of any prior knowledge or access to data structures and containers, including basic arrays, the only recourse for the programmer is to manually search for the desired element using variable names, relying solely on visual inspection. This process can prove challenging. Consider a scenario where an organization must update information for a student named "Alice" within a pool of 2,500 students. To pinpoint the specific student structure corresponding to this information, one would have to linearly scan through the student variables or structures, a task that can be quite time-consuming. And this is just one straightforward task within a relatively small sized dataset.
 </p>
 
 
@@ -150,10 +150,26 @@ In the absence of any prior knowledge or the availability of data structures and
 <br>
 <br>
 
+<p>
+Certainly, having storage containers or data structures capable of storing vast amounts of information and performing various operations on those datasets is valuable. However, it contributes to only one aspect of this series, namely data structures. Another critical aspect involves the algorithms or methods we employ to execute these actions or any action, for that matter. The manner in which we approach a problem can significantly impact the efficiency or potential detriment of the functionalities we provide. Making processes from taking only a few seconds to taking hours.
+</p>
+
+
+<br>
+<br>
 
 
 <p>
-The complexity of dealing with large datasets becomes apparent quite quickly. It is often our goal, as programmers, to link pieces of data so that they have some kind of relationship, <span class="special">even if their only connection is their data type</span>. Additionally, <span class="special">we aim to incorporate specific and essential shared functionalities into entities that manage large data sets</span>. The ability to analyze and manipulate large amounts of data is a vitally important skill to have in today's C++ programming environment. Therefore, we will examine data structures and the various algorithms they employ in order to efficiently manage large amounts of data. If this sounds like something you might be interested in learning more about, then this series of articles is what you are looking for.
+Consider the scenario where we aim to find the student with the highest GPA among a pool of 2500 students. What if the chosen method for this task is inefficient, causing it to take an excessively long time? To illustrate, think about finding a word in a dictionary. How would you tackle such a problem? This highlights the importance of the methods we employ and the approaches we take to solve problems. These factors can drastically influence the amount of time and effort the computer expends on problem-solving. This underscores another reason why it is crucial to learn and understand these principles.
+</p>
+
+
+<br>
+<br>
+
+
+<p>
+The complexity of dealing with large datasets becomes apparent quite quickly. It is often our goal, as programmers, to link pieces of data so that they have some kind of relationship, even if their only connection is their data type. Additionally, we aim to incorporate specific and essential shared functionalities into entities that manage large data sets. The ability to analyze and manipulate large amounts of data is a vitally important skill to have in today's C++ programming environment. Therefore, we will examine data structures and the various algorithms they employ in order to efficiently manage large amounts of data. If this sounds like something you might be interested in learning more about, then this series of articles is what you are looking for.
 </p>
 
 
@@ -208,7 +224,7 @@ Your enthusiasm to dive headfirst into learning the various types of data struct
 <code><h3>Algorithms:</h3></code>
 
 <p>
-Interestingly, we've essentially been employing an algorithm all along, up to this point. <span class="special">An algorithm is a collection of percise steps and instructions designed to guide a computer in solving a particular problem.</span> In the realm of computer programming, a single problem often spawns multiple solutions crafted by different programmers. The challenge lies in determining which algorithm will demonstrate <span class="special">superior performance</span> and most importantly <span class="special">produce correct results</span> all <span class="special">while utilizing fewer resources</span>. Analyzing algorithms is a process that involves identifying the most efficient algorithm that accomplishes the same task as its competitors in the shortest time and with the least memory usage. As a demonstraition, Let's imagine that we are given the task of creating an algorithm that can calculate the factorial of a given number by the user. We can approach this problem in two different ways: <span class="special">Recursively</span>, <span class="special">Iteratively</span>. Let's visualize the iterative approach first:
+Interestingly, we've essentially been employing an algorithm all along, up to this point in our carreis as programmers. <span class="special">An algorithm is a collection of percise steps and instructions designed to guide a computer in solving a particular problem.</span> In the realm of computer programming, a single problem often spawns multiple solutions crafted by different programmers. The challenge lies in determining which algorithm will demonstrate superior performance and most importantly produce correct results all while utilizing fewer resources. <span class="special">Analyzing algorithms is a process that involves identifying the most efficient algorithm that accomplishes the same task as its competitors in the shortest time and with the least memory usage</span>. As a demonstraition, Let's imagine that we are given the task of creating an algorithm that can calculate the factorial of a given number by the user. We can approach this problem in two different ways: <span class="special">Recursively</span>, <span class="special">Iteratively</span>. Let's visualize the iterative approach first:
 </p>
 
 
@@ -269,7 +285,7 @@ int calculate_factorial_iterative(int number)
 
 
 <p>
-Different algorithms can solve the same problem in many different ways using different types of solutions, and their efficiency can vary significantly. By understanding and comparing their performance characteristics, developers can choose algorithms that are better suited for specific tasks. This leads to faster and more responsive software applications. Different algorithms might require varying amounts of computational resources, such as memory and processing power. <span class="special">It is important to understand that there is no ideal and best algorithm, some algorithms are better suited for some situations than others.</span> Therfore, whenever an interviewer asks you the question of <span class="special">"Which data structure or algorithm do you think is best suited for this problem?"</span>, then your answer should always be <span class="special">"It depends! We need to analyze our solutions"</span>. Let's take a look at the second method which uses recursive function calls to accomplish the exact same goal of finding the factorial of a number:
+Different algorithms can solve the same problem in many different ways using different types of solutions, and their efficiency can vary significantly. By understanding and comparing their performance characteristics, developers can choose algorithms that are better suited for specific tasks. This leads to faster and more responsive software applications. Different algorithms might require varying amounts of computational resources, such as memory and processing power. <span class="special">It is important to understand that there is no ideal algorithm, some algorithms are better suited for some situations than others</span>. Therfore, whenever an interviewer asks you the question of "Which data structure or algorithm do you think is best suited for this problem?", then your answer should always be "It depends! We need to analyze our solutions". Let's take a look at the second method which uses recursive function calls to accomplish the exact same goal of finding the factorial of a number:
 </p>
 
 
@@ -381,7 +397,7 @@ int Fibonacci_recursive(int number)
 
 
 <p>
-Of course in scenarios such as these it is quiet simple to know which one is better and more perforable. However, sometimes our problems can become so complex and difficult to achieve that we rather perfer to come up with a method of approaching the problem which is not neccessarilly the most performant approach, but is perfomant enough and most impornantly helps us to understand and solve the problem in the most understandable way possible. For these reasons, we will  perfer the recursive approach for solving problems much later in our discussinos once we encounter complex data structures. the following is the recusive approcah, which one do you believe is better, the one that is more performant or the one that is more understandable:
+Of course in scenarios such as these it is quiet simple to know which one is better and more perforable. However, sometimes our problems can become so complex and difficult to achieve that we rather perfer to come up with a method of approaching the problem which is not neccessarilly the most performant approach, but is perfomant enough and most impornantly helps us to understand and solve the problem in the most understandable way possible. For these reasons, we will  perfer the recursive approach for solving problems much later in our discussinos once we encounter complex data structures and problems so complex that it becomes virtually impossible to accomplish using normal loops. the following is the iterative approcah, which once more is more performant, but it can be difficult to write or think about:
 </p>
 
 
