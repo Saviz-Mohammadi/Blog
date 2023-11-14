@@ -29,7 +29,7 @@ weight: 3
 
 
 <p>
-A program consists of a sequential set of instructions that are executed one after the other, with each instruction operating on a distinct piece of data. As our programs grow in size and complexity, it becomes increasingly challenging to effectively monitor and manage these datasets solely using conventional variables, objects, and structs. Opting to utilize such solutions can quickly lead to unmanageable situations. This is because these storages are not engineered to handle extensive data loads; their design centers around managing and representing singular units of information or entities. Let's demonstrate this concept with a simple example. Imagine you have a classroom full of students, and you intend to store information about every student, including their name, age, and SIN number. If you decide to employ distinct variables for each student, the code will be similar to the following:
+A program consists of a sequential set of instructions that are executed one after the other, with each instruction operating on a distinct piece of data. As our programs grow in size and complexity, it becomes increasingly challenging to effectively monitor and manage these datasets solely using conventional variables, objects, and structs. Opting to utilize such solutions can quickly lead to unmanageable situations. This is because these storages are not engineered to handle extensive data loads; their design centers around managing and representing singular units of information or one entity at the very best. Let's demonstrate this concept with a simple example. Imagine you have a classroom full of students, and you intend to store information about every student, including their name, age, and SIN number. If you decide to employ distinct variables for each student, the code will be similar to the following:
 </p>
 
 
@@ -131,7 +131,7 @@ int main(int argc, char* argv[])
 
 
 <p>
-This method is indeed more manageable; however, challenges still exist. Whether we opt for the initial approach of utilizing individual variables or the alternative approach involving more advanced constructs like structs or objects, a fundamental question arises: "How do we efficiently handle a significant volume of data?" I assume many of you already possess some level of programming knowledge and are familiar with basic containers that aid in storing and retrieving individual elements within a dataset, such as arrays. Nevertheless, let's briefly imagine a scenario in which you only have access to structs, objects, and variables. How would you approach such a problem?
+This method is indeed more manageable; however, challenges still exist. Whether we opt for the initial approach of utilizing individual variables or the alternative approach involving more advanced constructs like structs or objects, a fundamental question arises: "How do we efficiently handle a significant volume of data?". I assume many of you already possess some level of programming knowledge and are familiar with basic containers that aid in storing and retrieving individual elements within a dataset, such as arrays. Nevertheless, let's briefly imagine a scenario in which you only have access to structs, objects, and variables. How would you approach complicated problems such as finding the student with the highest age, student with a specific SIN number, changing the age of a particular student and etc?
 </p>
 
 
@@ -142,7 +142,7 @@ This method is indeed more manageable; however, challenges still exist. Whether 
 
 
 <p>
-In the absence of any prior knowledge or access to data structures and containers, including basic arrays, the only recourse for the programmer is to manually search for the desired element using variable names, relying solely on visual inspection. This process can prove challenging. Consider a scenario where an organization must update information for a student named "Alice" within a pool of 2,500 students. To pinpoint the specific student structure corresponding to this information, one would have to linearly scan through the student variables or structures, a task that can be quite time-consuming. And this is just one straightforward task within a relatively small sized dataset.
+In the absence of any prior knowledge or access to data structures and containers, including basic arrays, the only recourse for the programmer is to manually search for the desired element using variable names, relying solely on visual inspection and then trying to manipulate the fields individually one by one. This process can prove challenging. Consider a scenario where an organization must update information for a student named "Alice" within a pool of 2,500 students. To pinpoint the specific student structure corresponding to this information, one would have to linearly scan through the student variables or structures, a task that can be quite time-consuming. And this is just one straightforward task within a relatively small sized dataset.
 </p>
 
 
@@ -160,7 +160,7 @@ Certainly, having storage containers or data structures capable of storing vast 
 
 
 <p>
-Consider the scenario where we aim to find the student with the highest GPA among a pool of 2500 students. What if the chosen method for this task is inefficient, causing it to take an excessively long time? To illustrate, think about finding a word in a dictionary. How would you tackle such a problem? This highlights the importance of the methods we employ and the approaches we take to solve problems. These factors can drastically influence the amount of time and effort the computer expends on problem-solving. This underscores another reason why it is crucial to learn and understand these principles.
+Consider the scenario where we aim to find the student with the highest age among a pool of 2500 students. What if the chosen method for this task is inefficient, causing it to take an excessively long time? To illustrate, think about finding a word in a dictionary. How would you tackle such a problem? This highlights the importance of the methods we employ and the approaches we take to solve problems. These factors can drastically influence the amount of time and effort the computer expends on problem-solving. This underscores another reason why it is crucial to learn and understand these principles.
 </p>
 
 
@@ -282,7 +282,12 @@ int calculate_factorial_iterative(int number)
 <br>
 <br>
 
+<p>
+THis should come to no surprise to most of you. In the iteratirev approach we use some variation of loops in this case being a for-loop to continously multiply a number by its predesiscor. 
+</p>
 
+<br>
+<br>
 
 <p>
 Different algorithms can solve the same problem in many different ways using different types of solutions, and their efficiency can vary significantly. By understanding and comparing their performance characteristics, developers can choose algorithms that are better suited for specific tasks. This leads to faster and more responsive software applications. Different algorithms might require varying amounts of computational resources, such as memory and processing power. <span class="special">It is important to understand that there is no ideal algorithm, some algorithms are better suited for some situations than others</span>. Therfore, whenever an interviewer asks you the question of "Which data structure or algorithm do you think is best suited for this problem?", then your answer should always be "It depends! We need to analyze our solutions". Let's take a look at the second method which uses recursive function calls to accomplish the exact same goal of finding the factorial of a number:
@@ -344,9 +349,24 @@ int calculate_factorial_recursive(int number)
 <br>
 
 
-Maybe talk a little more in depth as to why recursive calls can take more resources right here instead of saying refer to somplace else.
 <p>
-You may have noticed that the above two algorithms accomplish the same task in a completely different ways. Using a loop is the first method, which takes far fewer resources than its recursive counterpart. As discussed in the function blog post, recursive calls take more space per function call in order to accommodate the memory needs of the function as well as additional time to set up the entire process of allocating everything appropriately. Nevertheless, recursive methods are much more straightforward to understand and manage than iterative loops. These are the reasons why we have comparisons in order to see what the advantages and disadvantages of each algorithm are in order to determine which is more appropriate for the situation and resources available. Another example would be a program that can display the set of Fibonnaci numbers:
+Recursive Function Calls:
+Recursion is a programming concept where a function calls itself in its definition. Recursive functions have two main components of base case and recursive case. The base case This is the condition under which the recursion stops. Without a base case, the recursion would continue indefinitely, leading to a stack overflow. The recurisve case is where the function calls itself with modified arguments. The idea is that each recursive call should bring the problem closer to the base case. In some sense recursive functions are similar to iterative loops where we continously complete a slightly modified action until some condition is meet.
+</p>
+
+<br>
+<br>
+
+<p>
+As programmers we all know (or I hope we know) that when a function is called, a block of memory called a "stack frame" is allocated on the call stack. This frame contains information about the function call, including local variables and the return address. In the case of recursive functions, multiple stack frames are created as each recursive call is made. When a function is called, a stack frame is created, and space is allocated for local variables. Each recursive call adds a new stack frame on top of the previous ones, forming a "stack" of frames. This is known as the call stack. The problem however is that each function keeps calling additional sub functions in itself and as each function will not terminate until it is done with its operation, it will cause a lot of functions sitting for some period of time idle and occupying memory. As each function call completes (reaches the base case), its stack frame is popped off the call stack, freeing up the associated memory and returing their results to the previous function call. Recursive functions can be resource-intensive for a few reasons. Each recursive call adds a new stack frame. If the recursion goes too deep, it can lead to a stack overflow because the stack has a limited size. In some recursive algorithms, the same subproblems are solved multiple times, leading to redundant computations. Function calls come with overhead, because it actually takes some time for each function to occupy memory and set everything up before it can even attempt to complete its task and frequent function calls in recursion can contribute to slower execution.
+
+</p>
+
+<br>
+<br>
+
+<p>
+You may have noticed that the above two algorithms accomplish the same task in a completely different ways. Using a loop is the first method, which takes far fewer resources than its recursive counterpart. Nevertheless, recursive methods are much more straightforward to understand and manage than iterative loops. These are the reasons why we have comparisons in order to see what the advantages and disadvantages of each algorithm are in order to determine which is more appropriate for the situation and resources available. Another example would be a program that can display the set of Fibonnaci numbers:
 </p>
 
 
@@ -740,6 +760,9 @@ int main(int argc, char* argv[])
 <br>
 
 You can talk about how to add sum of numbers using the special way (N+1)N/2 when discussing algorithm efficienciy next to the factorial method.
+
+
+THe problem with thees approaches is that we never understand what indivdiual numbers mean. cONDITIONS vary and situations change, therofer it is often better to see how teh performance change as the problem grows in size by using grahps and calculations instead of making assumptions about individual numbers we judge how a whole set of numbers are telling us about them.
 
 <p>
 The time it takes an alogrithm to complete its task can be affected by the hardware it is running on and the environment it is executed in. The same algorithm might execute faster on a high-end machine compared to a low-end one, even if the underlying algorithmic efficiency remains the same. If you attempt to run this code on different devices with different hardaware capabiliets you will soon realize that you will obtain back different types of numbers each time. The issue does not lie in the act of measuring time itself, but rather in the misconceptions surrounding time-based comparisons. Typically, we tend to measure the time differences among distinct machines, rather than evaluating a particular machine's performance across multiple instances. Let's take a look at some examples that are obtained from runing this code on differetn manchenes:
