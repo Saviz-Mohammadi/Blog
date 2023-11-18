@@ -29,7 +29,7 @@ weight: 3
 
 
 <p>
-A program consists of a sequential set of instructions that are executed one after the other, with each instruction operating on a distinct piece of data. As our programs grow in size and complexity, it becomes increasingly challenging to effectively monitor and manage these datasets solely using conventional variables, objects, and structs. Opting to utilize such solutions can quickly lead to unmanageable situations. This is because these storages are not engineered to handle extensive data loads; their design centers around managing and representing singular units of information or one entity at the very best. Let's demonstrate this concept with a simple example. Imagine you have a classroom full of students, and you intend to store information about every student, including their name, age, and SIN number. If you decide to employ distinct variables for each student, the code will be similar to the following:
+A program consists of a sequential set of instructions that are executed one after the other, with each instruction operating on a distinct piece of data. As our programs grow in size and complexity, it becomes increasingly challenging to effectively monitor and manage these datasets solely using conventional variables, objects, and structs. Opting to utilize such solutions can quickly lead to unmanageable situations. This is because these storages are not engineered to handle extensive data loads; their design centers around managing and representing singular units of information or one entity at the very best. Let's demonstrate this concept with a simple example. Imagine you have a classroom full of students and intend to store information about every student, including their name, age, and SIN number. If you decide to employ distinct variables for each student, the code will be similar to the following:
 </p>
 
 
@@ -41,30 +41,44 @@ A program consists of a sequential set of instructions that are executed one aft
 
 
 ```C++
+///////////////////////////////////////////////////////////////////////////////
+//
+// Description:
+// 
+// This program demonstrates the creation of student entities through the
+// composition of three individual variables for each student. Each variable
+// corresponds to a specific student attribute, with a numerical postfix
+// indicating the reference to the respective student. This showcases the
+// structuring of student information in a programmatic manner.
+//
+///////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <cstddef>
 
-
-int main(int argc, char* argv[])
+int main(void)
 {
+	// Student 01 Information.
 	std::string student_01_name = "William jackson";
-	int student_01_age = 18;
-	int student_01_sin = 11328467;
+	std::size_t student_01_age = 18;
+	std::size_t student_01_sin = 11328467;
 
-	
+
+	// Student 02 Information.
 	std::string student_02_name = "Thomas Robinson";
-	int student_02_age = 27;
-	int student_02_sin = 03998451;
+	std::size_t student_02_age = 27;
+	std::size_t student_02_sin = 03998451;
 	
 	
+	// Student 03 Information.
 	std::string student_03_name = "Michael Jackson";
-	int student_03_age = 23;
-	int student_03_sin = 03448391;
+	std::size_t student_03_age = 23;
+	std::size_t student_03_sin = 03448391;
 	
 	
-	// This continues...
-	
-	return (0);
+	return(EXIT_SUCCESS);
 }
 ```
 
@@ -76,7 +90,7 @@ int main(int argc, char* argv[])
 
 
 <p>
-As we can witness, the only connection between these separate variables is a name assigned by the programmer, which is vulnerable to being altered, potentially breaking the relationship and hindering proper maintenance. For more experienced programmers, it can be beneficial to combine these distinct variables into a meaningful and complex data type, such as a struct (e.g Student). This approach allows each student to be treated as a discrete entity, complete with attributes mentioned before. By organizing the individual data elements in this way, the task becomes more straightforward. While classes and objects can also be used, our current focus is solely on data, making a straightforward data wrapper like structs the most logical choice. However, a class can be employed if preferred. Below is an example of what our code would look like when using structs to create entities instead of individual variables:
+As we can witness, the only connection between these separate variables is a name assigned by the programmer, which is vulnerable to being altered, potentially breaking the relationship and hindering proper maintenance. For more experienced programmers, it can be beneficial to combine these distinct variables into a meaningful and complex data type, such as a struct (e.g., Student). This approach allows each Student to be treated as a discrete entity with the attributes mentioned before. Organizing the individual data elements this way makes the task more straightforward. While classes and objects can also be used, our current focus is solely on data, making a plain data wrapper like structs the most logical choice. However, a class can be employed if preferred. Below is an example of what our code would look like when using structs to create entities instead of individual variables:
 </p>
 
 
@@ -88,18 +102,31 @@ As we can witness, the only connection between these separate variables is a nam
 
 
 ```C++
+///////////////////////////////////////////////////////////////////////////////
+//
+// Description:
+// 
+// This program demonstrates the creation of student entities through the
+// composition of three individual variables that are tied together in a
+// struct for each student. Each struct instance corresponds to a specific
+// student, showcasing the use of structs to enhance the organization of
+// student entities.
+//
+///////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
 #include <string>
-
+#include <cstdlib>
+#include <cstddef>
 
 struct Student
 {
     std::string name;
-    int age;
-    int sin;
+    std::size_t age;
+    std::size_t sin;
 
 	// Constructor for the struct.
-    Student(const std::string& _name, int _age, int _sin)
+    Student(const std::string& _name, std::size_t _age, std::size_t _sin)
         : name(_name), age(_age), sin(_sin)
     {
         std::cout << "Student name: " << name << "\n";
@@ -109,17 +136,14 @@ struct Student
 };
 
 
-int main(int argc, char* argv[])
+int main(void)
 {
-    // This feels much cleaner already...
-
     Student student_1("William jackson", 18, 11328467);
     Student student_2("Thomas Robinson", 19, 73998451);
     Student student_3("Michael jackson", 23, 63448391);
 
-    // This continues...
 
-    return (0);
+    return(EXIT_SUCCESS);
 }
 ```
 
@@ -131,7 +155,7 @@ int main(int argc, char* argv[])
 
 
 <p>
-This method is indeed more manageable; however, challenges still exist. Whether we opt for the initial approach of utilizing individual variables or the alternative approach involving more advanced constructs like structs or objects, a fundamental question arises: "How do we efficiently handle a significant volume of data?". I assume many of you already possess some level of programming knowledge and are familiar with basic containers that aid in storing and retrieving individual elements within a dataset, such as arrays. Nevertheless, let's briefly imagine a scenario in which you only have access to structs, objects, and variables. How would you approach complicated problems such as finding the student with the highest age, student with a specific SIN number, changing the age of a particular student and etc?
+This method is indeed more manageable; however, challenges still exist. Whether we opt for the initial approach of utilizing individual variables or the alternative approach involving more advanced constructs like structs or objects, a fundamental question arises: "How do we efficiently handle a significant volume of data?". Many of you already possess some level of programming knowledge and are familiar with essential containers that aid in storing and retrieving individual elements within a dataset, such as arrays. Nevertheless, let's briefly imagine a scenario where you only have access to structs, objects, and variables. How would you approach complicated problems such as finding the student with the highest age, the student with a specific SIN number, changing the age of a particular student, etc?
 </p>
 
 
@@ -142,7 +166,7 @@ This method is indeed more manageable; however, challenges still exist. Whether 
 
 
 <p>
-In the absence of any prior knowledge or access to data structures and containers, including basic arrays, the only recourse for the programmer is to manually search for the desired element using variable names, relying solely on visual inspection and then trying to manipulate the fields individually one by one. This process can prove challenging. Consider a scenario where an organization must update information for a student named "Alice" within a pool of 2,500 students. To pinpoint the specific student structure corresponding to this information, one would have to linearly scan through the student variables or structures, a task that can be quite time-consuming. And this is just one straightforward task within a relatively small sized dataset.
+In the absence of any prior knowledge or access to data structures and containers, including basic arrays, the only viable solution for the programmer is to manually search for the desired element using variable names, relying solely on visual inspection and then trying to manipulate the fields individually one by one. This process can prove challenging. Consider a scenario where an organization must update information for a student named "Alice" within a pool of 2,500 students (Assuming there are no duplicates). One would have to linearly scan through the student variables or structures to pinpoint the specific student structure corresponding to this information, which can be quite time-consuming. This is just one straightforward task within a relatively small set of data.
 </p>
 
 
@@ -151,7 +175,8 @@ In the absence of any prior knowledge or access to data structures and container
 <br>
 
 <p>
-Certainly, having storage containers or data structures capable of storing vast amounts of information and performing various operations on those datasets is valuable. However, it contributes to only one aspect of this series, namely data structures. Another critical aspect involves the algorithms or methods we employ to execute these actions or any action, for that matter. The manner in which we approach a problem can significantly impact the efficiency or potential detriment of the functionalities we provide. Making processes from taking only a few seconds to taking hours.
+Another crucial dimension involves the algorithms our data structures employ to carry out these operations. How we address a problem can significantly affect the efficiency or potential of our functionalities, preventing them from taking merely a few seconds to hours or even more time to accomplish their task. Consider the scenario where we aim to find the student with the highest age among a pool of 2500 students. What if the chosen method for this task is extremely efficient, causing it to take an excessively long time? This highlights the importance of the methods we employ and the approaches we take to solve problems. These factors can drastically influence the computer's time and effort in problem-solving. This underscores another reason why learning and understanding these principles is crucial.
+
 </p>
 
 
@@ -160,16 +185,7 @@ Certainly, having storage containers or data structures capable of storing vast 
 
 
 <p>
-Consider the scenario where we aim to find the student with the highest age among a pool of 2500 students. What if the chosen method for this task is inefficient, causing it to take an excessively long time? To illustrate, think about finding a word in a dictionary. How would you tackle such a problem? This highlights the importance of the methods we employ and the approaches we take to solve problems. These factors can drastically influence the amount of time and effort the computer expends on problem-solving. This underscores another reason why it is crucial to learn and understand these principles.
-</p>
-
-
-<br>
-<br>
-
-
-<p>
-The complexity of dealing with large datasets becomes apparent quite quickly. It is often our goal, as programmers, to link pieces of data so that they have some kind of relationship, even if their only connection is their data type. Additionally, we aim to incorporate specific and essential shared functionalities into entities that manage large data sets. The ability to analyze and manipulate large amounts of data is a vitally important skill to have in today's C++ programming environment. Therefore, we will examine data structures and the various algorithms they employ in order to efficiently manage large amounts of data. If this sounds like something you might be interested in learning more about, then this series of articles is what you are looking for.
+The complexity of dealing with large datasets becomes apparent quite quickly. As programmers, it is often our goal to link pieces of data so that they have some relationship. Additionally, we aim to incorporate specific and essential shared functionalities into entities that manage large data sets to enable us to perform the most common and crucial tasks expected of any reasonable container. The ability to analyze and manipulate large amounts of data is a vitally important skill in today's C++ programming environment. Therefore, we will examine data structures and the various algorithms they employ to manage large amounts of data efficiently. If this sounds like something you might be interested in learning more about, then this series of articles is what you are looking for.
 </p>
 
 
@@ -210,7 +226,7 @@ The complexity of dealing with large datasets becomes apparent quite quickly. It
 
 
 <p>
-Your enthusiasm to dive headfirst into learning the various types of data structures and containers along with their capabilities is admirable. However, in every industry, there exists a specific collection of terms, phrases, and standards that enable effective communication between different developers and creators. The realm of data structures and algorithms is no exception to this principle. Prior to discussing the different properties and capabilities of data structures and their respective functionalities, it is important to first establish a common ground in our understanding of the fundamental terminology employed in this field. This foundational step ensures that all developers involved are aligned in their understanding of the concept, thus setting the stage for effective collaboration and comprehension as we navigate through the complexities of this domain.
+Your enthusiasm to dive headfirst into learning the various types of data structures and containers and their capabilities is admirable. However, every industry has a specific collection of terms, phrases, and standards that enable effective communication between different developers and creators. The realm of data structures and algorithms is no exception to this principle. Before discussing the various properties and capabilities of data structures and their respective functionalities, we must establish a common ground in understanding the fundamental terminology employed in this field. This foundational step ensures that all developers involved are aligned in their understanding of the concept, thus setting the stage for effective collaboration and comprehension as we navigate through the complexities of this domain.
 </p>
 
 
@@ -224,7 +240,7 @@ Your enthusiasm to dive headfirst into learning the various types of data struct
 <code><h3>Algorithms:</h3></code>
 
 <p>
-Interestingly, we've essentially been employing an algorithm all along, up to this point in our carreis as programmers. <span class="special">An algorithm is a collection of percise steps and instructions designed to guide a computer in solving a particular problem.</span> In the realm of computer programming, a single problem often spawns multiple solutions crafted by different programmers. The challenge lies in determining which algorithm will demonstrate superior performance and most importantly produce correct results all while utilizing fewer resources. <span class="special">Analyzing algorithms is a process that involves identifying the most efficient algorithm that accomplishes the same task as its competitors in the shortest time and with the least memory usage</span>. As a demonstraition, Let's imagine that we are given the task of creating an algorithm that can calculate the factorial of a given number by the user. We can approach this problem in two different ways: <span class="special">Recursively</span>, <span class="special">Iteratively</span>. Let's visualize the iterative approach first:
+Interestingly, we've been employing an algorithm all along, up to this point in our careers as programmers. <span class="special">An algorithm is a collection of precise steps and instructions designed to guide a computer in solving a particular problem</span>. In computer programming, a single problem often spawns multiple solutions crafted by different programmers. The challenge lies in determining which algorithm will demonstrate superior performance and, most importantly, produce correct results, all while utilizing fewer resources. <span class="special">Analyzing algorithms is a process that involves identifying the most efficient algorithm that accomplishes the same task as its competitors in the shortest time and with the least memory usage</span>. As a demonstration, Let's imagine that we are tasked with creating an algorithm that can calculate the factorial of a given number by the user. We can approach this problem in two different ways: <span class="special">Recursively</span> and <span class="special">Iteratively</span>:
 </p>
 
 
@@ -236,14 +252,23 @@ Interestingly, we've essentially been employing an algorithm all along, up to th
 
 
 ```C++
+///////////////////////////////////////////////////////////////////////////////
+//
+// Description:
+// 
+// This program showcases an iterative method for computing the factorial
+// of a user-provided number. It achieves this by employing a for-loop to
+// sequentially multiply the current number by the next one in line.
+//
+///////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
 #include <string>
-
+#include <cstdlib>
 
 int calculate_factorial_iterative(int number);
 
-
-int main(int argc, char* argv[])
+int main(void)
 {
 	int number = 0;
 	int output = 0;
@@ -258,7 +283,7 @@ int main(int argc, char* argv[])
 	// Printing output.
     std::cout << "Factorial with iterative approach: " << output << std::endl;
     
-	return (0);
+	return(EXIT_SUCCESS);
 }
 
 
@@ -266,13 +291,13 @@ int calculate_factorial_iterative(int number)
 {
     int result = 1;
 	
-	// As long as "current_number" has not reached max of "number".
-    for (int current_number = 1; current_number <= number; ++current_number)
+	// As long as "current_number" has not reached "number".
+    for(int current_number = 1; current_number <= number; ++current_number)
 	{
         result *= current_number;
     }
 	
-    return (result);
+    return(result);
 }
 ```
 
@@ -282,15 +307,10 @@ int calculate_factorial_iterative(int number)
 <br>
 <br>
 
-<p>
-THis should come to no surprise to most of you. In the iteratirev approach we use some variation of loops in this case being a for-loop to continously multiply a number by its predesiscor. 
-</p>
 
-<br>
-<br>
 
 <p>
-Different algorithms can solve the same problem in many different ways using different types of solutions, and their efficiency can vary significantly. By understanding and comparing their performance characteristics, developers can choose algorithms that are better suited for specific tasks. This leads to faster and more responsive software applications. Different algorithms might require varying amounts of computational resources, such as memory and processing power. <span class="special">It is important to understand that there is no ideal algorithm, some algorithms are better suited for some situations than others</span>. Therfore, whenever an interviewer asks you the question of "Which data structure or algorithm do you think is best suited for this problem?", then your answer should always be "It depends! We need to analyze our solutions". Let's take a look at the second method which uses recursive function calls to accomplish the exact same goal of finding the factorial of a number:
+Different algorithms can solve the same problem in many different ways using different solutions, and their efficiency can vary significantly. By understanding and comparing their performance characteristics, developers can choose algorithms better suited for specific tasks. This leads to faster and more responsive software applications. Different algorithms require varying amounts of computational resources, such as memory and processing power. <span class="special">It is essential to understand that there is no ideal algorithm; some algorithms are better suited for some situations than others</span>. Therefore, whenever an interviewer asks you the question, "Which data structure or algorithm do you think is best suited for this problem?" your answer should always be, "It depends! We need to analyze our solutions". Let's take a look at the second method, which uses recursive function calls to accomplish the same goal of finding the factorial of a number:
 </p>
 
 
@@ -302,14 +322,23 @@ Different algorithms can solve the same problem in many different ways using dif
 
 
 ```C++
+///////////////////////////////////////////////////////////////////////////////
+//
+// Description:
+// 
+// This program showcases a recursive method for computing the factorial
+// of a user-provided number. It achieves this by employing a function that
+// calls itself continuously until a certain condition is met.
+//
+///////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
 #include <string>
-
+#include <cstdlib>
 
 int calculate_factorial_recursive(int number);
 
-
-int main(int argc, char* argv[])
+int main(void)
 {
 	int number = 0;
 	int output = 0;
@@ -324,7 +353,7 @@ int main(int argc, char* argv[])
 	// Printing output.
     std::cout << "Factorial with recursive approach: " << output << std::endl;
     
-	return (0);
+	return(EXIT_SUCCESS);
 }
 
 
@@ -338,7 +367,7 @@ int calculate_factorial_recursive(int number)
 	// Getting the number before the current one.
 	int former_number = number - 1;
 	
-	return (number * calculate_factorial_recursive(former_number));
+	return(number * calculate_factorial_recursive(former_number));
 }
 ```
 
@@ -349,24 +378,35 @@ int calculate_factorial_recursive(int number)
 <br>
 
 
+
+
+
+
+
+
 <p>
-Recursive Function Calls:
-Recursion is a programming concept where a function calls itself in its definition. Recursive functions have two main components of base case and recursive case. The base case This is the condition under which the recursion stops. Without a base case, the recursion would continue indefinitely, leading to a stack overflow. The recurisve case is where the function calls itself with modified arguments. The idea is that each recursive call should bring the problem closer to the base case. In some sense recursive functions are similar to iterative loops where we continously complete a slightly modified action until some condition is meet.
+Some programmers may not be familiar with the concept of recursion. Since recursion is extensively utilized in the field of data structures and algorithms, we must understand its definition and functionality. Recursion is a programming concept in which a function calls itself in its definition. Recursive functions consist of two main components: the base case and the recursive case. The base case signifies the condition under which the recursion stops, preventing an endless cycle that could lead to a stack overflow (similar to preventing an infinite loop). On the other hand, the recursive case involves the function calling itself with modified arguments, aiming to bring the problem closer to the base case (simplifying the problem) with each recursive call.
 </p>
 
 <br>
 <br>
 
 <p>
-As programmers we all know (or I hope we know) that when a function is called, a block of memory called a "stack frame" is allocated on the call stack. This frame contains information about the function call, including local variables and the return address. In the case of recursive functions, multiple stack frames are created as each recursive call is made. When a function is called, a stack frame is created, and space is allocated for local variables. Each recursive call adds a new stack frame on top of the previous ones, forming a "stack" of frames. This is known as the call stack. The problem however is that each function keeps calling additional sub functions in itself and as each function will not terminate until it is done with its operation, it will cause a lot of functions sitting for some period of time idle and occupying memory. As each function call completes (reaches the base case), its stack frame is popped off the call stack, freeing up the associated memory and returing their results to the previous function call. Recursive functions can be resource-intensive for a few reasons. Each recursive call adds a new stack frame. If the recursion goes too deep, it can lead to a stack overflow because the stack has a limited size. In some recursive algorithms, the same subproblems are solved multiple times, leading to redundant computations. Function calls come with overhead, because it actually takes some time for each function to occupy memory and set everything up before it can even attempt to complete its task and frequent function calls in recursion can contribute to slower execution.
-
+As programmers, we should be aware that when a function is called, a block of memory known as a "stack frame" is allocated on the call stack. This frame contains information about the function call, such as local variables and the return address. In the context of recursive functions, multiple stack frames are created as each recursive call is initiated. When a function is called, a stack frame is generated, and space is reserved for local variables. Successive recursive calls add new stack frames on top of the previous ones, collectively forming a "stack" of frames, commonly referred to as the call stack.
 </p>
 
 <br>
 <br>
 
 <p>
-You may have noticed that the above two algorithms accomplish the same task in a completely different ways. Using a loop is the first method, which takes far fewer resources than its recursive counterpart. Nevertheless, recursive methods are much more straightforward to understand and manage than iterative loops. These are the reasons why we have comparisons in order to see what the advantages and disadvantages of each algorithm are in order to determine which is more appropriate for the situation and resources available. Another example would be a program that can display the set of Fibonnaci numbers:
+ The challenge arises when each function keeps invoking additional sub-functions within itself. Since each function persists until it completes its operation, it results in a stack of functions remaining idle for some time, occupying memory. As each function call reaches the base case and completes its operation, its stack frame is removed from the call stack, releasing the associated memory and returning results to the previous function call. Recursive functions can be resource-intensive and can create a lot of overhead, because they take time to allocate memory and set up. They can also sometimes be impossible to process due to the sheer amount of memory that they require.
+</p>
+
+<br>
+<br>
+
+<p>
+You may have noticed that the above two algorithms accomplish the same task in a completely different ways. Using an iterative loop is the first method, which takes far fewer resources than its recursive counterpart. Nevertheless, recursive methods are very important due to being easier to impleement and understand especially for the more complicated problems that we will face later on, making the iterative loop approaches almost impossible to implement. These are the reasons why we have comparisons in order to see what the advantages and disadvantages of each algorithm are in order to determine which is more appropriate for the situation and resources available. Another example would be a program that can display the set of Fibonnaci numbers:
 </p>
 
 
