@@ -385,14 +385,14 @@ int calculate_factorial_recursive(int number)
 
 
 <p>
-Some programmers may not be familiar with the concept of recursion. Since recursion is extensively utilized in the field of data structures and algorithms, we must understand its definition and functionality. Recursion is a programming concept in which a function calls itself in its definition. Recursive functions consist of two main components: the base case and the recursive case. The base case signifies the condition under which the recursion stops, preventing an endless cycle that could lead to a stack overflow (similar to preventing an infinite loop). On the other hand, the recursive case involves the function calling itself with modified arguments, aiming to bring the problem closer to the base case (simplifying the problem) with each recursive call.
+Some programmers may not be familiar with the concept of recursion. Since recursion is extensively utilized in the field of data structures and algorithms, we must understand its definition and functionality. <span class="special">Recursion is a programming concept in which a function calls itself in its definition</span>. Recursive functions consist of two main components: the base case and the recursive case. The base case signifies the condition under which the recursion stops, <span class="special">preventing an endless cycle</span> that could lead to a stack overflow (similar to preventing an infinite loop). On the other hand, the recursive case involves the function calling itself with modified arguments, <span class="special">aiming to bring the problem closer to the base case</span> (simplifying the problem) with each recursive call.
 </p>
 
 <br>
 <br>
 
 <p>
-As programmers, we should be aware that when a function is called, a block of memory known as a "stack frame" is allocated on the call stack. This frame contains information about the function call, such as local variables and the return address. In the context of recursive functions, multiple stack frames are created as each recursive call is initiated. When a function is called, a stack frame is generated, and space is reserved for local variables. Successive recursive calls add new stack frames on top of the previous ones, collectively forming a "stack" of frames, commonly referred to as the call stack.
+As programmers, we should be aware that when a function is called, a block of memory known as a "stack frame" is allocated on the call stack. This frame contains information about the function call, such as local variables and the return address. In the context of recursive functions, multiple stack frames are created as each recursive call is initiated. When a function is called, a stack frame is generated, and space is reserved for local variables. Successive recursive calls add new stack frames on top of the previous ones, collectively forming a "stack" of frames, commonly referred to as the call stack. Interestingly, it is called the "stack frame" because it behaves very similarly to a stack data structure, which will be discussed in more detail later in this series.
 </p>
 
 <br>
@@ -406,7 +406,7 @@ As programmers, we should be aware that when a function is called, a block of me
 <br>
 
 <p>
-You may have noticed that the above two algorithms accomplish the same task in a completely different ways. Using an iterative loop is the first method, which takes far fewer resources than its recursive counterpart. Nevertheless, recursive methods are very important due to being easier to impleement and understand especially for the more complicated problems that we will face later on, making the iterative loop approaches almost impossible to implement. These are the reasons why we have comparisons in order to see what the advantages and disadvantages of each algorithm are in order to determine which is more appropriate for the situation and resources available. Another example would be a program that can display the set of Fibonnaci numbers:
+You may have noticed that the above two algorithms accomplish the same task in completely different strategies and ways. Using an iterative loop is the first method, which takes far fewer resources than its recursive counterpart. Nevertheless, recursive methods are critical because they are more accessible to implement and understand, especially for the more complicated problems we will face later, making the iterative loop approaches almost impossible to implement. These are the reasons we have comparisons to see the advantages and disadvantages of each algorithm to determine which is more appropriate for the situation and resources available. Another example would be a program that can display the set of Fibonacci numbers:
 </p>
 
 
@@ -417,13 +417,23 @@ You may have noticed that the above two algorithms accomplish the same task in a
 
 
 ```C++
-#include <iostream>
+///////////////////////////////////////////////////////////////////////////////
+//
+// Description:
+// 
+// This program showcases a recursive method for computing the set of Fibonacci
+// numbers until a user-provided number. It achieves this by employing a
+// function that calls itself continuously until a certain condition is met.
+//
+///////////////////////////////////////////////////////////////////////////////
 
+#include <iostream>
+#include <string>
+#include <cstdlib>
 
 int Fibonacci_recursive(int number);
 
-
-int main(int argc, char* argv[])
+int main(void)
 {
     // Print the first 10 Fibonacci numbers.
     
@@ -434,7 +444,7 @@ int main(int argc, char* argv[])
     
     std::cout << std::flush;
     
-    return (0);
+    return(EXIT_SUCCESS);
 }
 
 
@@ -442,7 +452,7 @@ int Fibonacci_recursive(int number)
 {
     if(number <=1)
     {
-        return (number);
+        return(number);
     }
     
     return Fibonacci_recursive(number -1) + Fibonacci_recursive(number -2);
@@ -457,7 +467,7 @@ int Fibonacci_recursive(int number)
 
 
 <p>
-Of course in scenarios such as these it is quiet simple to know which one is better and more perforable. However, sometimes our problems can become so complex and difficult to achieve that we rather perfer to come up with a method of approaching the problem which is not neccessarilly the most performant approach, but is perfomant enough and most impornantly helps us to understand and solve the problem in the most understandable way possible. For these reasons, we will  perfer the recursive approach for solving problems much later in our discussinos once we encounter complex data structures and problems so complex that it becomes virtually impossible to accomplish using normal loops. the following is the iterative approcah, which once more is more performant, but it can be difficult to write or think about:
+Of course, in such scenarios, knowing which algorithm is better and more perforable is quite simple. However, sometimes our problems can become so complex and challenging to achieve that we prefer to come up with a method of approaching the problem that is not necessarily the most performant approach but is performant enough and, most importantly, helps us to understand and solve the problem in the most understandable way possible. For these reasons, we will prefer the recursive approach for solving problems much later in our discussions once we encounter complex data structures and problems so complex that they become virtually impossible to accomplish using regular loops. The following is the iterative approach, which is more performant but can be slightly challenging to write or think about:
 </p>
 
 
@@ -468,17 +478,28 @@ Of course in scenarios such as these it is quiet simple to know which one is bet
 
 
 ```C++
-#include <iostream>
+///////////////////////////////////////////////////////////////////////////////
+//
+// Description:
+// 
+// This program showcases an iterative approach for computing the set of
+// Fibonacci numbers until a user-provided number. It achieves this by
+// employing a function that calls itself continuously until a certain
+// condition is met.
+//
+///////////////////////////////////////////////////////////////////////////////
 
+#include <iostream>
+#include <string>
+#include <cstdlib>
 
 void fibonacci_iterative(int number);
 
-
-int main(int argc, char* argv[])
+int main(void)
 {
     fibonacci_iterative(10);
 
-    return (0);
+    return(EXIT_SUCCESS);
 }
 
 
@@ -521,7 +542,7 @@ void fibonacci_iterative(int number)
 <code><h3>Data structures:</h3></code>
 
 <p>
-Data structures are considered <span class="special">entities with the capability of grouping data together based on similarity in type and behavior, enabling efficient manipulation of datasets along with providing some common functionality for better manipulation of data</span>. These structures are commonly referred to as <span class="special">collections</span>, <span class="special">containers</span>, and the like. Data structures are fascinating because they uphold to one of the most important concepts in the programming bible, which is the principle of <span class="special">abstraction</span>. Data structures shield us from unnecessary details and the complexities associated with manipulating and managing extensive datasets. They offer only the essential interfaces needed to work with them for programmers. Elements within a data structure have something in common even if that thing is as simple as being of the same data type. So, which data structure is the best?
+Data structures are considered <span class="special">entities capable of grouping a tremendous amount of data based on similarity in type and behavior, enabling efficient manipulation of datasets and providing some standard functionality for better data manipulation</span>. These structures are commonly referred to as <span class="special">collections</span>, <span class="special">containers</span>, and the like. Data structures are fascinating because they uphold one of the most essential concepts in the programming bible, the principle of abstraction. Data structures shield us from unnecessary details and the complexities of manipulating and managing extensive datasets. They offer only the essential interfaces needed to work with them for programmers. Elements within a data structure have something in common, even if that thing is as simple as being of the same data type. So, which data structure is the best?
 </p>
 
 
@@ -532,7 +553,7 @@ Data structures are considered <span class="special">entities with the capabilit
 
 
 <p>
-It is important to understand the strengths and limitations of various data structures since there is not a universal data structure that is appropriate for all tasks. In order to choose the appropriate data structure, there are a number of factors that must be considered. Choosing the best data structure for each scenario involves many factors. There are, however, certain factors we can consider in order to determine which data structure is best suited to be used, including performance and functionality. In general, the programmer will use a certain data structure more frequently if it is faster and more performant. However, performance is not the only factor. In order to save us from having to come up with a solution to perform such a task, we may sometimes wish for our data structure to provide us with more functionality and capabilities rather than being more performant. It is, however, important to note that the following functions should be expected of every data structure:
+It is essential to understand the strengths and limitations of various data structures since there is no universal data structure appropriate for all tasks. Several factors must be considered to choose the proper data structure. Certain factors, including <span class="special">performance</span> and <span class="special">functionality</span>, are superior and generally taken into consideration first before anything else. The programmer will generally use a certain data structure more frequently if it is <span class="special">faster and more performant</span>. However, performance is not the only factor. To save us from having to come up with a solution to perform such a task, we may wish for our data structure <span class="special">to provide us with more functionality and capabilities that can benefit us by enabling us to perform some complex task</span> rather than being more performant. The following set of operations are the most common functionalities that are expected from every data structure:
 </p>
 
 
@@ -608,7 +629,7 @@ It is important to understand the strengths and limitations of various data stru
 
 
 <p>
-The performance of different data structures are determined by the algorithms and methods they employ to fulfill their tasks. Similar to all other components within a computer, data structures follow specific sets of instructions to achieve their objectives. For this very reason, we introduce the concept of analyzing algorithms and seeking to compare their efficiency. Data structures and algorithms have been a huge part of computer science since the dawn of computers as managing large amounts of data is trickier than it looks and can have siginifcant impact on the perforamnce of our programs. In the upcoming sections, we will focus on how to determine the effecniecy of differnet algorthims by using special tools and mathematical notations that have been set as the standard and accepted among the programming world as the main tools to be used for this task. But, before that we need to understand what performance is.
+Like all other computer components, data structures follow specific sets of instructions to achieve their objectives. The performance of different data structures is determined by the algorithms and methods they employ to fulfill their tasks. Therefore, we introduce the concept of analyzing algorithms and seeking to compare their efficiency. Data structures and algorithms have been a massive part of computer science since the dawn of computers, as managing large amounts of data is trickier than it looks and can significantly impact our programs' performance. In the upcoming sections, we will focus on determining the efficiency of different algorithms by using special tools and mathematical notations that have been set as the standard and accepted among the programming world as the main tools to be used for this task. But, before that, we need to understand what performance is.
 </p>
 
 
@@ -647,7 +668,7 @@ The performance of different data structures are determined by the algorithms an
 
 
 <p>
-Before we can get started on measuring the performance of a data structure, we need to answer a fundamental question: "Why should we be concerned with the efficiency and resource demands of the algorithm employed by a data structure?" The answer is: "Because it makes a difference!". While the argument can be made that computers are becoming exceedingly faster and more powerful, the scale and complexity of the challenges have increasingly escalated along with the advancements. What adds further intrigue is the fact that the perforamnce of today's computers is largely thanks to the endeavours of programmers who took the time to create new and improved methods and alogrithms for solving these problems! We must care to develop and refine alogrithms as they can have a significant impact on how well our machines perform their tasks in real time.
+If we want to figure out how good each data structuer is, then we need to be able to deterimine their performance. Before we can get started on measuring the performance of a data structure, we need to answer a fundamental question: "Why should we be concerned with the efficiency and resource demands of the algorithm employed by a data structure?" The answer is: "Because it makes a difference!". While the argument can be made that computers are becoming exceedingly faster and more powerful, the scale and complexity of the challenges have increasingly escalated along with the advancements. What adds further intrigue is the fact that the perforamnce of today's computers is largely thanks to the endeavours of programmers who took the time to create new and improved methods and alogrithms for solving these problems! We must care to develop and refine alogrithms as they can have a significant impact on how well our machines perform their tasks in real time.
 </p>
 
 
