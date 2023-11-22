@@ -668,26 +668,25 @@ Like all other computer components, data structures follow specific sets of inst
 
 
 <p>
-If we want to figure out how good each data structuer is, then we need to be able to deterimine their performance. Before we can get started on measuring the performance of a data structure, we need to answer a fundamental question: "Why should we be concerned with the efficiency and resource demands of the algorithm employed by a data structure?" The answer is: "Because it makes a difference!". While the argument can be made that computers are becoming exceedingly faster and more powerful, the scale and complexity of the challenges have increasingly escalated along with the advancements. What adds further intrigue is the fact that the perforamnce of today's computers is largely thanks to the endeavours of programmers who took the time to create new and improved methods and alogrithms for solving these problems! We must care to develop and refine alogrithms as they can have a significant impact on how well our machines perform their tasks in real time.
+Before we can start measuring a data structure's performance, we need to answer a fundamental question: Why should we be concerned with the efficiency and resource demands of the algorithm employed by a data structure? The answer is: Because it makes a difference! While computers are becoming exceedingly faster and more powerful, the scale and complexity of the challenges have increasingly escalated along with the advancements. What adds further intrigue is that the performance of today's computers is primarily thanks to the endeavors of programmers who took the time to create new and improved methods and algorithms for solving these problems! We must develop and refine algorithms as they can significantly impact how well our machines perform their tasks in real-time.
 </p>
-
 
 
 <br>
-
-
-
-<p>
-One of the primary considerations when evaluating the effectiveness of a data structure in completing its tasks is undoubtedly its performance. This leads to a fundamental question: "In the world of data structures and alogrithms what is the meaning of performance, and how can we measure it?" The solution to this question involves categorizing performance into two key dimensions: <strong>Time complexity</strong> and <strong>Space complexity</strong>. Time signifies how quickly tasks can be executed and accomplished, measured in seconds, minutes, hours, days, weeks, or even longer and bigger scales such as months and even years if the problem is really complicated. On the other hand, Space represents the resources needed to accomplisth that task, such as the total amount of memory that needs to be consumed during execution. Let's take a look at how we can measure each of these concepts more accurately.
-</p>
-
-
-
 <br>
 
 
 <p>
-Understanding these two categories is important because they typically involve a trade-off. When aiming to improve program execution speed, chances are there is going to be a corresponding increase in space and resource utilization. On the other hand, if the goal is to minimize space and resource consumption, it might lead to longer execution times. For instance, when uisng a powerful Google computer, resource and space efficiency might be of minimal concern, whereas execution speed takes precedence. In contrast, with a personal desktop computer at home, space limitations will be more important to consider, and execution speed being of less concern, but still important non the less. Therefore, determining which factor is more important relies entirely on the situation, objectives, and requirements. Sometimes, the best situation is to create a balance between the time and space complexities.
+A primary consideration when evaluating a data structure's effectiveness in completing its tasks is undoubtedly its performance. This leads us to a fundamental question: What is the meaning of performance in data structures and algorithms, and how can we measure it? The solution to this question involves categorizing performance into two key dimensions: Time complexity and Space complexity. Time signifies how quickly tasks can be executed and accomplished, measured in seconds, minutes, hours, days, weeks, or even longer and bigger scales such as months and even years if the problem is complicated. On the other hand, Space represents the resources needed to accomplish that task, such as the total amount of memory that needs to be consumed during execution.
+</p>
+
+
+<br>
+<br>
+
+
+<p>
+Understanding these two categories is important because they typically involve a trade-off. When aiming to improve program execution speed, there is likely to be a corresponding increase in space and resource utilization. On the other hand, if the goal is to minimize space and resource consumption, it might lead to longer execution times. For instance, resource and space efficiency might be of minimal concern when using a powerful Google computer, whereas execution speed takes precedence. In contrast, with a personal desktop computer at home, space limitations will be more important to consider, and execution speed will be less of a concern, but it is still important nonetheless. Therefore, determining which factor is more critical relies entirely on the situation, objectives, and requirements. Sometimes, the best situation is to balance the time and space complexities.
 </p>
 
 
@@ -704,18 +703,15 @@ Understanding these two categories is important because they typically involve a
 <code><h3>Time complexity</h3></code>
 
 <p>
-to be able to judge the performance of an algorithm and to classify them as “good”, we must have the capability of analyzing them. Running time is a natural measure of “goodness,” since time is a precious resource—computer solutions should run as fast as possible. this is exactly what time complextiy is conscenrend about. Time complextiy refers to the mesuremnet and approximation of teh amonut of time an algoritm takes to accomplish its task.
-
-The central question at hand is: "How can we measure or predict the Time Comxlpexty of an algorithm?". At first glance, most programmers will assume that the solution lies in timing the algorithm as it executes its operations, awaiting its completion. this assumption is a completely natural one to make; After all, if one wishes to measure how much faster one car is compared to another, they would probably have them being timed based on a race track they complete. For example, Let's try and create a piece of code that will enable us to measure the time that takes for a function to sum up numbers from 1 to 10000 and then print the solution:
+Running time is a natural measure of goodness since time is a precious resource—computer solutions should run as fast as possible. Time complexity refers to the measurement and approximation of the amount of time an algorithm takes to accomplish its task and is commonly used as a term when dealing with an algorithm's running time. The central question is: How can we measure or predict the Time complexity of an algorithm? At first glance, most programmers will assume that the solution lies in timing the algorithm as it executes its operations, awaiting completion. Of course, this is an entirely natural assumption, even though it may contain hidden problems that we are unaware of.
 </p>
 
+<br>
+<br>
 
-If an algorithm has been implemented, we can study its running time by executing
-it on various test inputs and recording the actual time spent in each execution. Fortunately, such measurements can be taken in an accurate manner by using system
-calls that are built into the language or operating system
-
-
-of course in this instance trying to use the native timing frameworks of each operating system and platform can be difficult. Luckilly, C++ has taken the initiavtive to create a library that allows us to use the default APIs of the native platform for measuring the amount of time it takes through using the clock system of each. The chrono library is such that is made available to us.
+<p>
+We can study the running time of an algorithm or any program for a matter effect by executing it on a machine and recording the time spent in each execution. Fortunately, such measurements can be taken accurately using system calls built into and provided by the operating system. Using the native timing frameworks of each operating system and platform can, however, be challenging. Luckily, C++ has taken the initiative to create a library that allows us to use the default APIs of the native platform for measuring the amount of time it takes to use the clock system of each. The Chrono library is such that it is made available to us. For example, Let's try and create a piece of code that will enable us to measure the time that takes for a function to sum up the number 1 over a 1,000,000 times:
+</p>
 
 <br>
 <br>
@@ -724,41 +720,57 @@ of course in this instance trying to use the native timing frameworks of each op
 
 
 ```C++
+///////////////////////////////////////////////////////////////////////////////
+//
+// Description:
+// 
+// This program showcases how to measure the execution time of a function
+// using the Chrono library available within C++ for interacting with the
+// clock system of the underlying operating system.
+//
+///////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
+#include <string>
+#include <cstdlib>
+#include <cstddef>
 #include <chrono>
 
-
-void my_function(std::size_t total_iterations)
+std::size_t my_function(std::size_t total_iterations)
 {
-	for(std::size_t iteration = 0; iteration < total_iterations; ++iteration)
+	std::size_t sum = std::size_t(0);
+	
+	for(std::size_t iteration = std::size_t(0); iteration < total_iterations; ++iteration)
 	{
-		continue;
+		sum += 1;
 	}
+	
+	return(sum);
 }
 
 
-int main(int argc, char* argv[])
+int main(void)
 {
-	// Creating time_points to record times.
-	std::chrono::time_point<std::chrono::steady_clock> start_point;
-	std::chrono::time_point<std::chrono::steady_clock> break_point;
+	// Creating time_stamps to record and hold the times.
+	std::chrono::time_point<std::chrono::steady_clock> begin_time_stamp;
+	std::chrono::time_point<std::chrono::steady_clock> end_time_stamp;
 	
 	
+	// Recording the time before function starts.
+	begin_time_stamp = std::chrono::steady_clock::now();
 	
-	start_point = std::chrono::steady_clock::now(); // Recording the time before function starts.
 	my_function(1'000'000);
-	break_point = std::chrono::steady_clock::now(); // Recording the time after function finishes.
+	
+	// Recording the time after function finishes.
+	end_time_stamp = std::chrono::steady_clock::now();
 	
 	
-	
-	// Calculating duration. (with floating-point accuracy and milisecond format)
-	std::chrono::duration<float, std::milli> duration = break_point - start_point;
-	
-	// Printing the duration.
+	// Calculating duration.
+	std::chrono::duration<float, std::milli> duration = (end_time_stamp - begin_time_stamp);
 	std::cout << "Duration was: " << duration.count() << "ms" << std::endl;
 	
 	
-	return (0);
+	return(EXIT_SUCCESS);
 }
 ```
 
@@ -770,82 +782,128 @@ int main(int argc, char* argv[])
 
 
 <p>
-Chrono is a library for working with time and clocks. Within Chrono, there are three types of clocks available: "system_clock," "steady_clock," and "high_resolution_clock." The "system_clock" type is typically employed for handling dates in a calendar format, while "steady_clock" and "high_resolution_clock" are more suitable for precise timing mechanisms, making them ideal choices for measuring durations. To calculate the total time it takes for a function or piece of code to execute, we create two time points: one before the function begins and one after it completes. These time points record the precise time when the statements are executed. We determine the total duration by calculating the difference between these two time points. The Chrono library is quite sophisticated, and covering its entirety in one explanation is not feasible. Nevertheless, the knowledge provided here should be sufficient for us to create a basic timer and evaluate the performance of our functions.
+Chrono is a library for working with time and clocks. Within Chrono, three types of clocks are available: system_clock, steady_clock, and high_resolution_clock. The system_clock type is typically employed for scheduling dates in a calendar format, while steady_clock and high_resolution_clock are more suitable for precise timing mechanisms, making them ideal for measuring durations. To calculate the time a function or piece of code takes to execute, we create two time stamps: one before the function begins (e.g., begin_time_stamp) and one after it completes (e.g., end_time_stamp). These time points record the precise time before and after the statements are executed.
+</p>
+
+<br>
+<br>
+
+<p>
+We determine the total duration by calculating the difference between these two time stamps. To accomplish this, we simply subtract the end point from the start point (e.g., begin_time_stamp - end_time_stamp) and we store it in a chrono::duration type and specify the format to be float and miliseconds. Once we are ready to print the duration we call the count() function to count the number of elapsed ticks. The Chrono library is quite sophisticated, and covering its entirety in one explanation is not feasible. Nevertheless, the knowledge provided here should be sufficient for us to create a primary timer and evaluate the performance of our functions.
+</p>
+
+<br>
+<br>
+
+<p>
+The C++ language is comprised of two key components: "C" and "++," with the "++" part representing the concept of classes and objects within the object-oriented programming (OOP) world. For this reason, many methods in C++ can be implemented in two distinct manners: The C way and the ++ way. We just covered how to use the more modern ++ way by utilizing the Chrono library, but there is also a C way to approach this problem. We approach this problem now in the C way, which is essentially the same. We create two time stamps, each representing a time recording before and after the function executes. We give our two time stamps the same names as before.
+</p>
+
+<br>
+<br>
+
+<p>
+We record these times using a function called "timespec_get" by passing in a reference that modifies their content. A timespec struct has two members one is called tv_sec that contains the whole seconds passed and the other is called tv_nsec which contains the number of nano seconds passed which is more accurate. In order to get a correct number we need to make sure that we subtract both of these fields and add them together. If we omit the nano seconds part chances are that we will always get 0 because some operations are so fast that they do not even reach seconds! We must also not forget to convert nano seconds to seconds before attempting to add them togther. This concept is demonstrated with the below code segment in detail:
 </p>
 
 
-
+<br>
+<br>
 <br>
 
 
 
 ```C++
+///////////////////////////////////////////////////////////////////////////////
+//
+// Description:
+// 
+// This program showcases how to measure the execution time of a function
+// using the C library of "ctime" available within C++ for interacting
+// with the clock system of the underlying operating system.
+//
+///////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
-#include <chrono>
+#include <string>
+#include <cstdlib>
+#include <cstddef>
+#include <ctime>
 
-
-void my_function(std::size_t total_iterations)
+std::size_t my_function(std::size_t total_iterations)
 {
-	for(std::size_t iteration = 0; iteration < total_iterations; ++iteration)
+	std::size_t sum = std::size_t(0);
+	
+	for(std::size_t iteration = std::size_t(0); iteration < total_iterations; ++iteration)
 	{
-		continue;
+		sum += 1;
 	}
+	
+	return(sum);
 }
 
 
-int main(int argc, char* argv[])
+int main(void)
 {
-	// Creating time_points to record times.
-	std::chrono::time_point<std::chrono::steady_clock> start_point;
-	std::chrono::time_point<std::chrono::steady_clock> break_point;
+	// Creating time_stamps to record and hold the times.
+	struct timespec begin_time_stamp;
+	struct timespec end_time_stamp;
 	
 	
+	// Using the function to record the time before function starts.
+	timespec_get(&begin_time_stamp, TIME_UTC);
 	
-	start_point = std::chrono::steady_clock::now(); // Recording the time before function starts.
 	my_function(1'000'000);
-	break_point = std::chrono::steady_clock::now(); // Recording the time after function finishes.
+	
+	// Using the function to record the time after function finishes.
+	timespec_get(&end_time_stamp, TIME_UTC);
 	
 	
+	// Calculating whole seconds.
+	double whole_seconds = (end_time_stamp.tv_sec - begin_time_stamp.tv_sec);
 	
-	// Calculating duration. (with floating-point accuracy and milisecond format)
-	std::chrono::duration<float, std::milli> duration = break_point - start_point;
+	// Calculating floating point seconds through nano seconds.
+	double float_seconds = (end_time_stamp.tv_nsec - begin_time_stamp.tv_nsec) / 1'000'000'000.0;
 	
-	// Printing the duration.
-	std::cout << "Duration was: " << duration.count() << "ms" << std::endl;
+	// Calculating final seconds.
+	double duration = whole_seconds + float_seconds;
 	
 	
-	return (0);
+	std::cout << "Duration was: " << duration << "ms" << std::endl;
+	
+	
+	return(EXIT_SUCCESS);
 }
 ```
 
 <br>
-
-You can talk about how to add sum of numbers using the special way (N+1)N/2 when discussing algorithm efficienciy next to the factorial method.
-
-
-THe problem with thees approaches is that we never understand what indivdiual numbers mean. cONDITIONS vary and situations change, therofer it is often better to see how teh performance change as the problem grows in size by using grahps and calculations instead of making assumptions about individual numbers we judge how a whole set of numbers are telling us about them.
-
-<p>
-The time it takes an alogrithm to complete its task can be affected by the hardware it is running on and the environment it is executed in. The same algorithm might execute faster on a high-end machine compared to a low-end one, even if the underlying algorithmic efficiency remains the same. If you attempt to run this code on different devices with different hardaware capabiliets you will soon realize that you will obtain back different types of numbers each time. The issue does not lie in the act of measuring time itself, but rather in the misconceptions surrounding time-based comparisons. Typically, we tend to measure the time differences among distinct machines, rather than evaluating a particular machine's performance across multiple instances. Let's take a look at some examples that are obtained from runing this code on differetn manchenes:
-</p>
-
-
-However, delving deeper reveals a few complications associated with this approach. Such tests assign a specific running time to a specific input size, but we are interested in
-determining the general dependence of running time on the size of the input. In order to determine this dependence, we should perform several experiments on many
-different test inputs of various sizes. From this data that supports it, we
-can perform a statistical analysis that seeks to fit the best function of the input size
-to the experimental data. To be meaningful, this analysis requires that we choose
-good sample inputs and test enough of them to be able to make sound statistical conclusion.
-
+<br>
 <br>
 
 
-
 <p>
-if we execute a piece of software on a high-performance computer and it completes in 0.00001 milliseconds, can we assume that the algorithm will run fast anywhere? This assumption is misguided as it is like saying that a Ferrari supercar is quicker than a compact economy car - an evident truth. The main question is: "Have the improvements in the algorithm actually influenced the execution speed compared to the previous runs on the same machine?". Altough time based approchase are nice and they can be certainly used to compare the execution times from previous attempts, but ulitmately they are not perferred way of estimating teh performance as many things such as size of the input, hardaware-capability, compiler optimizations, and many more things can influence the number that we obtain from it.
+If you execute the code that sums the elements using either the ++ method with the Chrono library or the C way with the CTime library to measure the duration on your machine, you might find it exciting that it runs in less than ten seconds, one second, five milliseconds, or even one nano-second depending on your hardware! However, understanding the significance of these time measurements is crucial. Is running in less than ten seconds considered good? How about 2 seconds – is that fast or slow? Moreover, can we expect our code to maintain the same speed when performing a billion operations?
 </p>
 
+<br>
+<br>
 
+<p>
+The issue with these approaches lies in programmers not understanding the meaning of individual time measurements. This problem leads us to a significant issue that many developers encounter when attempting to evaluate the time complexity of their algorithms. Often, there is a false belief that a single-time measurement under random settings and environmental conditions can efficiently reflect the performance of our algorithm in terms of time complexity. This assumption causes frustration within the programming community and has prompted the development of alternative methods for evaluating time complexity.
+</p>
+
+<br>
+<br>
+
+<p>
+Estimating performance in the manner we just discussed can be unsafe because the time required for an algorithm to complete its task is influenced by the hardware it operates on and the execution environment. Even if the underlying algorithmic efficiency remains consistent, the same algorithm may execute more rapidly on a high-end machine than on a low-end one. You will likely observe varying time measurements when attempting to run this code on devices with diverse hardware capabilities. The problem is not the act of measuring time itself but instead attempting to compare the time measurements across different devices under different settings and capabilities, which can often be misleading. Instead, we must calculate the time differences and growth for a particular machine's performance across multiple instances of input requests under the same settings and environment.
+</p>
+
+<p>
+Conditions are subject to change, and therefore, it is often more prudent to observe how performance evolves with increasing problem sizes through graphs and calculations. Relying on assumptions about individual numbers can be misleading, whereas analyzing a set of numbers collectively provides a more insightful understanding. Consequently, there is a need for a method that establishes an acceptable approximation of algorithmic performance, one that remains unaffected by environmental variables.
+
+The challenge in this endeavor lies in conducting sophisticated measurements, a task that requires ample resources and time. Unfortunately, many programmers lack the luxury of such extensive resources. While time-based approaches are convenient and suitable for comparing execution times with previous attempts, they are not the preferred means of estimating performance. Various factors, including input size, hardware capabilities, available memory, compiler optimizations, concurrent running programs, and more, can significantly influence the obtained numbers.
+</p>
 
 
 <br>
@@ -878,10 +936,11 @@ time of this function is independent of the value of n, the size of the array.
 <code><h3>Space complexity</h3></code>
 
 <p>
-
+Montoring the space and memory usage of an algorithtm or program under Unix-based operating systems is quite easy. One can use tools such as top or Valgrind in the terminal to get suphisicated memsurments of memory usage. On a Windows based platform the best approach would be to probably use the Visual Studio analysis tools. If you do not want to use any external tools then the only solution would be to use default native APIs of Windows and Unix_based operating systems. There’s a system call for Windows: GetProcessMemoryInfo for Windows, "getrusage" for most Unix based sytmes. If you would like to know more about them I highly recommend doing your own research and checking the documentations.
 </p>
 
 
+Regardless, thees approaches are quite combursome and can be difficutl to achieve. A nicer way is the same for Time Complextiy, using other theory methods to get an approximation which will be discussed after this.
 
 
 While experimental studies of running times and measureing the memory usage using tools such as visual Studio and others are useful, they have three major
