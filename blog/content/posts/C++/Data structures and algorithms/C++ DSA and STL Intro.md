@@ -882,51 +882,35 @@ int main(void)
 
 
 <p>
-If you execute the code that sums the elements using either the ++ method with the Chrono library or the C way with the CTime library to measure the duration on your machine, you might find it exciting that it runs in less than ten seconds, one second, five milliseconds, or even one nano-second depending on your hardware! However, understanding the significance of these time measurements is crucial. Is running in less than ten seconds considered good? How about 2 seconds – is that fast or slow? Moreover, can we expect our code to maintain the same speed when performing a billion operations?
+Suppose you execute the code that sums the elements and try to measure the time the program takes using either the method with the Chrono library or the C way with the CTime library to calculate the duration on your machine. In that case, it's exciting that it runs in less than ten seconds, one second, five milliseconds, or even one nano-second, depending on your hardware! However, understanding the significance of these time measurements is crucial. Is running in less than ten seconds considered good? How about 2 seconds – is that fast or slow? Moreover, can we expect our code to maintain the same speed when performing a billion operations?
 </p>
 
 <br>
 <br>
 
 <p>
-The issue with these approaches lies in programmers not understanding the meaning of individual time measurements. This problem leads us to a significant issue that many developers encounter when attempting to evaluate the time complexity of their algorithms. Often, there is a false belief that a single-time measurement under random settings and environmental conditions can efficiently reflect the performance of our algorithm in terms of time complexity. This assumption causes frustration within the programming community and has prompted the development of alternative methods for evaluating time complexity.
+Often, there is a false belief that a single-time measurement under random settings and environmental conditions can efficiently reflect the performance of our algorithm in terms of time complexity. Estimating performance in the manner we just discussed can be unsafe because the time required for an algorithm to complete its task is influenced by the hardware it operates on and the execution environment. Even if the underlying algorithmic efficiency remains consistent, the same algorithm may execute more rapidly on a high-end machine than on a low-end one. You will likely observe varying time measurements when attempting to run this code on devices with diverse hardware capabilities.
 </p>
 
 <br>
 <br>
 
 <p>
-Estimating performance in the manner we just discussed can be unsafe because the time required for an algorithm to complete its task is influenced by the hardware it operates on and the execution environment. Even if the underlying algorithmic efficiency remains consistent, the same algorithm may execute more rapidly on a high-end machine than on a low-end one. You will likely observe varying time measurements when attempting to run this code on devices with diverse hardware capabilities. The problem is not the act of measuring time itself but instead attempting to compare the time measurements across different devices under different settings and capabilities, which can often be misleading. Instead, we must calculate the time differences and growth for a particular machine's performance across multiple instances of input requests under the same settings and environment.
+The problem is not the act of measuring time itself but instead attempting to compare the time measurements across different devices under different settings and capabilities, which can often be misleading. Instead, we must calculate the time differences and growth for a particular machine's performance across multiple instances of input requests under the same settings and environment. Conditions are subject to change, and therefore, it is often more prudent to observe how performance evolves with increasing problem sizes through graphs and calculations. Analyzing a set of numbers collectively provides a more insightful understanding.
 </p>
+
+<br>
+<br>
 
 <p>
-Conditions are subject to change, and therefore, it is often more prudent to observe how performance evolves with increasing problem sizes through graphs and calculations. Relying on assumptions about individual numbers can be misleading, whereas analyzing a set of numbers collectively provides a more insightful understanding. Consequently, there is a need for a method that establishes an acceptable approximation of algorithmic performance, one that remains unaffected by environmental variables.
-
-The challenge in this endeavor lies in conducting sophisticated measurements, a task that requires ample resources and time. Unfortunately, many programmers lack the luxury of such extensive resources. While time-based approaches are convenient and suitable for comparing execution times with previous attempts, they are not the preferred means of estimating performance. Various factors, including input size, hardware capabilities, available memory, compiler optimizations, concurrent running programs, and more, can significantly influence the obtained numbers.
+The challenge in this endeavor lies in conducting sophisticated measurements, a task that requires ample resources and time. Unfortunately, many programmers lack the luxury of such extensive resources. While time-based approaches are convenient and suitable for comparing execution times with previous attempts, other means of estimating performance exist. Consequently, there is a need for a method that establishes an acceptable approximation of algorithmic performance that remains unaffected by environmental variables. Indeed, such a method exists and is used widely among programers for estimating Time complexity and we will discuss this in the next part.
 </p>
+
 
 
 <br>
-
-
-
-<p>
-
-
-
-To illustrate a constant-time algorithm, consider the following C++ function, which
-returns the size of an STL vector, that is, the current number of cells in the array:
-int multiply(const int& number, number_2) {
-return number * number_2;
-}
-This is a very simple algorithm, because the size of a vector is stored as a
-member variable in the vector object, so it takes only a constant-time lookup to
-return this value. Thus, the capacity function runs in O(1) time; that is, the running
-time of this function is independent of the value of n, the size of the array.
-</p>
-
-
-
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -935,13 +919,44 @@ time of this function is independent of the value of n, the size of the array.
 
 <code><h3>Space complexity</h3></code>
 
+
 <p>
-Montoring the space and memory usage of an algorithtm or program under Unix-based operating systems is quite easy. One can use tools such as top or Valgrind in the terminal to get suphisicated memsurments of memory usage. On a Windows based platform the best approach would be to probably use the Visual Studio analysis tools. If you do not want to use any external tools then the only solution would be to use default native APIs of Windows and Unix_based operating systems. There’s a system call for Windows: GetProcessMemoryInfo for Windows, "getrusage" for most Unix based sytmes. If you would like to know more about them I highly recommend doing your own research and checking the documentations.
+Measuring the memory usage of our algorithms and programs in general should be easy. Since we allocate memory using either variables whose sizes can be easily predicted or different calls to memory, such as malloc and calloc, inherited from the C language or the new keyword, which is more commonly used in C++, it should seem easy to measure, but the reality is quite different. The problem is how memory is laid out and allocated to each process. Again, I recommend reading a book on this topic if you want a complete and in-depth explanation. But, for this series, all you need to know is that memory is generally allocated in chunks, commonly referred to as pages, for better performance and maintenance reasons.
+</p>
+
+<br>
+<br>
+
+<p>
+Depending on your machiens architecuter and various other factors the size of each page can vary in size. Upon execution of our programs, the operating system will allocated a certain amount of these pages to our program. We may endup using these pages or just a portion of them. So, this makes it difficult to access specific and single byte sized elements such as variables or heap memory allocation calls. For example, let's say I make a call to malloc or new keyword that allows me to request additional 8 bytes of memory from my machine. If the operating system has given me 3 pages, with each page worth 4 bytes from before hand. That means that I have 2 pages that are already empty and can accomodate the request. Therfore, my memory usage stays the same at 12 bytes (3 times each page which is >> 4.3 = 12)
+</p>
+
+<br>
+<br>
+
+<p>
+Another scenario would be if our program needs an andditional 2 bytes of memory, but all pages are currently full, we would have to allocate an entire new page worth of 4 bytes for example, even tough we may not neccessarilly need the 2 extra bytes. THis makes our memory consumepiton go up higher than it actually is. This hopefully introduces the complextiies of having to deal with memory usage measermente. As we can see it is not quite simple to figure out how much memory our algorthims are really taking up accurately. But, fear not! there is always a way to at least get a rough estimate of what we are having to consume.
+</p>
+
+<br>
+<br>
+
+<p>
+Montoring the space and memory usage of an algorithtm or program under Unix-based operating systems is quite easy. One can use tools such as Top or Valgrind in the terminal to get suphisicated memsurments of memory usage. On a Windows based platform the best approach would be to probably use the Visual Studio analysis tools. If you do not want to use any external tools then the only solution would be to use default native APIs of Windows and Unix based operating systems. There’s a system call for Windows: GetProcessMemoryInfo for Windows, "getrusage" for most Unix based sytmes. If you would like to know more about them I highly recommend checking the documentations for these APIs.
 </p>
 
 
-Regardless, thees approaches are quite combursome and can be difficutl to achieve. A nicer way is the same for Time Complextiy, using other theory methods to get an approximation which will be discussed after this.
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<code><h3>Conclusion</h3></code>
 
 While experimental studies of running times and measureing the memory usage using tools such as visual Studio and others are useful, they have three major
 limitations:
@@ -987,99 +1002,19 @@ running time experimentally. For these reasons we will see some other tool in th
 
 
 <p>
-Clearly, time-based assessments of algorithms, especially those conducted by larger companies with a lot of resources, are a viable approach. However, not all programmers have the ability, time, nor the resources to conduct such sufficticated measurements. Most programmers seek a quick and approximate evaluation of their algorithm's performance in terms of both time and space complexity. This is where asymptotic analysis comes into play. Asymptotic analysis involves the use of mathematical tools to study an algorithm's performance as the input size approaches infinity. Rather than fixating solely on time measurements, which can be heavily influenced by the factors discussed earlier, we can instead focus on observing how computational operations and steps increase in relation to the volume of requests and input changes.
+Clearly, time-based assessments of algorithms, especially those conducted by programmers or companies a lot of resources, are a viable approach. However, not all have the ability, time, nor the resources to conduct such sufficticated measurements. Most programmers seek a quick and approximate evaluation of their algorithm's performance in terms of both time and space complexity. This is where asymptotic analysis comes into play. Asymptotic analysis involves the use of mathematical tools to study an algorithm's performance. More specifically Asymptotic notation is the principle where we try and understand how our functions behave and look as they reach an infinitely large number on a graph. Rather than fixating solely on time measurements, which can be heavily influenced by the factors discussed earlier, we can instead focus on observing how computational time increase in relation to the volume of requests and input changes.
 </p>
 
 
 
 <br>
+<br>
 
-
-
-<p>
-These notations operate at a high level of abstraction, aiming to enable a rough evaluation of an algorithm in terms of performance while concealing the precise details. They treat fundamental and trivial operations, such as assignment statements, additions, and subtractions, as atomic and constant operations that consistently consume the same amount of time, even though, in reality, the execution time of these operations may vary. This is since they are relatively insignificant compared to more complex code structures that can have a greater influence, such as loops, functions, and classes. allowing us to focus on grasping the bigger picture rather than dwelling on elementary operations that have a negligible impact. Asymptotic notations will remind us of 3 important states that every programmer must take into considertaionn when they attempt to see how well their alogirthm is doing. This includes Big-O, Big-Theta, and Big-Omega. Let's take a look and analyze each of them in more depth.
-</p>
-
-In general, the running time of an algorithm or data structure method increases with the input size, although it may also vary for different inputs of the same size. the running time is affected by the hardware environment such as: processor, clock rate, memory, disk, etc... and the software environment such as: the operating system, programming language, compiler, interpreter, etc... in which the algorithm is implemented, compiled, and executed. Nevertheless, in spite of the possible variations that
-come from different environmental factors, we would like to focus on the relationship between the running time of an algorithm and the size of its input. We are interested in characterizing an algorithm’s running time as a function of the input size. But what is the proper way of measuring it?
-
-
-
-We use asymptotic notations and Big-O because:
-• Takes into account all possible inputs.
-• Allows us to evaluate the relative efficiency of any two algorithms in a way
-that is independent from the hardware and software environment.
-• Can be performed by studying a high-level description of the algorithm without actually implementing it or running experiments on it
-
-
-
-As noted above, experimental analysis is valuable, but it has its limitations. If
-we wish to analyze a particular algorithm without performing experiments on its
-running time, we can perform an analysis directly on the high-level pseudo-code
-instead. We define a set of primitive operations such as the following:
-• Assigning a value to a variable
-• Calling a function
-• Performing an arithmetic operation (for example, adding two numbers)
-• Comparing two numbers
-• Indexing into an array
-• Following an object reference
-• Returning from a function
-
-A primitive operation corresponds to a low-level instruction with an execution time that is constant. Instead of trying to determine the specific execution
-time of each primitive operation, we simply disregard the individual and meannigless little differerences in time of each simple operation and instead use them as a counting measurment of  how many primitive operations are executed, and use this number t as a measure of the running time of the algorithm. This brings to a fundementally important conclusion:
-
-The implicit assumption in this
-approach is that the running times of different primitive operations is fairly similar.
-
-
-If all simple operations are the same and be considered as equal, then the piece of code that has the most effect on our programs performance is going the be the piece that performs the heaviset amount of primitive operations. Like a game where if you have gold bars to collect the winner will be the one with the most gold bars.
+Asymptotic notations are useful because they can tell us how the function will eventually behave. Sometimes we may see our functions behave very quickly for some small amount of input, but until we see how they behave as input increase we cannot assume for sure how our function will behave. We can analyze our functinos in terms of asymptotic notation or in other words as they reach a large amount of input requestes, in 3 different forms: what is their lower boud, what is their upper abound, and what is their average rate. spite of the possible variations that come from different environmental factors such as: processor, clock rate, memory, disk, etc... and the software environment such as: the operating system, programming language, compiler, interpreter, etc, we would like to focus on the relationship between the running time of an algorithm and the size of its input. We are interested in characterizing an algorithm’s running time as a function of the input size. But what is the proper way of measuring it? Another reason why we perfer to use Asymptotic notations is that it Can be performed by studying a high-level description of the algorithm without actually implementing it or running experiments on it
 
 
 
 
-
-
-An average-case analysis usually requires that we calculate expected running times
-based on a given input distribution, which usually involves sophisticated probability
-theory. Therefore, for the remainder of this book, unless we specify otherwise, we
-characterize running times in terms of the worst case, as a function of the input
-size, n, of the algorithm.
-
-Worst-case analysis is much easier than average-case analysis, as it requires
-only the ability to identify the worst-case input, which is often simple. Also, this
-approach typically leads to better algorithms. Making the standard of success for
-an algorithm to perform well in the worst case necessarily requires that it does well
-on every input. That is, designing for the worst case leads to stronger algorithmic
-“muscles,” much like a track star who always practices by running up an incline.
-
-
-
-Suppose two algorithms solving the same problem are available: an algorithm A,
-which has a running time of O(n), and an algorithm B, which has a running time
-of O(n
-2
-). Which algorithm is better? We know that n is O(n
-2
-), which implies that
-algorithm A is asymptotically better than algorithm B, although for a small value
-of n, B may have a lower running time than A.
-We can use the big-Oh notation to order classes of functions by asymptotic
-growth rate.
-
-
-
-A few words of caution about asymptotic notation are in order at this point. First,
-note that the use of the big-Oh and related notations can be somewhat misleading
-should the constant factors they “hide” be very large. For example, while it is
-true that the function 10100n is O(n), if this is the running time of an algorithm
-being compared to one whose running time is 10nlog n, we prefer the O(nlogn)
-time algorithm, even though the linear-time algorithm is asymptotically faster. This
-preference is because the constant factor, 10100, which is called “one googol,” is
-believed by many astronomers to be an upper bound on the number of atoms in
-the observable universe. So we are unlikely to ever have a real-world problem that
-has this number as its input size. Thus, even when using the big-Oh notation, we
-should at least be somewhat mindful of the constant factors and lower order terms
-we are “hiding.”
 
 <br>
 <br>
@@ -1134,7 +1069,7 @@ Big-O notation, often denoted as Θ (often referred to as just "Big O"), is a ma
 <code><h3>Standard conventions</h3></code>
 
 <p>
-Among the trio of asymptotic notations, Big-O stands out as the most frequently employed notation for characterizing algorithm performance. Whenever programmers mention terms like "My algorithm's performance is linear" or say that "This algorithm operates in constant time," they are likely refering to Big-O notation. But why is this the case? Big-O notation places emphasis on an algorithm's worst-case time complexity. In other words, understanding how an algorithm behaves under worst-case conditions is often critical because these scenarios are where performance bottlenecks are most likely to manifest. This notation enables you to concentrate on the most significant factors influencing the runtime of your algorithm. If you can make the worst-case of an alogritm be better, then chances are that other notations and conditions such as average-case and best-case will benefit twice as much.
+Among the trio of asymptotic notations, Big-O stands out as the most frequently employed notation for characterizing algorithm performance. Whenever programmers mention terms like "My algorithm's performance is linear" or say that "This algorithm operates in constant time," they are likely refering to Big-O notation. But why is this the case? Big-O notation places emphasis on an algorithm's worst-case time complexity. In other words, understanding how an algorithm behaves under worst-case conditions is often critical because these scenarios are where performance bottlenecks are most likely to manifest. and also because knowing the worst case scenario acts as a guarantee, we cannot always say if our algoritm will perform good, but knowing how it will do under the most dire situations is more understandableThis notation enables you to concentrate on the most significant factors influencing the runtime of your algorithm. If you can make the worst-case of an alogritm be better, then chances are that other notations and conditions such as average-case and best-case will benefit twice as much.
 </p>
 
 
@@ -1142,10 +1077,23 @@ Among the trio of asymptotic notations, Big-O stands out as the most frequently 
 <br>
 
 
-
+Conclusion
 <p>
 While Big-O notation is the predominant method for articulating algorithmic complexity, it's worth noting that other notations, such as Big-Theta (Θ) and Big-Omega (Ω), serve specific purposes as well. In most cases it is the combination of all these notations together at the end that can make a difference. However, for the sake of simplicity, we will describe the performance of algorithms in all upcoming tutorials in terms of Big-O. In the forthcoming and concluding section of this page, we will see into common patterns, best practices, and provide code examples for identifying Big-O in various scenarios.
 </p>
+
+An average-case analysis usually requires that we calculate expected running times
+based on a given input distribution, which usually involves sophisticated probability
+theory. Therefore, for the remainder of this book, unless we specify otherwise, we
+characterize running times in terms of the worst case, as a function of the input
+size, n, of the algorithm.
+
+Worst-case analysis is much easier than average-case analysis, as it requires
+only the ability to identify the worst-case input, which is often simple. Also, this
+approach typically leads to better algorithms. Making the standard of success for
+an algorithm to perform well in the worst case necessarily requires that it does well
+on every input. That is, designing for the worst case leads to stronger algorithmic
+“muscles,” much like a track star who always practices by running up an incline.
 
 
 
@@ -1186,6 +1134,26 @@ While Big-O notation is the predominant method for articulating algorithmic comp
 While there is no comprehensive reference list that provides exact quantitative measurements for the performance of algorithms, there is encouraging news. Many programmers and scientists have conducted extensive research and experiments in the past, resulting in well-established common scenarios related to Big-O notation and performance. These insights provide general guidelines and categorizations that programmers can use to understand the relative performance of their alogrithms. When attempting to evaluate the time complexity of an algorithm using Big-O Notation, we can refer to the list below to gain a broad understanding of the algorithm's current performance status:
 </p>
 
+
+
+<p>
+These notations operate at a high level of abstraction, aiming to enable a rough evaluation of an algorithm in terms of performance while concealing the precise details. They treat fundamental and trivial operations, such as assignment statements, additions, and subtractions, as atomic and constant operations that consistently consume the same amount of time, even though, in reality, the execution time of these operations may vary. This is since they are relatively insignificant compared to more complex code structures that can have a greater influence, such as loops, functions, and classes. allowing us to focus on grasping the bigger picture rather than dwelling on elementary operations that have a negligible impact. Asymptotic notations will remind us of 3 important states that every programmer must take into considertaionn when they attempt to see how well their alogirthm is doing. This includes Big-O, Big-Theta, and Big-Omega. Let's take a look and analyze each of them in more depth.
+</p>
+
+A primitive operation corresponds to a low-level instruction with an execution time that is constant. Instead of trying to determine the specific execution
+time of each primitive operation, we simply disregard the individual and meannigless little differerences in time of each simple operation and instead use them as a counting measurment of  how many primitive operations are executed, and use this number t as a measure of the running time of the algorithm. This brings to a fundementally important conclusion:
+
+The following set of operations are always assumed to be consatnt and primitive regardless of tiny differenecse and details for simplicity reasons:
+• Assigning a value to a variable
+• Calling a function
+• Performing an arithmetic operation (for example, adding two numbers)
+• Comparing two numbers
+• Indexing into an array
+• Following an object reference
+• Returning from a function
+
+
+If all simple operations are the same and be considered as equal, then the piece of code that has the most effect on our programs performance is going the be the piece that performs the heaviset amount of primitive operations. Like a game where if you have gold bars to collect the winner will be the one with the most gold bars.
 
 
 <br>
@@ -1634,6 +1602,34 @@ use  return EXIT SUCCESS;  where possible
 
 
 Add a section or an entire new part that talks about templates in depth as well.
+
+<p>
+
+A few words of caution about evaluating Big-O. First,
+note that the use of the big-Oh and related notations can be somewhat misleading
+should the constant factors they “hide” be very large. For example, while it is
+true that the function 10100n is O(n), if this is the running time of an algorithm
+being compared to one whose running time is 10nlog n, we prefer the O(nlogn)
+time algorithm, even though the linear-time algorithm is asymptotically faster. This
+preference is because the constant factor, 10100, which is called “one googol,” is
+believed by many astronomers to be an upper bound on the number of atoms in
+the observable universe. So we are unlikely to ever have a real-world problem that
+has this number as its input size. Thus, even when using the big-Oh notation, we
+should at least be somewhat mindful of the constant factors and lower order terms
+we are “hiding.”
+
+
+
+To illustrate a constant-time algorithm, consider the following C++ function, which
+returns the size of an STL vector, that is, the current number of cells in the array:
+int multiply(const int& number, number_2) {
+return number * number_2;
+}
+This is a very simple algorithm, because the size of a vector is stored as a
+member variable in the vector object, so it takes only a constant-time lookup to
+return this value. Thus, the capacity function runs in O(1) time; that is, the running
+time of this function is independent of the value of n, the size of the array.
+</p>
 
 <!-- ############################################# Separator - Bottom ############################################# -->
 
