@@ -700,6 +700,8 @@ Understanding these two categories is important because they typically involve a
 
 
 
+##### Time complexity
+
 <code><h3>Time complexity</h3></code>
 
 <p>
@@ -1002,7 +1004,7 @@ running time experimentally. For these reasons we will see some other tool in th
 
 
 <p>
-Clearly, time-based assessments of algorithms, especially those conducted by programmers or companies a lot of resources, are a viable approach. However, not all have the ability, time, nor the resources to conduct such sufficticated measurements. Most programmers seek a quick and approximate evaluation of their algorithm's performance in terms of both time and space complexity. This is where asymptotic analysis comes into play. Asymptotic analysis involves the use of mathematical tools to study an algorithm's performance. More specifically Asymptotic notation is the principle where we try and understand how our functions behave and look as they reach an infinitely large number on a graph. Rather than fixating solely on time measurements, which can be heavily influenced by the factors discussed earlier, we can instead focus on observing how computational time increase in relation to the volume of requests and input changes.
+Time-based assessments of algorithms, especially those conducted by programmers or companies with a lot of resources, are a viable approach. However, only some have the ability, time, and resources to perform such sophisticated measurements. Most programmers seek a quick and approximate evaluation of their algorithm's performance in terms of time and space complexity. This is where asymptotic analysis comes into play. Asymptotic analysis involves using mathematical tools to study an algorithm's performance. More specifically, asymptotic notation is the principle where we try to understand how our functions behave and look as they reach an infinitely large number on a graph. Rather than fixating solely on hardware measurements, which can be heavily influenced by the factors discussed earlier, we can instead focus on observing how computational time and resources increase concerning the volume of requests and input changes.
 </p>
 
 
@@ -1010,7 +1012,7 @@ Clearly, time-based assessments of algorithms, especially those conducted by pro
 <br>
 <br>
 
-Asymptotic notations are useful because they can tell us how the function will eventually behave. Sometimes we may see our functions behave very quickly for some small amount of input, but until we see how they behave as input increase we cannot assume for sure how our function will behave. We can analyze our functinos in terms of asymptotic notation or in other words as they reach a large amount of input requestes, in 3 different forms: what is their lower boud, what is their upper abound, and what is their average rate. spite of the possible variations that come from different environmental factors such as: processor, clock rate, memory, disk, etc... and the software environment such as: the operating system, programming language, compiler, interpreter, etc, we would like to focus on the relationship between the running time of an algorithm and the size of its input. We are interested in characterizing an algorithm’s running time as a function of the input size. But what is the proper way of measuring it? Another reason why we perfer to use Asymptotic notations is that it Can be performed by studying a high-level description of the algorithm without actually implementing it or running experiments on it
+Asymptotic notations are helpful because they can tell us how the function will eventually behave. Sometimes, we may see our functions perform very well for some small input, but once we see how they act as input reaches an infinitely large scale, only then can we assume what will happen. Another benefit of Asymptotic notations is that they allow us to get a rough estimate of our performance before our code is even fully ready or implemented, which is something that the physical measurements do not allow us to perform. We can analyze our functions regarding asymptotic notation from three different forms: lower bound (Big-Omega (Ω)), upper abound (Big-O (O)), and average bound (Big-Theta (Θ)). Let's discuss each of these concepts in more depth.
 
 
 
@@ -1028,7 +1030,7 @@ Asymptotic notations are useful because they can tell us how the function will e
 <code><h3>Big-Omega (Ω)</h3></code>
 
 <p>
-Omega notation, often denoted as Ω (pronounced "big omega"), is a mathematical notation used in computer science and mathematics to describe the lower bound of the time complexity of an algorithm or the growth rate of a function. In the context of time complexity, it characterizes the best-case scenario, representing the minimum amount of time required for an algorithm to execute a specified number of instructions. Omega notation is frequently referred to as the "ideal" scenario, though it is important to note that such ideal conditions are rarely encountered in practice.
+Omega notation, often denoted as Ω (pronounced "big omega"), is a mathematical notation used in computer science and mathematics to describe the lower bound of the time complexity of an algorithm or the growth rate of a function. In the context of time complexity, it characterizes the best-case scenario, representing the minimum time required for an algorithm to execute a specified number of instructions. Omega notation is frequently called the "ideal" scenario, though it is important to note that such ideal conditions are rarely encountered in practice. For this reason, even though it is a very important factor, it will commonly not be prioritized by programmers and developers.
 </p>
 
 
@@ -1040,7 +1042,7 @@ Omega notation, often denoted as Ω (pronounced "big omega"), is a mathematical 
 <code><h3>Big-Theta (Θ)</h3></code>
 
 <p>
-Theta notation, often denoted as Θ (pronounced "Big Theta"), is a mathematical notation used in computer science and mathematics to describe the lower and upper bound of the time complexity of an algorithm or the growth rate of a function. In the context of time complexity, it characterizes the average-case scenario, representing the average amount of time required for an algorithm to execute a specified number of instructions. Theta notation is frequently referred to as the "comman" scenario. Theta notation is much more common to be discussed in comparison to Omega notation.
+Theta notation, often denoted as Θ (pronounced "Big Theta"), is a mathematical notation used in computer science and mathematics to describe the lower and upper bound of the time complexity of an algorithm or the growth rate of a function. In the context of time complexity, it characterizes the average-case scenario, representing the average amount of time required for an algorithm to execute a specified number of instructions. Theta notation is frequently referred to as the "comman" scenario. Theta notation is much more common to be discussed in comparison to Omega notation. For this reason, even though it is a significant factor, it will commonly not be prioritized by programmers and developers.
 </p>
 
 
@@ -1052,7 +1054,7 @@ Theta notation, often denoted as Θ (pronounced "Big Theta"), is a mathematical 
 <code><h3>Big-O (O)</h3></code>
 
 <p>
-Big-O notation, often denoted as Θ (often referred to as just "Big O"), is a mathematical notation used in computer science and mathematics to describe the upper bound of the time complexity of an algorithm or the growth rate of a function. In the context of time complexity, it characterizes the worst-case scenario, representing the maximum amount of time required for an algorithm to execute a specified number of instructions. Big-O notation is more commonly used among programmers as it desribes the worst possible case their algoritm can run.
+Big-O notation, often denoted as Θ (often referred to as just "Big O"), is a mathematical notation used in computer science and mathematics to describe the upper bound of the time complexity of an algorithm or the growth rate of a function. In the context of time complexity, it characterizes the worst-case scenario, representing the maximum amount of time required for an algorithm to execute a specified number of instructions. Big-O notation is more commonly used among programmers as it desribes the worst possible case their algoritm can run. For this reason, Big-O will typically be prioritized by programmers and developers.
 </p>
 
 
@@ -1066,34 +1068,11 @@ Big-O notation, often denoted as Θ (often referred to as just "Big O"), is a ma
 
 
 
-<code><h3>Standard conventions</h3></code>
+<code><h3>Conclusion</h3></code>
 
 <p>
-Among the trio of asymptotic notations, Big-O stands out as the most frequently employed notation for characterizing algorithm performance. Whenever programmers mention terms like "My algorithm's performance is linear" or say that "This algorithm operates in constant time," they are likely refering to Big-O notation. But why is this the case? Big-O notation places emphasis on an algorithm's worst-case time complexity. In other words, understanding how an algorithm behaves under worst-case conditions is often critical because these scenarios are where performance bottlenecks are most likely to manifest. and also because knowing the worst case scenario acts as a guarantee, we cannot always say if our algoritm will perform good, but knowing how it will do under the most dire situations is more understandableThis notation enables you to concentrate on the most significant factors influencing the runtime of your algorithm. If you can make the worst-case of an alogritm be better, then chances are that other notations and conditions such as average-case and best-case will benefit twice as much.
+Big-O stands out as the most frequently employed notation for characterizing algorithm performance among the trio of asymptotic notations. When programmers mention terms like "My algorithm's performance is linear" or say, "This algorithm operates in constant time," they are likely referring to Big-O notation. But why is this the case? Big-O notation emphasizes an algorithm's worst-case time complexity. In other words, understanding how an algorithm behaves under worst-case conditions is often critical because performance bottlenecks are most likely to manifest in these scenarios. Also, knowing the worst-case scenario acts as a guarantee. We cannot always say if our algorithm will perform well, but knowing how it will do in the direst situations is more understandable.
 </p>
-
-
-
-<br>
-
-
-Conclusion
-<p>
-While Big-O notation is the predominant method for articulating algorithmic complexity, it's worth noting that other notations, such as Big-Theta (Θ) and Big-Omega (Ω), serve specific purposes as well. In most cases it is the combination of all these notations together at the end that can make a difference. However, for the sake of simplicity, we will describe the performance of algorithms in all upcoming tutorials in terms of Big-O. In the forthcoming and concluding section of this page, we will see into common patterns, best practices, and provide code examples for identifying Big-O in various scenarios.
-</p>
-
-An average-case analysis usually requires that we calculate expected running times
-based on a given input distribution, which usually involves sophisticated probability
-theory. Therefore, for the remainder of this book, unless we specify otherwise, we
-characterize running times in terms of the worst case, as a function of the input
-size, n, of the algorithm.
-
-Worst-case analysis is much easier than average-case analysis, as it requires
-only the ability to identify the worst-case input, which is often simple. Also, this
-approach typically leads to better algorithms. Making the standard of success for
-an algorithm to perform well in the worst case necessarily requires that it does well
-on every input. That is, designing for the worst case leads to stronger algorithmic
-“muscles,” much like a track star who always practices by running up an incline.
 
 
 
@@ -1130,35 +1109,67 @@ on every input. That is, designing for the worst case leads to stronger algorith
 
 
 
-<p>
-While there is no comprehensive reference list that provides exact quantitative measurements for the performance of algorithms, there is encouraging news. Many programmers and scientists have conducted extensive research and experiments in the past, resulting in well-established common scenarios related to Big-O notation and performance. These insights provide general guidelines and categorizations that programmers can use to understand the relative performance of their alogrithms. When attempting to evaluate the time complexity of an algorithm using Big-O Notation, we can refer to the list below to gain a broad understanding of the algorithm's current performance status:
-</p>
-
-
 
 <p>
-These notations operate at a high level of abstraction, aiming to enable a rough evaluation of an algorithm in terms of performance while concealing the precise details. They treat fundamental and trivial operations, such as assignment statements, additions, and subtractions, as atomic and constant operations that consistently consume the same amount of time, even though, in reality, the execution time of these operations may vary. This is since they are relatively insignificant compared to more complex code structures that can have a greater influence, such as loops, functions, and classes. allowing us to focus on grasping the bigger picture rather than dwelling on elementary operations that have a negligible impact. Asymptotic notations will remind us of 3 important states that every programmer must take into considertaionn when they attempt to see how well their alogirthm is doing. This includes Big-O, Big-Theta, and Big-Omega. Let's take a look and analyze each of them in more depth.
+We need to establish a set of rules to use asymptotic notations to determine an algorithm's performance from both time and space complexity aspects. Performance in asymptotic notations is calculated by seeing how the total number of operations change as the input size grows, but what operations do we use as a counting measure? And how do we determine the input size that influences the number of operations? In asymptotic notations, we use the number of primitive operations as a measurement tool. A primitive operation corresponds to a low-level instruction with an execution time close to constant. We use the word "close" as we cannot guarantee that these operations will be consistent all the time as many factors, such as the programming language itself, can contribute to this factor. But, for simplicity, we will think of primitive operations as constants with a very low cost.
 </p>
 
-A primitive operation corresponds to a low-level instruction with an execution time that is constant. Instead of trying to determine the specific execution
-time of each primitive operation, we simply disregard the individual and meannigless little differerences in time of each simple operation and instead use them as a counting measurment of  how many primitive operations are executed, and use this number t as a measure of the running time of the algorithm. This brings to a fundementally important conclusion:
+<br>
+<br>
 
-The following set of operations are always assumed to be consatnt and primitive regardless of tiny differenecse and details for simplicity reasons:
-• Assigning a value to a variable
-• Calling a function
-• Performing an arithmetic operation (for example, adding two numbers)
-• Comparing two numbers
-• Indexing into an array
-• Following an object reference
-• Returning from a function
-
-
-If all simple operations are the same and be considered as equal, then the piece of code that has the most effect on our programs performance is going the be the piece that performs the heaviset amount of primitive operations. Like a game where if you have gold bars to collect the winner will be the one with the most gold bars.
+<p>
+A few examples of what can be considered primitive operations are assignment statements, function calls, arithmetic operations, comparison operations, array indexing, following an object reference, and Returning data from a function. Even though each of these operations is slightly different from the other, instead of trying to determine the specific execution time of each of them, we simply disregard the individual and meaningless little differences in time. This way, all simple operations are the same and considered equal, and the piece of code that has the most effect on our program's performance will be the piece that performs the heaviest number of primitive operations. In other words, the most crucial piece acts as a multiplier where it increases the number of primitive operations that we perform by some number.
+</p>
 
 
 <br>
 <br>
 
+<p>
+The only question at this point is what can be considered the growth of input size and what part of our codes are most affected by them? As mentioned before, the most essential parts of our algorithms and programs, in general, are the pieces that perform the most primitive operations, and they multiply the number of operations by some number; that number is precisely what we are looking for. Complex code structures that can have a more significant influence include loops, functions, classes, etc. These control structures and the amount of work they perform are generally influenced by some data type, such as integers that determine the number of times they execute and, therefore, are counted as the growth number for the input size. For example, if a loop iterates 20, 50, or 100 times, the number of primitive operations will be 20, 50, or 100 times more. Let's try and analyze the following codes performance using this method:
+</p>
+
+
+<br>
+<br>
+
+```C++
+#include <iostream>
+#include <iomanip>
+#include <random>
+
+
+int main(int argc, char* argv[])
+{
+	std::random_device random;
+	std::uniform_int_distribution<int> distribution(1, 30);
+	
+	
+	std::cout << "Winning Numbers are:" << "\n\n";
+	
+	// Generating 10 random numbers and print them.
+    for (int iteration = 0; iteration < 10; ++iteration)
+	{
+        std::cout << std::setw(2) << std::setfill('0') << distribution(random) << "\n";
+    }
+
+    std::cout << "\n" << "Congratulations to the winners!" << std::endl;
+    
+	
+	return (0);
+}
+```
+
+
+<br>
+<br>
+
+<p>
+Now that we know how to look at a piece of code and determine the number of operations let's look at the most common scenarios we encounter for algorithms and their performance in the real world. While no comprehensive reference list provides exact quantitative measurements for the performance of algorithms, there is encouraging news. Many programmers and scientists have conducted extensive research and experiments, resulting in well-established common scenarios related to Big-O notation and performance. These insights provide general guidelines and categorizations that programmers can use to understand the relative performance of their algorithms. When attempting to evaluate the time complexity of an algorithm using Big-O Notation, we can refer to the list below to gain a broad understanding of the algorithm's current performance status:
+</p>
+
+<br>
+<br>
 
 <table>
 
@@ -1257,21 +1268,18 @@ If all simple operations are the same and be considered as equal, then the piece
 
 
 <p>
-The optimal performance that an algorithm can achieve in terms of Big-O notation is constant time, denoted as O(1). This signifies that the algorithm consistently completes its task in the same amount of time, regardless of the size of the input data. Achieving a truly constant algorithm is exceedingly challenging. While we can come very close to it, most of the time, achieving a full constant performance is not possible unless the algorithm's task is exceptionally basic. Examples of operations that can be of constant performance include basic arithmetic operations, such as addition, subtraction, multiplication, and division involving fixed-size integers or floating-point numbers. Furthermore, straightforward variable declaration and assignment statements also go under the category of constant performance. 
+The optimal performance that an algorithm can achieve in terms of Big-O notation is constant time, denoted as O(1). A Big-O of 1 signifies that the algorithm consistently completes its task in the same amount of time, regardless of the input data size. Achieving a genuinely constant algorithm is exceedingly challenging. While we can come very close to it, achieving a full, constant performance is usually only possible if the algorithm's task is very simple. Examples of operations of constant performance include basic arithmetic operations, such as addition, subtraction, multiplication, and division involving fixed-size integers or floating-point numbers. Furthermore, straightforward variable declaration and assignment statements also fall under the constant performance category.
 </p>
 
 
 
 <br>
-
+<br>
 
 
 <p>
-It is important to note that there is a common misconception among programmers regarding the distinction between being constant and being fast. When we talk about a constant algorithm, we mean that it maintains a consistent runtime with every execution. However, this does not imply that the algorithm is necessarily fast. For example, it might take the alogrithm 1 minute and 37 seconds to accomplish its task. The advantage lies in the fact that regardless of whether it is processing a single data point or a million data points, it will consistently take the same 1 minute and 37 seconds. The true power of this characteristic becomes apparent as the volume of data increases. Let's take a look at an example:
+It is important to note that there is a common misconception among programmers regarding the distinction between being constant and being fast. When we talk about a constant algorithm, we mean it maintains a consistent runtime with every execution. However, this does not imply that the algorithm is necessarily fast. For example, it might take 1 minute and 37 seconds to accomplish the algorithm's task, even for a small input size. The advantage lies in that regardless of whether it is processing a single data point or a million data points, it will consistently take the same 1 minute and 37 seconds. The true power of this characteristic becomes apparent as the volume of data increases. Let's take a look at an example:
 </p>
-
-
-Another example of O(1) are if you are asked to find out how many beans are in a jar, and the jars are labled with the amount on them. It will take a person the same amount of time each run to determine how many beans are in each jar regardless of the size of the jar and the amount of beans in it.
 
 
 <br>
@@ -1285,7 +1293,7 @@ Another example of O(1) are if you are asked to find out how many beans are in a
 #include <random>
 
 
-int main(int argc, char* argv[])
+int main(void)
 {
 	std::random_device random;
 	std::uniform_int_distribution<int> distribution(1, 30);
@@ -1318,6 +1326,14 @@ The code above uses "std::random_device" to produce random numbers constrainted 
 </p>
 
 
+<br>
+<br>
+
+
+<p>
+A real-world example of something constant could be the traditional example of a jar of beans. If you are asked to find out how many beans are in a jar, you could take the approach of taking out the beans one by one and counting them. The task may require a significant amount of time to complete. However, if the jars are labeled with the amount, one can instantly determine the number of beans inside each jar regardless of their scale or size. It will take a person the same amount of time each run to determine how many beans are in each jar, irrespective of the size of the jar and the amount of beans in it.
+</p>
+
 
 <br>
 <br>
@@ -1331,37 +1347,38 @@ The code above uses "std::random_device" to produce random numbers constrainted 
 <code><h3>Logarithmic</h3></code>
 
 <p>
-A logarithmic algorithm is one whose time complexity increases as the input size grows, but this increase occurs at a significantly slower rate than expected. They are often represented as O(log n), where "n" signifies the size of the input data. These algorithms typically involve dividing the input into smaller chunks and processing one segment at a time. This approach allows the algorithm to substantially reduce the problem size with each step, often halving it compared to the original size. Logarithmic algorithms are exceptionally efficient for handling large datasets because their time complexity grows much slower than others in the table set. They are frequently employed for tasks that entail a divide-and-conquer strategy, progressively eliminating half of the remaining possibilities at each step. Logarithmic algorithms represent the closest approximation to constant time complexity in terms of performance.
+A logarithmic algorithm is one whose time complexity increases as the input size grows, but this increase occurs significantly slower than expected. They are often represented as O(log n), where "n" signifies the size of the input data. These algorithms typically involve dividing the input into smaller chunks and processing one segment at a time. This approach allows the algorithm to substantially reduce the problem size with each step, often halving it compared to the original size. Logarithmic algorithms are exceptionally efficient for handling large datasets because their time complexity grows much slower than others in the table set. They are frequently employed for tasks with a divide-and-conquer strategy, progressively eliminating half of the remaining possibilities at each step. Logarithmic algorithms represent the closest approximation to constant time complexity in performance.
 </p>
 
 
 
 <br>
-
+<br>
 
 
 <p>
-Detecting whether an algorithm shows logarithmic behavior can be quite challenging, particularly when dealing with complex algorithms. One reason for this challenge in understanding logarithmic behavior is that it diverges from our everyday experiences. For instance, in our daily lives, we typically handle situations sequentially, serving customers one by one in a linear fashion at a restaurant, rather than attempting to divide them into halves and employing a divide-and-conquer approach. This tendency to approach tasks linearly is mirrored in other aspects of life, like serving customers at a bank or parking cars in a parking lot. Due to these linear processes, programmers often struggle to identify a logarithmic algorithm. Let's look at one example and try to see why it evaluates to an logarithmic time complexity:
+Detecting whether an algorithm shows logarithmic behavior can be challenging, mainly when dealing with complex algorithms. One reason for this challenge in understanding logarithmic behavior is that it diverges from our everyday experiences. For instance, in our daily lives, we typically handle situations sequentially, serving customers one by one in a linear fashion at a restaurant rather than attempting to divide them into halves and employing a divide-and-conquer approach. This tendency to approach tasks linearly is mirrored in other aspects of life, like serving customers at a bank or parking cars in a parking lot. Due to these linear processes, programmers often need help identifying a logarithmic algorithm. Let's look at one example and try to see why it evaluates to a logarithmic time complexity:
 </p>
 
 
 
 <br>
-
+<br>
 
 
 <p>
-Imagine you have purchased a new book about romance and are eager to find a specific paragraph within a certain chapter. You have two choices for finding the paragrpah: Start from the very first page and keep turning pages until you eventually find the chapter you desire. This method involves checking each page one by one, which could be time-consuming, especially in a long book. Alternatively, you can use a more efficient method. Begin by examining the table of contents, which is organized alphabetically by chapters. This step allows you to immediately pinpoint the chapter you want to read. By doing so, you've effectively reduced your search by nearly half of the book's content, as many chapters have been skipped. Within the selected chapter, you might find subcategories or subsections. You can continue to apply the approach. Divide the content into two, focus on one half based on the alphabetical order or any other criterion, and repeat until you locate the specific sentence you are seeking.
+Let's discuss a real-world example. Imagine you have purchased a new book about romance and are eager to find a paragraph within a particular chapter. You have two choices for finding the paragraph: Start from the very first page and keep turning pages until you eventually find the chapter you desire. This method involves checking each page individually, which could be time-consuming, especially in a long book. Alternatively, you can use a more efficient process. Begin by examining the table of contents, organized alphabetically by chapters. This step allows you to pinpoint the chapter you want to read immediately. By doing so, you've effectively reduced your search by nearly half of the book's content, as many chapters have been skipped. Within the selected chapter, you might find subcategories or subsections. You can continue to apply the approach. Divide the content into two, focus on one half based on the alphabetical order or any other criterion, and repeat until you locate the specific sentence you seek.
 </p>
 
 
 
 <br>
+<br>
 
 
 
 <p>
-The key idea here is that at each step, you are halving the search space, which leads to a logarithmic reduction in the number of possibilities you need to examine. This method demonstrates logarithmic time complexity because the time it takes to find your desired paragraph grows slowly, proportional to the logarithm of the number of possibilities (in this case, the number of pages or chapters in the book). This is much faster than a linear search, especially for large datasets. Another example of logarithmic time complexity is a common algorthim known as the "Binary search" which will be explained later on in the "Array" section. In general, it is very difficult to explain logarthimic algorithms as they are very rare since they introduce increadible performance. However, rest ashored as we will cover many of them throughout this entire tutorial.
+The key idea here is that you are halving the search space at each step, which leads to a logarithmic reduction in the number of possibilities you need to examine. This method demonstrates logarithmic time complexity because the time it takes to find your desired paragraph grows slowly, proportional to the logarithm of the number of possibilities (in this case, the number of pages or chapters in the book). This is much faster than a linear search, especially for large datasets. Another example of logarithmic time complexity is a standard algorithm known as the "Binary search," which will be explained in later sections. It is generally challenging to explain logarithmic algorithms as they are scarce since they introduce incredible performance. However, rest assured that we will cover many of them throughout this entire series.
 </p>
 
 

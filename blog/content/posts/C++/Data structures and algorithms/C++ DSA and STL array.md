@@ -29,7 +29,7 @@ weight: 4
 
 
 <p>
-As we begin our exploration of the various data structures and their alogrithms, we will analyze <span class="special">an entity that, although not commonly regarded as a container, certainly displays container-like characteristics</span>.  The trust worthy <span class="special">Array</span>! In many programming languages, arrays are a fundamentally valuable and straightforward method for grouping data, so much so that they are inherently integrated and do not require external libraries in order to function. C++ is no exception. No matter whether we embrace the array voluntarily or not, it remains one of the most significant and fundamental components of a programming language, allowing us to manipulate large amounts of data effectively and efficiently. In order to begin our exploration, we will examine the array from different aspects as a data structure and explain in detail its strength and weaknesses.
+As we begin our exploration of the various data structures and their algorithms, we will analyze an entity that, although not commonly regarded as a container, certainly displays container-like characteristics. The trustworthy Array! In many programming languages, arrays are a fundamentally valuable and straightforward method for grouping data, so much so that they are inherently integrated and do not require external libraries in order to function. C++ is no exception. Whether we embrace the Array voluntarily or not, it remains one of a programming language's most significant and fundamental components, allowing us to manipulate large amounts of data effectively and efficiently. In order to begin our exploration, we will examine the Array from different aspects as a data structure and explain its strengths and weaknesses in detail.
 </p>
 
 
@@ -40,7 +40,7 @@ As we begin our exploration of the various data structures and their alogrithms,
 
 
 <p>
-When it comes to organizing a collection of items, arranging them sequentially in adjacent, contiguous spaces is the most natural method of approaching the problem. For example, imagine that one created a list of elements on a piece of paper; these elements would be arranged in horizontal or vertical order. An array data structure in programming accomplishes this exact purpose. At its most basic level, <span class="special">an array consists of elements of the same data type that are stored in contiguous memory locations, without any gaps in between them</span>. Array elements share a common name, which can be used to manipulate and manage them collectively. For example, if a programmer wishes to record names for various coffee drinks that they enjoy, the structure of the array would resemble something similar to the following:
+When organizing a collection of items, arranging them sequentially in adjacent, contiguous spaces is the most natural method of approaching the problem. For example, imagine that one created a list of elements on a piece of paper; these elements would be arranged in horizontal or vertical order. An array data structure in programming accomplishes this exact purpose. At its most basic level, an array consists of elements of the same data type stored in contiguous memory locations without any gaps between them. Array elements share a common name, which can be used to manipulate and manage them collectively. For example, if a programmer wishes to record names for various coffee drinks that they enjoy, the structure of the array would resemble something similar to the following:
 </p>
 
 
@@ -62,7 +62,7 @@ image
 
 
 <p>
-The C++ language, as mentioned earlier, is comprised of two key components: "C" and "++", with the "++" part representing the concept of classes and objects within the OOP (Object Oriented Programming) world. For this reason, arrays in C++ can be utilized and manipulated in two distinct manners: using built-in <span class="special">C arrays</span> or employing the <span class="special">std::array</span> class provided within the STL library as a container. It is critical to understand and grasp both approaches since many programmers and existing codebases may employ either methods interchangeably. As we try to understand the five fundamental functionalities expected of arrays as a container - namely, Insert, Remove, Access, Search, and Traverse - we will explore them through both the "C" and "++" perspectives.
+The C++ language, as mentioned earlier, is comprised of two key components: "C" and "++," with the "++" part representing the concept of classes and objects within the object-oriented programming (OOP) world. For this reason, arrays in C++ can be utilized and manipulated in two distinct manners: using built-in C arrays or employing the std::array class provided within the STL library as a container. Understanding and grasping both approaches is critical since many programmers and existing codebases may employ either method interchangeably. As we try to understand the five fundamental functionalities expected of arrays as containers - namely, Insert, Remove, Access, Search, and Traverse - we will explore them through the "C" and "++" perspectives.
 </p>
 
 
@@ -103,7 +103,7 @@ The C++ language, as mentioned earlier, is comprised of two key components: "C" 
 
 
 <p>
-Before we can explain the array data structure and the set of operations associated with it, it's essential to have an array to work with in the first place. Let's start off our exploration by attempting to create an array capable of holding 5 integer elements and name it <span class="special">numbers</span> using two distinct methods: C arrays and std::array from the Standard Template Library (STL). It is a common practice to set array names as plural form such as numbers, elements, etc to indicate that they refer to a set of elements instead of just one. We will accomplish this by performing the two fundamental operations of <span class="special">declaration</span> and <span class="special">initialization</span> which should be common knowledge to programmers in this field by now.
+Before we can explain the array data structure and the associated set of operations, it's essential to have an array to work with in the first place. Let's start our exploration by attempting to create an array capable of holding five integer elements and name it numbers using two distinct methods: C arrays and std::array from the Standard Template Library (STL). It is a common practice to set array names in plural form, such as numbers, elements, etc, to indicate that they refer to a set or collection of elements instead of just one. We will accomplish this by performing the two fundamental operations of declaration and initialization, which should now be common knowledge to programmers in this field.
 </p>
 
 
@@ -116,7 +116,7 @@ Before we can explain the array data structure and the set of operations associa
 <code><h3>Declaration (C approach)</h3></code>
 
 <p>
-C++ array declarations serve as a means of signaling to the compiler that you intend to use a collection of elements of the same type, and that you wish to reserve memory for them. A declaration of an array in the C approach entails specifying the array's characteristics, such as: Specifying the <span class="special">data type of the elements</span> that the array will contain which defines the type of values the array can hold, a <span class="special">name for the array</span> that will be used throughout our program, and last but not least, the <span class="special">number of elements</span> the array will accommodate. The array must be declared with all of this information in order to function correctly. Once declared, the characteristics of the array cannot be changed later on!
+C++ array declarations serve as a means of signaling to the compiler that you intend to use a collection of elements of the same type and that you wish to reserve memory for them. A declaration of an array in the C approach entails specifying the array's characteristics, such as Specifying the data type of the elements that the array will contain, which defines the type of values the array can hold, a name for the array that will be used throughout our program, and last but not least, the number of elements the array will accommodate. The array must be declared with all this information to function correctly. Once declared, the characteristics of the array cannot be changed later on!
 </p>
 
 
@@ -128,14 +128,23 @@ C++ array declarations serve as a means of signaling to the compiler that you in
 
 
 ```C++
-#include <iostream>
+///////////////////////////////////////////////////////////////////////////////
+//
+// Description:
+// 
+// This program demonstrates the creation of a C-style array. The array is
+// called numbers and will be created to hold 5 integer numbers.
+//
+///////////////////////////////////////////////////////////////////////////////
 
-int main(int argc, char* argv[])
+#include <iostream>
+#include <cstdlib>
+
+int main(void)
 {
-	// Declaring an array to hold 5 integer elements.
 	int numbers[5];
 	
-	return (0);
+	return(EXIT_SUCCESS);
 }
 ```
 
@@ -149,9 +158,8 @@ int main(int argc, char* argv[])
 <code><h3>Declaration (STL approach)</h3></code>
 
 <p>
-Declaring an array in the STL container manner is, in theory, no different from the C-style version. Declaration serves the same purpose; it instructs the compiler to allocate and reserve sufficient space for storing 10 integer elements. However, since we are working with an STL container array, the syntax differs from that of a C-style array. The STL container array object employs templates to operate. The characterisitcs of the array do not defer, we are still required to provide and specify both the data type of the elements that the array will store and the total number of elements within the template brackets, as demonstrated in the following approach:
+Declaring an array in the STL container manner is no different from the C-style version. Declaration serves the same purpose; it instructs the compiler to allocate and reserve sufficient space for storing ten integer elements. However, since we are working with an STL container array, the syntax differs from that of a C-style array. The STL container array object employs templates to operate. The characteristics of the array do not defer; we are still required to provide and specify both the data type of the elements that the array will store and the total number of elements within the template brackets, as demonstrated in the following approach:
 </p>
-
 
 
 <br>
@@ -291,6 +299,187 @@ std::array<int, 3> arr {...};
 
 
 
+### Traversing elements
+
+
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+<hr>
+
+<br>
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+
+
+<code><h3>Theory</h3></code>
+
+<p>
+This may come as a bit of a surprise to you. Nearly every other book, article, tutuorial, and other resources in the world of programming will start explaning each container by telling you about how to insert, delete, ... elements to and from that container. So, why did I decide to start with traversing then? The reason why I want to start with traversing is because in my opinion traversing is probably the one operaiton that is increadibly important so much so that it can influence how our other operations perform. Traversing is the process of ... . The way we traveres a data structure depends highly on the structure of that data structure. Traversing effects other operaitons greately, for example before we can even start thinking about inserting an element we must first determine the correct location to place it and that is done by going through the enitre structer or in other words traversing it. The some goes for deleting an element, before we can think about deleting something we must find its place and location in the data structure to access it and remove it from the container. Even operations such as searching can be greately influeneced depending on the way we decide to traveres elements.
+
+</p>
+
+The reason why traversing is so important is because visiting an element enables us to have exclusive capability over it which involves all kinds of manipulation over that particular element or set of elements. The way in which we approach going through the data structure and attempting to visit an element can greately impact other operations such as adding, deleting, searching, changing and in general manipulating our data structure since all these operations in one way or another rely on traversing our data structure. 
+
+<br>
+<br>
+
+<p>
+Accessing elements within a container or collection is indeed one of the fundamental functionalities offered by a data structure. After all, when we store something somewhere, we naturally expect to retrieve it at a later point; otherwise, there would be no purpose in storing it initially. To retrieve information from a specific location within an array in the C approach, we employ the <span class="special">name</span> of the array in conjunction with a commonly referred-to entity called an <span class="special">index</span>. The method that we demonstarted above is commonly refered to as <span class="special">"Array Subscripting"</span>. Where we use the name of the array in combination with a set of square brackets that contain the index of teh element that we wish to access. An index is an integer that corresponds to the position of an element within the array. It is crucial to note that, unlike the real world where we typically label the first element as 1 in the context of arrays, we start counting from 0. In the example below, if we wished to obtain the first element, we would use an index of 0:
+</p>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+```C++
+#include <iostream>
+
+
+int main(int argc, char* argv[])
+{
+	int numbers[5] = {23, 10, 7, 9, 12};
+	
+	// Printing the first element in the array.
+	std::cout << "The first number is: " << numbers[0] << std::endl;
+
+	return (0);
+}
+```
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<code><h3>STL approach</h3></code>
+
+<p>
+In the realm of C++, there are multiple methods for accomplishing tasks, and one alternative approach for retrieving an element from an array involves what is commonly referred to as <span class="special">"Arithmetic operations"</span>. In this method we obtain an element by performing mathematical operations on the pointers that reference the storage location of each element. <span class="special">Iterators</span> serve the purpose of enabling programmers to access and manipulate individual elements within a container. They achieve this by facilitating iteration through the elements using pointers. In some ways, iterators resemble the C way of working with and manipulating pointers, but they offer a more refined approach. If we wish to achieve the same objective using an object-oriented approach in C++, we can employ the following method with iterators:
+</p>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+```C++
+#include <iostream>
+#include <array>
+
+
+int main(int argc, char* argv[])
+{
+	std::array<int, 5> numbers = {1, 2, 3, 4, 5};
+
+    // Create an "Iterator" pointing to the first element in the array.
+    std::array<int, 5>::iterator it = numbers.begin();
+    
+    // Printing elements at positions 0 and 2.
+    std::cout << "Element at index 0: " << *(it + 0) << std::endl;
+    std::cout << "Element at index 2: " << *(it + 2) << std::endl;
+
+    return (0);
+}
+```
+
+
+
+<br>
+<br>
+<br>
+
+<p>
+Iterators serve as a universal means of accessing elements within STL (Standard Template Library) containers, offering a consistent interface for element access. This uniformity means that we need not concern ourselves with the inner workings or characteristics of the container, as iterators provide a consistent method of retrieving elements across all container types. 
+
+It's easy to overlook the concept of iterators when working with simpler data structures like arrays, which already offer straightforward ways of access, such as the aforementioned method. In such cases, it may not seem necessary to introduce yet another approach for accessing data structures. However, as we delve into more complex data structures that lack straightforward methods for element retrieval, our appreciation for iterators will grow.
+</p>
+
+<p>
+It may appear incredibly convenient when we simply place a number within square brackets, and presto! We retrieve the desired element. So, why introduce yet another approach to tackle this problem? Well, the issue lies in the fact that this method pertains solely to arrays at the moment. As we venture into more intricate data structures, we'll encounter the challenge of having to remember and manage various methods for obtaining elements from them.
+
+The dilemma arises because not everything is stored contiguously and neatly, like arrays that allow for straightforward access through simple number increments or decrements.
+</p>
+
+<p>
+In the provided code snippet, on line 7, we declare and initialize a "std::array" called "numbers" containing five integer elements: 1, 2, 3, 4, and 5. Following this, we create an iterator named "it", which is declared and initialized using the "begin()" function of the "std::array". This iterator now references the first element within the "numbers" array. Subsequently, we attempt to print the various elements within the array, starting with the first element. To do this, we use the expression *(it + 0), which dereferences the iterator "it" and adds 0 to its position, effectively keeping it at the same element it initially pointed to (index 0). Then, it prints the value at that position, which is 1. In a similar manner, when we use *(it + 2), the iterator "it" is dereferenced and incremented by 2, causing it to point to the third element of the array (index 2). It then prints the value at that position, which is 3.
+
+
+
+Iterators in C++ function in a manner analogous to pointers, and they allow the use of pointer arithmetic. When you add or subtract an integer value to/from an iterator, it advances or retreats the iterator by a number of positions equivalent to the memory size occupied by the type the iterator points to. In this context, adding 2 to an iterator pointing to a 4-byte integer type advances it by 8 bytes. In C++, when you perform iterator arithmetic, such as it + 2, the iterator advances by 2 positions, with each position corresponding to the size of the type the iterator is pointing to. In the case of a std::array of integers, where each integer typically occupies 4 bytes (assuming a typical 32-bit integer), this means that iterator arithmetic like it + 2 effectively moves the iterator 8 bytes forward in memory. It's worth noting that *(it + 0) is functionally identical to *(it), as adding zero doesn't alter the iterator's position. However, some developers find this notation helpful as it resembles array subscripting, where the number following the iterator addition corresponds to the index within square brackets.
+
+
+*(it + 0) == array[0]
+*(it + 2) == array[2]
+</p>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<code><h3>Big-O for accessing elements</h3></code>
+
+<p>
+In the realm of C++, there are multiple methods for accomplishing tasks, and one alternative approach for retrieving an element from an array involves what is commonly referred to as <span class="special">"Arithmetic operations"</span>. In this method we obtain an element by performing mathematical operations on the pointers that reference the storage location of each element. <span class="special">Iterators</span> serve the purpose of enabling programmers to access and manipulate individual elements within a container. They achieve this by facilitating iteration through the elements using pointers. In some ways, iterators resemble the C way of working with and manipulating pointers, but they offer a more refined approach. If we wish to achieve the same objective using an object-oriented approach in C++, we can employ the following method with iterators:
+</p>
+
+<br>
+
+<p>
+I understand that some of you may be feeling a bit puzzled about the reasons behind the constraints and characteristics we've discussed regarding arrays so far. While you might already be familria with arrays, you may not have delved into the specific rationale behind these requirements and limitations. Until this point, we focused on establishing a fundamental understanding of working with arrays and their basic syntax, which is why we didn't delve into the reasoning behind these rules. However, fear not, as we are now prepared to address your questions. Explaining these concepts will help us grasp the time complexity and Big-O notation associated with accessing elements in arrays.
+
+
+Because each element in an array is placed directly adjacent to one another, accessing individual elements becomes not only easier but also completely independent from the others. This independence stems from the fact that to access an element, we don't need to traverse or consider the previous elements in any way. This characteristic is precisely why arrays are referred to as offering random access. With the assurance that each element is sequentially positioned due to the contiguous arrangement, coupled with our knowledge of the exact size of each element and the total memory allocated, we can perform intriguing operations using straightforward mathematical calculations. In essence, this means that any element can be accessed by simply adding an offset to the base value of the array or the position of the first element.
+
+
+Let's consider accessing the third element in the array. We already have the initial position, so all that's required is to move forward by three steps. In this context, assuming a 32-bit system where an integer typically occupies 4 bytes, we can calculate the distance by multiplying the desired position (in this case, 3) by the step size (4 bytes). This computation results in 12 bytes. Consequently, we can swiftly reposition ourselves to the beginning of the seventh element within our array. These are the fundamental principles that underlie the constraints we've discussed. They facilitate the efficient and rapid retrieval of elements we are already aware of. It's these attributes that empower compilers to execute various optimizations and clever techniques on our arrays.
+
+
+The size of an array is fixed and cannot be altered after declaration. This constraint is not intended to frustrate programmers but serves a crucial purpose in optimizing array performance, particularly regarding element access. To fulfill its commitment to us, the array data structure must ensure that the final size is declared and provided from before-hand.
+
+
+Every element within an array must adhere to the same data type, whether they are integers, floats, characters, or even custom types like structs and classes. This enforced uniformity serves a dual purpose. Firstly, it allows the array to accurately predict and calculate the total memory it requires by multiplying the size of a single element by the desired count. Moreover, having all elements of the same type offers another significant advantage: rapid element retrieval from the array. This is achieved by leveraging the knowledge of the element type, which indicates its size. Since the array comprises elements of identical types, we can efficiently determine the location of any element through straightforward arithmetic operations. In essence, finding an element within the array becomes a quick and efficient process.
+
+
+We possess several key pieces of information about our array: its starting point, the desired number of elements to store, and the uniform data types contained within it. This knowledge allows us to accurately determine the size of each data type, all of which are equal. Armed with this information, we can efficiently forecast and manage our array. This is precisely why the time complexity or Big-O notation for accessing elements in arrays is considered constant, denoted as O(1). It is because we can retrieve each element independently of others by simply knowing the starting location and performing basic mathematical operations to calculate the element's position, regardless of the array's size.
+
+</p>
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+<div class="line-divider-bottom">
+  <hr class="left-line">
+  <span>|</span>
+  <span class="middle">Introduction</span>
+  <span>|</span>
+  <hr class="right-line">
+</div>
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
 
 
 
@@ -320,20 +509,33 @@ Accessing elements within a container or collection is indeed one of the fundame
 <br>
 <br>
 
+Being the fat fingered culmsy programer that I am, it is not unlikely for me to attempt to access an elemen in a positino which does not exsit.
 
 
 ```C++
+///////////////////////////////////////////////////////////////////////////////
+//
+// Description:
+// 
+// This program demonstrates the creation of student entities through the
+// composition of three individual variables for each student. Each variable
+// corresponds to a specific student attribute, with a numerical postfix
+// indicating the reference to the respective student. This showcases the
+// structuring of student information in a programmatic manner.
+//
+///////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
+#include <cstdlib>
 
-
-int main(int argc, char* argv[])
+int main(void)
 {
 	int numbers[5] = {23, 10, 7, 9, 12};
 	
 	// Printing the first element in the array.
 	std::cout << "The first number is: " << numbers[0] << std::endl;
 
-	return (0);
+	return (EXIT_SUCCESS);
 }
 ```
 
