@@ -281,6 +281,9 @@ std::array<int, 3> arr {...};
 <br>
 
 
+<code><h3>Other approaches</h3></code>
+It is important to understand that after creating an array we have the option to leave an array uninitialized and populate it later on. We can do this by taking advantage of loops. Here is an example:
+
 <!-- ############################################# Separator - Bottom ############################################# -->
 
 <div class="line-divider-bottom">
@@ -316,17 +319,25 @@ std::array<int, 3> arr {...};
 <code><h3>Theory</h3></code>
 
 <p>
-This may come as a bit of a surprise to you. Nearly every other book, article, tutuorial, and other resources in the world of programming will start explaning each container by telling you about how to insert, delete, ... elements to and from that container. So, why did I decide to start with traversing then? The reason why I want to start with traversing is because in my opinion traversing is probably the one operaiton that is increadibly important so much so that it can influence how our other operations perform. Traversing is the process of ... . The way we traveres a data structure depends highly on the structure of that data structure. Traversing effects other operaitons greately, for example before we can even start thinking about inserting an element we must first determine the correct location to place it and that is done by going through the enitre structer or in other words traversing it. The some goes for deleting an element, before we can think about deleting something we must find its place and location in the data structure to access it and remove it from the container. Even operations such as searching can be greately influeneced depending on the way we decide to traveres elements.
-
+This might come as a surprise, but unlike many other resources in the realm of programming that typically begin by explaining how to insert, delete, and manipulate elements within a container, I've chosen to commence with the concept of traversing. Why, you may wonder? My rationale behind prioritizing traversal is rooted in its exceptional significance—it is an operation that holds immense sway over the performance of other operations. In programming, traversing refers to the process of systematically visiting each element of a data structure. The reason why traversing is so important is because visiting an element enables us to have exclusive capability over it which involves all kinds of manipulation over that particular element or set of elements.
 </p>
-
-The reason why traversing is so important is because visiting an element enables us to have exclusive capability over it which involves all kinds of manipulation over that particular element or set of elements. The way in which we approach going through the data structure and attempting to visit an element can greately impact other operations such as adding, deleting, searching, changing and in general manipulating our data structure since all these operations in one way or another rely on traversing our data structure. 
 
 <br>
 <br>
 
 <p>
-Accessing elements within a container or collection is indeed one of the fundamental functionalities offered by a data structure. After all, when we store something somewhere, we naturally expect to retrieve it at a later point; otherwise, there would be no purpose in storing it initially. To retrieve information from a specific location within an array in the C approach, we employ the <span class="special">name</span> of the array in conjunction with a commonly referred-to entity called an <span class="special">index</span>. The method that we demonstarted above is commonly refered to as <span class="special">"Array Subscripting"</span>. Where we use the name of the array in combination with a set of square brackets that contain the index of teh element that we wish to access. An index is an integer that corresponds to the position of an element within the array. It is crucial to note that, unlike the real world where we typically label the first element as 1 in the context of arrays, we start counting from 0. In the example below, if we wished to obtain the first element, we would use an index of 0:
+The manner in which we traverse a data structure is intricately tied to the structure's inherent characteristics. Traversal significantly impacts other operations; for instance, prior to contemplating the insertion of an element, we must first ascertain the correct location within the structure, a task accomplished by navigating through the entire structure—effectively traversing it. The same principle applies to deleting an element; determining its location within the data structure is imperative before the removal process can commence. Even operations like searching are profoundly influenced by the chosen method of element traversal.
+</p> 
+
+When discussing the STL part take time to explain iterators in depth.
+
+<br>
+<br>
+
+<code><h3>C approach</h3></code>
+
+<p>
+Arrays usually have the most basic method when it comes to traversing. If a programmer wishes to traveres an array they would tiypically use some variation of a loop (for-loop, while-loop) and start at the begining with index zero and continue iterating through the array elements using the loop until they encounter the last element through the index of the last eleemnt which is usually one less than the total size. Do take note that for the loop to stop correctly we must instruct the condition to be one less than the total size by either decrementing the size or using the less than operator. The following code demonstrates this concept:
 </p>
 
 
@@ -339,16 +350,50 @@ Accessing elements within a container or collection is indeed one of the fundame
 
 ```C++
 #include <iostream>
+#include <cstdlib>
 
-
-int main(int argc, char* argv[])
+int main(void)
 {
-	int numbers[5] = {23, 10, 7, 9, 12};
-	
-	// Printing the first element in the array.
-	std::cout << "The first number is: " << numbers[0] << std::endl;
+    int numbers[] = {1, 2, 3, 4, 5};
 
-	return (0);
+	// For-loop
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+
+	std::cout << "Using a for-loop to print the array:" << "\n";
+	
+    for(std::size_t index = 0; index < 5; ++index)
+	{
+        std::cout << numbers[index] << "\n";
+    }
+	
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+	// For-loop
+	
+	
+	
+	
+	// while-loop
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+	
+	std::cout << "Using a while-loop to print the array:" << "\n";
+	
+	std::size_t index = 0;
+	
+	while(index < 5)
+	{
+		std::cout << numbers[index] << "\n";
+		
+		++index;
+	}
+	
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+	// while-loop
+
+    return(EXIT_SUCCESS);
 }
 ```
 
@@ -439,6 +484,12 @@ Iterators in C++ function in a manner analogous to pointers, and they allow the 
 
 
 
+
+<code><h3>Big-O for traversing</h3></code>
+
+<p>
+Big-O referes to the worst time complextiy and worst case sceniaro that can happen. When dealing with arrays the assumption is that the programmer intends to traveres the entire set of the array from the first eleemnt until the very last element. Under these assumptions the time complextiy for the worst-case sceniar is O(n). This is since we need to manually traveres every element in the array one by one which can increase in a linear fashion if the array can be of random size.
+</p>
 
 <code><h3>Big-O for accessing elements</h3></code>
 
@@ -591,6 +642,10 @@ int main(int argc, char* argv[])
 <br>
 <br>
 
+accessing the first element: with front() which has a complexity of O(1)
+accessing the last element: with back() which has a complexity of O(1)
+accessing a random element: with at() or with operator[] both have a complexity of O(1)
+
 <p>
 Iterators serve as a universal means of accessing elements within STL (Standard Template Library) containers, offering a consistent interface for element access. This uniformity means that we need not concern ourselves with the inner workings or characteristics of the container, as iterators provide a consistent method of retrieving elements across all container types. 
 
@@ -668,6 +723,309 @@ We possess several key pieces of information about our array: its starting point
 <!-- ############################################# Separator - Bottom ############################################# -->
 
 
+
+### Searching elements
+
+
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+<hr>
+
+<br>
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+
+
+<code><h3>Theory</h3></code>
+
+<p>
+Searching is a fundamental operation in computer science, and it involves finding a specific element or value within a collection of data. This collection can take various forms, we will focus on searching in the context of arrays in this page. It surprises me how a large number of programmers do not know the difference between searcing and accessing an element. The difference between accessing and searching is the fact that in accessing one may know from before hand the exact index or placement of an element and try and access it. From the other hand, searching is the attempt to find and obtain an element withouth having any previous knowledeg over its position or existance within the data structure. There are different algorithms for searching, and their efficiency depends on various factors like the size of the array, whether the data is sorted or unsorted, and the specific requirements of the problem. Let's take a look at some of the different ways:
+</p>
+
+<br>
+<br>
+
+<code><h3>Linear search</h3></code>
+
+<p>
+The most natural approach for finding an element in an array is to go through each element in a linear fashion and examine if the element is the one we are looking for. This method is also sometimes referred to as the brute force approach because we literally need to examine every element as we go which means that the complextiy of this method is O(n) and can increase at a linear rate depending on teh size of the array.
+</p>
+
+
+#include <iostream>
+
+```C++
+#include <iostream>
+#include <cstdlib>
+
+int main(void)
+{
+    int numbers[] = {1, 2, 3, 4, 5};
+
+	// For-loop
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+
+	std::cout << "Using a for-loop to print the array:" << "\n";
+	
+    for(std::size_t index = 0; index < 5; ++index)
+	{
+        std::cout << numbers[index] << "\n";
+    }
+	
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+	// For-loop
+	
+	
+	
+	
+	// while-loop
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+	
+	std::cout << "Using a while-loop to print the array:" << "\n";
+	
+	std::size_t index = 0;
+	
+	while(index < 5)
+	{
+		std::cout << numbers[index] << "\n";
+		
+		++index;
+	}
+	
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+	// while-loop
+
+    return(EXIT_SUCCESS);
+}
+```
+
+bool contains(int* beginptr, std::size_t length, int target);
+
+int main(void)
+{
+    int array[5] = {1, 2, 3, 4, 5};
+    
+    std::cout << contains(array, 5, 10);
+    
+    return(0);
+}
+
+
+bool contains(int* beginptr, std::size_t length, int target)
+{
+    for(std::size_t index = std::size_t(0); index < 5; ++index)
+    {
+        if(beginptr[index] == target)
+        {
+            return(true);
+        }
+    }
+    
+    return(false);
+}
+
+
+<br>
+<br>
+<br>
+
+
+
+```C++
+#include <iostream>
+#include <cstdlib>
+
+int main(void)
+{
+    int numbers[] = {1, 2, 3, 4, 5};
+
+	// For-loop
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+
+	std::cout << "Using a for-loop to print the array:" << "\n";
+	
+    for(std::size_t index = 0; index < 5; ++index)
+	{
+        std::cout << numbers[index] << "\n";
+    }
+	
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+	// For-loop
+	
+	
+	
+	
+	// while-loop
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+	
+	std::cout << "Using a while-loop to print the array:" << "\n";
+	
+	std::size_t index = 0;
+	
+	while(index < 5)
+	{
+		std::cout << numbers[index] << "\n";
+		
+		++index;
+	}
+	
+    ////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+	// while-loop
+
+    return(EXIT_SUCCESS);
+}
+```
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<code><h3>STL approach</h3></code>
+
+<p>
+In the realm of C++, there are multiple methods for accomplishing tasks, and one alternative approach for retrieving an element from an array involves what is commonly referred to as <span class="special">"Arithmetic operations"</span>. In this method we obtain an element by performing mathematical operations on the pointers that reference the storage location of each element. <span class="special">Iterators</span> serve the purpose of enabling programmers to access and manipulate individual elements within a container. They achieve this by facilitating iteration through the elements using pointers. In some ways, iterators resemble the C way of working with and manipulating pointers, but they offer a more refined approach. If we wish to achieve the same objective using an object-oriented approach in C++, we can employ the following method with iterators:
+</p>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+```C++
+#include <iostream>
+#include <array>
+
+
+int main(int argc, char* argv[])
+{
+	std::array<int, 5> numbers = {1, 2, 3, 4, 5};
+
+    // Create an "Iterator" pointing to the first element in the array.
+    std::array<int, 5>::iterator it = numbers.begin();
+    
+    // Printing elements at positions 0 and 2.
+    std::cout << "Element at index 0: " << *(it + 0) << std::endl;
+    std::cout << "Element at index 2: " << *(it + 2) << std::endl;
+
+    return (0);
+}
+```
+
+
+
+<br>
+<br>
+<br>
+
+<code><h3>Searching array algorithms</h3></code>
+
+Interpolation search
+This is another algorithm to find an element in a sorted array. Another, because the first thing that comes to mind is the binary search. That’s perhaps the most well known and intuitive way of finding an element in a sorted array. If you don’t know what binary search is, you’ll probably get bored somewhere along the line and leave this article, so, for the sake of succinctness, I will make it short.
+
+Binary search is a recursive algorithm to find an element in a sorted array. The idea is to suppose that the element we are looking for is right in the middle of the array. If it is, we’re lucky, if not, and if it’s less than the one we’re looking for, we do the same for the right half of the array. And of course, if it’s greater, we do the same for the left half. After each step the array is getting twice as smaller, resulting in a logarithmic complexity (O(logN)). Small example.
+
+<p>
+Iterators serve as a universal means of accessing elements within STL (Standard Template Library) containers, offering a consistent interface for element access. This uniformity means that we need not concern ourselves with the inner workings or characteristics of the container, as iterators provide a consistent method of retrieving elements across all container types. 
+
+It's easy to overlook the concept of iterators when working with simpler data structures like arrays, which already offer straightforward ways of access, such as the aforementioned method. In such cases, it may not seem necessary to introduce yet another approach for accessing data structures. However, as we delve into more complex data structures that lack straightforward methods for element retrieval, our appreciation for iterators will grow.
+</p>
+
+<p>
+It may appear incredibly convenient when we simply place a number within square brackets, and presto! We retrieve the desired element. So, why introduce yet another approach to tackle this problem? Well, the issue lies in the fact that this method pertains solely to arrays at the moment. As we venture into more intricate data structures, we'll encounter the challenge of having to remember and manage various methods for obtaining elements from them.
+
+The dilemma arises because not everything is stored contiguously and neatly, like arrays that allow for straightforward access through simple number increments or decrements.
+</p>
+
+<p>
+In the provided code snippet, on line 7, we declare and initialize a "std::array" called "numbers" containing five integer elements: 1, 2, 3, 4, and 5. Following this, we create an iterator named "it", which is declared and initialized using the "begin()" function of the "std::array". This iterator now references the first element within the "numbers" array. Subsequently, we attempt to print the various elements within the array, starting with the first element. To do this, we use the expression *(it + 0), which dereferences the iterator "it" and adds 0 to its position, effectively keeping it at the same element it initially pointed to (index 0). Then, it prints the value at that position, which is 1. In a similar manner, when we use *(it + 2), the iterator "it" is dereferenced and incremented by 2, causing it to point to the third element of the array (index 2). It then prints the value at that position, which is 3.
+
+
+
+Iterators in C++ function in a manner analogous to pointers, and they allow the use of pointer arithmetic. When you add or subtract an integer value to/from an iterator, it advances or retreats the iterator by a number of positions equivalent to the memory size occupied by the type the iterator points to. In this context, adding 2 to an iterator pointing to a 4-byte integer type advances it by 8 bytes. In C++, when you perform iterator arithmetic, such as it + 2, the iterator advances by 2 positions, with each position corresponding to the size of the type the iterator is pointing to. In the case of a std::array of integers, where each integer typically occupies 4 bytes (assuming a typical 32-bit integer), this means that iterator arithmetic like it + 2 effectively moves the iterator 8 bytes forward in memory. It's worth noting that *(it + 0) is functionally identical to *(it), as adding zero doesn't alter the iterator's position. However, some developers find this notation helpful as it resembles array subscripting, where the number following the iterator addition corresponds to the index within square brackets.
+
+
+*(it + 0) == array[0]
+*(it + 2) == array[2]
+</p>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<code><h3>Big-O for traversing</h3></code>
+
+<p>
+Big-O referes to the worst time complextiy and worst case sceniaro that can happen. When dealing with arrays the assumption is that the programmer intends to traveres the entire set of the array from the first eleemnt until the very last element. Under these assumptions the time complextiy for the worst-case sceniar is O(n). This is since we need to manually traveres every element in the array one by one which can increase in a linear fashion if the array can be of random size.
+</p>
+
+<code><h3>Big-O for accessing elements</h3></code>
+
+<p>
+In the realm of C++, there are multiple methods for accomplishing tasks, and one alternative approach for retrieving an element from an array involves what is commonly referred to as <span class="special">"Arithmetic operations"</span>. In this method we obtain an element by performing mathematical operations on the pointers that reference the storage location of each element. <span class="special">Iterators</span> serve the purpose of enabling programmers to access and manipulate individual elements within a container. They achieve this by facilitating iteration through the elements using pointers. In some ways, iterators resemble the C way of working with and manipulating pointers, but they offer a more refined approach. If we wish to achieve the same objective using an object-oriented approach in C++, we can employ the following method with iterators:
+</p>
+
+<br>
+
+<p>
+I understand that some of you may be feeling a bit puzzled about the reasons behind the constraints and characteristics we've discussed regarding arrays so far. While you might already be familria with arrays, you may not have delved into the specific rationale behind these requirements and limitations. Until this point, we focused on establishing a fundamental understanding of working with arrays and their basic syntax, which is why we didn't delve into the reasoning behind these rules. However, fear not, as we are now prepared to address your questions. Explaining these concepts will help us grasp the time complexity and Big-O notation associated with accessing elements in arrays.
+
+
+Because each element in an array is placed directly adjacent to one another, accessing individual elements becomes not only easier but also completely independent from the others. This independence stems from the fact that to access an element, we don't need to traverse or consider the previous elements in any way. This characteristic is precisely why arrays are referred to as offering random access. With the assurance that each element is sequentially positioned due to the contiguous arrangement, coupled with our knowledge of the exact size of each element and the total memory allocated, we can perform intriguing operations using straightforward mathematical calculations. In essence, this means that any element can be accessed by simply adding an offset to the base value of the array or the position of the first element.
+
+
+Let's consider accessing the third element in the array. We already have the initial position, so all that's required is to move forward by three steps. In this context, assuming a 32-bit system where an integer typically occupies 4 bytes, we can calculate the distance by multiplying the desired position (in this case, 3) by the step size (4 bytes). This computation results in 12 bytes. Consequently, we can swiftly reposition ourselves to the beginning of the seventh element within our array. These are the fundamental principles that underlie the constraints we've discussed. They facilitate the efficient and rapid retrieval of elements we are already aware of. It's these attributes that empower compilers to execute various optimizations and clever techniques on our arrays.
+
+
+The size of an array is fixed and cannot be altered after declaration. This constraint is not intended to frustrate programmers but serves a crucial purpose in optimizing array performance, particularly regarding element access. To fulfill its commitment to us, the array data structure must ensure that the final size is declared and provided from before-hand.
+
+
+Every element within an array must adhere to the same data type, whether they are integers, floats, characters, or even custom types like structs and classes. This enforced uniformity serves a dual purpose. Firstly, it allows the array to accurately predict and calculate the total memory it requires by multiplying the size of a single element by the desired count. Moreover, having all elements of the same type offers another significant advantage: rapid element retrieval from the array. This is achieved by leveraging the knowledge of the element type, which indicates its size. Since the array comprises elements of identical types, we can efficiently determine the location of any element through straightforward arithmetic operations. In essence, finding an element within the array becomes a quick and efficient process.
+
+
+We possess several key pieces of information about our array: its starting point, the desired number of elements to store, and the uniform data types contained within it. This knowledge allows us to accurately determine the size of each data type, all of which are equal. Armed with this information, we can efficiently forecast and manage our array. This is precisely why the time complexity or Big-O notation for accessing elements in arrays is considered constant, denoted as O(1). It is because we can retrieve each element independently of others by simply knowing the starting location and performing basic mathematical operations to calculate the element's position, regardless of the array's size.
+
+</p>
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+<div class="line-divider-bottom">
+  <hr class="left-line">
+  <span>|</span>
+  <span class="middle">Introduction</span>
+  <span>|</span>
+  <hr class="right-line">
+</div>
+
+<!-- ############################################# Separator - Bottom ############################################# -->
 
 
 
