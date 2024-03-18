@@ -708,6 +708,22 @@ We possess several key pieces of information about our array: its starting point
 
 </p>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<code><h3>Common problems with accessing elements</h3></code>
+
+<p>
+There is one big common problem that many programmers will face when they are dealing with accessing elements in arrays, and that is the concept of attempting to access an element beyond the boundaries of an array. Of course C++ being a completely free language will not stop the programmer from doing this, but this could have some dire concensquences. Depending on the platform/Operating system, complier, and many other factors you may get away with it or you will face the common access violation error known as "...". This simply means that the system has detect an unauthorized access attempt to a part of memory that it was not allowed to and therefore stopped it from happening. Obivously in situtations where the system does not terminate the access it can have bad impart such as corrupting the data of other programs or even worse the entire system which can lead to crashes or other bad things happenig. So be aware that even though there is nothing to stop it sometimes, but you really should check if you are accesisg the correct index. This is also one of the reasons why a lot of programmers are hesitant towards c++ because they use to say that "You can shoot yourself in the foot". In my opinion though it is not C++ fault. I mean... let's be serious is it ever the gun's fault for doing what it is supposed to do which is shoot a bullet? or is it really the stupidity of the one using it for not realizing that shooting yourself in the foot is probably not the way to go about it?
+</p>
+
 <!-- ############################################# Separator - Bottom ############################################# -->
 
 <div class="line-divider-bottom">
@@ -1247,6 +1263,13 @@ int main(int argc, char* argv[])
 <br>
 <br>
 <br>
+
+<code><h3>No push_back() or pop_back() for arrays?</h3></code>
+
+<p>
+The reasno wyh arrays do not have push_back or push_front is because of the nature of an array in which all the space is occupied at once. This means that there is alawys something there! Even if that thing is nothing more than a garbage value left over from programs and operations that owned that space from before hand. So, essentially the array[] notation is an alternative way of accomplishing the same by simply changing the values that already exist there. THis is what makes arrays a little more wierd compared to other data structures.
+</p>
+
 
 <code><h3>Searching array algorithms</h3></code>
 
@@ -2019,6 +2042,155 @@ Every element within an array must adhere to the same data type, whether they ar
 
 
 We possess several key pieces of information about our array: its starting point, the desired number of elements to store, and the uniform data types contained within it. This knowledge allows us to accurately determine the size of each data type, all of which are equal. Armed with this information, we can efficiently forecast and manage our array. This is precisely why the time complexity or Big-O notation for accessing elements in arrays is considered constant, denoted as O(1). It is because we can retrieve each element independently of others by simply knowing the starting location and performing basic mathematical operations to calculate the element's position, regardless of the array's size.
+
+</p>
+
+
+<p>
+
+
+-- Talk about converting arrays to and from C to C++:
+
+Arrays are quite annoying not just because they are strict and difficult to manage, but at the same time theer are old school C and new C++ versions of them. So, one of the moste important things is to know how to convert back and forward betewen the two veriations...
+
+To convert from a c style array to a STL style array we can use the std::to_array method.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Disadvantages of an array and the reason why other data strcutres exist
+
+
+Arrays, like all data structures, trade one kind of efficiency for another.
+
+The efficiency that an array specializes in is that of rapidly looking up an element by its index. It does that, not by searching through the array for the correct element, but by performing a mathematical calculation. If an array has elements of size 8 bytes, and you want to look up the nth element, it will be located at the memory location which is 8 * n bytes from the beginning of the array.
+
+
+The biggest downside of an array is that the programmer is unable to change the size of it onec it has been declared. This requires the programmer to know exactly how many elemens it needs to account for from before hand which is mostly not possbile. And if not possible the programmer must reside to request more space than potentalilly neccessary to account for any problems or additional requists. which results in a waste of memory.
+
+
+
+The reasno why we cannot denote the size of an array by itself is because in the world of C, an array is not an object that can self contain itselfs properties. Meaning that an array has no bulit in property nor function that allows us to obatin the size of it. It is just a data container that stores a series of elements. That being said, there are ways to get around this obsticle. But, before we get to that, many of you might be wondering why we cannot just simply use the "sizeof" operator to find the size of an array. Let's discuss this topic in much more detail.
+
+
+There is a sifnificant differenec between an entity that claims to hold a series of elements, array, and an entity that claims to store the location of the first element of that series, pointer to the first element. We are dealing with a pointer that funny enough by couincidence happens to point to some integer or element that happens to be the first in a series of elements without being aware of it. It is just a normal pointer that points to some location in memeory.
+
+
+Another problem is that onec you declare an array, the total amount of space is immeditaely occupied by the array, which means that space will be taken up even if not used which results in a massive performance hit if that space is not used, becaues it still needs to be maintained.
+
+-- Disadvantages of an array and the reason why other data strcutres exist
+
+
+
+
+
+When working with data structures and algorithm we always need to be aware of things that I like to refer to as "hidden traps". For example, in the concept of a linked list, everyone keeps thikning and believing that they are greate at adding and deeltenig, but...
+
+
+
+
+
+
+
+
+
+
+When passing in c arrays to a function except for a #Define and passing in size as a parameter, what you could do instead is cerate a struct named "Array" that contains a reference or pointer to that array along with the size. And then depending on wheather I wish to manipulate or just access the elemnts of that array, I woul either use the struct called "Const Array" or just the "Array". But, never the less I create both as I may need any of them. The problem with #Defines is that in many cases you will need to vary beteween the total amount of elements you need in an array and #Defines are super strict about the numbers they allow. So, what ends up happening is that you create a bunch of #Defines for different size arrays and it gets a nightmare quickly. Furthermore, #Defines are not super intuitive as they act like plain text, sometimes you don't know what you are dealing with until you actually look itup and see that the keyword is just a const name that is defined in #Define. The struct method is better sinec it does not need to know teh size from before hand, but it is passed to it as we go. And we also get syntax higligting and checking as we go with it as well.
+
+
+
+
+
+
+
+At this point you should have a decent undersatding of how arrays work and how to create and work with them. However, this is not everything. We will discuss in the next section about vectors and talk about how to dynamically create and allocate arrays because I feel like these two topics are very similar to each other and help us understanding where vectors come from. See you in the next section!
+
+
+
+
+
+
+// Create a strut here for passing in arrays as structs with their size as const. and handle that in your function for sorting c arrays.
+// Or you could also have a normal array_ptr with the size being passed in.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Shifting elements in an array after deleting or inserting into them is a common practice for several reasons:
+
+Data Integrity: Shifting elements helps maintain the integrity of the data structure. In many cases, the order of elements in an array matters. If you simply leave empty slots and populate them as needed, you could end up with data in the wrong order or gaps in the data, which can lead to incorrect results or unexpected behavior in algorithms that rely on the correct order of elements.
+
+Predictable Indexing: Shifting elements ensures that the indexes of elements in the array remain predictable and contiguous. This makes it easier to access elements using their indices, which is a fundamental operation in array-based data structures. If you leave gaps and populate them later, you would need to keep track of which slots are empty, making indexing more complex and potentially slower.
+
+Memory Efficiency: Shifting elements can be more memory-efficient than leaving gaps. If you leave gaps, you would need additional data structures to keep track of which slots are empty, which can consume extra memory. Shifting elements allows you to utilize the array's memory more efficiently.
+
+Algorithmic Complexity: Shifting elements can be done efficiently with simple operations like copying, which often have O(n) time complexity, where n is the number of elements to be shifted. On the other hand, managing empty slots and populating them as needed can lead to more complex and potentially less efficient algorithms, as you would need to search for empty slots or manage additional data structures.
+
+Consistency: Shifting elements maintains a consistent array structure. When you access or modify elements in an array, you can rely on consistent behavior regardless of whether elements have been deleted or inserted. This predictability simplifies programming and reduces the chances of errors.
+
+However, it's worth noting that there are situations where leaving gaps and populating them as needed can be more efficient, especially when dealing with very large arrays and considering trade-offs between memory usage and computational complexity. Some data structures, like dynamic arrays or hash tables, may use techniques to manage gaps more efficiently while still providing consistent and predictable behavior. Ultimately, the choice between shifting elements and leaving gaps depends on the specific requirements of your application and the data structures you're using.
+
+
+
+
+
+
+
+
+
+
+
+Once declared, it is not possible to increase the number of elements in an array.
+Also, C++ provides no built-in run-time checking for array subscripting out of
+bounds. This decision is consistent with C++’s general philosophy of not introducing any feature that would slow the execution of a program. Indexing an array
+outside of its declared bounds is a common programming error. Such an error often occurs “silently,” and only much later are its effects noticed.
+
+
+
+There is an interesting connection between arrays and pointers, which C++ inherited from the C programming language—the name of an array is equivalent to a
+pointer to the array’s initial element and vice versa. In the example below, c is
+an array of characters, and p and q are pointers to the first element of c. They all
+behave essentially the same, however.
+char c[ ] = {’c’, ’a’, ’t’};
+char* p = c; // p points to c[0]
+char* q = &c[0]; // q also points to c[0]
+cout << c[2] << p[2] << q[2]; // outputs “ttt”
+This equivalence between array names and pointers can be confusing, but it helps
+Caution to explain many of C++’s apparent mysteries. For example, given two arrays c and
+d, the comparison (c == d) does not test whether the contents of the two arrays are
+equal. Rather it compares the addresses of their initial elements, which is probably
+not what the programmer had in mind. If there is a need to perform operations
+on entire arrays (such as copying one array to another) it is a good idea to use the
+vector class, which is part of C++’s Standard Template Library. We discuss these
+concepts in Section 1.5.5.
+
+
 
 </p>
 
