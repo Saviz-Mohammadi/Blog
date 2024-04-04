@@ -79,6 +79,24 @@ It is quite obvious at this point that each platfrom has its own set of tools an
 CMake has managed to solidify its position as the de-facto standard build system (generator) for C++. As is often the case, the leading technology is criticized for its short-comings and even despised by some. I suspect that for those reasons some new competitors have been cropping up lately (we may look at some in the future), but it doesn’t seem like CMake is going anywhere anytime soon. It has been adopted on all major platforms, and many frameworks and essentially all C++ developers are now expected to have at least rudimentary knowledge of CMake.
 
 In my experience it has always been critical to understand the reasoning behind what is being done – what are we actually trying to achieve? Without a logical explenation we’d be trying to memorize an arbitrary set of rules – this is often what CMake examples available on the internet provide. In this series of posts I’ll try to go over some of the fundamentals of CMake, while also explaining the decision-making and looking at some of the implementation details, that help understand the why. So let us do just that – review the basics of CMake and take a look at what happens underneath while we’re at it.
+
+Before jumping in and getting their hands dirty with CMake, developers will first need to ensure
+CMake is installed on their system. Some platforms may typically come with CMake already
+installed (most Linux distributions have CMake available through their package manager), but
+these versions are often quite old. Where possible, it is recommended that developers work with a
+recent CMake release. This is particularly true when developing for Apple platforms, where tools
+like Xcode and its SDKs change rapidly, and where app store requirements evolve over time. The
+official CMake packages can be downloaded and unpacked to a directory on the developer’s
+machine without interfering with any system-wide CMake installation. Developers are encouraged
+to take advantage of this and remain relatively close to the most recent stable CMake release.
+5
+These days, CMake also comes with fairly extensive reference documentation, which is accessible
+from the official CMake site. This useful resource is very helpful for looking up the various
+commands, options, keywords, and so on. Developers will likely want to bookmark it for quick
+reference. The CMake forum is also a great source of advice and is the recommended place for
+asking CMake-related questions where the documentation doesn’t provide sufficient guidance.
+
+Cmake for professtionals is an excellent book whichc I highly recommend. It is by far the best resource that I have seen for CMake.
 </p>
 
 
