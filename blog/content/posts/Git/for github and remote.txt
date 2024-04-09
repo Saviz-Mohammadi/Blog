@@ -1,0 +1,59 @@
+Thees are for the github section with pull and push:
+
+
+
+SCM enables rapid updates from multiple developers. It’s easy to have a local copy of the codebase fall behind the global copy. Make sure to git pull or fetch the latest code before making updates. This will help avoid conflicts at merge time.
+
+For those teams coming from a non-distributed VCS, having a central repository may seem like a good thing that they don't want to lose. However, while Git has been designed as a distributed version control system (DVCS), with Git, you can still have an official, canonical repository where all changes to the software must be stored. With Git, because each developer's repository is complete, their work doesn't need to be constrained by the availability and performance of the "central" server. During outages or while offline, developers can still consult the full project history. Because Git is flexible as well as being distributed, you can work the way you are accustomed to but gain the additional benefits of Git, some of which you may not even realise you're missing.
+
+Having a full local history makes Git fast, since it means you don’t need a network connection to create commits, inspect previous versions of a file, or perform diffs between commits.
+
+Many source code management tools such as Bitbucket enhance core Git functionality with pull requests. A pull request is a way to ask another developer to merge one of your branches into their repository. This not only makes it easier for project leads to keep track of changes, but also lets developers initiate discussions around their work before integrating it with the rest of the codebase. Since they’re essentially a comment thread attached to a feature branch, pull requests are extremely versatile. When a developer gets stuck with a hard problem, they can open a pull request to ask for help from the rest of the team. Alternatively, junior developers can be confident that they aren’t destroying the entire project by treating pull requests as a formal code review.
+
+
+
+Many cloud based servers for git including github, bitbucket, gitlab and many more require you to login to their website before attempting to use git, which for this day and age is a very typical thing to do if you want to access accounts and online repos for verification.
+5. (Optional) To make Git remember your username and password when working with HTTPS repositories, configure the git-credential-osxkeychain helper.
+
+Install the git-credential-osxkeychain helper
+Bitbucket supports pushing and pulling your Git repositories over both SSH and HTTPS. To work with a private repository over HTTPS, you must supply a username and password each time you push or pull. The git-credential-osxkeychain helper allows you to cache your username and password in the OSX keychain, so you don't have to retype it each time.
+
+1. If you followed the MacPorts or Homebrew instructions above, the helper should already be installed. Otherwise you'll need to download and install it. Open a terminal window and check:
+
+$ git credential-osxkeychain
+usage: git credential-osxkeychain <get|store|erase>
+If you receive a usage statement, skip to step 4. If the helper is not installed, go to step 2.
+
+2. Use curl to download git-credential-osxkeychain (or download it via your browser) and move it to /usr/local/bin:
+
+$ curl -O http://github-media-downloads.s3.amazonaws.com/osx/git-credential-osxkeychain
+$ sudo mv git-credential-osxkeychain /usr/local/bin/
+3. Make the file an executable:
+
+$ chmod u+x /usr/local/bin/git-credential-osxkeychain
+4. Configure git to use the osxkeychain credential helper.
+
+$ git config --global credential.helper osxkeychain
+The next time Git prompts you for a username and password, it will cache them in your keychain for future use.
+
+
+Create a git tips and tricks section and add this:
+
+https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet
+
+
+
+
+If a project has already been set up in a central repository, the clone command is the most common way for users to obtain a local development clone. Like git init, cloning is generally a one-time operation. Once a developer has obtained a working copy, all version control operations are managed through their local repository.
+
+git clone <repo url>
+git clone is used to create a copy or clone of remote repositories. You pass git clone a repository URL. Git supports a few different network protocols and corresponding URL formats. In this example, we'll be using the Git SSH protocol. Git SSH URLs follow a template of: git@HOSTNAME:USERNAME/REPONAME.git
+
+An example Git SSH URL would be: git@bitbucket.org:rhyolight/javascript-data-store.git where the template values match:
+
+HOSTNAME: bitbucket.org
+USERNAME: rhyolight
+REPONAME: javascript-data-store
+When executed, the latest version of the remote repo files on the main branch will be pulled down and added to a new folder. The new folder will be named after the REPONAME in this case javascript-data-store. The folder will contain the full history of the remote repository and a newly created main branch.
+
+For more documentation on git clone usage and supported Git URL formats, visit the git clone Page.
