@@ -1,5 +1,5 @@
 ---
-title: "Git version control system part 02 - Basic commands"
+title: "Undoing changes in git"
 date: 2023-05-12T14:06:22-07:00
 draft: true
 
@@ -31,42 +31,77 @@ weight: 1
 ##### New (without any source code)
 
 <p>
-One of the best times to setup git for your project is at the very start when there is no source code to even begin with. First navigate to the location where you want to create your project folder through the terminal by using the CD (Change directory) command. In this case I am planning on putting my folder for my project which I will convinietly name "Project" on my Desktop location. There are two ways you can go about doing this. You can either instruct git to create the folder as well as to initialize the project by using the first version or you can create the folder by yoursef either normally through your operating system or by using the mkdir command on windows, ... for linux, ... for macOS and create the folder thourgh the terminal. Then seperately call the second version to initialize the folder with git. Once the project is initialized, git will create a hidden folder that is named ".git". It is in this folder that the git repository lives. This folder has all the neccessary things that git needs in orderd to create a repository for this particular project. by default it will use the name of the folder that this file is directyl located in as the name of your git project, in other words the root directory will be the name of the git project. This .git folder is what enables the repository to keep track of all the changes and modifications to your files and structure. This means that if something unfortunate was to happen to this folder then the entire repository structure would collapse. This means that if at some point you decided to not want to have git keep track of your project you can safely delete this hidden folder and all history will be lost forevere making it seem like this project was never being traced in the first place.
-</p>
+Git revert
+The git revert command can be considered an 'undo' type command, however, it is not a traditional undo operation. Instead of removing the commit from the project history, it figures out how to invert the changes introduced by the commit and appends a new commit with the resulting inverse content. This prevents Git from losing history, which is important for the integrity of your revision history and for reliable collaboration.
 
+Reverting should be used when you want to apply the inverse of a commit from your project history. This can be useful, for example, if you’re tracking down a bug and find that it was introduced by a single commit. Instead of manually going in, fixing it, and committing a new snapshot, you can use git revert to automatically do all of this for you.
 
+How it works
+The git revert command is used for undoing changes to a repository's commit history. Other 'undo' commands like, git checkout and git reset, move the HEAD and branch ref pointers to a specified commit. Git revert also takes a specified commit, however, git revert does not move ref pointers to this commit. A revert operation will take the specified commit, inverse the changes from that commit, and create a new "revert commit". The ref pointers are then updated to point at the new revert commit making it the tip of the branch.
 
-<br>
-<br>
+To demonstrate let’s create an example repo using the command line examples below:
 
-Version 1
-```bash {linenos=false}
-git init Project
-```
+$ mkdir git_revert_test
+$ cd git_revert_test/
+$ git init .
+Initialized empty Git repository in /git_revert_test/.git/
+$ touch demo_file
+$ git add demo_file
+$ git commit -am"initial commit"
+[main (root-commit) 299b15f] initial commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 demo_file
+$ echo "initial content" >> demo_file
+$ git commit -am"add new content to demo file"
+[main 3602d88] add new content to demo file
+n 1 file changed, 1 insertion(+)
+$ echo "prepended line content" >> demo_file
+$ git commit -am"prepend content to demo file"
+[main 86bb32e] prepend content to demo file
+ 1 file changed, 1 insertion(+)
+$ git log --oneline
+86bb32e prepend content to demo file
+3602d88 add new content to demo file
+299b15f initial commit
+Git logo
+RELATED MATERIAL
+Git cheat sheet
+Check it out
+Bitbucket logo
+SEE SOLUTION
+Learn Git with Bitbucket Cloud
+Read tutorial
+Here we have initialized a repo in a newly created directory named git_revert_test. We have made 3 commits to the repo in which we have added a file demo_file and modified its content twice. At the end of the repo setup procedure, we invoke git log to display the commit history, showing a total of 3 commits. With the repo in this state, we are ready to initiate a git revert.
 
+$ git revert HEAD
+[main b9cd081] Revert "prepend content to demo file" 1 file changed, 1 deletion(-)
+Git revert expects a commit ref was passed in and will not execute without one. Here we have passed in the HEAD ref. This will revert the latest commit. This is the same behavior as if we reverted to commit 3602d8815dbfa78cd37cd4d189552764b5e96c58. Similar to a merge, a revert will create a new commit which will open up the configured system editor prompting for a new commit message. Once a commit message has been entered and saved Git will resume operation. We can now examine the state of the repo using git log and see that there is a new commit added to the previous log:
 
-Version 2
-```bash {linenos=false}
-git init
-```
+$ git log --oneline 1061e79 Revert "prepend content to demo file" 86bb32e prepend content to demo file 3602d88 add new content to demo file 299b15f initial commit
+Note that the 3rd commit is still in the project history after the revert. Instead of deleting it, git revert added a new commit to undo its changes. As a result, the 2nd and 4th commits represent the exact same code base and the 3rd commit is still in our history just in case we want to go back to it down the road.
 
+Common options
+-e
+--edit
+This is a default option and doesn't need to be specified. This option will open the configured system editor and prompts you to edit the commit message prior to committing the revert
 
-<br>
-<br>
-<br>
+--no-edit
+This is the inverse of the -e option. The revert will not open the editor.
 
+-n
+--no-commit
+Passing this option will prevent git revert from creating a new commit that inverses the target commit. Instead of creating the new commit this option will add the inverse changes to the Staging Index and Working Directory. These are the other trees Git uses to manage the state of the repository. For more info visit the git reset page.
 
+Resetting vs. reverting
+It's important to understand that git revert undoes a single commit—it does not "revert" back to the previous state of a project by removing all subsequent commits. In Git, this is actually called a reset, not a revert.
 
-##### Already existing one
+Resetting vs reverting diagram
+Reverting has two important advantages over resetting. First, it doesn’t change the project history, which makes it a “safe” operation for commits that have already been published to a shared repository. For details about why altering shared history is dangerous, please see the git reset page.
 
-<p>
-</p>
+Second, git revert is able to target an individual commit at an arbitrary point in the history, whereas git reset can only work backward from the current commit. For example, if you wanted to undo an old commit with git reset, you would have to remove all of the commits that occurred after the target commit, remove it, then re-commit all of the subsequent commits. Needless to say, this is not an elegant undo solution. For a more detailed discussion on the differences between git revert and other 'undo' commands see Resetting, Checking Out and Reverting.  
 
-
-
-<br>
-<br>
-<br>
+Summary
+The git revert command is a forward-moving undo operation that offers a safe method of undoing changes. Instead of deleting or orphaning commits in the commit history, a revert will create a new commit that inverses the changes specified. Git revert is a safer alternative to git reset in regards to losing work. To demonstrate the effects of git revert we leveraged other commands that have more in-depth documentation on their individual pages: git log, git commit, and git reset.
 
 
 
@@ -296,6 +331,9 @@ git --version
 To add filest to be staged by git, meaning for git to know to keep track of them, you can use the following command:
 
 THere are multiple ways of specfiynig to git to add files to staging area index. You can either individually add all files or add all files at once. notice that there is a slight difference between the following 2 commands for adding all files. the . option means all files in the current directory where as the -A option means all files recursively. So, you want to make sure you add all files in every knoc and crany you must use the -A option. this option works well for a sceniario where not all of my files are in the current directory and are instead in multiple sub folders and a more complex architecutre, which is usually teh case with todays projects.
+
+
+SCM’s offer a ‘staging area’. The staging area can be used to collect a group of edits before writing them to a commit. The staging area can be used to manage and review changes before creating the commit snapshot. Utilizing the staging area in this manner provides a buffer area to help refine the contents of the commit.
 </p>
 
 
@@ -395,6 +433,11 @@ brew install git-gui
 
 <p>
 Commiting is the process of telling git to proceed with actually staging the changes. The best way to think about committing is to think of as creating a save point or check point in a game that you can always go back to. This can be done by using the following command: It is commen practice to have the first commit text to be "First commit". But, generally it is better to have from here on onward the message to be something that is actually useful and describes what has happend at this saving point. For example... . Also important to note that it is best practice to create save points whenever something useful happens and keep it single pracitice. For example...
+
+
+Commits are cheap and easy to make. They should be made frequently to capture updates to a code base. Each commit is a snapshot that the codebase can be reverted to if needed. Frequent commits give many opportunities to revert or undo work. A group of commits can be combined into a single commit using a rebase to clarify the development log.
+
+Each commit has a corresponding log entry. At the time of commit creation, this log entry is populated with a message. It is important to leave descriptive explanatory commit log messages. These commit log messages should explain the “why” and “what” that encompass the commits content. These log messages become the canonical history of the project’s development and leave a trail for future contributors to review.
 </p>
 
 
@@ -471,4 +514,66 @@ brew install git-gui
 </div>
 
 <!-- ############################################# Separator - Bottom ############################################# -->
+
+
+
+Thees are for the github section with pull and push:
+
+
+
+SCM enables rapid updates from multiple developers. It’s easy to have a local copy of the codebase fall behind the global copy. Make sure to git pull or fetch the latest code before making updates. This will help avoid conflicts at merge time.
+
+For those teams coming from a non-distributed VCS, having a central repository may seem like a good thing that they don't want to lose. However, while Git has been designed as a distributed version control system (DVCS), with Git, you can still have an official, canonical repository where all changes to the software must be stored. With Git, because each developer's repository is complete, their work doesn't need to be constrained by the availability and performance of the "central" server. During outages or while offline, developers can still consult the full project history. Because Git is flexible as well as being distributed, you can work the way you are accustomed to but gain the additional benefits of Git, some of which you may not even realise you're missing.
+
+Having a full local history makes Git fast, since it means you don’t need a network connection to create commits, inspect previous versions of a file, or perform diffs between commits.
+
+Many source code management tools such as Bitbucket enhance core Git functionality with pull requests. A pull request is a way to ask another developer to merge one of your branches into their repository. This not only makes it easier for project leads to keep track of changes, but also lets developers initiate discussions around their work before integrating it with the rest of the codebase. Since they’re essentially a comment thread attached to a feature branch, pull requests are extremely versatile. When a developer gets stuck with a hard problem, they can open a pull request to ask for help from the rest of the team. Alternatively, junior developers can be confident that they aren’t destroying the entire project by treating pull requests as a formal code review.
+
+
+
+Many cloud based servers for git including github, bitbucket, gitlab and many more require you to login to their website before attempting to use git, which for this day and age is a very typical thing to do if you want to access accounts and online repos for verification.
+5. (Optional) To make Git remember your username and password when working with HTTPS repositories, configure the git-credential-osxkeychain helper.
+
+Install the git-credential-osxkeychain helper
+Bitbucket supports pushing and pulling your Git repositories over both SSH and HTTPS. To work with a private repository over HTTPS, you must supply a username and password each time you push or pull. The git-credential-osxkeychain helper allows you to cache your username and password in the OSX keychain, so you don't have to retype it each time.
+
+1. If you followed the MacPorts or Homebrew instructions above, the helper should already be installed. Otherwise you'll need to download and install it. Open a terminal window and check:
+
+$ git credential-osxkeychain
+usage: git credential-osxkeychain <get|store|erase>
+If you receive a usage statement, skip to step 4. If the helper is not installed, go to step 2.
+
+2. Use curl to download git-credential-osxkeychain (or download it via your browser) and move it to /usr/local/bin:
+
+$ curl -O http://github-media-downloads.s3.amazonaws.com/osx/git-credential-osxkeychain
+$ sudo mv git-credential-osxkeychain /usr/local/bin/
+3. Make the file an executable:
+
+$ chmod u+x /usr/local/bin/git-credential-osxkeychain
+4. Configure git to use the osxkeychain credential helper.
+
+$ git config --global credential.helper osxkeychain
+The next time Git prompts you for a username and password, it will cache them in your keychain for future use.
+
+
+Create a git tips and tricks section and add this:
+
+https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet
+
+
+
+
+If a project has already been set up in a central repository, the clone command is the most common way for users to obtain a local development clone. Like git init, cloning is generally a one-time operation. Once a developer has obtained a working copy, all version control operations are managed through their local repository.
+
+git clone <repo url>
+git clone is used to create a copy or clone of remote repositories. You pass git clone a repository URL. Git supports a few different network protocols and corresponding URL formats. In this example, we'll be using the Git SSH protocol. Git SSH URLs follow a template of: git@HOSTNAME:USERNAME/REPONAME.git
+
+An example Git SSH URL would be: git@bitbucket.org:rhyolight/javascript-data-store.git where the template values match:
+
+HOSTNAME: bitbucket.org
+USERNAME: rhyolight
+REPONAME: javascript-data-store
+When executed, the latest version of the remote repo files on the main branch will be pulled down and added to a new folder. The new folder will be named after the REPONAME in this case javascript-data-store. The folder will contain the full history of the remote repository and a newly created main branch.
+
+For more documentation on git clone usage and supported Git URL formats, visit the git clone Page.
 

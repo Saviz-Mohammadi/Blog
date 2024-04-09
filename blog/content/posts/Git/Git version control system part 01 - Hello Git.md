@@ -43,6 +43,15 @@ You find yourself in the year 1990 leading a project alongside your colleagues a
 
 <p>
 Rushing to integrate their changes, you realize that their code isn't compatible with the version you're working with. It becomes apparent that they didn't have access to the latest iteration of your code. This discrepancy leads to frustration and confusion among the team, as they've spent time and effort on changes that can't be seamlessly integrated. Adding to the chaos, you discover that you inadvertently sent the wrong version of the code to two other colleagues. They've unknowingly started working on the outdated version, compounding the issue further. It's a disaster, highlighting the inherent challenges of collaborative coding without proper version control mechanisms in place. Reflecting on the situation, you recognize the dire need for a solution to streamline code management and collaboration. Fortunately, as you ponder this dilemma, you realize that the modern era offers a solution: Version Control Systems (VCS).
+
+While it is possible to develop software without using any version control, doing so subjects the project to a huge risk that no professional team would be advised to accept. So the question is not whether to use version control but which version control system to use.
+
+
+Software developers working in teams are continually writing new source code and changing existing source code. The code for a project, app or software component is typically organized in a folder structure or "file tree". One developer on the team may be working on a new feature while another developer fixes an unrelated bug by changing code, each developer may make their changes in several parts of the file tree.
+
+When multiple developers are working within a shared codebase it is a common occurrence to make edits to a shared piece of code. Separate developers may be working on a seemingly isolated feature, however this feature may use a shared code module. Therefore developer 1 working on Feature 1 could make some edits and find out later that Developer 2 working on Feature 2 has conflicting edits.
+
+Before the adoption of SCM this was a nightmare scenario. Developers would edit text files directly and move them around to remote locations using FTP or other protocols. Developer 1 would make edits and Developer 2 would unknowingly save over Developer 1’s work and wipe out the changes. In some other systems developers would have the option of locking a file and preventing others from accessing it, which in theory did solve the problem of conflicts, but massively reduced productivity as developers had to waste time and wait for the user of the file to unlock and give others an opportunity to work with the codebase.
 </p>
 
 
@@ -57,6 +66,8 @@ Rushing to integrate their changes, you realize that their code isn't compatible
 
 <p>
 Version control systems are software tools designed to track changes made to files, particularly code modifications, throughout the development process. As software engineers often collaborate in groups dispersed across different locations, each member contributes specific functionalities or features to the project by modifying the source code. Version control systems facilitate efficient communication and management of these changes by recording who made the changes, what changes were made, and when they occurred.
+
+Version control helps teams solve these kinds of problems, tracking every individual change by each contributor and helping prevent concurrent work from conflicting. Changes made in one part of the software can be incompatible with those made by another developer working at the same time. This problem should be discovered and solved in an orderly manner without blocking the work of the rest of the team.
 
 There are two main categories of version control systems:
 
@@ -83,6 +94,15 @@ Git is a free, open-source distributed version control system tool renowned for 
 Whether you're a web developer, app developer, or any individual working with code and file modifications, Git proves to be an invaluable asset. Its robust functionality, high performance, stringent security measures, and adaptable nature make it indispensable for both teams and solo developers alike. As you might have inferred from our discussion on Version Control Systems, Git falls under the category of Distributed Version Control System (DVCS), offering users the comprehensive features characteristic of this system.
 
 Beyond its role as a DVCS, Git plays a crucial part in the landscape of distributed version-control DevOps tools. In this article, we'll delve into Git, exploring its features and functionalities. However, before diving into Git specifics, let's establish a basic understanding of Version Control Systems (VCS). Git originated from the ingenious mind of Linus Torvalds, the mastermind behind the Linux operating system kernel. Initially conceived to tackle the intricate task of managing and monitoring changes within the Linux codebase, which involved contributions from a global community of developers.
+
+git is also free and open source.
+
+Having a distributed architecture, Git is an example of a DVCS (hence Distributed Version Control System). Rather than have only one single place for the full version history of the software as is common in once-popular version control systems like CVS or Subversion (also known as SVN), in Git, every developer's working copy of the code is also a repository that can contain the full history of all changes.
+
+
+git is local, For example, say a developer, Alice, makes changes to source code, adding a feature for the upcoming 2.0 release, then commits those changes with descriptive messages. She then works on a second feature and commits those changes too. Naturally these are stored as separate pieces of work in the version history. Alice then switches to the version 1.3 branch of the same software to fix a bug that affects only that older version. The purpose of this is to enable Alice's team to ship a bug fix release, version 1.3.1, before version 2.0 is ready. Alice can then return to the 2.0 branch to continue working on new features for 2.0 and all of this can occur without any network access and is therefore fast and reliable. She could even do it on an airplane. When she is ready to send all of the individually committed changes to the remote repository, Alice can "push" them in one command.
+
+The raw performance characteristics of Git are very strong when compared to many alternatives. Committing new changes, branching, merging and comparing past versions are all optimized for performance. The algorithms implemented inside Git take advantage of deep knowledge about common attributes of real source code file trees, how they are usually modified over time and what the access patterns are.
 
 ##### What is github?
 
@@ -181,6 +201,8 @@ git --version
 ##### macOS
 
 <p>
+ if you've installed XCode (or it's Command Line Tools), Git may already be installed. Apple actually maintain and ship their own fork of Git, but it tends to lag behind mainstream Git by several major versions. You may want to install a newer version of Git using one of the methods below:
+ 
 A reliable method to verify the installation of Git on a macOS machine is by executing the command provided in the code box below via the terminal (Zsh/Bash) and examining the output. If the terminal does not print anything, it suggests that Git cannot be found by the system. There could be various reasons for this, but the primary cause is usually the absence of the Git program itself. If Git is installed, you will likely receive output specifying the installation directory of the program on your machine.
 </p>
 
@@ -256,6 +278,89 @@ git --version
 	<br>
 	<li>Once the installation process is finished you can confirm your installation by revisiting the previsous section on <a href="#checking-if-git-is-installed-on-your-machine">Checking if Git is installed on your machine</a> for the windows part.</li>
 </ul>
+
+When you've successfully started the installer, you should see the Git Setup wizard screen. Follow the Next and Finish prompts to complete the installation. The default options are pretty sensible for most users
+
+<br>
+<br>
+<br>
+
+
+##### Linux
+
+<ul class="justified-list">
+    <li>Since there are an absolute immense amount of Linux distributions it is impossible to list them all here, therefore I leave it to you to find the neccessary command your linux platofrms package manager in order to install git. You can find the list of commands at the official page for <a href="https://git-scm.com/download/linux" target="_blank">installing git on Linux</a>, which already contains a comprehensive list. Make sure to get correct command and put it in your terminal.</li>
+	<br>
+	<br>
+	<li>Once the installation process is finished you can confirm your installation by revisiting the previsous section on <a href="#checking-if-git-is-installed-on-your-machine">Checking if Git is installed on your machine</a> for the Linux part.</li>
+</ul>
+
+
+##### macOS
+
+<ul class="justified-list">
+    <li>According to the official git webpage guide on installing git for macOS the best way to install git for macOS is to use the homebrew package manager. You can use the following two commands to install both git and git-gui modules for macOS.</li>
+</ul>
+
+<br>
+<br>
+<br>
+
+
+
+```bash {linenos=false}
+brew install git
+```
+
+<br>
+
+
+```bash {linenos=false}
+brew install git-gui
+```
+
+<br>
+<br>
+<br>
+
+<ul class="justified-list">
+    <li>Once the homebrew packaeg manager is finished you can confirm your installation by revisiting the previsous section on <a href="#checking-if-git-is-installed-on-your-machine">Checking if Git is installed on your machine</a> for the macOS part.</li>
+</ul>
+
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+<div class="line-divider-bottom">
+  <hr class="left-line">
+  <span>|</span>
+  <span class="middle">Introduction</span>
+  <span>|</span>
+  <hr class="right-line">
+</div>
+
+<!-- ############################################# Separator - Bottom ############################################# -->
+
+
+
+### Configuring Git for the first time
+
+
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+<hr>
+
+<br>
+
+<!-- ############################################# Separator - Top ############################################# -->
+
+
+##### Windows
+
+if this is the first time you have installed git on your device, then you need to do a one-time configuration to make sure that git can work properly. You can add more description about this here... .Configure your Git username and email using the following commands, replacing Emma's name with your own. These details will be associated with any commits that you create:
+
+$ git config --global user.name "Emma Paris"
+$ git config --global user.email "eparis@atlassian.com"
 
 
 
