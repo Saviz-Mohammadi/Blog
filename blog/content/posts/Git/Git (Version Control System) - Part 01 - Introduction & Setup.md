@@ -33,51 +33,76 @@ weight: 1
 
 
 <p>
-</p>
-
-
-
-<br>
-<br>
-
-
-
-<p>
 Leading a team of over 2000 developers in today's complex software era to build a large-scale product poses as a formidable challenge. Before Version Control Systems became widely adopted, managing such projects was daunting. When multiple developers collaborate within a shared codebase, it's common for them to make edits to the same pieces of code. Even when developers appear to be working on separate features, those features often rely on shared code modules and attempting to make numerous edits simultaneously across different timestamps and platforms can lead to chaos.
-
-
-For instance, Developer 1 may be currently focusing on Feature 1 and makes alterations to the codebase, only to later discover that Developer 2, also working on Feature 1, has made conflicting changes. Furthermore, developers might simultaneously tackle diverse tasks, like integrating new features or resolving bugs and other issues, leading to changes dispersed throughout various sections of the file tree. Moreover, developers lacking the most recent updates could be operating with obsolete and faulty codebases. Additionally, what if an error occurred necessitating a rollback to a prior version of the codebase?
-
-
-
-Some systems in the past attempted to mitigate issues related to collaboration by allowing file locking, preventing concurrent access. However, this approach significantly hindered productivity as developers had to wait for files to become available (free) by the developer using it, leading to delays. While it's technically possible to develop software without using a Version Control System, doing so poses significant risks that no professional team would recommend. But, what exactly is a Version Control System? And how does a Version Control System help us in resolving the problems around collaboration?
-
 </p>
 
 
 
 <br>
 <br>
-<br>
 
 
-
-##### What is a Version Control system?
 
 <p>
-Version control systems (VCS) are software tools designed to track changes made to files, particularly code modifications, throughout the development process. As software engineers often collaborate in groups dispersed across different locations, each member contributes specific functionalities or features to the project by modifying the source code. Version control systems facilitate efficient communication and management of these changes by recording who made the changes, what changes were made, and when they occurred.
-
-Version control helps teams solve these kinds of problems, tracking every individual change by each contributor and helping prevent concurrent work from conflicting. Changes made in one part of the software can be incompatible with those made by another developer working at the same time. This problem should be discovered and solved in an orderly manner without blocking the work of the rest of the team.
-
-There are two main categories of version control systems:
-
-1. Centralized Version Control System (CVCS):
-   In CVCS, there exists a single repository, and each user maintains their own working copy. Users must commit their changes to the repository to make them visible to others, who can then update to see the modifications. However, CVCS has significant drawbacks, including the need for a constant network connection and the risk of data loss if the central server crashes.
-
-2. Distributed Version Control System (DVCS):
-   DVCS features multiple repositories, with each developer having their own repository and working copy. Changes made by a developer are initially reflected only in their local repository and must be pushed to the central repository to become visible to others. Similarly, updates do not automatically include changes made by others; developers need to pull those changes into their local repositories. DVCS offers several advantages over CVCS, such as faster operations, the ability to commit changes locally before pushing them to the main repository, and easier data recovery in the event of a central server failure. Additionally, because every contributor has a full copy of the project repository, they can readily share changes with one another as needed.
-
+For instance, Developer 1 may be currently focusing on Feature 1 and makes alterations to the codebase, only to later discover that Developer 2, also working on Feature 1, has made conflicting changes. Furthermore, developers might simultaneously tackle diverse tasks, like integrating new features or resolving bugs and other issues, leading to changes dispersed throughout various sections of the file tree. Moreover, developers lacking the most recent updates could be operating with obsolete and faulty codebases. Additionally, what if an error occurred necessitating a rollback to a prior version of the codebase?
 </p>
+
+
+
+<br>
+<br>
+
+
+
+<p>
+Some systems in the past attempted to mitigate issues related to collaboration by allowing file locking, preventing concurrent access. However, this approach significantly hindered productivity as developers had to wait for files to become available (free) by the developer using it, leading to delays. While it's technically possible to develop software without using a Version Control System, doing so poses significant risks that no professional team would recommend. But, what exactly is a Version Control System? And how does a Version Control System help us in resolving the problems around collaboration?
+</p>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+##### What is a Version Control System?
+
+
+
+<p>
+Version control Systems (VCS) are software tools designed to track changes made to files, particularly code modifications, throughout the development process. As software engineers often collaborate in groups dispersed across different locations, each member contributes specific functionalities or features to the project by modifying the source code. Version Control Systems facilitate efficient communication and management of these changes by recording who made the changes, what changes were made, and when they occurred.
+</p>
+
+
+
+<br>
+<br>
+
+
+
+<p>
+Version Control Systems help teams by tracking every individual change made by each contributor and helping prevent concurrent work from conflicting. Changes made in one part of the software can be incompatible with those made by another developer working at the same time. This problem should be discovered and solved in an orderly manner without blocking the work of the rest of the team. Version Control Systems also offer the capability to revert back to previous stages of the code in case of errors such as accidental file deletion or corruption.
+</p>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+##### Version Control System types
+
+
+
+<ul class="justified-list">
+	<li><span class="special" style="font-weight: bold;">Centralized Version Control System (CVCS):</span> In CVCS, there exists a single repository, and each user maintains their own working copy. Users must commit their changes to the repository to make them visible to others, who can then update to see the modifications. However, CVCS has significant drawbacks, including the need for a constant network connection and the risk of data loss if the central server crashes.</li>
+	<br>
+	<br>
+    <li><span class="special" style="font-weight: bold;">Distributed Version Control System (DVCS):</span> DVCS features multiple repositories, with each developer having their own repository and working copy. Changes made by a developer are initially reflected only in their local repository and must be pushed to the central repository to become visible to others. Similarly, updates do not automatically include changes made by others; developers need to pull those changes into their local repositories. DVCS offers several advantages over CVCS, such as faster operations, the ability to commit changes locally before pushing them to the main repository, and easier data recovery in the event of a central server failure.</li>
+</ul>
 
 
 
@@ -89,25 +114,60 @@ There are two main categories of version control systems:
 
 ##### What is Git?
 
-Git is a free, open-source distributed version control system tool renowned for its ability to manage projects of varying sizes efficiently and swiftly by providing aid in the management and tracking of file changes, predominantly scripts and code-related files. It does this by diligently monitoring all modifications made to your code, enabling you to save your progress as snapshots in time. if you encounter errors in your script after making alterations, Git enables you to effortlessly revert to a previously functioning version. Similarly, it facilitates the retrieval of deleted code snippets or functionalities inadvertently removed during development. These are only some of the abilities of this amazing tool.
-
-Whether you're a web developer, app developer, or any individual working with code and file modifications, Git proves to be an invaluable asset. Its robust functionality, high performance, stringent security measures, and adaptable nature make it indispensable for both teams and solo developers alike. As you might have inferred from our discussion on Version Control Systems, Git falls under the category of Distributed Version Control System (DVCS), offering users the comprehensive features characteristic of this system.
-
-Beyond its role as a DVCS, Git plays a crucial part in the landscape of distributed version-control DevOps tools. In this article, we'll delve into Git, exploring its features and functionalities. However, before diving into Git specifics, let's establish a basic understanding of Version Control Systems (VCS). Git originated from the ingenious mind of Linus Torvalds, the mastermind behind the Linux operating system kernel. Initially conceived to tackle the intricate task of managing and monitoring changes within the Linux codebase, which involved contributions from a global community of developers.
-
-git is also free and open source.
-
-Having a distributed architecture, Git is an example of a DVCS (hence Distributed Version Control System). Rather than have only one single place for the full version history of the software as is common in once-popular version control systems like CVS or Subversion (also known as SVN), in Git, every developer's working copy of the code is also a repository that can contain the full history of all changes.
 
 
-git is local, For example, say a developer, Alice, makes changes to source code, adding a feature for the upcoming 2.0 release, then commits those changes with descriptive messages. She then works on a second feature and commits those changes too. Naturally these are stored as separate pieces of work in the version history. Alice then switches to the version 1.3 branch of the same software to fix a bug that affects only that older version. The purpose of this is to enable Alice's team to ship a bug fix release, version 1.3.1, before version 2.0 is ready. Alice can then return to the 2.0 branch to continue working on new features for 2.0 and all of this can occur without any network access and is therefore fast and reliable. She could even do it on an airplane. When she is ready to send all of the individually committed changes to the remote repository, Alice can "push" them in one command.
+<p>
+Git is a free, open-source distributed version control system tool renowned for its ability to manage projects of varying sizes efficiently and swiftly by providing aid in the management and tracking of file changes, predominantly scripts and code-related files. It does this by diligently monitoring all modifications made to your code, enabling you to save your progress as snapshots in time. Git originated from the ingenious mind of Linus Torvalds, the mastermind behind the Linux operating system kernel.
+</p>
 
-The raw performance characteristics of Git are very strong when compared to many alternatives. Committing new changes, branching, merging and comparing past versions are all optimized for performance. The algorithms implemented inside Git take advantage of deep knowledge about common attributes of real source code file trees, how they are usually modified over time and what the access patterns are.
+
+
+<br>
+<br>
+
+
+
+<p>
+ Git was initially conceived to tackle the intricate task of managing and monitoring changes within the Linux codebase, which involved contributions from a global community of developers. Git enables you to effortlessly revert to a previously functioning version. Similarly, it facilitates the retrieval of deleted code snippets or functionalities inadvertently removed during development. These are only some of the abilities of this amazing tool.
+</p>
+
+
+
+<br>
+<br>
+
+
+
+<p>
+Whether you're a web developer, app developer, or any individual working with code and file modifications, Git proves to be an invaluable asset. The algorithms implemented inside Git take advantage of deep knowledge about common attributes of real source code file trees, how they are usually modified over time and what the access patterns are. This allows Git to be very performant compared to many other alternatives. Git is also local, this means that each developer can work on their own version and push the changes to a server when they wish to do so.
+</p>
+
+
+
+<br>
+<br>
+<br>
+
+
 
 ##### What is github?
 
 
-GitHub is an online repository hosting service where you can store and share your Git repositories. You do not necessarily need GitHub to use Git - you can just work with your own Git repositories locally. However, GitHub is a safe place to keep your code that is not your own computer, so it is less likely that you or anyone you work with will lose your code. Aside from the ability to easily share and collaborate on your code with GitHub, GitHub also offers some other nice features such as the ability to more easily compare changes made to code, edit your code, search your repositories, make comments, create and track issues, host web sites and even create Wikis for your code. However, if you just want to keep track of some of your script files in one place and don't need anything extravagant, GitHub may be unnecessary overkill. We'll leave that decision up to you!
+
+<p>
+GitHub is an online repository hosting service where you can store and share your Git repositories. You do not necessarily need GitHub to use Git - you can just work with your own Git repositories locally. However, GitHub is a safe place to keep your code that is not your own computer, so it is less likely that you or anyone you work with will lose your code. Aside from the ability to easily share and collaborate on your code with GitHub, GitHub also offers some other nice features such as the ability to more easily compare changes made to code, edit your code, search your repositories, and many more.
+</p>
+
+
+
+<br>
+<br>
+
+
+
+<p>
+In this series of articles, we'll initially explore utilizing Git on your local machine independently. Subsequently, we'll delve into configuring Git to connect with a remote GitHub repository, highlighting the seamless integration of these two aspects. The rationale behind this approach is to emphasize that GitHub isn't a prerequisite for Git utilization.
+</p>
 
 
 
@@ -128,7 +188,11 @@ GitHub is an online repository hosting service where you can store and share you
 
 
 
-### Checking if Git is installed on your machine
+
+
+
+
+### Checking for Git installation
 
 
 
@@ -143,13 +207,13 @@ GitHub is an online repository hosting service where you can store and share you
 
 ##### Windows
 
-<p>
-A reliable method to verify the installation of Git on a Windows machine is by executing the command provided in the code box below via CMD or PowerShell and observing the output. If the program responds with "'git' is not recognized as an internal or external command, operable program or batch file.", it indicates that Git cannot be located by the system. There could be several reasons, but the primary reason is typically the absence of the Git program itself. If Git is installed you will most likely recieve output that specifies the version of the program on your machine.
-</p>
+
+<ul class="justified-list">
+	<li>Execute the command provided below via CMD or PowerShell (both work the same).</li>
+</ul>
 
 
 
-<br>
 <br>
 <br>
 
@@ -159,20 +223,69 @@ A reliable method to verify the installation of Git on a Windows machine is by e
 git --version
 ```
 
+
+
+<br>
+<br>
+
+
+
+<ul class="justified-list">
+	<li>If the program responds with the message seen below, it indicates that Git cannot be located by the system. There could be several reasons, but the primary reason is typically the absence of the Git program itself. If this is the case, then I highly recommend going to the next section about ... put link here</li>
+</ul>
+
+
+
+<br>
+<br>
+
+
+<p class="codeTitle">Output 1 (Git is not installed)</p>
+
+```powershell {linenos=false}
+'git' is not recognized as an internal or external command, operable program or batch file.
+```
+
+
+
+<br>
+<br>
+
+
+
+<ul class="justified-list">
+	<li>If Git is installed you will most likely recieve the following output, where it indicates the version of Git on your machine. In this case being the version 2.44.0 for the Windows operating system.</li>
+</ul>
+
+
+
+<br>
+<br>
+
+
+
+```powershell {linenos=false}
+git version 2.44.0.windows.1
+```
+
+
+
 <br>
 <br>
 <br>
+
 
 
 ##### Linux
 
-<p>
-A reliable method to verify the installation of Git on a Linux machine is by executing the command provided in the code box below via Bash (or other shells) and examining the output. If the terminal does not print anything, it suggests that Git cannot be found by the system. There could be various reasons for this, but the primary cause is usually the absence of the Git program itself. If Git is installed, you will likely receive output specifying the installation directory of the program on your machine.
-</p>
+
+
+<ul class="justified-list">
+	<li>Execute the command provided below via Bash.</li>
+</ul>
 
 
 
-<br>
 <br>
 <br>
 
@@ -182,20 +295,102 @@ A reliable method to verify the installation of Git on a Linux machine is by exe
 which git
 ```
 
-<br>
-<br>
-<br>
 
-The which command is useful, but one problem is that it only checks the system's PATH to find the location of the Git executable. If Git is installed and properly configured in the PATH, it will output the path to the Git executable. However, it will not show you the version of the program installed on your machine. If you like to check the version as well you can use the following command after confirming that git exists on your machine to check its version as well.
 
 <br>
 <br>
+
+
+
+<ul class="justified-list">
+	<li>If the terminal does not print anything, it suggests that Git cannot be found by the system. The following is a representation of how the terminal would typically respond. There could be various reasons for this, but the primary cause is usually the absence of the Git program itself. Please note that the location where you call this command from has no effect on the correctness. In this case we are calling it from Desktop.</li>
+</ul>
+
+
+
 <br>
+<br>
+
+
+
+```bash {linenos=false}
+username@ubuntu:~/Desktop$ which git
+username@ubuntu:~/Desktop$
+```
+
+
+
+<br>
+<br>
+
+
+
+<ul class="justified-list">
+	<li>If Git is installed, you will likely receive the following output specifying the installation directory of Git on your machine</li>
+</ul>
+
+
+
+<br>
+<br>
+
+
+
+```bash {linenos=false}
+username@ubuntu:~/Desktop$ which git
+usr/bin/git
+username@ubuntu:~/Desktop$
+```
+
+
+
+<br>
+<br>
+
+
+
+<ul class="justified-list">
+	<li>The which command is useful, but one problem is that it only checks if Git is installed and will output the path to the Git executable. However, it will not show you the version of the program installed on your machine. If you like to check the version as well you can use the following command after confirming that git exists on your machine to check its version as well</li>
+</ul>
+
+
+
+<br>
+<br>
+
 
 
 ```bash {linenos=false}
 git --version
 ```
+
+
+
+<br>
+<br>
+
+
+
+<ul class="justified-list">
+	<li>Since we are sure that git is installed you will most likely recieve the following output, where it indicates the version of Git on your machine. In this case being the version 2.25.1</li>
+</ul>
+
+
+
+<br>
+<br>
+
+
+
+```bash {linenos=false}
+username@ubuntu:~/Desktop$ git version 2.25.1
+```
+
+
+
+<br>
+<br>
+<br>
 
 
 ##### macOS
@@ -239,7 +434,7 @@ git --version
 <div class="line-divider-bottom">
   <hr class="left-line">
   <span>|</span>
-  <span class="middle">Introduction</span>
+  <span class="middle">Checking for Git installation</span>
   <span>|</span>
   <hr class="right-line">
 </div>

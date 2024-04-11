@@ -577,3 +577,41 @@ When executed, the latest version of the remote repo files on the main branch wi
 
 For more documentation on git clone usage and supported Git URL formats, visit the git clone Page.
 
+
+
+
+
+
+
+
+
+
+
+
+
+git revert
+This command creates a new commit that undoes the changes from a previous commit. This command adds new history to the project (it doesn't modify existing history).
+
+git checkout
+This command checks-out content from the repository and puts it in your work tree. It can also have other effects, depending on how the command was invoked. For instance, it can also change which branch you are currently working on. This command doesn't make any changes to the history.
+
+git reset
+This command is a little more complicated. It actually does a couple of different things depending on how it is invoked. It modifies the index (the so-called "staging area"). Or it changes which commit a branch head is currently pointing at. This command may alter existing history (by changing the commit that a branch references).
+
+Using these commands
+If a commit has been made somewhere in the project's history, and you later decide that the commit is wrong and should not have been done, then git revert is the tool for the job. It will undo the changes introduced by the bad commit, recording the "undo" in the history.
+
+If you have modified a file in your working tree, but haven't committed the change, then you can use git checkout to checkout a fresh-from-repository copy of the file.
+
+If you have made a commit, but haven't shared it with anyone else and you decide you don't want it, then you can use git reset to rewrite the history so that it looks as though you never made that commit.
+
+These are just some of the possible usage scenarios. There are other commands that can be useful in some situations, and the above three commands have other uses as well.
+
+
+
+
+
+
+
+
+Some people say that git reset is better for local branches since online remote branch will give you errors saying that you need to pull before pushing and that it is better to use git revert since it creates a new commit and you can push it. But, this is total belony! git reset and git revert should be used based on which behaviour you perfer and not that one is better with remote and one is better with local. for the problem of remote with git reset you can use the command If you know you want to overwrite your remote you need to run git push --force and it will overwrite the remote with what’s on local. Just remember that this command is not undoable, but I assume that if you are so sure to overwrite, then you have noting to worry about. So, just know that both work, but the main question is what are you looking for? I personally tend to use git revert more because it is safer, you never know when someone wants to go back even after being sure that they dont want to and more importantly it is easier to work with pushing because of its nature.
