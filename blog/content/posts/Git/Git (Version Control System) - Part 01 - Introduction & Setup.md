@@ -231,13 +231,14 @@ git --version
 
 
 <ul class="justified-list">
-	<li>If the program responds with the message seen below, it indicates that Git cannot be located by the system. There could be several reasons, but the primary reason is typically the absence of the Git program itself. If this is the case, then I highly recommend going to the next section about ... put link here</li>
+	<li>If the program responds with the message seen below, it indicates that Git cannot be located by the system. There could be several reasons, but the primary reason is typically the absence of the Git program itself. If this is the case, then I recommend going to the next section about <a href="#Installing-Git-Windows">Installing Git - Windows</a>.</li>
 </ul>
 
 
 
 <br>
 <br>
+
 
 
 <p class="codeTitle">Output 1 (Git is not installed)</p>
@@ -263,6 +264,8 @@ git --version
 <br>
 
 
+
+<p class="codeTitle">Output 2 (Git is installed)</p>
 
 ```powershell {linenos=false}
 git version 2.44.0.windows.1
@@ -303,7 +306,7 @@ which git
 
 
 <ul class="justified-list">
-	<li>If the terminal does not print anything, it suggests that Git cannot be found by the system. The following is a representation of how the terminal would typically respond. There could be various reasons for this, but the primary cause is usually the absence of the Git program itself. Please note that the location where you call this command from has no effect on the correctness. In this case we are calling it from Desktop.</li>
+	<li>If the terminal does not print anything, it suggests that Git cannot be found by the system. The following is a representation of how the terminal would typically respond. There could be various reasons for this, but the primary cause is usually the absence of the Git program itself. If this is the case, then I recommend going to the next section about <a href="#Installing-Git-Linux">Installing Git - Linux</a>.</li>
 </ul>
 
 
@@ -312,6 +315,7 @@ which git
 <br>
 
 
+<p class="codeTitle">Output 1 (Git is not installed)</p>
 
 ```bash {linenos=false}
 username@ubuntu:~/Desktop$ which git
@@ -335,6 +339,7 @@ username@ubuntu:~/Desktop$
 <br>
 
 
+<p class="codeTitle">Output 2 (Git is installed at location: "usr/bin/git")</p>
 
 ```bash {linenos=false}
 username@ubuntu:~/Desktop$ which git
@@ -382,6 +387,8 @@ git --version
 
 
 
+<p class="codeTitle">Output (Git is installed. Version is 2.25.1)</p>
+
 ```bash {linenos=false}
 username@ubuntu:~/Desktop$ git version 2.25.1
 ```
@@ -393,17 +400,16 @@ username@ubuntu:~/Desktop$ git version 2.25.1
 <br>
 
 
+
 ##### macOS
 
-<p>
- if you've installed XCode (or it's Command Line Tools), Git may already be installed. Apple actually maintain and ship their own fork of Git, but it tends to lag behind mainstream Git by several major versions. You may want to install a newer version of Git using one of the methods below:
- 
-A reliable method to verify the installation of Git on a macOS machine is by executing the command provided in the code box below via the terminal (Zsh/Bash) and examining the output. If the terminal does not print anything, it suggests that Git cannot be found by the system. There could be various reasons for this, but the primary cause is usually the absence of the Git program itself. If Git is installed, you will likely receive output specifying the installation directory of the program on your machine.
-</p>
+
+<ul class="justified-list">
+	<li>Execute the command provided below via the terminal (Zsh/Bash).</li>
+</ul>
 
 
 
-<br>
 <br>
 <br>
 
@@ -413,19 +419,99 @@ A reliable method to verify the installation of Git on a macOS machine is by exe
 which git
 ```
 
-<br>
-<br>
-<br>
 
-The which command is useful, but one problem is that it only checks the system's PATH to find the location of the Git executable. If Git is installed and properly configured in the PATH, it will output the path to the Git executable. However, it will not show you the version of the program installed on your machine. If you like to check the version as well you can use the following command after confirming that git exists on your machine to check its version as well.
 
 <br>
 <br>
+
+
+
+<ul class="justified-list">
+	<li>If the terminal does not print anything, it suggests that Git cannot be found by the system. The following is a representation of how the terminal would typically respond. There could be various reasons for this, but the primary cause is usually the absence of the Git program itself. If this is the case, then I recommend going to the next section about <a href="#Installing-Git-Linux">Installing Git - Linux</a>.</li>
+</ul>
+
+
+
 <br>
+<br>
+
+
+<p class="codeTitle">Output 1 (Git is not installed)</p>
+
+```bash {linenos=false}
+MacBook-Pro:~ username$ which git
+MacBook-Pro:~ username$
+```
+
+
+
+<br>
+<br>
+
+
+
+<ul class="justified-list">
+	<li>If Git is installed, you will likely receive the following output specifying the installation directory of Git on your machine</li>
+</ul>
+
+
+
+<br>
+<br>
+
+
+<p class="codeTitle">Output 2 (Git is installed at location: "usr/bin/git")</p>
+
+```bash {linenos=false}
+MacBook-Pro:~ username$ which git
+usr/bin/git
+MacBook-Pro:~ username$
+```
+
+
+
+<br>
+<br>
+
+
+
+<ul class="justified-list">
+	<li>The which command is useful, but one problem is that it only checks if Git is installed and will output the path to the Git executable. However, it will not show you the version of the program installed on your machine. If you like to check the version as well you can use the following command after confirming that git exists on your machine to check its version as well</li>
+</ul>
+
+
+
+<br>
+<br>
+
 
 
 ```bash {linenos=false}
 git --version
+```
+
+
+
+<br>
+<br>
+
+
+
+<ul class="justified-list">
+	<li>Since we are sure that git is installed you will most likely recieve the following output, where it indicates the version of Git on your machine. In this case being the version 2.25.1</li>
+</ul>
+
+
+
+<br>
+<br>
+
+
+
+<p class="codeTitle">Output (Git is installed. Version is 2.25.1)</p>
+
+```bash {linenos=false}
+MacBook-Pro:~ username$ git version 2.25.1
 ```
 
 
@@ -459,7 +545,7 @@ git --version
 <!-- ############################################# Separator - Top ############################################# -->
 
 
-##### Windows
+##### Windows {#Installing-Git-Windows}
 
 <ul class="justified-list">
     <li>Obtain the <a href="https://git-scm.com/download/win" target="_blank">git installer wizard for windows</a> from the official <a href="https://git-scm.com/" target="_blank">Git website</a> by clicking on the "Download" button. This will automatically download the latest version of Git for Windows. Make sure you download the appropriate installer depending if your machine is 64-bit or 32-bit.</li>
@@ -481,7 +567,7 @@ When you've successfully started the installer, you should see the Git Setup wiz
 <br>
 
 
-##### Linux
+##### Linux {#Installing-Git-Linux}
 
 <ul class="justified-list">
     <li>Since there are an absolute immense amount of Linux distributions it is impossible to list them all here, therefore I leave it to you to find the neccessary command your linux platofrms package manager in order to install git. You can find the list of commands at the official page for <a href="https://git-scm.com/download/linux" target="_blank">installing git on Linux</a>, which already contains a comprehensive list. Make sure to get correct command and put it in your terminal.</li>
@@ -491,7 +577,7 @@ When you've successfully started the installer, you should see the Git Setup wiz
 </ul>
 
 
-##### macOS
+##### macOS {#Installing-Git-macOS}
 
 <ul class="justified-list">
     <li>According to the official git webpage guide on installing git for macOS the best way to install git for macOS is to use the homebrew package manager. You can use the following two commands to install both git and git-gui modules for macOS.</li>
@@ -548,6 +634,140 @@ brew install git-gui
 <br>
 
 <!-- ############################################# Separator - Top ############################################# -->
+
+
+<p>
+In Git, a configuration file is a text file that stores settings and preferences for the Git version control system on your local system. These settings can include user information, default behaviors for Git commands, aliases for frequently used commands, and more. THere are tons of things that you can learn to apply to a configuration file, but for the sake of simplicity we will discuss very briefly what you need to setup in order to make Git work and not complain.
+
+
+We'll be covering common configuration settings like email, username, and editor. We'll discuss Git aliases, which allow you to create shortcuts for frequently used Git operations. 
+
+
+--local
+By default, git config will write to a local level if no configuration option is passed. Local level configuration is applied to the context repository git config gets invoked in. Local configuration values are stored in a file that can be found in the repo's .git directory: .git/config  
+
+ --global
+Global level configuration is user-specific, meaning it is applied to an operating system user. Global configuration values are stored in a file that is located in a user's home directory. ~ /.gitconfig on unix systems and C:\Users\\.gitconfig on windows (Related to the loged in user on the computer, so per your account. Settings here are applied to all local git repositories on the machine that are unedr the users existinace) 
+
+ --system
+System-level configuration is applied across an entire machine. This covers all users on an operating system and all repos. The system level configuration file lives in a gitconfig file off the system root path. $(prefix)/etc/gitconfig on unix systems. On windows this file can be found at C:\Documents and Settings\All Users\Application Data\Git\config on Windows XP, and in C:\ProgramData\Git\config on Windows Vista and newer. (Lives in the machines system and is applied to absolutely everything, for all users and all repositories)
+</p>
+
+
+
+Thus the order of priority for configuration levels is: local, global, system. This means when looking for a configuration value, Git will start at the local level and bubble up (cascading order) to the system level.
+
+
+Even though it may seem tempting to modify system config file and have everything be applied everywhere, but this is not really the norm and can be inconvinente as maybe lets say your lovely wife who also happens to be a programmer and shares a pc with you does not want your settings for git to be for her as well. She probably wants different settings including a different user name and email to be associated with her account. So don'tt messs around with this one if you can help it. mostyl global is better as it prevents you from having to redo settings for every repository that you create with git for your projects and at the same time does not mess with others users prefereneces.
+
+
+Usage
+The most basic use case for git config is to invoke it with a configuration name, which will display the set value at that name. Configuration names are dot delimited strings composed of a 'section' and a 'key' based on their hierarchy. For example: user.email
+
+git config user.email
+In this example, email is a child property of the user configuration block. This will return the configured email address, if any, that Git will associate with locally created commits.
+
+
+
+
+The git config --list command displays a list of all Git configuration settings along with their current values. When you run this command, Git will output all configuration settings from three possible sources, listed in the following order of precedence: 
+
+Repository-specific configuration: Settings specific to the current Git repository. These settings are stored in the .git/config file within the repository directory.
+
+User-specific configuration: Settings specific to the current user. These settings are typically stored in the user's .gitconfig or .config/git/config file in their home directory (~).
+
+System-wide configuration: Settings that apply to all users on the system. These settings are typically stored in the system-wide /etc/gitconfig or /usr/local/etc/gitconfig file.
+
+in other words this command will show every setting from every config files perspective in one long ass output.
+
+
+if for some reason you want to see only settings and their values from local, global, or system you can add an additional falg tat has their name correspoding like this:
+
+git config --list --local
+
+this will only show local git config file settings located in .git folder
+
+git config --list --global
+git config --list --system
+
+
+The --show-origin flag is used with the git config --list command to display not only the configuration settings and their values but also the origin (source) of each setting.
+
+When you run git config --list --show-origin, Git will not only list all configuration settings but also indicate where each setting was defined: whether it's in the system-wide configuration, the user-specific configuration, or the repository-specific configuration.
+
+
+
+-- Edditing Settings
+
+
+if you wish to just open these files like a text editor and then modify their values just type this command and once you edit them just save and exit the editor:
+
+git config --local --edit
+git config --global --edit
+
+
+You can even navigate to the locations of each of these files on your machine and edit them in your favourite text editor. But the whole purpose of these commands is from having you to know where it is located on your system.
+
+-- Made a mistake when configuring?
+
+there are a 1000 ways to do the same thing, but I will give you some of the most commond options that can be useful as you don't want to spent yoru entire life trying to figure this stuff out. 2 ways to go about correcting your mistakes. either you can simply try and change the configuration for a particular setting or collection of settings by simply calling the same command for changing them again, but this time the correct version like this: ... in that case I will refer you back to the list of commands so you can have a go at it again :)
+
+
+But, if you simply want to reset something to its original then you can use these list of commands which simply use teh --unset flag which means reest or unset back to the default value. Note that this will reset configurations back to original, but you want to change them again, then you have to again change them using these commands referde to here:)
+
+
+You can fully reset all properties to their default values for a particular git config the following ways:
+
+git config --global --unset-all
+
+naturally if you execute all 3 the entire git will be reset and good as new. Also note that some articles may mention to just delete the git config files, but I don't recommend this as there is no way to get them back.
+
+Something that is worth mentionning is that sometimes you will see that your diffrenet levels of config files may not contain all the properties that they can like local will not contain user and email even though it totally can and you can even go ahead and add it if you like, but the reason for this is because it generally does not make sense to have this for every single local file and therefore git intelligently inserts it for just global at the initial installation since it makes more sense to have it in global than local. the same goes for many other settings.
+
+
+Now if you simply want to reset all and don't care about changing them, then do this
+
+
+-- Setting up the editor
+
+
+git config editor - core.editor
+Many Git commands will launch a text editor to prompt for further input. One of the most common use cases for git config is configuring which editor Git should use. Listed below is a table of popular editors and matching git config commands:
+
+Editor
+config command
+Atom
+
+~ git config --global core.editor "atom --wait"~
+
+emacs
+
+~ git config --global core.editor "emacs"~
+
+nano
+
+~ git config --global core.editor "nano -w"~
+
+vim
+
+~ git config --global core.editor "vim"~
+
+Sublime Text (Mac)
+
+~ git config --global core.editor "subl -n -w"~
+
+Sublime Text (Win, 32-bit install)
+
+~ git config --global core.editor "'c:/program files (x86)/sublime text 3/sublimetext.exe' -w"~
+
+Sublime Text (Win, 64-bit install)
+
+~ git config --global core.editor "'c:/program files/sublime text 3/sublimetext.exe' -w"~
+
+Textmate
+
+~ git config --global core.editor "mate -w"~
+
 
 
 ##### Windows
@@ -620,233 +840,3 @@ brew install git-gui
 
 
 
-
-
-
-
-
-
-In this document, we'll take an in-depth look at the git config command. We briefly discussed git config usage on our Setting up a Repository page.
-
-The git config command is a convenience function that is used to set Git configuration values on a global or local project level. These configuration levels correspond to .gitconfig text files. Executing git config will modify a configuration text file.
-
-We'll be covering common configuration settings like email, username, and editor. We'll discuss Git aliases, which allow you to create shortcuts for frequently used Git operations. Becoming familiar with git config and the various Git configuration settings will help you create a powerful, customized Git workflow.
-
-Usage
-The most basic use case for git config is to invoke it with a configuration name, which will display the set value at that name. Configuration names are dot delimited strings composed of a 'section' and a 'key' based on their hierarchy. For example: user.email
-
-git config user.email
-In this example, email is a child property of the user configuration block. This will return the configured email address, if any, that Git will associate with locally created commits.
-
-git config levels and files
-Before we further discuss git config usage, let's take a moment to cover configuration levels. The git config command can accept arguments to specify which configuration level to operate on. The following configuration levels are available:
-
-Git branch
-RELATED MATERIAL
-Git branch
-Read article
-Bitbucket logo
-SEE SOLUTION
-Learn Git with Bitbucket Cloud
-Read tutorial
---local
-By default, git config will write to a local level if no configuration option is passed. Local level configuration is applied to the context repository git config gets invoked in. Local configuration values are stored in a file that can be found in the repo's .git directory: .git/config  
-
- --global
-Global level configuration is user-specific, meaning it is applied to an operating system user. Global configuration values are stored in a file that is located in a user's home directory. ~ /.gitconfig on unix systems and C:\Users\\.gitconfig on windows  
-
- --system
-System-level configuration is applied across an entire machine. This covers all users on an operating system and all repos. The system level configuration file lives in a gitconfig file off the system root path. $(prefix)/etc/gitconfig on unix systems. On windows this file can be found at C:\Documents and Settings\All Users\Application Data\Git\config on Windows XP, and in C:\ProgramData\Git\config on Windows Vista and newer.
-
-Thus the order of priority for configuration levels is: local, global, system. This means when looking for a configuration value, Git will start at the local level and bubble up to the system level.  
-
-Writing a value
-Expanding on what we already know about git config, let's look at an example in which we write a value:
-
-git config --global user.email "your_email@example.com"
-This example writes the value your_email@example.com to the configuration name user.email. It uses the --global flag so this value is set for the current operating system user.
-
-git config editor - core.editor
-Many Git commands will launch a text editor to prompt for further input. One of the most common use cases for git config is configuring which editor Git should use. Listed below is a table of popular editors and matching git config commands:
-
-Editor
-config command
-Atom
-
-~ git config --global core.editor "atom --wait"~
-
-emacs
-
-~ git config --global core.editor "emacs"~
-
-nano
-
-~ git config --global core.editor "nano -w"~
-
-vim
-
-~ git config --global core.editor "vim"~
-
-Sublime Text (Mac)
-
-~ git config --global core.editor "subl -n -w"~
-
-Sublime Text (Win, 32-bit install)
-
-~ git config --global core.editor "'c:/program files (x86)/sublime text 3/sublimetext.exe' -w"~
-
-Sublime Text (Win, 64-bit install)
-
-~ git config --global core.editor "'c:/program files/sublime text 3/sublimetext.exe' -w"~
-
-Textmate
-
-~ git config --global core.editor "mate -w"~
-
-Merge tools
-In the event of a merge conflict, Git will launch a "merge tool." By default, Git uses an internal implementation of the common Unix diff program. The internal Git diff is a minimal merge conflict viewer. There are many external third party merge conflict resolutions that can be used instead. For an overview of various merge tools and configuration, see our guide on tips and tools to resolve conflits with Git. 
-
-git config --global merge.tool kdiff3
-Colored outputs
-Git supports colored terminal output which helps with rapidly reading Git output. You can customize your Git output to use a personalized color theme. The git config command is used to set these color values.
-
-color.ui
-This is the master variable for Git colors. Setting it to false will disable all Git's colored terminal output.
- 
-
-$ git config --global color.ui false
-By default, color.ui is set to auto which will apply colors to the immediate terminal output stream. The auto setting will omit color code output if the output stream is redirected to a file or piped to another process.
-
-You can set the color.ui value to always which will also apply color code output when redirecting the output stream to files or pipes. This can unintentionally cause problems since the receiving pipe may not be expecting color-coded input.
-
-Git color values
-In addition to color.ui, there are many other granular color settings. Like color.ui, these color settings can all be set to false, auto, or always. These color settings can also have a specific color value set. Some examples of supported color values are:
-
-normal
-black
-red
-green
-yellow
-blue
-magenta
-cyan
-white
-Colors may also be specified as hexadecimal color codes like #ff0000, or ANSI 256 color values if your terminal supports it.
-
-Git color configuration settings
-1. color.branch 
-
-Configures the output color of the Git branch command 
-2. color.branch.<slot> 
-
-This value is also applicable to Git branch output. <slot> is one of the following: 
-1. current: the current branch 
-2. local: a local branch 
-3. remote: a remote branch ref in refs/remotes 
-4. upstream: an upstream tracking branch 
-5. plain: any other ref
-3. color.diff 
-
-Applies colors to git diff, git log, and git show output 
-4. color.diff.<slot> 
-
-Configuring a <slot> value under color.diff tells git which part of the patch to use a specific color on. 
-1. context: The context text of the diff. Git context is the lines of text content shown in a diff or patch that highlights changes. 
-2. plain: a synonym for context 
-3. meta: applies color to the meta information of the diff 
-4. frag: applies color to the "hunk header" or "function in hunk header" 
-5. old: applies a color to the removed lines in the diff 
-6. new: colors the added lines of the diff 
-7. commit: colors commit headers within the diff 
-8. whitespace: sets a color for any whitespace errors in a diff
-5. color.decorate.<slot> 
-
-Customize the color for git log --decorate output. The supported <slot> values are: branch, remoteBranch, tag, stash, or HEAD. They are respectively applicable to local branches, remote-tracking branches, tags, stashed changes and HEAD. 
-6. color.grep
-
-Applies color to the output of git grep. 
-7. color.grep. <slot> 
-
-Also applicable to git grep. The <slot> variable specifies which part of the grep output to apply color. 
-1. context: non-matching text in context lines 
-2. filename: filename prefix 
-3. function: function name lines 
-4. linenumber: line number prefix 
-5. match: matching text 
-6. matchContext: matching text in context lines 
-7. matchSelected: matching text in selected lines 
-8. selected: non-matching text in selected lines 
-9. separator: separators between fields on a line (:, -, and =) and between hunks (--) 
-8. color.interactive 
-
-This variable applies color for interactive prompts and displays. Examples are git add --interactive and git clean --interactive 
-9. color.interactive.<slot> 
-
-The <slot> variable can be specified to target more specific "interactive output". The available <slot> values are: prompt, header, help, error; and each act on the corresponding interactive output. 
-10. color.pager
-
-Enables or disables colored output when the pager is in use 
-11. color.showBranch 
-
-Enables or disables color output for the git show branch command 
-12. color.status 
-
-A boolean value that enables or disables color output for Git status 
-13. color.status.<slot>
-
-Used to specify custom color for specified git status elements. <slot> supports the following values:
-
-1. header
-
-Targets the header text of the status area
-2. added or updated
-
-Both target files which are added but not committed
-3. changed
-
-Targets files that are modified but not added to the git index
-4. untracked
-
-Targets files which are not tracked by Git
-5. branch
-
-Applies color to the current branch
-6. nobranch
-
-The color the "no branch" warning is shown in
-7. unmerged
-
-Colors files which have unmerged changes
-Aliases
-You may be familiar with the concept of aliases from your operating system command-line; if not, they're custom shortcuts that define which command will expand to longer or combined commands. Aliases save you the time and energy cost of typing frequently used commands. Git provides its own alias system. A common use case for Git aliases is shortening the commit command. Git aliases are stored in Git configuration files. This means you can use the git config command to configure aliases.
-
-git config --global alias.ci commit
-This example creates a ci alias for the git commit command. You can then invoke git commit by executing git ci. Aliases can also reference other aliases to create powerful combos.
- 
-
-git config --global alias.amend ci --amend
-This example creates an alias amend which composes the ci alias into a new alias that uses --amend flag.
-
-Formatting & whitespace
-Git has several "whitespace" features that can be configured to highlight whitespace issues when using git diff. The whitespace issues will be highlighted using the configured color color.diff.whitespace
-
-The following features are enabled by default:
-
-blank-at-eol highlights orphan whitespaces at the line endings
-space-before-tab highlights a space character that appears before a tab character when indenting a line
-blank-at-eof highlights blank lines inserted at the end of a file
-The following features are disabled by default
-
-indent-with-non-tab highlights a line that is indented with spaces instead of tabs
-tab-in-indent highlights an initial tab indent as an error
-trailing-space is shorthand for both blank-at-eol and blank-at-eof
-cr-at-eol highlights a carriage-return at the line endings
-tabwidth= defines how many character positions a tab occupies. The default value is 8. Allowed values are 1-63
-Summary
-In this article, we covered the use of the git config command. We discussed how the command is a convince method for editing raw git config files on the filesystem. We looked at basic read and write operations for configuration options. We took a look at common config patterns:
-
-How to configure the Git editor
-How to override configuration levels
-How to reset configuration defaults
-How to customize git colors
-Overall, git config is a helper tool that provides a shortcut to editing raw git config files on disk. We covered in depth personal customization options. Basic knowledge of git configuration options is a prerequisite for setting up a repository. See our guide there for a demonstration of the basics
