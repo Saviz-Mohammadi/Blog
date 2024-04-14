@@ -623,7 +623,14 @@ brew install git-gui
 
 
 
-### Configuring Git for the first time
+
+
+
+
+
+
+
+### Configuring Git {#Configuring-Git}
 
 
 
@@ -636,77 +643,345 @@ brew install git-gui
 <!-- ############################################# Separator - Top ############################################# -->
 
 
+
 <p>
-In Git, a configuration file is a text file that stores settings and preferences for the Git version control system on your local system. These settings can include user information, default behaviors for Git commands, aliases for frequently used commands, and more. THere are tons of things that you can learn to apply to a configuration file, but for the sake of simplicity we will discuss very briefly what you need to setup in order to make Git work and not complain.
-
-
-We'll be covering common configuration settings like email, username, and editor. We'll discuss Git aliases, which allow you to create shortcuts for frequently used Git operations. 
-
-
---local
-By default, git config will write to a local level if no configuration option is passed. Local level configuration is applied to the context repository git config gets invoked in. Local configuration values are stored in a file that can be found in the repo's .git directory: .git/config  
-
- --global
-Global level configuration is user-specific, meaning it is applied to an operating system user. Global configuration values are stored in a file that is located in a user's home directory. ~ /.gitconfig on unix systems and C:\Users\\.gitconfig on windows (Related to the loged in user on the computer, so per your account. Settings here are applied to all local git repositories on the machine that are unedr the users existinace) 
-
- --system
-System-level configuration is applied across an entire machine. This covers all users on an operating system and all repos. The system level configuration file lives in a gitconfig file off the system root path. $(prefix)/etc/gitconfig on unix systems. On windows this file can be found at C:\Documents and Settings\All Users\Application Data\Git\config on Windows XP, and in C:\ProgramData\Git\config on Windows Vista and newer. (Lives in the machines system and is applied to absolutely everything, for all users and all repositories)
+Like any other software, Git offers a specific set of configurations and settings to the programmer in order to operate optimally. In Git, a configuration file is a text file that stores preferences and settings for the Git Version Control System. These settings encompass various aspects such as user information, default behaviors for Git commands, aliases for commonly used commands, choice of editor for composing messages, and many more.
 </p>
 
 
 
-Thus the order of priority for configuration levels is: local, global, system. This means when looking for a configuration value, Git will start at the local level and bubble up (cascading order) to the system level.
-
-
-Even though it may seem tempting to modify system config file and have everything be applied everywhere, but this is not really the norm and can be inconvinente as maybe lets say your lovely wife who also happens to be a programmer and shares a pc with you does not want your settings for git to be for her as well. She probably wants different settings including a different user name and email to be associated with her account. So don'tt messs around with this one if you can help it. mostyl global is better as it prevents you from having to redo settings for every repository that you create with git for your projects and at the same time does not mess with others users prefereneces.
-
-
-Usage
-The most basic use case for git config is to invoke it with a configuration name, which will display the set value at that name. Configuration names are dot delimited strings composed of a 'section' and a 'key' based on their hierarchy. For example: user.email
-
-git config user.email
-In this example, email is a child property of the user configuration block. This will return the configured email address, if any, that Git will associate with locally created commits.
+<br>
+<br>
 
 
 
-
-The git config --list command displays a list of all Git configuration settings along with their current values. When you run this command, Git will output all configuration settings from three possible sources, listed in the following order of precedence: 
-
-Repository-specific configuration: Settings specific to the current Git repository. These settings are stored in the .git/config file within the repository directory.
-
-User-specific configuration: Settings specific to the current user. These settings are typically stored in the user's .gitconfig or .config/git/config file in their home directory (~).
-
-System-wide configuration: Settings that apply to all users on the system. These settings are typically stored in the system-wide /etc/gitconfig or /usr/local/etc/gitconfig file.
-
-in other words this command will show every setting from every config files perspective in one long ass output.
+<p>
+There are numerous configurations you can apply to this file. If you're only interested in setting up the essential configurations to ensure Git functions smoothly without errors, focus on configuring your email, user details, and maybe even your editor. You can do this by refering to the section of ... . However, If you're aiming for a deeper understanding of Git's configuration, it's essential to familiarize yourself with the various levels of configuration that Git provides.
+</p>
 
 
-if for some reason you want to see only settings and their values from local, global, or system you can add an additional falg tat has their name correspoding like this:
 
+<br>
+<br>
+<br>
+
+
+
+##### Configuration Scopes {#Configuring-Git-Scopes}
+
+
+
+<p> As mentioned earlier, Git stores configuration settings in a text file, where each setting is represented as a pair of values, typically with the setting preceding an equal sign and followed by the corresponding value. However, it's important to note that Git can have multiple levels of configuration files, and depending on their placement, certain settings take precedence over others. Here are the three situations for a Git configuration file:
+</p>
+
+
+
+<br>
+<br>
+
+
+
+<ul class="justified-list">
+    <li><span class="special" style="font-weight: bold;">Local:</span> By default, every Git repository you create or clone from a central server will contain a Git configuration file named "config" located within the hidden <span class="special">.git</span> directory. Git typically prefers to use and write to this local-level config file unless otherwise specified. Local-level configuration settings are applied only within the context of the current working repository.</li>
+	<br>
+	<br>
+	<li><span class="special" style="font-weight: bold;">Global:</span> Global-level configuration is user-specific, meaning it applies to an operating system user account. These configuration values are stored in a file located in the user's home directory, typically <span class="special">"~/.gitconfig"</span> on Unix systems and <span class="special">"C:\YourUserName\.gitconfig"</span> on Windows. These settings are associated with the logged-in user on the computer, thus applying to all local Git repositories under that user's existence on the machine.</li>
+	<br>
+	<br>
+	<li><span class="special" style="font-weight: bold;">System:</span> System-level configuration applies universally across an entire machine, affecting all users and repositories. This configuration file resides in a <span class="special">"gitconfig"</span> file located off the system root path, typically <span class="special">"$(prefix)/etc/gitconfig"</span> on Unix systems. On Windows, you can find this file at <span class="special">"C:\Documents and Settings\All Users\Application Data\Git\config"</span> for Windows XP, and at <span class="special">"C:\ProgramData\Git\config"</span> for Windows Vista and newer versions.</li>
+</ul>
+
+
+
+<br>
+<br>
+
+
+
+<p>
+What's the rationale behind this structure instead of having just one configuration file? Git opted for this approach to provide maximum flexibility. By having three stages and levels of importance, developers and companies can establish their own standards without conflicting with each other's settings. If there were only one configuration file, individual users would likely have to rewrite their preferred settings every time they started a new project to align with the specific needs and requirements of that project. Therefore, the order of priority for configuration levels is local, global, system. This hierarchy implies that when Git searches for a configuration value, it begins at the local level and cascades upwards to the system level.
+</p>
+
+
+
+<br>
+<br>
+
+
+
+<p>
+ While it might be tempting to modify the system configuration file to apply settings universally, this is not typically the norm and can be inconvenient. For instance, if you share a computer with your other collegues, he/she may have different preferences for Git settings, such as a distinct username and email associated with her account. Thus, it's advisable not to tamper with the system configuration file unnecessarily. Generally, setting configurations at the global level is preferable, as it eliminates the need to reconfigure settings for each repository while still respecting the preferences of other users.
+</p>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+##### Printing Configuration Values {#Configuring-Git-Printing}
+
+
+
+<p>
+One fundamental application of git config is to use it to retrieve and display the value of a specific configuration. Git will search through system, global, and local configuration files to find the most appropriate value to display, if any exist. To retrieve configuration values in Git, you can employ the following command where you replace 'key' with the configuration key you wish to retrieve. The --show-origin option will show you from which of the git config files this setting originated from. You can omit this option, but I recommend keeping it in as it can be useful:
+</p>
+
+
+
+<br>
+<br>
+
+
+
+``` {linenos=false}
+git config --get --show-origin key
+```
+
+
+
+<br>
+<br>
+
+
+<p>Here is a list of most commonly used commands for printing values registered in git config files:</p>
+
+
+
+<br>
+<br>
+
+
+
+<p class="codeTitle">Registered name</p>
+
+``` {linenos=false}
+git config --get --show-origin user.name
+```
+
+<br>
+
+<p class="codeTitle">Registered email</p>
+
+``` {linenos=false}
+git config --get --show-origin user.email
+```
+
+
+
+<br>
+<br>
+
+
+
+<p>
+While those commands work, executing them individually can be tedious. A more efficient approach is to use the following git config command, which presents a comprehensive list of all Git configuration settings alongside their current values. When invoked, Git will output configuration settings from three potential sources, following a precedence order. In essence, this command provides a consolidated view of every setting from all configuration files, presented in one extensive output.
+</p>
+
+
+
+<br>
+<br>
+
+
+
+<p class="codeTitle">Shows list</p>
+
+``` {linenos=false}
+git config --list
+```
+
+<br>
+
+<p class="codeTitle">Shows list (plus origin)</p>
+
+``` {linenos=false}
+git config --list --show-origin
+```
+
+
+
+<br>
+<br>
+
+
+
+<p>
+If you wish to view settings and their values specifically from the local, global, or system configuration files, you can include an additional flag corresponding to their names, as demonstrated below. (Note: you can also include the --show-origin flag for confirmation, although it may seem redundant since you're already specifying the file you're listing. However, it could be useful for verifying the file's location):
+</p>
+
+
+<br>
+<br>
+
+
+<p class="codeTitle">Local</p>
+
+``` {linenos=false}
 git config --list --local
+```
 
-this will only show local git config file settings located in .git folder
+<br>
 
+<p class="codeTitle">Local (plus origin)</p>
+
+``` {linenos=false}
+git config --list --local --show-origin
+```
+
+
+
+<br>
+<br>
+
+<p class="codeTitle">Global</p>
+
+``` {linenos=false}
 git config --list --global
+```
+
+<br>
+
+<p class="codeTitle">Global (plus origin)</p>
+
+``` {linenos=false}
+git config --list --global --show-origin
+```
+
+
+
+<br>
+<br>
+
+<p class="codeTitle">System</p>
+
+``` {linenos=false}
 git config --list --system
+```
+
+<br>
+
+<p class="codeTitle">System (plus origin)</p>
+
+``` {linenos=false}
+git config --list --system --show-origin
+```
+
+<br>
+<br>
+<br>
 
 
-The --show-origin flag is used with the git config --list command to display not only the configuration settings and their values but also the origin (source) of each setting.
 
-When you run git config --list --show-origin, Git will not only list all configuration settings but also indicate where each setting was defined: whether it's in the system-wide configuration, the user-specific configuration, or the repository-specific configuration.
-
+##### Changing Configuration Values {#Configuring-Git-Changing}
 
 
--- Edditing Settings
+
+<p>
+Modifying the settings of each configuration file typically involves navigating to their respective locations and editing them using a text editor. Fortunately, Git offers a more convenient method for accomplishing this. Simply execute the following set of commands, make the necessary edits, save, and exit the editor. Your desired configuration values will then be applied to the configuration files:
+</p>
 
 
-if you wish to just open these files like a text editor and then modify their values just type this command and once you edit them just save and exit the editor:
+<br>
+<br>
 
+<p class="codeTitle">Local</p>
+
+``` {linenos=false}
 git config --local --edit
+```
+
+<br>
+
+<p class="codeTitle">Global</p>
+
+``` {linenos=false}
 git config --global --edit
+```
+
+<br>
+
+<p class="codeTitle">System</p>
+
+``` {linenos=false}
+git config --system --edit
+```
 
 
-You can even navigate to the locations of each of these files on your machine and edit them in your favourite text editor. But the whole purpose of these commands is from having you to know where it is located on your system.
+
+<br>
+<br>
+<br>
+
+
+
+##### Important Configuration Values {#Configuring-Git-Important}
+
+
+<p>
+There are numerous settings available for configuration in Git, but if you're eager to start using Git as soon as possible, the most crucial ones to set up are your username, email, and preferred editor. At its core, Git is a collaboration tool. When collaborating with others, it's essential for them to know who made the changes/actions (this has to do with your username and email) and the rationale behind each change, typically conveyed through a text message (this relates to your chosen editor). Configuring these settings in the global config file is generally advisable to avoid the need for repeated changes in local config files, as these settings remain relatively stable. Below are the commands to configure each setting:
+</p>
+
+<br>
+<br>
+
+<p class="codeTitle">Global Username</p>
+
+``` {linenos=false}
+git config --global user.name "Your Name"
+```
+
+<br>
+
+<p class="codeTitle">Global Email</p>
+
+``` {linenos=false}
+git config --global user.email "your.email@example.com"
+```
+
+<br>
+
+<p class="codeTitle">Global Editor</p>
+
+``` {linenos=false}
+git config --global core.editor "editor_name"
+```
+
+
+For the editors you can can replace "editor_name" with the following set of values for each platform:
+
+<p class="codeTitle">Windows</p>
+
+``` {linenos=false}
+Notepad++: "notepad++"
+Visual Studio Code: "code" (if installed and added to PATH)
+Sublime Text: "subl" (if installed and added to PATH)
+Atom: "atom" (if installed and added to PATH)
+Notepad: "notepad.exe"
+```
+
+<br>
+
+<p class="codeTitle">Linux</p>
+
+``` {linenos=false}
+Vim: "vim"
+Emacs: "emacs"
+Nano: "nano"
+```
+
+<br>
+
+<p class="codeTitle">macOS</p>
+
+``` {linenos=false}
+Vim: "vim"
+Emacs: "emacs"
+Nano: "nano"
+```
+
 
 -- Made a mistake when configuring?
 
@@ -728,102 +1003,6 @@ Something that is worth mentionning is that sometimes you will see that your dif
 Now if you simply want to reset all and don't care about changing them, then do this
 
 
--- Setting up the editor
-
-
-git config editor - core.editor
-Many Git commands will launch a text editor to prompt for further input. One of the most common use cases for git config is configuring which editor Git should use. Listed below is a table of popular editors and matching git config commands:
-
-Editor
-config command
-Atom
-
-~ git config --global core.editor "atom --wait"~
-
-emacs
-
-~ git config --global core.editor "emacs"~
-
-nano
-
-~ git config --global core.editor "nano -w"~
-
-vim
-
-~ git config --global core.editor "vim"~
-
-Sublime Text (Mac)
-
-~ git config --global core.editor "subl -n -w"~
-
-Sublime Text (Win, 32-bit install)
-
-~ git config --global core.editor "'c:/program files (x86)/sublime text 3/sublimetext.exe' -w"~
-
-Sublime Text (Win, 64-bit install)
-
-~ git config --global core.editor "'c:/program files/sublime text 3/sublimetext.exe' -w"~
-
-Textmate
-
-~ git config --global core.editor "mate -w"~
-
-
-
-##### Windows
-
-if this is the first time you have installed git on your device, then you need to do a one-time configuration to make sure that git can work properly. You can add more description about this here... .Configure your Git username and email using the following commands, replacing Emma's name with your own. These details will be associated with any commits that you create:
-
-$ git config --global user.name "Emma Paris"
-$ git config --global user.email "eparis@atlassian.com"
-
-
-
-<br>
-<br>
-<br>
-
-
-##### Linux
-
-<ul class="justified-list">
-    <li>Since there are an absolute immense amount of Linux distributions it is impossible to list them all here, therefore I leave it to you to find the neccessary command your linux platofrms package manager in order to install git. You can find the list of commands at the official page for <a href="https://git-scm.com/download/linux" target="_blank">installing git on Linux</a>, which already contains a comprehensive list. Make sure to get correct command and put it in your terminal.</li>
-	<br>
-	<br>
-	<li>Once the installation process is finished you can confirm your installation by revisiting the previsous section on <a href="#checking-if-git-is-installed-on-your-machine">Checking if Git is installed on your machine</a> for the Linux part.</li>
-</ul>
-
-
-##### macOS
-
-<ul class="justified-list">
-    <li>According to the official git webpage guide on installing git for macOS the best way to install git for macOS is to use the homebrew package manager. You can use the following two commands to install both git and git-gui modules for macOS.</li>
-</ul>
-
-<br>
-<br>
-<br>
-
-
-
-```bash {linenos=false}
-brew install git
-```
-
-<br>
-
-
-```bash {linenos=false}
-brew install git-gui
-```
-
-<br>
-<br>
-<br>
-
-<ul class="justified-list">
-    <li>Once the homebrew packaeg manager is finished you can confirm your installation by revisiting the previsous section on <a href="#checking-if-git-is-installed-on-your-machine">Checking if Git is installed on your machine</a> for the macOS part.</li>
-</ul>
 
 
 <!-- ############################################# Separator - Bottom ############################################# -->
