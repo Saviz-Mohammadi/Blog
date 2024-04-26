@@ -921,7 +921,7 @@ git config --system --edit
 
 
 <p>
-There are numerous settings available for configuration in Git, but if you're eager to start using Git as soon as possible, the most crucial ones to set up are your username, email, and preferred editor. At its core, Git is a collaboration tool. When collaborating with others, it's essential for them to know who made the changes/actions (this has to do with your username and email) and the rationale behind each change, typically conveyed through a text message (this relates to your chosen editor). Configuring these settings in the global config file is generally advisable to avoid the need for repeated changes in local config files, as these settings remain relatively stable. Below are the commands to configure each setting:
+There are numerous settings available for configuration in Git, but if you're eager to start using Git as soon as possible, the most crucial ones to set up are your username, email, and preferred editor. At its core, Git is a collaboration tool. When collaborating with others, it's essential for Git and programmers to know who made the changes/actions (this has to do with your username and email) and the rationale behind each change, typically conveyed through a text message (this relates to your chosen editor). Configuring these settings in the global config file is generally advisable to avoid the need for repeated changes in local config files, as these settings remain relatively stable. Below are the commands to configure each setting:
 </p>
 
 <br>
