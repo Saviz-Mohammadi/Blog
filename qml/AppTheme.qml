@@ -16,7 +16,19 @@ Item {
         // Basic:
         WindowBackground,
         // Controls:
-        SwitchCircle
+        SwitchCircle,
+        ToastBackgroundSuccess,
+        ToastBackgroundInfo,
+        ToastBackgroundWarning,
+        ToastBackgroundError,
+        ToastIconSuccess,
+        ToastIconInfo,
+        ToastIconWarning,
+        ToastIconError,
+        ToastTextSuccess,
+        ToastTextInfo,
+        ToastTextWarning,
+        ToastTextError
     }
 
     QtObject {
@@ -134,6 +146,18 @@ Item {
         property color switchCircleBorder: "transparent"
         property color switchBackground: "transparent"
         property color switchBackgroundBorder: "transparent"
+        property color toastBackgroundSuccess: "transparent"
+        property color toastBackgroundInfo: "transparent"
+        property color toastBackgroundWarning: "transparent"
+        property color toastBackgroundError: "transparent"
+        property color toastIconSuccess: "transparent"
+        property color toastIconInfo: "transparent"
+        property color toastIconWarning: "transparent"
+        property color toastIconError: "transparent"
+        property color toastTextSuccess: "transparent"
+        property color toastTextInfo: "transparent"
+        property color toastTextWarning: "transparent"
+        property color toastTextError: "transparent"
     }
 
     function setTheme(theme) {
@@ -142,14 +166,36 @@ Item {
         switch(theme) {
         case AppTheme.Themes.UFOLight:
             componentColors.windowBackground = predefinedColors.grey100;
-            //componentColors.switchCircle = "tomato";
+            componentColors.toastBackgroundSuccess = predefinedColors.green200;
+            componentColors.toastBackgroundInfo = predefinedColors.blue200;
+            componentColors.toastBackgroundWarning = predefinedColors.yellow200;
+            componentColors.toastBackgroundError = predefinedColors.red200;
+            componentColors.toastIconSuccess = predefinedColors.green400;
+            componentColors.toastIconInfo = predefinedColors.blue400;
+            componentColors.toastIconWarning = predefinedColors.yellow400;
+            componentColors.toastIconError = predefinedColors.red400;
+            componentColors.toastTextSuccess = predefinedColors.green400;
+            componentColors.toastTextInfo = predefinedColors.blue400;
+            componentColors.toastTextWarning = predefinedColors.yellow400;
+            componentColors.toastTextError = predefinedColors.red400;
             break;
         case AppTheme.Themes.UFODark:
             componentColors.windowBackground = predefinedColors.grey900;
-            //componentColors.switchCircle = "white";
+            componentColors.toastBackgroundSuccess = predefinedColors.green200;
+            componentColors.toastBackgroundInfo = predefinedColors.blue200;
+            componentColors.toastBackgroundWarning = predefinedColors.yellow200;
+            componentColors.toastBackgroundError = predefinedColors.red200;
+            componentColors.toastIconSuccess = predefinedColors.green400;
+            componentColors.toastIconInfo = predefinedColors.blue400;
+            componentColors.toastIconWarning = predefinedColors.yellow400;
+            componentColors.toastIconError = predefinedColors.red400;
+            componentColors.toastTextSuccess = predefinedColors.green400;
+            componentColors.toastTextInfo = predefinedColors.blue400;
+            componentColors.toastTextWarning = predefinedColors.yellow400;
+            componentColors.toastTextError = predefinedColors.red400;
             break;
         default:
-            isSuccessful = false
+            isSuccessful = false;
             break;
         }
 
@@ -167,6 +213,42 @@ Item {
             result = componentColors.windowBackground;
             break;
         // Controls:
+        case AppTheme.Colors.ToastBackgroundSuccess:
+            result = componentColors.toastBackgroundSuccess;
+            break;
+        case AppTheme.Colors.ToastBackgroundInfo:
+            result = componentColors.toastBackgroundInfo;
+            break;
+        case AppTheme.Colors.ToastBackgroundWarning:
+            result = componentColors.toastBackgroundWarning;
+            break;
+        case AppTheme.Colors.ToastBackgroundError:
+            result = componentColors.toastBackgroundError;
+            break;
+        case AppTheme.Colors.ToastIconSuccess:
+            result = componentColors.toastIconSuccess;
+            break;
+        case AppTheme.Colors.ToastIconInfo:
+            result = componentColors.toastIconInfo;
+            break;
+        case AppTheme.Colors.ToastIconWarning:
+            result = componentColors.toastIconWarning;
+            break;
+        case AppTheme.Colors.ToastIconError:
+            result = componentColors.toastIconError;
+            break;
+        case AppTheme.Colors.ToastTextSuccess:
+            result = componentColors.toastTextSuccess;
+            break;
+        case AppTheme.Colors.ToastTextInfo:
+            result = componentColors.toastTextInfo;
+            break;
+        case AppTheme.Colors.ToastTextWarning:
+            result = componentColors.toastTextWarning;
+            break;
+        case AppTheme.Colors.ToastTextError:
+            result = componentColors.toastTextError;
+            break;
         case AppTheme.Colors.SwitchCircle:
             result = componentColors.switchCircle;
             break;

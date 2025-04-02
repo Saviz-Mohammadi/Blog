@@ -1,7 +1,10 @@
 <RCC>
     <qresource prefix="resources">
         <file>./json/syntax highlighting.json</file>
-	<file>./icons/globe.svg</file>
 	<file>./txt/sample.txt</file>
+	<file>./icons/check_circle.svg</file>
+	<file>./icons/error.svg</file>
+	<file>./icons/info.svg</file>
+	<file>./icons/warning.svg</file>
     </qresource>
 </RCC>
