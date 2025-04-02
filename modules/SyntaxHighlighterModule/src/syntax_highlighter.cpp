@@ -7,7 +7,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-SyntaxHighlighter::SyntaxHighlighter(QObject *parent) : QSyntaxHighlighter(parent), m_LanguageName(QString())
+SyntaxHighlighter::SyntaxHighlighter(QObject *parent) : QSyntaxHighlighter(parent), m_Document(nullptr), m_LanguageName(QString())
 {
 
 }
@@ -98,14 +98,26 @@ void SyntaxHighlighter::loadRulesFromFile(const QString &filePath, const QString
     }
 }
 
+QQuickTextDocument *SyntaxHighlighter::getDocument() const
+{
+    return(this->m_Document);
+}
+
+QString SyntaxHighlighter::getLanguageName() const
+{
+    return(this->m_LanguageName);
+}
+
 void SyntaxHighlighter::setDocument(QQuickTextDocument *document)
 {
-    if (this->document() == document->textDocument())
+    if (this->m_Document == document)
     {
         return;
     }
 
-    QSyntaxHighlighter::setDocument(document->textDocument());
+    this->m_Document = document;
+
+    QSyntaxHighlighter::setDocument(m_Document->textDocument());
 
     emit documentChanged();
 }

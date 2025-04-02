@@ -12,14 +12,15 @@ class SyntaxHighlighter : public QSyntaxHighlighter
 {
     Q_OBJECT
 
-    Q_PROPERTY(QQuickTextDocument* document WRITE setDocument NOTIFY documentChanged)
-    Q_PROPERTY(QString languageName WRITE setLanguageName NOTIFY languageNameChanged)
+    Q_PROPERTY(QQuickTextDocument *document READ getDocument WRITE setDocument NOTIFY documentChanged)
+    Q_PROPERTY(QString languageName READ getLanguageName WRITE setLanguageName NOTIFY languageNameChanged)
 
 public:
     explicit SyntaxHighlighter(QObject *parent = nullptr);
     ~SyntaxHighlighter();
 
 private:
+    QQuickTextDocument *m_Document;
     QString m_LanguageName;
     struct HighlightingRule {
         QRegularExpression pattern;
@@ -33,6 +34,8 @@ signals:
 
     // Getters:
 public:
+    QQuickTextDocument *getDocument() const;
+    QString getLanguageName() const;
 
     // Setters:
 public:

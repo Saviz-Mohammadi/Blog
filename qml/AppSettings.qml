@@ -12,6 +12,6 @@ Item {
         id: themeSettings
 
         category: "Theme"
-        property int currentTheme: AppTheme.Themes.Light
+        property int currentTheme: AppTheme.Themes.UFOLight
     }
 }

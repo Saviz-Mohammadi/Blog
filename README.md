@@ -4,3 +4,6 @@ Useful videos:
 
 NOTE:
 	-- Multithreading in general seems to have a lot of problems on browsers (except for Mozilla). Therefore, I stick to the single-threaded version kit.
+
+TODO:
+	-- Add a toast (Watch the video on YouTube)

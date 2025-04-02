@@ -16,32 +16,34 @@ Window {
 
     Rectangle {
         anchors.fill: parent
-        color: AppTheme.getColor(AppTheme.Colors.SwitchCircle)
+        color: AppTheme.getColor(AppTheme.Colors.WindowBackground)
 
-        // UFOSwitch {
-        //     id: switchCustom
-
-        //     anchors.centerIn: parent
-        //     width: 120
-        //     height: 40
-        //     checked: AppSettings.currentTheme === AppTheme.Themes.Dark ? true : false
-
-        //     onCheckedChanged: {
-
-        //         switchCustom.checked ? AppTheme.setTheme(AppTheme.Themes.Dark) : AppTheme.setTheme(AppTheme.Themes.Light)
-        //     }
-        // }
-
-        CodeBox {
-            id: codeBox
-
+        Column {
             anchors.centerIn: parent
-            width: 120
-            height: 50
-            languageName: "cpp"
 
-            Component.onCompleted: {
-                text = fileIO.readFile(":/resources/txt/sample.txt");
+            UFOSwitch {
+                id: switchCustom
+
+                width: 120
+                height: 40
+                checked: AppSettings.currentTheme === AppTheme.Themes.UFODark ? true : false
+
+                onCheckedChanged: {
+
+                    switchCustom.checked ? AppTheme.setTheme(AppTheme.Themes.UFODark) : AppTheme.setTheme(AppTheme.Themes.UFOLight)
+                }
+            }
+
+            CodeBox {
+                id: codeBox
+
+                width: 120
+                height: 50
+                languageName: "cpp"
+
+                Component.onCompleted: {
+                    text = fileIO.readFile(":/resources/txt/sample.txt");
+                }
             }
         }
     }

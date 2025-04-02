@@ -5,19 +5,130 @@ import QtQuick
 Item {
     id: root
 
+    // Theme names:
     enum Themes {
-        Light,
-        Dark
+        UFOLight,
+        UFODark
     }
 
+    // Components' color:
     enum Colors {
+        // Basic:
+        WindowBackground,
+        // Controls:
         SwitchCircle
     }
 
     QtObject {
-        id: colorContainer
+        id: predefinedColors
+
+        // Lime:
+        readonly property color lime100: "#EFFFD6"
+        readonly property color lime200: "#D3F1A7"
+        readonly property color lime300: "#B3DF72"
+        readonly property color lime400: "#94C748"
+        readonly property color lime500: "#82B536"
+        readonly property color lime600: "#6A9A23"
+        readonly property color lime700: "#5B7F24"
+        readonly property color lime800: "#4C6B1F"
+        readonly property color lime900: "#37471F"
+
+        // Red:
+        readonly property color red100: "#FFECEB"
+        readonly property color red200: "#FFD5D2"
+        readonly property color red300: "#FD9891"
+        readonly property color red400: "#F87168"
+        readonly property color red500: "#F15B50"
+        readonly property color red600: "#E2483D"
+        readonly property color red700: "#C9372C"
+        readonly property color red800: "#AE2E24"
+        readonly property color red900: "#5D1F1A"
+
+        // Orange:
+        readonly property color orange100: "#FFF3EB"
+        readonly property color orange200: "#FEDEC8"
+        readonly property color orange300: "#FEC195"
+        readonly property color orange400: "#FEA362"
+        readonly property color orange500: "#F38A3F"
+        readonly property color orange600: "#E56910"
+        readonly property color orange700: "#C25100"
+        readonly property color orange800: "#A54800"
+        readonly property color orange900: "#702E00"
+
+        // Yellow:
+        readonly property color yellow100: "#FFF7D6"
+        readonly property color yellow200: "#F8E6A0"
+        readonly property color yellow300: "#F5CD47"
+        readonly property color yellow400: "#E2B203"
+        readonly property color yellow500: "#CF9F02"
+        readonly property color yellow600: "#B38600"
+        readonly property color yellow700: "#946F00"
+        readonly property color yellow800: "#7F5F01"
+        readonly property color yellow900: "#533F04"
+
+        // Green colors
+        readonly property color green100: "#DCFFF1"
+        readonly property color green200: "#BAF3DB"
+        readonly property color green300: "#7EE2B8"
+        readonly property color green400: "#4BCE97"
+        readonly property color green500: "#2ABB7F"
+        readonly property color green600: "#22A06B"
+        readonly property color green700: "#1F845A"
+        readonly property color green800: "#216E4E"
+        readonly property color green900: "#164B35"
+
+        // Teal:
+        readonly property color teal100: "#E7F9FF"
+        readonly property color teal200: "#C6EDFB"
+        readonly property color teal300: "#9DD9EE"
+        readonly property color teal400: "#6CC3E0"
+        readonly property color teal500: "#42B2D7"
+        readonly property color teal600: "#2898BD"
+        readonly property color teal700: "#227D9B"
+        readonly property color teal800: "#206A83"
+        readonly property color teal900: "#164555"
+
+        // Blue:
+        readonly property color blue100: "#E9F2FF"
+        readonly property color blue200: "#CCE0FF"
+        readonly property color blue300: "#85B8FF"
+        readonly property color blue400: "#579DFF"
+        readonly property color blue500: "#388BFF"
+        readonly property color blue600: "#1D7AFC"
+        readonly property color blue700: "#0C66E4"
+        readonly property color blue800: "#0055CC"
+        readonly property color blue900: "#09326C"
+
+        // Purple:
+        readonly property color purple100: "#F3F0FF"
+        readonly property color purple200: "#DFD8FD"
+        readonly property color purple300: "#B8ACF6"
+        readonly property color purple400: "#9F8FEF"
+        readonly property color purple500: "#8F7EE7"
+        readonly property color purple600: "#8270DB"
+        readonly property color purple700: "#6E5DC6"
+        readonly property color purple800: "#5E4DB2"
+        readonly property color purple900: "#352C63"
+
+        // Grey:
+        readonly property color grey100: "#F8F9FA"
+        readonly property color grey200: "#E9ECEF"
+        readonly property color grey300: "#DEE2E6"
+        readonly property color grey400: "#CED4DA"
+        readonly property color grey500: "#ADB5BD"
+        readonly property color grey600: "#6C757D"
+        readonly property color grey700: "#495057"
+        readonly property color grey800: "#343A40"
+        readonly property color grey900: "#212529"
+    }
+
+    QtObject {
+        id: componentColors
 
         // Basic:
+        property color windowBackground: "transparent"
+
+        // Controls:
         property color switchCircle: "transparent"
         property color switchCircleChecked: "transparent"
         property color switchCircleBorder: "transparent"
@@ -29,11 +140,13 @@ Item {
         let isSuccessful = true;
 
         switch(theme) {
-        case AppTheme.Themes.Light:
-            colorContainer.switchCircle = "tomato";
+        case AppTheme.Themes.UFOLight:
+            componentColors.windowBackground = predefinedColors.grey100;
+            //componentColors.switchCircle = "tomato";
             break;
-        case AppTheme.Themes.Dark:
-            colorContainer.switchCircle = "white";
+        case AppTheme.Themes.UFODark:
+            componentColors.windowBackground = predefinedColors.grey900;
+            //componentColors.switchCircle = "white";
             break;
         default:
             isSuccessful = false
@@ -49,8 +162,13 @@ Item {
         let result = "transparent";
 
         switch(color) {
+        // Basic:
+        case AppTheme.Colors.WindowBackground:
+            result = componentColors.windowBackground;
+            break;
+        // Controls:
         case AppTheme.Colors.SwitchCircle:
-            result = colorContainer.switchCircle;
+            result = componentColors.switchCircle;
             break;
         default:
             break;
