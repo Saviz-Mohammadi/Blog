@@ -1,0 +1,10 @@
+{
+  "cpp": [
+    { "pattern": "\\b(int|return|if|else|for|while|include|std)\\b", "color": "red", "bold": true },
+    { "pattern": "\".*?\"", "color": "darkGreen", "bold": false }
+  ],
+  "csharp": [
+    { "pattern": "\\b(using|namespace|public|class|void|new)\\b", "color": "blue", "bold": true },
+    { "pattern": "\".*?\"", "color": "darkGreen", "bold": false }
+  ]
+}
