@@ -14,7 +14,7 @@ Item {
     // Components' color:
     enum Colors {
         // Basic:
-        WindowBackground,
+        HeaderBackground,
         // Controls:
         SwitchCircle,
         ToastBackgroundSuccess,
@@ -138,7 +138,7 @@ Item {
         id: componentColors
 
         // Basic:
-        property color windowBackground: "transparent"
+        property color headerBackground: "transparent"
 
         // Controls:
         property color switchCircle: "transparent"
@@ -165,7 +165,7 @@ Item {
 
         switch(theme) {
         case AppTheme.Themes.UFOLight:
-            componentColors.windowBackground = predefinedColors.grey100;
+            componentColors.headerBackground = predefinedColors.grey100;
             componentColors.toastBackgroundSuccess = predefinedColors.green200;
             componentColors.toastBackgroundInfo = predefinedColors.blue200;
             componentColors.toastBackgroundWarning = predefinedColors.yellow200;
@@ -180,7 +180,7 @@ Item {
             componentColors.toastTextError = predefinedColors.red400;
             break;
         case AppTheme.Themes.UFODark:
-            componentColors.windowBackground = predefinedColors.grey900;
+            componentColors.headerBackground = predefinedColors.grey900;
             componentColors.toastBackgroundSuccess = predefinedColors.green200;
             componentColors.toastBackgroundInfo = predefinedColors.blue200;
             componentColors.toastBackgroundWarning = predefinedColors.yellow200;
@@ -209,8 +209,8 @@ Item {
 
         switch(color) {
         // Basic:
-        case AppTheme.Colors.WindowBackground:
-            result = componentColors.windowBackground;
+        case AppTheme.Colors.HeaderBackground:
+            result = componentColors.headerBackground;
             break;
         // Controls:
         case AppTheme.Colors.ToastBackgroundSuccess:

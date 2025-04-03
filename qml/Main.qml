@@ -26,7 +26,7 @@ Window {
             id: header
 
             Layout.fillWidth: true
-            Layout.preferredHeight: 80
+            Layout.preferredHeight: 50
 
             onMenuIsClicked: {
                 navigation.visible = !navigation.visible;
@@ -43,6 +43,7 @@ Window {
             visible: false
         }
 
+        // NOTE (SAVIZ): I am not sure, but I need to check and see if 'StackLayout' actually is intelligent and reduces memory consumption of pages that are not visible, otherwies I will have to replace it with 'StackView'.
         StackLayout {
             id: stackLayout
 
@@ -56,7 +57,7 @@ Window {
 
             visible: true
 
-            HomePage {
+            CMakePage {
                 id: homePage
 
                 Layout.fillWidth: true
@@ -77,9 +78,9 @@ Window {
                 }
             }
 
-            Component.onCompleted: {
-                stackLayout.currentIndex = ufo_Settings.StackLayout.index
-            }
+            // Component.onCompleted: {
+            //     stackLayout.currentIndex = ufo_Settings.StackLayout.index
+            // }
         }
     }
 
@@ -89,19 +90,6 @@ Window {
 
     //     Column {
     //         anchors.centerIn: parent
-
-    //         UFOSwitch {
-    //             id: switchCustom
-
-    //             width: 120
-    //             height: 40
-    //             checked: AppSettings.currentTheme === AppTheme.Themes.UFODark ? true : false
-
-    //             onCheckedChanged: {
-
-    //                 switchCustom.checked ? AppTheme.setTheme(AppTheme.Themes.UFODark) : AppTheme.setTheme(AppTheme.Themes.UFOLight)
-    //             }
-    //         }
 
     //         CodeBox {
     //             id: codeBox
@@ -115,9 +103,5 @@ Window {
     //             }
     //         }
     //     }
-    // }
-
-    // Component.onCompleted: {
-    //     UFOToast.displayMessage(UFOToast.Status.Success, "Operation completed!");
     // }
 }

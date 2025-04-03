@@ -4,8 +4,6 @@ import QtQuick.Controls.Basic
 Switch {
     id: control
 
-    text: qsTr("Switch")
-
     indicator: Rectangle {
         implicitWidth: 48
         implicitHeight: 26
