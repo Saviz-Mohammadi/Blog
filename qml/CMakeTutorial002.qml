@@ -5,11 +5,11 @@ import QtQuick.Layouts
 Item {
     id: root
 
-    property int topMargin: 10
-    property int bottomMargin: 10
-    property int rightMargin: 10
-    property int leftMargin: 10
-    property int spacing: 10
+    property int topMargin: 15
+    property int bottomMargin: 15
+    property int rightMargin: 15
+    property int leftMargin: 15
+    property int spacing: 15
 
     ScrollView {
         id: scrollView
@@ -25,7 +25,7 @@ Item {
             id: rectangleBackground
 
             radius: 0
-            color: "springGreen"
+            color: AppTheme.getColor(AppTheme.Colors.PageBackground)
         }
 
         ColumnLayout {

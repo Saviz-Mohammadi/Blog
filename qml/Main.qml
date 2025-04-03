@@ -26,7 +26,7 @@ Window {
             id: header
 
             Layout.fillWidth: true
-            Layout.preferredHeight: 50
+            Layout.preferredHeight: 60
         }
 
         NavigationPage {

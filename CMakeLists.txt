@@ -20,6 +20,7 @@ qt_add_executable(appBlog
 set_source_files_properties(
     qml/AppTheme.qml
     qml/AppSettings.qml
+    qml/AppFont.qml
 
     PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
@@ -29,16 +30,18 @@ qt_add_qml_module(appBlog
     QML_FILES
         qml/Main.qml
         qml/AppTheme.qml
-        qml/UFOSwitch.qml
         qml/AppSettings.qml
+        qml/AppFont.qml
+        qml/UFOSwitch.qml
         qml/CodeBox.qml
 	qml/UFOToast.qml
+        qml/UFOButton.qml
         qml/HomePage.qml
         qml/Header.qml
         qml/NavigationPage.qml
-        QML_FILES qml/CMakePage.qml
-        QML_FILES qml/CMakeTutorial001.qml
-        QML_FILES qml/CMakeTutorial002.qml
+        qml/CMakePage.qml
+        qml/CMakeTutorial001.qml
+        qml/CMakeTutorial002.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

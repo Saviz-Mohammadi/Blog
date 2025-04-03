@@ -28,7 +28,7 @@ Item {
             id: rectangleBackground
 
             radius: 0
-            color: "springGreen"
+            color: AppTheme.getColor(AppTheme.Colors.PageBackground)
         }
 
         ColumnLayout {

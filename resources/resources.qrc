@@ -2,6 +2,17 @@
     <qresource prefix="resources">
         <file>./json/syntax highlighting.json</file>
 	<file>./txt/sample.txt</file>
+	<file>./fonts/Titillium_Web/TitilliumWeb-Black.ttf</file>
+        <file>./fonts/Titillium_Web/TitilliumWeb-Bold.ttf</file>
+        <file>./fonts/Titillium_Web/TitilliumWeb-BoldItalic.ttf</file>
+        <file>./fonts/Titillium_Web/TitilliumWeb-ExtraLight.ttf</file>
+        <file>./fonts/Titillium_Web/TitilliumWeb-ExtraLightItalic.ttf</file>
+        <file>./fonts/Titillium_Web/TitilliumWeb-Italic.ttf</file>
+        <file>./fonts/Titillium_Web/TitilliumWeb-Light.ttf</file>
+        <file>./fonts/Titillium_Web/TitilliumWeb-LightItalic.ttf</file>
+        <file>./fonts/Titillium_Web/TitilliumWeb-Regular.ttf</file>
+        <file>./fonts/Titillium_Web/TitilliumWeb-SemiBold.ttf</file>
+        <file>./fonts/Titillium_Web/TitilliumWeb-SemiBoldItalic.ttf</file>	
 	<file>./icons/check_circle.svg</file>
 	<file>./icons/error.svg</file>
 	<file>./icons/info.svg</file>

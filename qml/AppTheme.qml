@@ -5,6 +5,8 @@ import QtQuick
 Item {
     id: root
 
+    readonly property alias predefinedColors: predefinedColors
+
     // Theme names:
     enum Themes {
         UFOLight,
@@ -14,9 +16,24 @@ Item {
     // Components' color:
     enum Colors {
         // Basic:
+        PageBackground,
         HeaderBackground,
+        HeaderLabelText,
         // Controls:
         SwitchCircle,
+        ButtonBackgroundNormal,
+        ButtonBackgroundHovered,
+        ButtonBackgroundChecked,
+        ButtonBackgroundDown,
+        ButtonIconNormal,
+        ButtonIconHovered,
+        ButtonIconChecked,
+        ButtonIconDown,
+        ButtonTextNormal,
+        ButtonTextHovered,
+        ButtonTextChecked,
+        ButtonTextDown,
+        ButtonBorder,
         ToastBackgroundSuccess,
         ToastBackgroundInfo,
         ToastBackgroundWarning,
@@ -138,9 +155,24 @@ Item {
         id: componentColors
 
         // Basic:
+        property color pageBackground: "transparent"
         property color headerBackground: "transparent"
+        property color headerLabelText: "transparent"
 
         // Controls:
+        property color buttonBackgroundNormal: "transparent"
+        property color buttonBackgroundHovered: "transparent"
+        property color buttonBackgroundChecked: "transparent"
+        property color buttonBackgroundDown: "transparent"
+        property color buttonIconNormal: "transparent"
+        property color buttonIconHovered: "transparent"
+        property color buttonIconChecked: "transparent"
+        property color buttonIconDown: "transparent"
+        property color buttonTextNormal: "transparent"
+        property color buttonTextHovered: "transparent"
+        property color buttonTextChecked: "transparent"
+        property color buttonTextDown: "transparent"
+        property color buttonBorder: "transparent"
         property color switchCircle: "transparent"
         property color switchCircleChecked: "transparent"
         property color switchCircleBorder: "transparent"
@@ -165,7 +197,23 @@ Item {
 
         switch(theme) {
         case AppTheme.Themes.UFOLight:
-            componentColors.headerBackground = predefinedColors.grey100;
+            componentColors.pageBackground = predefinedColors.grey300;
+            componentColors.headerBackground = predefinedColors.grey800;
+            componentColors.headerLabelText = predefinedColors.green500;
+
+            componentColors.buttonBackgroundNormal = predefinedColors.green500;
+            componentColors.buttonBackgroundHovered = predefinedColors.green700;
+            componentColors.buttonBackgroundChecked = predefinedColors.green700;
+            componentColors.buttonBackgroundDown = predefinedColors.green700;
+            componentColors.buttonIconNormal = predefinedColors.grey800;
+            componentColors.buttonIconHovered = predefinedColors.grey200;
+            componentColors.buttonIconChecked = predefinedColors.grey200;
+            componentColors.buttonIconDown = predefinedColors.grey200;
+            componentColors.buttonTextNormal = predefinedColors.grey800;
+            componentColors.buttonTextHovered = predefinedColors.grey200;
+            componentColors.buttonTextChecked = predefinedColors.grey200;
+            componentColors.buttonTextDown = predefinedColors.grey200;
+            componentColors.buttonBorder = "transparent";
             componentColors.toastBackgroundSuccess = predefinedColors.green200;
             componentColors.toastBackgroundInfo = predefinedColors.blue200;
             componentColors.toastBackgroundWarning = predefinedColors.yellow200;
@@ -180,7 +228,10 @@ Item {
             componentColors.toastTextError = predefinedColors.red400;
             break;
         case AppTheme.Themes.UFODark:
-            componentColors.headerBackground = predefinedColors.grey900;
+            componentColors.pageBackground = predefinedColors.green200;
+            componentColors.headerBackground = predefinedColors.grey600;
+            componentColors.headerLabelText = predefinedColors.grey900;
+
             componentColors.toastBackgroundSuccess = predefinedColors.green200;
             componentColors.toastBackgroundInfo = predefinedColors.blue200;
             componentColors.toastBackgroundWarning = predefinedColors.yellow200;
@@ -209,10 +260,55 @@ Item {
 
         switch(color) {
         // Basic:
+        case AppTheme.Colors.PageBackground:
+            result = componentColors.pageBackground;
+            break;
         case AppTheme.Colors.HeaderBackground:
             result = componentColors.headerBackground;
             break;
+        case AppTheme.Colors.HeaderLabelText:
+            result = componentColors.headerLabelText;
+            break;
         // Controls:
+        case AppTheme.Colors.ButtonBackgroundNormal:
+            result = componentColors.buttonBackgroundNormal;
+            break;
+        case AppTheme.Colors.ButtonBackgroundHovered:
+            result = componentColors.buttonBackgroundHovered;
+            break;
+        case AppTheme.Colors.ButtonBackgroundChecked:
+            result = componentColors.buttonBackgroundChecked;
+            break;
+        case AppTheme.Colors.ButtonBackgroundDown:
+            result = componentColors.buttonBackgroundDown;
+            break;
+        case AppTheme.Colors.ButtonIconNormal:
+            result = componentColors.buttonIconNormal;
+            break;
+        case AppTheme.Colors.ButtonIconHovered:
+            result = componentColors.buttonIconHovered;
+            break;
+        case AppTheme.Colors.ButtonIconChecked:
+            result = componentColors.buttonIconChecked;
+            break;
+        case AppTheme.Colors.ButtonIconDown:
+            result = componentColors.buttonIconDown;
+            break;
+        case AppTheme.Colors.ButtonTextNormal:
+            result = componentColors.buttonTextNormal;
+            break;
+        case AppTheme.Colors.ButtonTextHovered:
+            result = componentColors.buttonTextHovered;
+            break;
+        case AppTheme.Colors.ButtonTextChecked:
+            result = componentColors.buttonTextChecked;
+            break;
+        case AppTheme.Colors.ButtonTextDown:
+            result = componentColors.buttonTextDown;
+            break;
+        case AppTheme.Colors.ButtonBorder:
+            result = componentColors.buttonBorder;
+            break;
         case AppTheme.Colors.ToastBackgroundSuccess:
             result = componentColors.toastBackgroundSuccess;
             break;

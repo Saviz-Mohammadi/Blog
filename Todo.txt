@@ -1,2 +1,1 @@
-For each stackLayout page have a swipe view that contains each tutorial part.
 For the navigation have categories like: Pages, Tutorials. Each of them separated by a line or something.
