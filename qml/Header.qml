@@ -8,7 +8,7 @@ Item {
     implicitHeight: 200
     implicitWidth: 200
 
-    signal menuIsClicked()
+    signal menuCheckedChanged(bool isChecked)
 
     Rectangle {
         id: rectangleBackground
@@ -37,16 +37,22 @@ Item {
                 Layout.fillWidth: true
             }
 
-            UFOSwitch {
-                id: switchCustom
+            Button {
+                id: buttonTheme
 
                 Layout.preferredHeight: 30
 
-                checked: AppSettings.currentTheme === AppTheme.Themes.UFODark ? true : false
+                checkable: true
+                checked: buttonTheme.isInDarkMode()
+                display: AbstractButton.IconOnly
+                icon.source: buttonTheme.isInDarkMode() ? "qrc:/resources/icons/dark_mode.svg" : "qrc:/resources/icons/light_mode.svg"
+
+                function isInDarkMode() {
+                    return(AppSettings.currentTheme === AppTheme.Themes.UFODark);
+                }
 
                 onCheckedChanged: {
-
-                    switchCustom.checked ? AppTheme.setTheme(AppTheme.Themes.UFODark) : AppTheme.setTheme(AppTheme.Themes.UFOLight)
+                    buttonTheme.checked ? AppTheme.setTheme(AppTheme.Themes.UFODark) : AppTheme.setTheme(AppTheme.Themes.UFOLight)
                 }
             }
 
@@ -56,9 +62,13 @@ Item {
                 Layout.preferredHeight: 30
 
                 text: qsTr("Menu")
+                checkable: true
+                checked: false
+                display: AbstractButton.IconOnly
+                icon.source: "qrc:/resources/icons/menu.svg"
 
-                onClicked: {
-                    root.menuIsClicked();
+                onCheckedChanged: {
+                    root.menuCheckedChanged(button.checked);
                 }
             }
         }

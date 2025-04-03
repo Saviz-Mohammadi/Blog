@@ -27,11 +27,6 @@ Window {
 
             Layout.fillWidth: true
             Layout.preferredHeight: 50
-
-            onMenuIsClicked: {
-                navigation.visible = !navigation.visible;
-                stackLayout.visible = !stackLayout.visible;
-            }
         }
 
         NavigationPage {
@@ -41,6 +36,14 @@ Window {
             Layout.fillHeight: true
 
             visible: false
+
+            Connections {
+                target: header
+
+                function onMenuCheckedChanged(isChecked: bool) {
+                    navigation.visible = isChecked;
+                }
+            }
         }
 
         // NOTE (SAVIZ): I am not sure, but I need to check and see if 'StackLayout' actually is intelligent and reduces memory consumption of pages that are not visible, otherwies I will have to replace it with 'StackView'.
@@ -75,6 +78,14 @@ Window {
                     break;
                 default:
                     break;
+                }
+            }
+
+            Connections {
+                target: header
+
+                function onMenuCheckedChanged(isChecked: bool) {
+                    stackLayout.visible = !isChecked;
                 }
             }
 
