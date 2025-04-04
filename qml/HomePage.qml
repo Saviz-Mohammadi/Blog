@@ -8,6 +8,8 @@ import Proxy
 Item {
     id: root
 
+    signal pageRequested(int index)
+
     property int topMargin: 15
     property int bottomMargin: 15
     property int rightMargin: 15
@@ -63,7 +65,7 @@ Item {
                     horizontalAlignment: Text.AlignLeft
                 }
 
-                TextField {
+                UFOTextField {
                     id: textFieldTutorial
 
                     Layout.fillWidth: true
@@ -82,8 +84,15 @@ Item {
                     ListModel {
                         id: listModelTutorial
 
-                        ListElement { tutorialName: "CMake" }
-                        ListElement { tutorialName: "Git" }
+                        ListElement {
+                            pageIndex: 1
+                            tutorialName: "CMake"
+                        }
+
+                        ListElement {
+                            pageIndex: 2
+                            tutorialName: "Git"
+                        }
                     }
 
                     Proxy {
@@ -101,10 +110,38 @@ Item {
                         width: listViewTutorial.width
                         height: 35
 
-                        color: "blue"
+                        color: AppTheme.getColor(AppTheme.Colors.ListDelegateBackground)
 
-                        // onRemoveClicked: {
-                        // listModel_ListView.remove(index);
+                        RowLayout {
+                            anchors.fill: parent
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                Layout.leftMargin: 10
+
+                                text: model.tutorialName
+                                elide: Text.ElideRight
+                                font.family: AppFont.titilliumSemiBoldFont.family
+                                font.weight: AppFont.titilliumSemiBoldFont.weight
+                                font.styleName: AppFont.titilliumSemiBoldFont.styleName
+                                font.pixelSize: Qt.application.font.pixelSize * 1.25
+                                wrapMode: Text.NoWrap
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignLeft
+                            }
+
+                            UFOButton {
+                                Layout.fillHeight: true
+
+                                text: qsTr("Go")
+                                icon.source: "qrc:/resources/icons/arrow_right_alt.svg"
+
+                                onClicked: {
+                                    root.pageRequested(model.pageIndex);
+                                }
+                            }
+                        }
                     }
                 }
             }

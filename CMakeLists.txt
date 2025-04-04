@@ -36,13 +36,14 @@ qt_add_qml_module(appBlog
         qml/CodeBox.qml
 	qml/UFOToast.qml
         qml/UFOButton.qml
+        qml/UFOTextField.qml
         qml/HomePage.qml
         qml/Header.qml
         qml/NavigationMenu.qml
         qml/CMakePage.qml
         qml/CMakePart001.qml
         qml/CMakePart002.qml
-        QML_FILES
+        qml/GitPage.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

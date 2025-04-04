@@ -82,6 +82,13 @@ Window {
                 Layout.fillHeight: true
             }
 
+            GitPage {
+                id: gitPage
+
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
             function changePage(index: int) {
                 switch (index) {
                 case 0:
@@ -90,8 +97,19 @@ Window {
                 case 1:
                     stackLayout.currentIndex = cmakePage.StackLayout.index;
                     break;
+                case 2:
+                    stackLayout.currentIndex = gitPage.StackLayout.index;
+                    break;
                 default:
                     break;
+                }
+            }
+
+            Connections {
+                target: homePage
+
+                function onPageRequested(index : int) {
+                    stackLayout.changePage(index);
                 }
             }
 

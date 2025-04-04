@@ -5,6 +5,7 @@ import QtQuick
 Item {
     id: root
 
+    // NOTE (SAVIZ): Just in case someone wants to perform experiments with colors:
     readonly property alias predefinedColors: predefinedColors
 
     // Theme names:
@@ -19,6 +20,7 @@ Item {
         PageBackground,
         HeaderBackground,
         HeaderLabelText,
+        ListDelegateBackground,
         // Controls:
         SwitchCircle,
         ButtonBackgroundNormal,
@@ -46,7 +48,14 @@ Item {
         ToastTextInfo,
         ToastTextWarning,
         ToastTextError,
-        Line
+        Line,
+        TextFieldBackground,
+        TextFieldPlaceHolderText,
+        TextFieldTextSelectedBackground,
+        TextFieldTextSelected,
+        TextFieldTextNormal,
+        TextFieldBorderNormal,
+        TextFieldBorderFocused
     }
 
     QtObject {
@@ -159,6 +168,7 @@ Item {
         property color pageBackground: "transparent"
         property color headerBackground: "transparent"
         property color headerLabelText: "transparent"
+        property color listDelegateBackground: "transparent"
 
         // Controls:
         property color buttonBackgroundNormal: "transparent"
@@ -192,6 +202,13 @@ Item {
         property color toastTextWarning: "transparent"
         property color toastTextError: "transparent"
         property color line: "transparent"
+        property color textFieldBackground: "transparent"
+        property color textFieldPlaceHolderText: "transparent"
+        property color textFieldTextSelectedBackground: "transparent"
+        property color textFieldTextSelected: "transparent"
+        property color textFieldTextNormal: "transparent"
+        property color textFieldBorderNormal: "transparent"
+        property color textFieldBorderFocused: "transparent"
     }
 
     function setTheme(theme) {
@@ -202,6 +219,7 @@ Item {
             componentColors.pageBackground = predefinedColors.grey300;
             componentColors.headerBackground = predefinedColors.grey800;
             componentColors.headerLabelText = predefinedColors.green500;
+            componentColors.listDelegateBackground = predefinedColors.grey400;
 
             componentColors.buttonBackgroundNormal = predefinedColors.green500;
             componentColors.buttonBackgroundHovered = predefinedColors.green700;
@@ -229,24 +247,15 @@ Item {
             componentColors.toastTextWarning = predefinedColors.yellow400;
             componentColors.toastTextError = predefinedColors.red400;
             componentColors.line = predefinedColors.grey800;
+            componentColors.textFieldBackground = predefinedColors.grey200;
+            componentColors.textFieldPlaceHolderText = predefinedColors.grey800;
+            componentColors.textFieldTextSelectedBackground = predefinedColors.green500;
+            componentColors.textFieldTextSelected = predefinedColors.grey800;
+            componentColors.textFieldTextNormal = predefinedColors.grey800;
+            componentColors.textFieldBorderNormal = predefinedColors.grey600;
+            componentColors.textFieldBorderFocused = predefinedColors.green500;
             break;
         case AppTheme.Themes.UFODark:
-            componentColors.pageBackground = predefinedColors.green200;
-            componentColors.headerBackground = predefinedColors.grey600;
-            componentColors.headerLabelText = predefinedColors.grey900;
-
-            componentColors.toastBackgroundSuccess = predefinedColors.green200;
-            componentColors.toastBackgroundInfo = predefinedColors.blue200;
-            componentColors.toastBackgroundWarning = predefinedColors.yellow200;
-            componentColors.toastBackgroundError = predefinedColors.red200;
-            componentColors.toastIconSuccess = predefinedColors.green400;
-            componentColors.toastIconInfo = predefinedColors.blue400;
-            componentColors.toastIconWarning = predefinedColors.yellow400;
-            componentColors.toastIconError = predefinedColors.red400;
-            componentColors.toastTextSuccess = predefinedColors.green400;
-            componentColors.toastTextInfo = predefinedColors.blue400;
-            componentColors.toastTextWarning = predefinedColors.yellow400;
-            componentColors.toastTextError = predefinedColors.red400;
             break;
         default:
             isSuccessful = false;
@@ -271,6 +280,9 @@ Item {
             break;
         case AppTheme.Colors.HeaderLabelText:
             result = componentColors.headerLabelText;
+            break;
+        case AppTheme.Colors.ListDelegateBackground:
+            result = componentColors.listDelegateBackground;
             break;
         // Controls:
         case AppTheme.Colors.ButtonBackgroundNormal:
@@ -350,6 +362,27 @@ Item {
             break;
         case AppTheme.Colors.Line:
             result = componentColors.line;
+            break;
+        case AppTheme.Colors.TextFieldBackground:
+            result = componentColors.textFieldBackground;
+            break;
+        case AppTheme.Colors.TextFieldPlaceHolderText:
+            result = componentColors.textFieldPlaceHolderText;
+            break;
+        case AppTheme.Colors.TextFieldTextSelectedBackground:
+            result = componentColors.textFieldTextSelectedBackground;
+            break;
+        case AppTheme.Colors.TextFieldTextSelected:
+            result = componentColors.textFieldTextSelected;
+            break;
+        case AppTheme.Colors.TextFieldTextNormal:
+            result = componentColors.textFieldTextNormal;
+            break;
+        case AppTheme.Colors.TextFieldBorderNormal:
+            result = componentColors.textFieldBorderNormal;
+            break;
+        case AppTheme.Colors.TextFieldBorderFocused:
+            result = componentColors.textFieldBorderFocused;
             break;
         case AppTheme.Colors.SwitchCircle:
             result = componentColors.switchCircle;

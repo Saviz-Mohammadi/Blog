@@ -20,5 +20,6 @@
 	<file>./icons/menu.svg</file>
 	<file>./icons/dark_mode.svg</file>
 	<file>./icons/light_mode.svg</file>
+	<file>./icons/arrow_right_alt.svg</file>
     </qresource>
 </RCC>

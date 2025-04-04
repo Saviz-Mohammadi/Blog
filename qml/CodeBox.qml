@@ -34,6 +34,7 @@ Item {
 
             readOnly: true
             text: root.text
+            font.family: "Courier New"
 
             SyntaxHighlighter {
                 id: syntaxHighlighter
