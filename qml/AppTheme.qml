@@ -45,7 +45,8 @@ Item {
         ToastTextSuccess,
         ToastTextInfo,
         ToastTextWarning,
-        ToastTextError
+        ToastTextError,
+        Line
     }
 
     QtObject {
@@ -190,6 +191,7 @@ Item {
         property color toastTextInfo: "transparent"
         property color toastTextWarning: "transparent"
         property color toastTextError: "transparent"
+        property color line: "transparent"
     }
 
     function setTheme(theme) {
@@ -226,6 +228,7 @@ Item {
             componentColors.toastTextInfo = predefinedColors.blue400;
             componentColors.toastTextWarning = predefinedColors.yellow400;
             componentColors.toastTextError = predefinedColors.red400;
+            componentColors.line = predefinedColors.grey800;
             break;
         case AppTheme.Themes.UFODark:
             componentColors.pageBackground = predefinedColors.green200;
@@ -344,6 +347,9 @@ Item {
             break;
         case AppTheme.Colors.ToastTextError:
             result = componentColors.toastTextError;
+            break;
+        case AppTheme.Colors.Line:
+            result = componentColors.line;
             break;
         case AppTheme.Colors.SwitchCircle:
             result = componentColors.switchCircle;

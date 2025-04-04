@@ -5,10 +5,10 @@ import QtQuick.Layouts
 Item {
     id: root
 
+    signal menuClicked()
+
     implicitHeight: 200
     implicitWidth: 200
-
-    signal menuCheckedChanged(bool isChecked)
 
     Rectangle {
         id: rectangleBackground
@@ -28,12 +28,12 @@ Item {
                 text: qsTr("UFO CODER")
                 color: AppTheme.getColor(AppTheme.Colors.HeaderLabelText)
                 elide: Text.ElideRight
-                wrapMode: Text.NoWrap
-                verticalAlignment: Text.AlignVCenter
                 font.family: AppFont.titilliumSemiBoldFont.family
                 font.weight: AppFont.titilliumSemiBoldFont.weight
                 font.styleName: AppFont.titilliumSemiBoldFont.styleName
                 font.pixelSize: Qt.application.font.pixelSize * 2.00
+                wrapMode: Text.NoWrap
+                verticalAlignment: Text.AlignVCenter
             }
 
             Item {
@@ -69,14 +69,12 @@ Item {
                 Layout.preferredHeight: 30
 
                 text: qsTr("Menu")
-                checkable: true
-                checked: false
                 radius: 50
                 display: AbstractButton.IconOnly
                 icon.source: "qrc:/resources/icons/menu.svg"
 
-                onCheckedChanged: {
-                    root.menuCheckedChanged(button.checked);
+                onClicked: {
+                    root.menuClicked();
                 }
             }
         }

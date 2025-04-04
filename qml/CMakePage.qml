@@ -15,11 +15,11 @@ Item {
 
         currentIndex: 1
 
-        CMakeTutorial001 {
+        CMakePart001 {
             id: firstPage
         }
 
-        CMakeTutorial002 {
+        CMakePart002 {
             id: secondPage
         }
     }

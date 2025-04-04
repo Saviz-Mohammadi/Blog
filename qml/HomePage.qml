@@ -2,16 +2,16 @@ import QtQuick
 import QtQuick.Controls.Basic
 import QtQuick.Layouts
 
+// Custom:
+import Proxy
+
 Item {
     id: root
 
-    implicitWidth: 200
-    implicitHeight: 200
-
-    property int topMargin: 10
-    property int bottomMargin: 10
-    property int rightMargin: 10
-    property int leftMargin: 10
+    property int topMargin: 15
+    property int bottomMargin: 15
+    property int rightMargin: 15
+    property int leftMargin: 15
     property int spacing: 10
 
     ScrollView {
@@ -31,42 +31,83 @@ Item {
             color: AppTheme.getColor(AppTheme.Colors.PageBackground)
         }
 
-        ColumnLayout {
-            id: columnLayout
-
+        Item {
             anchors.fill: parent
             anchors.topMargin: root.topMargin
             anchors.bottomMargin: root.bottomMargin
             anchors.rightMargin: root.rightMargin
             anchors.leftMargin: root.leftMargin
 
-            clip: false
-            spacing: root.spacing
+            ColumnLayout {
+                id: columnLayout
 
-            // Text {
-            //     id: text_PageTitle
+                width: Math.min(1000, parent.width)
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
 
-            //     // anchors.top: parent.top
-            //     // anchors.left: parent.left
-            //     // anchors.right: parent.right
+                clip: false
+                spacing: root.spacing
 
-            //     // anchors.topMargin: root.contentTopMargin
-            //     // anchors.leftMargin: root.contentLeftMargin
-            //     // anchors.rightMargin: root.contentRightMargin
+                Text {
+                    Layout.fillWidth: true
 
-            //     //color: Qt.color(AppTheme.colors["UFO_Page_Title"])
-            //     verticalAlignment: Text.AlignVCenter
-            //     //font.pixelSize: Qt.application.font.pixelSize * titleFontSize
-            //     elide: Text.ElideRight
-            // }
+                    text: qsTr("Search Tutorial")
+                    elide: Text.ElideRight
+                    font.family: AppFont.titilliumSemiBoldFont.family
+                    font.weight: AppFont.titilliumSemiBoldFont.weight
+                    font.styleName: AppFont.titilliumSemiBoldFont.styleName
+                    font.pixelSize: Qt.application.font.pixelSize * 2.00
+                    wrapMode: Text.Wrap
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignLeft
+                }
 
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
+                TextField {
+                    id: textFieldTutorial
+
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 30
+                }
+
+                ListView {
+                    id: listViewTutorial
+
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 400
+
+                    spacing: 5
+                    clip: true
+
+                    ListModel {
+                        id: listModelTutorial
+
+                        ListElement { tutorialName: "CMake" }
+                        ListElement { tutorialName: "Git" }
+                    }
+
+                    Proxy {
+                        id: proxyTutorial
+
+                        sourceModel: listModelTutorial
+                        roleText: "tutorialName"
+                        filterValue: textFieldTutorial.text
+                        sensitivityStatus: false
+                    }
+
+                    model: proxyTutorial
+
+                    delegate: Rectangle {
+                        width: listViewTutorial.width
+                        height: 35
+
+                        color: "blue"
+
+                        // onRemoveClicked: {
+                        // listModel_ListView.remove(index);
+                    }
+                }
+            }
         }
     }
 }

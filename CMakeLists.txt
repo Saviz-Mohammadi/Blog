@@ -38,10 +38,11 @@ qt_add_qml_module(appBlog
         qml/UFOButton.qml
         qml/HomePage.qml
         qml/Header.qml
-        qml/NavigationPage.qml
+        qml/NavigationMenu.qml
         qml/CMakePage.qml
-        qml/CMakeTutorial001.qml
-        qml/CMakeTutorial002.qml
+        qml/CMakePart001.qml
+        qml/CMakePart002.qml
+        QML_FILES
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -65,6 +66,8 @@ target_link_libraries(appBlog
     FileIOModulelibplugin
     ClipboardModulelib
     ClipboardModulelibplugin
+    ProxyModulelib
+    ProxyModulelibplugin
 )
 
 include(GNUInstallDirs)

@@ -7,6 +7,7 @@
 #include "syntax_highlighter.hpp"
 #include "file_io.hpp"
 #include "clipboard.hpp"
+#include "proxy.hpp"
 
 void registerTypes();
 void registerContexts(QQmlApplicationEngine &engine);
@@ -39,6 +40,7 @@ void registerTypes()
 {
     qmlRegisterType<SyntaxHighlighter>("SyntaxHighlighter", 1, 0, "SyntaxHighlighter");
     qmlRegisterType<FileIO>("FileIO", 1, 0, "FileIO");
+    qmlRegisterType<Proxy>("Proxy", 1, 0, "Proxy");
 }
 
 void registerContexts(QQmlApplicationEngine &engine)

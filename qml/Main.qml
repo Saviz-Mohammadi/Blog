@@ -29,7 +29,7 @@ Window {
             Layout.preferredHeight: 60
         }
 
-        NavigationPage {
+        NavigationMenu {
             id: navigation
 
             Layout.fillWidth: true
@@ -40,52 +40,58 @@ Window {
             Connections {
                 target: header
 
-                function onMenuCheckedChanged(isChecked: bool) {
-                    navigation.visible = isChecked;
+                function onMenuClicked() {
+                    navigation.visible = !navigation.visible;
+                    stackLayout.visible = !stackLayout.visible;
                 }
             }
+
+            Connections {
+                target: navigation
+
+                function onPageSelected(index: int) {
+                    navigation.visible = false;
+                    stackLayout.changePage(index);
+                    stackLayout.visible = true;
+                }
+            }
+
+            // Create a signal here and react in stackLayout and unhide it and switch to index and internally in navigationMenu hide it.
         }
 
         // NOTE (SAVIZ): I am not sure, but I need to check and see if 'StackLayout' actually is intelligent and reduces memory consumption of pages that are not visible, otherwies I will have to replace it with 'StackView'.
         StackLayout {
             id: stackLayout
 
-            enum PageName {
-                Navigation,
-                Home
-            }
-
             Layout.fillWidth: true
             Layout.fillHeight: true
 
             visible: true
 
-            CMakePage {
+            HomePage {
                 id: homePage
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
             }
 
-            function changePage(pageName) {
+            CMakePage {
+                id: cmakePage
 
-                switch (pageName) {
-                case PageName.Navigation:
-                    stackLayout.currentIndex = navigation.StackLayout.index;
-                    break;
-                case PageName.Home:
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
+            function changePage(index: int) {
+                switch (index) {
+                case 0:
                     stackLayout.currentIndex = homePage.StackLayout.index;
+                    break;
+                case 1:
+                    stackLayout.currentIndex = cmakePage.StackLayout.index;
                     break;
                 default:
                     break;
-                }
-            }
-
-            Connections {
-                target: header
-
-                function onMenuCheckedChanged(isChecked: bool) {
-                    stackLayout.visible = !isChecked;
                 }
             }
 
