@@ -14,7 +14,7 @@ Item {
     property int bottomMargin: 15
     property int rightMargin: 15
     property int leftMargin: 15
-    property int spacing: 10
+    property int spacing: 30
 
     ScrollView {
         id: scrollView
@@ -50,6 +50,42 @@ Item {
 
                 clip: false
                 spacing: root.spacing
+
+                Text {
+                    Layout.fillWidth: true
+
+                    text: qsTr("Hello and Welcome!")
+                    elide: Text.ElideRight
+                    font.family: AppFont.titilliumSemiBoldFont.family
+                    font.weight: AppFont.titilliumSemiBoldFont.weight
+                    font.styleName: AppFont.titilliumSemiBoldFont.styleName
+                    font.pixelSize: Qt.application.font.pixelSize * 2.00
+                    wrapMode: Text.Wrap
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignLeft
+                }
+
+                Text {
+                    Layout.fillWidth: true
+
+                    text: qsTr("You’ve just landed on the home page of the UFO CODER website (built with Qt and WebAssembly). Here, I share my thoughts, ideas, and tutorials on coding and beyond. Feel free to explore and make yourself at home. Scroll down to check out my latest tutorials and posts. Want to know more about me and the projects I’m working on? Head over to the About page. Use the menu in the top-right corner to navigate around the site. Thanks for stopping by. I hope you enjoy your visit!")
+                    textFormat: Text.PlainText
+                    elide: Text.ElideRight
+                    font.family: AppFont.titilliumRegularFont.family
+                    font.weight: AppFont.titilliumRegularFont.weight
+                    font.styleName: AppFont.titilliumRegularFont.styleName
+                    font.pixelSize: Qt.application.font.pixelSize * 1.20
+                    wrapMode: Text.Wrap
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignLeft
+                }
+
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 1
+
+                    color: AppTheme.getColor(AppTheme.Colors.Line)
+                }
 
                 Text {
                     Layout.fillWidth: true

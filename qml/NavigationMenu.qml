@@ -2,19 +2,19 @@ import QtQuick
 import QtQuick.Controls.Basic
 import QtQuick.Layouts
 
+// Custom:
+import Proxy
+
 Item {
     id: root
 
-    signal pageSelected(int index)
+    signal pageRequested(int index)
 
-    property int topMargin: 10
-    property int bottomMargin: 10
-    property int rightMargin: 10
-    property int leftMargin: 10
-    property int spacing: 0
-
-    implicitWidth: 200
-    implicitHeight: 200
+    property int topMargin: 15
+    property int bottomMargin: 15
+    property int rightMargin: 15
+    property int leftMargin: 15
+    property int spacing: 10
 
     ScrollView {
         id: scrollView
@@ -33,73 +33,217 @@ Item {
             color: AppTheme.getColor(AppTheme.Colors.PageBackground)
         }
 
-        ColumnLayout {
-            id: columnLayout
-
+        Item {
             anchors.fill: parent
             anchors.topMargin: root.topMargin
             anchors.bottomMargin: root.bottomMargin
             anchors.rightMargin: root.rightMargin
             anchors.leftMargin: root.leftMargin
 
-            clip: false
-            spacing: root.spacing
+            ColumnLayout {
+                id: columnLayout
 
-            Text {
-                elide: Text.ElideRight
-                font.family: AppFont.titilliumSemiBoldFont.family
-                font.weight: AppFont.titilliumSemiBoldFont.weight
-                font.styleName: AppFont.titilliumSemiBoldFont.styleName
-                font.pixelSize: Qt.application.font.pixelSize * 2.00
-                wrapMode: Text.NoWrap
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignLeft
-            }
+                width: Math.min(1000, parent.width)
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
 
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.preferredHeight: 2
+                clip: false
+                spacing: root.spacing
 
-                color: AppTheme.getColor(AppTheme.Colors.Line)
-            }
+                Text {
+                    Layout.fillWidth: true
 
-            Text {
-                elide: Text.ElideRight
-                font.family: AppFont.titilliumSemiBoldFont.family
-                font.weight: AppFont.titilliumSemiBoldFont.weight
-                font.styleName: AppFont.titilliumSemiBoldFont.styleName
-                font.pixelSize: Qt.application.font.pixelSize * 2.00
-                wrapMode: Text.NoWrap
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignLeft
-            }
-
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.preferredHeight: 2
-
-                color: AppTheme.getColor(AppTheme.Colors.Line)
-            }
-
-            Button {
-                width: 120
-                height: 100
-
-                text: "Hello0"
-
-                onClicked: {
-                    root.pageSelected(0);
+                    text: qsTr("Search Pages")
+                    elide: Text.ElideRight
+                    font.family: AppFont.titilliumSemiBoldFont.family
+                    font.weight: AppFont.titilliumSemiBoldFont.weight
+                    font.styleName: AppFont.titilliumSemiBoldFont.styleName
+                    font.pixelSize: Qt.application.font.pixelSize * 2.00
+                    wrapMode: Text.Wrap
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignLeft
                 }
-            }
 
-            Button {
-                width: 120
-                height: 100
+                UFOTextField {
+                    id: textFieldPage
 
-                text: "Hello1"
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 30
+                }
 
-                onClicked: {
-                    root.pageSelected(1);
+                ListView {
+                    id: listViewPage
+
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: root.height * 0.25
+
+                    spacing: 5
+                    clip: true
+
+                    ListModel {
+                        id: listModelPage
+
+                        ListElement {
+                            pageIndex: 0
+                            pageName: "Home"
+                        }
+
+                        ListElement {
+                            pageIndex: 1
+                            pageName: "About"
+                        }
+                    }
+
+                    Proxy {
+                        id: proxyPage
+
+                        sourceModel: listModelPage
+                        roleText: "pageName"
+                        filterValue: textFieldPage.text
+                        sensitivityStatus: false
+                    }
+
+                    model: proxyPage
+
+                    delegate: Rectangle {
+                        width: listViewPage.width
+                        height: 35
+
+                        color: AppTheme.getColor(AppTheme.Colors.ListDelegateBackground)
+
+                        RowLayout {
+                            anchors.fill: parent
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                Layout.leftMargin: 10
+
+                                text: model.pageName
+                                elide: Text.ElideRight
+                                font.family: AppFont.titilliumSemiBoldFont.family
+                                font.weight: AppFont.titilliumSemiBoldFont.weight
+                                font.styleName: AppFont.titilliumSemiBoldFont.styleName
+                                font.pixelSize: Qt.application.font.pixelSize * 1.25
+                                wrapMode: Text.NoWrap
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignLeft
+                            }
+
+                            UFOButton {
+                                Layout.fillHeight: true
+
+                                text: qsTr("Go")
+                                icon.source: "qrc:/resources/icons/arrow_right_alt.svg"
+
+                                onClicked: {
+                                    root.pageRequested(model.pageIndex);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 1
+
+                    color: AppTheme.getColor(AppTheme.Colors.Line)
+                }
+
+                Text {
+                    Layout.fillWidth: true
+
+                    text: qsTr("Search Tutorial")
+                    elide: Text.ElideRight
+                    font.family: AppFont.titilliumSemiBoldFont.family
+                    font.weight: AppFont.titilliumSemiBoldFont.weight
+                    font.styleName: AppFont.titilliumSemiBoldFont.styleName
+                    font.pixelSize: Qt.application.font.pixelSize * 2.00
+                    wrapMode: Text.Wrap
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignLeft
+                }
+
+                UFOTextField {
+                    id: textFieldTutorial
+
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 30
+                }
+
+                ListView {
+                    id: listViewTutorial
+
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: root.height * 0.25
+
+                    spacing: 5
+                    clip: true
+
+                    ListModel {
+                        id: listModelTutorial
+
+                        ListElement {
+                            pageIndex: 2
+                            tutorialName: "CMake"
+                        }
+
+                        ListElement {
+                            pageIndex: 3
+                            tutorialName: "Git"
+                        }
+                    }
+
+                    Proxy {
+                        id: proxyTutorial
+
+                        sourceModel: listModelTutorial
+                        roleText: "tutorialName"
+                        filterValue: textFieldTutorial.text
+                        sensitivityStatus: false
+                    }
+
+                    model: proxyTutorial
+
+                    delegate: Rectangle {
+                        width: listViewTutorial.width
+                        height: 35
+
+                        color: AppTheme.getColor(AppTheme.Colors.ListDelegateBackground)
+
+                        RowLayout {
+                            anchors.fill: parent
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                Layout.leftMargin: 10
+
+                                text: model.tutorialName
+                                elide: Text.ElideRight
+                                font.family: AppFont.titilliumSemiBoldFont.family
+                                font.weight: AppFont.titilliumSemiBoldFont.weight
+                                font.styleName: AppFont.titilliumSemiBoldFont.styleName
+                                font.pixelSize: Qt.application.font.pixelSize * 1.25
+                                wrapMode: Text.NoWrap
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignLeft
+                            }
+
+                            UFOButton {
+                                Layout.fillHeight: true
+
+                                text: qsTr("Go")
+                                icon.source: "qrc:/resources/icons/arrow_right_alt.svg"
+
+                                onClicked: {
+                                    root.pageRequested(model.pageIndex);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

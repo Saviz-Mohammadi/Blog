@@ -11,10 +11,10 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("UFO CODER")
 
     FileIO {
-        id: universalFileIO
+        id: mainFileIO
     }
 
     ColumnLayout {
@@ -23,14 +23,14 @@ Window {
         spacing: 0
 
         Header {
-            id: header
+            id: mainHeader
 
             Layout.fillWidth: true
             Layout.preferredHeight: 60
         }
 
         NavigationMenu {
-            id: navigation
+            id: navigationMenu
 
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -38,21 +38,18 @@ Window {
             visible: false
 
             Connections {
-                target: header
+                target: mainHeader
 
                 function onMenuClicked() {
                     navigation.visible = !navigation.visible;
-                    stackLayout.visible = !stackLayout.visible;
                 }
             }
 
             Connections {
                 target: navigation
 
-                function onPageSelected(index: int) {
+                function onPageRequested(index: int) {
                     navigation.visible = false;
-                    stackLayout.changePage(index);
-                    stackLayout.visible = true;
                 }
             }
 
@@ -70,6 +67,13 @@ Window {
 
             HomePage {
                 id: homePage
+
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
+            AboutPage {
+                id: aboutPage
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -95,13 +99,33 @@ Window {
                     stackLayout.currentIndex = homePage.StackLayout.index;
                     break;
                 case 1:
-                    stackLayout.currentIndex = cmakePage.StackLayout.index;
+                    stackLayout.currentIndex = aboutPage.StackLayout.index;
                     break;
                 case 2:
+                    stackLayout.currentIndex = cmakePage.StackLayout.index;
+                    break;
+                case 3:
                     stackLayout.currentIndex = gitPage.StackLayout.index;
                     break;
                 default:
                     break;
+                }
+            }
+
+            Connections {
+                target: header
+
+                function onMenuClicked() {
+                    stackLayout.visible = !stackLayout.visible;
+                }
+            }
+
+            Connections {
+                target: navigation
+
+                function onPageRequested(index: int) {
+                    stackLayout.changePage(index);
+                    stackLayout.visible = true;
                 }
             }
 
@@ -113,9 +137,9 @@ Window {
                 }
             }
 
-            // Component.onCompleted: {
-            //     stackLayout.currentIndex = ufo_Settings.StackLayout.index
-            // }
+            Component.onCompleted: {
+                stackLayout.currentIndex = homePage.StackLayout.index
+            }
         }
     }
 

@@ -1,1 +1,1 @@
-For the navigation have categories like: Pages, Tutorials. Each of them separated by a line or something.
+

@@ -26,6 +26,7 @@ Item {
                 Layout.preferredHeight: 30
 
                 text: qsTr("UFO CODER")
+                textFormat: Text.PlainText
                 color: AppTheme.getColor(AppTheme.Colors.HeaderLabelText)
                 elide: Text.ElideRight
                 font.family: AppFont.titilliumSemiBoldFont.family
