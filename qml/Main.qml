@@ -30,7 +30,7 @@ Window {
         }
 
         NavigationMenu {
-            id: navigationMenu
+            id: mainNavigationMenu
 
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -41,15 +41,15 @@ Window {
                 target: mainHeader
 
                 function onMenuClicked() {
-                    navigation.visible = !navigation.visible;
+                    mainNavigationMenu.visible = !mainNavigationMenu.visible;
                 }
             }
 
             Connections {
-                target: navigation
+                target: mainNavigationMenu
 
                 function onPageRequested(index: int) {
-                    navigation.visible = false;
+                    mainNavigationMenu.visible = false;
                 }
             }
 
@@ -113,7 +113,7 @@ Window {
             }
 
             Connections {
-                target: header
+                target: mainHeader
 
                 function onMenuClicked() {
                     stackLayout.visible = !stackLayout.visible;
@@ -121,7 +121,7 @@ Window {
             }
 
             Connections {
-                target: navigation
+                target: mainNavigationMenu
 
                 function onPageRequested(index: int) {
                     stackLayout.changePage(index);
