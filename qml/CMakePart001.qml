@@ -46,30 +46,17 @@ Item {
                 clip: false
                 spacing: root.spacing
 
-                // Text {
-                //     id: text_PageTitle
+                //CodeBox {
+                    //             id: codeBox
 
-                //     // anchors.top: parent.top
-                //     // anchors.left: parent.left
-                //     // anchors.right: parent.right
+                    //             width: 120
+                    //             height: 50
+                    //             languageName: "cpp"
 
-                //     // anchors.topMargin: root.contentTopMargin
-                //     // anchors.leftMargin: root.contentLeftMargin
-                //     // anchors.rightMargin: root.contentRightMargin
-
-                //     //color: Qt.color(AppTheme.colors["UFO_Page_Title"])
-                //     verticalAlignment: Text.AlignVCenter
-                //     //font.pixelSize: Qt.application.font.pixelSize * titleFontSize
-                //     elide: Text.ElideRight
-                // }
-
-                // Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-                // Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-                // Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-                // Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-                // Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-                // Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-                // Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
+                    //             Component.onCompleted: {
+                    //                 text = fileIO.readFile(":/resources/txt/sample.txt");
+                    //             }
+                    //         }
 
                 UFOButton {
                     Layout.fillWidth: true; Layout.preferredHeight: 30;

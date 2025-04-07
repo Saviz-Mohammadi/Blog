@@ -52,19 +52,18 @@ Window {
                     mainNavigationMenu.visible = false;
                 }
             }
-
-            // Create a signal here and react in stackLayout and unhide it and switch to index and internally in navigationMenu hide it.
         }
 
-        // NOTE (SAVIZ): I am not sure, but I need to check and see if 'StackLayout' actually is intelligent and reduces memory consumption of pages that are not visible, otherwies I will have to replace it with 'StackView'.
+        // TODO (SAVIZ): I am not sure, but I need to check and see if 'StackLayout' actually is intelligent and reduces memory consumption of pages that are not visible, otherwies I will have to replace it with 'StackView'.
         StackLayout {
-            id: stackLayout
+            id: mainStackLayout
 
             Layout.fillWidth: true
             Layout.fillHeight: true
 
             visible: true
 
+            // Normal pages:
             HomePage {
                 id: homePage
 
@@ -79,6 +78,7 @@ Window {
                 Layout.fillHeight: true
             }
 
+            // Tutorial pages:
             CMakePage {
                 id: cmakePage
 
@@ -96,16 +96,16 @@ Window {
             function changePage(index: int) {
                 switch (index) {
                 case 0:
-                    stackLayout.currentIndex = homePage.StackLayout.index;
+                    mainStackLayout.currentIndex = homePage.StackLayout.index;
                     break;
                 case 1:
-                    stackLayout.currentIndex = aboutPage.StackLayout.index;
+                    mainStackLayout.currentIndex = aboutPage.StackLayout.index;
                     break;
                 case 2:
-                    stackLayout.currentIndex = cmakePage.StackLayout.index;
+                    mainStackLayout.currentIndex = cmakePage.StackLayout.index;
                     break;
                 case 3:
-                    stackLayout.currentIndex = gitPage.StackLayout.index;
+                    mainStackLayout.currentIndex = gitPage.StackLayout.index;
                     break;
                 default:
                     break;
@@ -116,7 +116,7 @@ Window {
                 target: mainHeader
 
                 function onMenuClicked() {
-                    stackLayout.visible = !stackLayout.visible;
+                    mainStackLayout.visible = !mainStackLayout.visible;
                 }
             }
 
@@ -124,8 +124,8 @@ Window {
                 target: mainNavigationMenu
 
                 function onPageRequested(index: int) {
-                    stackLayout.changePage(index);
-                    stackLayout.visible = true;
+                    mainStackLayout.changePage(index);
+                    mainStackLayout.visible = true;
                 }
             }
 
@@ -133,34 +133,13 @@ Window {
                 target: homePage
 
                 function onPageRequested(index : int) {
-                    stackLayout.changePage(index);
+                    mainStackLayout.changePage(index);
                 }
             }
 
             Component.onCompleted: {
-                stackLayout.currentIndex = homePage.StackLayout.index
+                mainStackLayout.currentIndex = homePage.StackLayout.index
             }
         }
     }
-
-    // Rectangle {
-    //     anchors.fill: parent
-    //     color: AppTheme.getColor(AppTheme.Colors.WindowBackground)
-
-    //     Column {
-    //         anchors.centerIn: parent
-
-    //         CodeBox {
-    //             id: codeBox
-
-    //             width: 120
-    //             height: 50
-    //             languageName: "cpp"
-
-    //             Component.onCompleted: {
-    //                 text = fileIO.readFile(":/resources/txt/sample.txt");
-    //             }
-    //         }
-    //     }
-    // }
 }

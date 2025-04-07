@@ -21,6 +21,8 @@ Item {
         HeaderBackground,
         HeaderLabelText,
         ListDelegateBackground,
+        TutorialIndicatorBackground,
+        TutorialIndicatorText,
         // Controls:
         SwitchCircle,
         ButtonBackgroundNormal,
@@ -169,6 +171,8 @@ Item {
         property color headerBackground: "transparent"
         property color headerLabelText: "transparent"
         property color listDelegateBackground: "transparent"
+        property color tutorialIndicatorBackground: "transparent"
+        property color tutorialIndicatorText: "transparent"
 
         // Controls:
         property color buttonBackgroundNormal: "transparent"
@@ -220,6 +224,8 @@ Item {
             componentColors.headerBackground = predefinedColors.grey800;
             componentColors.headerLabelText = predefinedColors.green500;
             componentColors.listDelegateBackground = predefinedColors.grey400;
+            componentColors.tutorialIndicatorBackground = predefinedColors.grey800;
+            componentColors.tutorialIndicatorText = predefinedColors.green500;
 
             componentColors.buttonBackgroundNormal = predefinedColors.green500;
             componentColors.buttonBackgroundHovered = predefinedColors.green700;
@@ -283,6 +289,12 @@ Item {
             break;
         case AppTheme.Colors.ListDelegateBackground:
             result = componentColors.listDelegateBackground;
+            break;
+        case AppTheme.Colors.TutorialIndicatorBackground:
+            result = componentColors.tutorialIndicatorBackground;
+            break;
+        case AppTheme.Colors.TutorialIndicatorText:
+            result = componentColors.tutorialIndicatorText;
             break;
         // Controls:
         case AppTheme.Colors.ButtonBackgroundNormal:

@@ -11,7 +11,10 @@ Item {
     SwipeView {
         id: swipeView
 
-        anchors.fill: parent
+        anchors.top: root.top
+        anchors.bottom: tutorialIndicator.top
+        anchors.right: root.right
+        anchors.left: root.left
 
         currentIndex: 1
 
@@ -20,10 +23,7 @@ Item {
 
             active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
 
-            sourceComponent: CMakePart001 {
-                Component.onCompleted: console.log("created: Cmake part 1")
-                Component.onDestruction: console.log("destroyed: CMake part 1")
-            }
+            sourceComponent: CMakePart001 {}
 
             onStatusChanged: {
                 if (loaderCMake001.status == Loader.Ready) {
@@ -38,10 +38,7 @@ Item {
 
             active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
 
-            sourceComponent: CMakePart002 {
-                Component.onCompleted: console.log("created: Cmake part 2")
-                Component.onDestruction: console.log("destroyed: Cmake part 2")
-            }
+            sourceComponent: CMakePart002 {}
 
             onStatusChanged: {
                 if (loaderCMake002.status == Loader.Ready) {
@@ -52,29 +49,22 @@ Item {
         }
     }
 
-    // TODO (SAVIZ): Something better might be to have a number as Text in the middle that shows the current page, and then have 2 buttons one that says next and one that says back to move between.
-    // PageIndicator {
-    //     id: indicator
+    TutorialIndicator {
+        id: tutorialIndicator
 
-    //     count: view.count
-    //     currentIndex: view.currentIndex
+        height: 45
+        anchors.bottom: root.bottom
+        anchors.right: root.right
+        anchors.left: root.left
 
-    //     anchors.bottom: view.bottom
-    //     anchors.horizontalCenter: parent.horizontalCenter
-    // }
+        currentIndex: swipeView.currentIndex
 
-    RowLayout {
-        spacing: 10
-        anchors.bottom: parent.bottom  // adjust as needed
-
-        Button {
-            text: "Back"
-            onClicked: swipeView.decrementCurrentIndex()
+        onDecrementRequested: {
+            swipeView.decrementCurrentIndex();
         }
 
-        Button {
-            text: "Forward"
-            onClicked: swipeView.incrementCurrentIndex()
+        onIncrementRequested: {
+            swipeView.incrementCurrentIndex();
         }
     }
 }

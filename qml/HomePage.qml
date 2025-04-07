@@ -112,7 +112,7 @@ Item {
                     id: listViewTutorial
 
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 400
+                    Layout.preferredHeight: root.height * 0.25
 
                     spacing: 5
                     clip: true
@@ -121,12 +121,12 @@ Item {
                         id: listModelTutorial
 
                         ListElement {
-                            pageIndex: 1
+                            pageIndex: 2
                             tutorialName: "CMake"
                         }
 
                         ListElement {
-                            pageIndex: 2
+                            pageIndex: 3
                             tutorialName: "Git"
                         }
                     }
