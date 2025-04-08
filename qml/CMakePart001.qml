@@ -61,7 +61,7 @@ Item {
                 UFOButton {
                     Layout.fillWidth: true; Layout.preferredHeight: 30;
                     text: qsTr("Test")
-                    icon.source: "qrc:/resources/icons/error.svg"
+                    icon.source: "qrc:/resources/icons/google/error.svg"
                 }
             }
         }

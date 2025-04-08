@@ -64,38 +64,6 @@ Item {
             Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
             Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
             Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 30; radius: 0; color: "blue" }
         }
     }
 }

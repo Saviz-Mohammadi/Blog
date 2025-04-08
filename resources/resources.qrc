@@ -13,14 +13,19 @@
         <file>./fonts/Titillium_Web/TitilliumWeb-Regular.ttf</file>
         <file>./fonts/Titillium_Web/TitilliumWeb-SemiBold.ttf</file>
         <file>./fonts/Titillium_Web/TitilliumWeb-SemiBoldItalic.ttf</file>	
-	<file>./icons/check_circle.svg</file>
-	<file>./icons/error.svg</file>
-	<file>./icons/info.svg</file>
-	<file>./icons/warning.svg</file>
-	<file>./icons/menu.svg</file>
-	<file>./icons/dark_mode.svg</file>
-	<file>./icons/light_mode.svg</file>
-	<file>./icons/arrow_right_alt.svg</file>
-	<file>./icons/arrow_left_alt.svg</file>
+	<file>./icons/google/check_circle.svg</file>
+	<file>./icons/google/error.svg</file>
+	<file>./icons/google/info.svg</file>
+	<file>./icons/google/warning.svg</file>
+	<file>./icons/google/menu.svg</file>
+	<file>./icons/google/dark_mode.svg</file>
+	<file>./icons/google/light_mode.svg</file>
+	<file>./icons/google/arrow_right_alt.svg</file>
+	<file>./icons/google/arrow_left_alt.svg</file>
+	<file>./icons/google/keyboard_arrow_up.svg</file>
+	<file>./icons/google/keyboard_arrow_down.svg</file>
+	<file>./icons/google/mail.svg</file>
+	<file>./icons/flaticon/github.svg</file>
+	<file>./icons/flaticon/linkedin.svg</file>
     </qresource>
 </RCC>

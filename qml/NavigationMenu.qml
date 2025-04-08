@@ -76,7 +76,7 @@ Item {
                     id: listViewPage
 
                     Layout.fillWidth: true
-                    Layout.preferredHeight: root.height * 0.25
+                    Layout.preferredHeight: Math.min(150, root.height * 0.25)
 
                     spacing: 5
                     clip: true
@@ -117,7 +117,7 @@ Item {
 
                             Text {
                                 Layout.fillWidth: true
-                                Layout.fillHeight: true
+                                Layout.preferredHeight: 35
                                 Layout.leftMargin: 10
 
                                 text: model.pageName
@@ -132,10 +132,10 @@ Item {
                             }
 
                             UFOButton {
-                                Layout.fillHeight: true
+                                Layout.preferredHeight: 35
 
                                 text: qsTr("Go")
-                                icon.source: "qrc:/resources/icons/arrow_right_alt.svg"
+                                icon.source: "qrc:/resources/icons/google/arrow_right_alt.svg"
 
                                 onClicked: {
                                     root.pageRequested(model.pageIndex);
@@ -145,11 +145,10 @@ Item {
                     }
                 }
 
-                Rectangle {
+                // Spacer:
+                Item {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 1
-
-                    color: AppTheme.getColor(AppTheme.Colors.Line)
+                    Layout.preferredHeight: 30
                 }
 
                 Text {
@@ -177,7 +176,7 @@ Item {
                     id: listViewTutorial
 
                     Layout.fillWidth: true
-                    Layout.preferredHeight: root.height * 0.25
+                    Layout.preferredHeight: Math.min(150, root.height * 0.25)
 
                     spacing: 5
                     clip: true
@@ -218,7 +217,7 @@ Item {
 
                             Text {
                                 Layout.fillWidth: true
-                                Layout.fillHeight: true
+                                Layout.preferredHeight: 35
                                 Layout.leftMargin: 10
 
                                 text: model.tutorialName
@@ -233,10 +232,10 @@ Item {
                             }
 
                             UFOButton {
-                                Layout.fillHeight: true
+                                Layout.preferredHeight: 35
 
                                 text: qsTr("Go")
-                                icon.source: "qrc:/resources/icons/arrow_right_alt.svg"
+                                icon.source: "qrc:/resources/icons/google/arrow_right_alt.svg"
 
                                 onClicked: {
                                     root.pageRequested(model.pageIndex);

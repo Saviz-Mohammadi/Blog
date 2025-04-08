@@ -24,25 +24,25 @@ Item {
         switch (status) {
         case UFOToast.Status.Success:
             rectangleBackground.color = AppTheme.getColor(AppTheme.Colors.ToastBackgroundSuccess);
-            iconLabel.icon.source = "qrc:/resources/icons/check_circle.svg";
+            iconLabel.icon.source = "qrc:/resources/icons/google/check_circle.svg";
             iconLabel.icon.color = AppTheme.getColor(AppTheme.Colors.ToastIconSuccess);
             textDisplayMessage.color = AppTheme.getColor(AppTheme.Colors.ToastTextSuccess);
             break;
         case UFOToast.Status.Info:
             rectangleBackground.color = AppTheme.getColor(AppTheme.Colors.ToastBackgroundInfo);
-            iconLabel.icon.source = "qrc:/resources/icons/info.svg";
+            iconLabel.icon.source = "qrc:/resources/icons/google/info.svg";
             iconLabel.icon.color = AppTheme.getColor(AppTheme.Colors.ToastIconInfo);
             textDisplayMessage.color = AppTheme.getColor(AppTheme.Colors.ToastTextInfo);
             break;
         case UFOToast.Status.Warning:
             rectangleBackground.color = AppTheme.getColor(AppTheme.Colors.ToastBackgroundWarning);
-            iconLabel.icon.source = "qrc:/resources/icons/warning.svg";
+            iconLabel.icon.source = "qrc:/resources/icons/google/warning.svg";
             iconLabel.icon.color = AppTheme.getColor(AppTheme.Colors.ToastIconWarning);
             textDisplayMessage.color = AppTheme.getColor(AppTheme.Colors.ToastTextWarning);
             break;
         case UFOToast.Status.Error:
             rectangleBackground.color = AppTheme.getColor(AppTheme.Colors.ToastBackgroundError);
-            iconLabel.icon.source = "qrc:/resources/icons/error.svg";
+            iconLabel.icon.source = "qrc:/resources/icons/google/error.svg";
             iconLabel.icon.color = AppTheme.getColor(AppTheme.Colors.ToastIconError);
             textDisplayMessage.color = AppTheme.getColor(AppTheme.Colors.ToastTextError);
             break;

@@ -51,7 +51,7 @@ Item {
                 checked: buttonTheme.isInDarkMode()
                 radius: 50
                 display: AbstractButton.IconOnly
-                icon.source: buttonTheme.isInDarkMode() ? "qrc:/resources/icons/dark_mode.svg" : "qrc:/resources/icons/light_mode.svg"
+                icon.source: buttonTheme.isInDarkMode() ? "qrc:/resources/icons/google/dark_mode.svg" : "qrc:/resources/icons/google/light_mode.svg"
 
                 // TODO (SAVIZ): Probably a good idea to replace this with as switch statement so that in future if we have more themes we can be more flexible:
                 function isInDarkMode() {
@@ -72,7 +72,7 @@ Item {
                 text: qsTr("Menu")
                 radius: 50
                 display: AbstractButton.IconOnly
-                icon.source: "qrc:/resources/icons/menu.svg"
+                icon.source: "qrc:/resources/icons/google/menu.svg"
 
                 onClicked: {
                     root.menuClicked();

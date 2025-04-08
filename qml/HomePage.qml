@@ -14,7 +14,7 @@ Item {
     property int bottomMargin: 15
     property int rightMargin: 15
     property int leftMargin: 15
-    property int spacing: 30
+    property int spacing: 10
 
     ScrollView {
         id: scrollView
@@ -71,20 +71,19 @@ Item {
                     text: qsTr("You’ve just landed on the home page of the UFO CODER website (built with Qt and WebAssembly). Here, I share my thoughts, ideas, and tutorials on coding and beyond. Feel free to explore and make yourself at home. Scroll down to check out my latest tutorials and posts. Want to know more about me and the projects I’m working on? Head over to the About page. Use the menu in the top-right corner to navigate around the site. Thanks for stopping by. I hope you enjoy your visit!")
                     textFormat: Text.PlainText
                     elide: Text.ElideRight
-                    font.family: AppFont.titilliumRegularFont.family
-                    font.weight: AppFont.titilliumRegularFont.weight
-                    font.styleName: AppFont.titilliumRegularFont.styleName
-                    font.pixelSize: Qt.application.font.pixelSize * 1.20
+                    font.family: AppFont.titilliumLightFont.family
+                    font.weight: AppFont.titilliumLightFont.weight
+                    font.styleName: AppFont.titilliumLightFont.styleName
+                    font.pixelSize: Qt.application.font.pixelSize * 1.25
                     wrapMode: Text.Wrap
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
                 }
 
-                Rectangle {
+                // Spacer:
+                Item {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 1
-
-                    color: AppTheme.getColor(AppTheme.Colors.Line)
+                    Layout.preferredHeight: 30
                 }
 
                 Text {
@@ -112,7 +111,7 @@ Item {
                     id: listViewTutorial
 
                     Layout.fillWidth: true
-                    Layout.preferredHeight: root.height * 0.25
+                    Layout.preferredHeight: Math.min(150, root.height * 0.25)
 
                     spacing: 5
                     clip: true
@@ -153,7 +152,7 @@ Item {
 
                             Text {
                                 Layout.fillWidth: true
-                                Layout.fillHeight: true
+                                Layout.preferredHeight: 35
                                 Layout.leftMargin: 10
 
                                 text: model.tutorialName
@@ -168,10 +167,10 @@ Item {
                             }
 
                             UFOButton {
-                                Layout.fillHeight: true
+                                Layout.preferredHeight: 35
 
                                 text: qsTr("Go")
-                                icon.source: "qrc:/resources/icons/arrow_right_alt.svg"
+                                icon.source: "qrc:/resources/icons/google/arrow_right_alt.svg"
 
                                 onClicked: {
                                     root.pageRequested(model.pageIndex);

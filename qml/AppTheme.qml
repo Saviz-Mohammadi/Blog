@@ -50,7 +50,6 @@ Item {
         ToastTextInfo,
         ToastTextWarning,
         ToastTextError,
-        Line,
         TextFieldBackground,
         TextFieldPlaceHolderText,
         TextFieldTextSelectedBackground,
@@ -205,7 +204,6 @@ Item {
         property color toastTextInfo: "transparent"
         property color toastTextWarning: "transparent"
         property color toastTextError: "transparent"
-        property color line: "transparent"
         property color textFieldBackground: "transparent"
         property color textFieldPlaceHolderText: "transparent"
         property color textFieldTextSelectedBackground: "transparent"
@@ -252,7 +250,6 @@ Item {
             componentColors.toastTextInfo = predefinedColors.blue400;
             componentColors.toastTextWarning = predefinedColors.yellow400;
             componentColors.toastTextError = predefinedColors.red400;
-            componentColors.line = predefinedColors.grey800;
             componentColors.textFieldBackground = predefinedColors.grey200;
             componentColors.textFieldPlaceHolderText = predefinedColors.grey800;
             componentColors.textFieldTextSelectedBackground = predefinedColors.green500;
@@ -371,9 +368,6 @@ Item {
             break;
         case AppTheme.Colors.ToastTextError:
             result = componentColors.toastTextError;
-            break;
-        case AppTheme.Colors.Line:
-            result = componentColors.line;
             break;
         case AppTheme.Colors.TextFieldBackground:
             result = componentColors.textFieldBackground;

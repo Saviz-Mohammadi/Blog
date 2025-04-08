@@ -34,7 +34,7 @@ Item {
                 Layout.preferredHeight: 30
 
                 display: AbstractButton.IconOnly
-                icon.source: "qrc:/resources/icons/arrow_left_alt.svg"
+                icon.source: "qrc:/resources/icons/google/arrow_left_alt.svg"
 
                 onClicked: {
                     root.decrementRequested();
@@ -60,7 +60,7 @@ Item {
                 Layout.preferredHeight: 30
 
                 display: AbstractButton.IconOnly
-                icon.source: "qrc:/resources/icons/arrow_right_alt.svg"
+                icon.source: "qrc:/resources/icons/google/arrow_right_alt.svg"
 
                 onClicked: {
                     root.incrementRequested();
