@@ -32,7 +32,7 @@ Item {
                 font.family: AppFont.titilliumSemiBoldFont.family
                 font.weight: AppFont.titilliumSemiBoldFont.weight
                 font.styleName: AppFont.titilliumSemiBoldFont.styleName
-                font.pixelSize: Qt.application.font.pixelSize * 2.00
+                font.pixelSize: Qt.application.font.pixelSize * AppFont.scalar3
                 wrapMode: Text.NoWrap
                 verticalAlignment: Text.AlignVCenter
             }

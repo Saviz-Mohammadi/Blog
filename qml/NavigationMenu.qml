@@ -59,7 +59,7 @@ Item {
                     font.family: AppFont.titilliumSemiBoldFont.family
                     font.weight: AppFont.titilliumSemiBoldFont.weight
                     font.styleName: AppFont.titilliumSemiBoldFont.styleName
-                    font.pixelSize: Qt.application.font.pixelSize * 2.00
+                    font.pixelSize: Qt.application.font.pixelSize * AppFont.scalar2
                     wrapMode: Text.Wrap
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
@@ -125,7 +125,7 @@ Item {
                                 font.family: AppFont.titilliumSemiBoldFont.family
                                 font.weight: AppFont.titilliumSemiBoldFont.weight
                                 font.styleName: AppFont.titilliumSemiBoldFont.styleName
-                                font.pixelSize: Qt.application.font.pixelSize * 1.25
+                                font.pixelSize: Qt.application.font.pixelSize * AppFont.scalar0
                                 wrapMode: Text.NoWrap
                                 verticalAlignment: Text.AlignVCenter
                                 horizontalAlignment: Text.AlignLeft
@@ -159,7 +159,7 @@ Item {
                     font.family: AppFont.titilliumSemiBoldFont.family
                     font.weight: AppFont.titilliumSemiBoldFont.weight
                     font.styleName: AppFont.titilliumSemiBoldFont.styleName
-                    font.pixelSize: Qt.application.font.pixelSize * 2.00
+                    font.pixelSize: Qt.application.font.pixelSize * AppFont.scalar2
                     wrapMode: Text.Wrap
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
@@ -225,7 +225,7 @@ Item {
                                 font.family: AppFont.titilliumSemiBoldFont.family
                                 font.weight: AppFont.titilliumSemiBoldFont.weight
                                 font.styleName: AppFont.titilliumSemiBoldFont.styleName
-                                font.pixelSize: Qt.application.font.pixelSize * 1.25
+                                font.pixelSize: Qt.application.font.pixelSize * AppFont.scalar0
                                 wrapMode: Text.NoWrap
                                 verticalAlignment: Text.AlignVCenter
                                 horizontalAlignment: Text.AlignLeft

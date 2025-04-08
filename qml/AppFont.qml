@@ -5,6 +5,10 @@ import QtQuick
 Item {
     id: root
 
+    readonly property real scalar0: 1.0    // Text
+    readonly property real scalar1: 1.25   // List delegate
+    readonly property real scalar2: 1.5    // Header
+    readonly property real scalar3: 2.0    // Other
     readonly property alias titilliumBlackFont: titilliumBlack.font
     readonly property alias titilliumBoldFont: titilliumBold.font
     readonly property alias titilliumBoldItalicFont: titilliumBoldItalic.font

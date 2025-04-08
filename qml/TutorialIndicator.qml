@@ -49,7 +49,7 @@ Item {
                 font.family: AppFont.titilliumRegularFont.family
                 font.weight: AppFont.titilliumRegularFont.weight
                 font.styleName: AppFont.titilliumRegularFont.styleName
-                font.pixelSize: Qt.application.font.pixelSize * 1.25
+                font.pixelSize: Qt.application.font.pixelSize * AppFont.scalar1
                 wrapMode: Text.NoWrap
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
