@@ -16,7 +16,7 @@ Item {
         anchors.right: root.right
         anchors.left: root.left
 
-        currentIndex: 1
+        currentIndex: 0
 
         Loader {
             id: loaderCMake001
@@ -33,20 +33,20 @@ Item {
             }
         }
 
-        Loader {
-            id: loaderCMake002
+        // Loader {
+        //     id: loaderCMake002
 
-            active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
+        //     active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
 
-            sourceComponent: CMakePart002 {}
+        //     sourceComponent: CMakePart002 {}
 
-            onStatusChanged: {
-                if (loaderCMake002.status == Loader.Ready) {
-                    loaderCMake002.item.Layout.fillWidth = true;
-                    loaderCMake002.item.Layout.fillHeight = true;
-                }
-            }
-        }
+        //     onStatusChanged: {
+        //         if (loaderCMake002.status == Loader.Ready) {
+        //             loaderCMake002.item.Layout.fillWidth = true;
+        //             loaderCMake002.item.Layout.fillHeight = true;
+        //         }
+        //     }
+        // }
     }
 
     TutorialIndicator {

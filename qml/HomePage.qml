@@ -54,7 +54,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
 
-                    text: qsTr("Hello and Welcome!")
+                    text: qsTr("Home")
                     elide: Text.ElideRight
                     font.family: AppFont.titilliumSemiBoldFont.family
                     font.weight: AppFont.titilliumSemiBoldFont.weight
@@ -68,7 +68,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
 
-                    text: qsTr("You’ve just landed on the home page of the UFO CODER website (built with Qt and WebAssembly). Here, I share my thoughts, ideas, and tutorials on coding and beyond. Feel free to explore and make yourself at home. Scroll down to check out my latest tutorials and posts. Want to know more about me and the projects I’m working on? Head over to the About page. Use the menu in the top-right corner to navigate around the site. Thanks for stopping by. I hope you enjoy your visit!")
+                    text: qsTr("Hello and welcome to the home page of the UFO CODER website (built with Qt and WebAssembly). Here, I share my thoughts, ideas, and tutorials on coding and beyond. Feel free to explore and make yourself at home. Scroll down to check out my latest tutorials and posts. Want to know more about me and the projects I’m working on? Head over to the About page. Use the menu in the top-right corner to navigate around the site. Thanks for stopping by. I hope you enjoy your visit!")
                     textFormat: Text.PlainText
                     elide: Text.ElideRight
                     font.family: AppFont.titilliumLightFont.family

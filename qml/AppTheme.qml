@@ -23,6 +23,7 @@ Item {
         ListDelegateBackground,
         TutorialIndicatorBackground,
         TutorialIndicatorText,
+        Separator,
         // Controls:
         SwitchCircle,
         ButtonBackgroundNormal,
@@ -172,6 +173,7 @@ Item {
         property color listDelegateBackground: "transparent"
         property color tutorialIndicatorBackground: "transparent"
         property color tutorialIndicatorText: "transparent"
+        property color separatorBackground: "transparent"
 
         // Controls:
         property color buttonBackgroundNormal: "transparent"
@@ -224,6 +226,7 @@ Item {
             componentColors.listDelegateBackground = predefinedColors.grey400;
             componentColors.tutorialIndicatorBackground = predefinedColors.grey800;
             componentColors.tutorialIndicatorText = predefinedColors.green500;
+            componentColors.separatorBackground = predefinedColors.green500;
 
             componentColors.buttonBackgroundNormal = predefinedColors.green500;
             componentColors.buttonBackgroundHovered = predefinedColors.green700;
@@ -292,6 +295,9 @@ Item {
             break;
         case AppTheme.Colors.TutorialIndicatorText:
             result = componentColors.tutorialIndicatorText;
+            break;
+        case AppTheme.Colors.Separator:
+            result = componentColors.separatorBackground;
             break;
         // Controls:
         case AppTheme.Colors.ButtonBackgroundNormal:
