@@ -63,7 +63,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
 
-                    text: qsTr("The majority of programmers typically begin their coding journey in C and C++ with a \"Hello World\" application just like most other programming languages. However, what often remains poorly covered is the concept of how we can controll and instruct the underlying tools such as compilers and linkers and in general the environment in which we code to behave in a way that we want it to.")
+                    text: qsTr("Many programmers begin their coding journey in C or C++ with the classic \"Hello, World!\" example, just like in most other programming languages. However, what often gets overlooked is how to control and configure the underlying tools that make the code actually work such as: the compiler, the linker, and the development environment. Most learning materials focus on writing code, without explaining how that code is turned into something usable like an executable or a library.")
                     textFormat: Text.PlainText
                     elide: Text.ElideRight
                     font.family: AppFont.titilliumLightFont.family
@@ -78,7 +78,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
 
-                    text: qsTr("Most programming experiences focus solely on writing code without diving into how that code is transformed into a useful target such as executables and libraries. Often, interaction with compilers, linkers, and other management systems is limited to basic command-line instructions or simply handled by the programming environment (IDE). As a result, many developers proceed to more sufficticated programming concepts and technolgies without understanding the internal workings of these processes or how to customize their environments to better suit their needs and preferences.")
+                    text: qsTr("In most cases, interaction with these tools is limited to a few basic command-line instructions, or it's entirely abstracted away by an IDE. As a result, many developers move on to more advanced concepts without ever learning how the build process works or how to adapt it to fit their specific needs. Unlike languages like Rust or Python, which offer standardized tooling and package managers, C and C++ have traditionally lacked a unified ecosystem. Before tools like CMake became widely used, this absence of standardization made things especially difficult for beginners. In C and C++, the compiler, linker, and other tools you use depend heavily on the platform you're working with. That makes things more complicated from the start.")
                     textFormat: Text.PlainText
                     elide: Text.ElideRight
                     font.family: AppFont.titilliumLightFont.family
@@ -93,7 +93,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
 
-                    text: qsTr("Unlike languages like Rust or Python, which come with standardized tooling and package managers, C and C++ do not have a universal solution (at least before CMake), and the lack of standardization can be a major hurdle for beginners and experienced developers alike. What compiler, linker, resource manager, and other tools we deal with highly depends on the platform that we want to develop in when it comes to C and C++.")
+                    text: qsTr("Many of us end up working in an environment we don’t fully understand. We rely on tools like Visual Studio, Xcode, or even simple text editors to manage builds for us. When we click the build button, we cross our fingers and hope everything just works. But more often than not, we’re met with cryptic error messages that only add to the confusion. Understanding how to organize your files, where to place libraries, or how to reference header files can feel like a guessing game. Trying to change the default project structure to match your personal workflow often leads to frustration, especially when tutorials and documentation barely touch on these topics. Trial and error becomes the norm.")
                     textFormat: Text.PlainText
                     elide: Text.ElideRight
                     font.family: AppFont.titilliumLightFont.family
@@ -108,37 +108,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
 
-                    text: qsTr("Many of us spend our time working under a dark cloud without a clear understanding of how things actually operate. We often find ourselves frustrated with tools like Visual Studio, Xcode, and other integrated environments or even just simple text editors that handle building projects and products for us. When we click that build button, we're left hoping for the best, only to be bombarded with confusing error messages that leave us scratching our heads.")
-                    textFormat: Text.PlainText
-                    elide: Text.ElideRight
-                    font.family: AppFont.titilliumLightFont.family
-                    font.weight: AppFont.titilliumLightFont.weight
-                    font.styleName: AppFont.titilliumLightFont.styleName
-                    font.pixelSize: Qt.application.font.pixelSize * AppFont.scalar0
-                    wrapMode: Text.Wrap
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignLeft
-                }
-
-                Text {
-                    Layout.fillWidth: true
-
-                    text: qsTr("Navigating the file structure and architecture imposed by integrated development environments (IDEs) can be confusing, especially for beginners. It's often unclear where to place files or libraries so that the IDE can properly detect and use them. Referencing header files becomes a hassle when we're forced to write out long, unwieldy paths, and if we want to change the default project structure to something that better fits our workflow, we’re rarely shown how.")
-                    textFormat: Text.PlainText
-                    elide: Text.ElideRight
-                    font.family: AppFont.titilliumLightFont.family
-                    font.weight: AppFont.titilliumLightFont.weight
-                    font.styleName: AppFont.titilliumLightFont.styleName
-                    font.pixelSize: Qt.application.font.pixelSize * AppFont.scalar0
-                    wrapMode: Text.Wrap
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignLeft
-                }
-
-                Text {
-                    Layout.fillWidth: true
-
-                    text: qsTr("Unfortunately, most tutorials and documentation gloss over these practical aspects, leaving us to figure things out through trial and error. This lack of transparency can be incredibly frustrating and ultimately detracts from the learning and development experience.")
+                    text: qsTr("It often feels like you're being asked to code without knowing how any of the parts actually fit together. And it’s not just beginners who deal with this, many intermediate programmers struggle with these same issues. The problem is not a lack of effort. It's that no one teaches this properly. Without a foundation in how these systems work, even small changes or errors can become overwhelming.")
                     textFormat: Text.PlainText
                     elide: Text.ElideRight
                     font.family: AppFont.titilliumLightFont.family
@@ -173,22 +143,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
 
-                    text: qsTr("I strongly believe this teaching approach is flawed. Understanding your development environment is crucial for effective programming. Without this understanding, you're at the mercy of tools you can't fully control or troubleshoot when things go wrong. This frustration is something I've come to despise about many programming environments. It's as if you're expected to code blindfolded, with little insight into how everything fits together.")
-                    textFormat: Text.PlainText
-                    elide: Text.ElideRight
-                    font.family: AppFont.titilliumLightFont.family
-                    font.weight: AppFont.titilliumLightFont.weight
-                    font.styleName: AppFont.titilliumLightFont.styleName
-                    font.pixelSize: Qt.application.font.pixelSize * AppFont.scalar0
-                    wrapMode: Text.Wrap
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignLeft
-                }
-
-                Text {
-                    Layout.fillWidth: true
-
-                    text: qsTr("These are just a few things that most beginner and even intermediate programmers struggle with. And of course we cannot blame them, no one has thought us how to do these things. This lack of foundational knowledge can lead to frustration when troubleshooting errors or attempting to customize projects. It's essential for developers to grasp these concepts early on, as they form the bedrock of effective programming practices.")
+                    text: qsTr("This lack of transparency makes programming more frustrating than it needs to be. I believe this teaching approach is flawed. Understanding your development environment is essential. Without that knowledge, you're stuck relying on tools you can’t properly control or fix when something breaks.")
                     textFormat: Text.PlainText
                     elide: Text.ElideRight
                     font.family: AppFont.titilliumLightFont.family
@@ -224,7 +179,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
 
-                    text: qsTr("You might say, \"Well, I can invest some time and effort to learn the tool and its environment\", and while that approach is reasonable, it’s important to remember that you’re only becoming proficient with that specific tool and environment. If you’re later required to use a different tool or environment, you’ll have to start the learning process all over again. If you learn Visual Studio, Xcode, or any other specific tool, you're only becoming proficient with that particular tool and its environment.")
+                    text: qsTr("You might be thinking, \"I’ll just invest some time and learn the tool I’m using.\" That’s a reasonable idea, but it comes with limitations. When you become proficient in a single environment like Visual Studio or Xcode, you're gaining skills that are mostly tied to that specific tool. If you're later asked to switch to another environment, you'll have to start learning all over again. Things get even more complicated when you want to build software that runs on multiple platforms. Every platform has its own compilers, build tools, file structures, and command-line behaviors. Managing these differences can feel like an impossible task. Thankfully, there is a better solution. These challenges led to the creation of tools like CMake.")
                     textFormat: Text.PlainText
                     elide: Text.ElideRight
                     font.family: AppFont.titilliumLightFont.family
@@ -239,22 +194,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
 
-                    text: qsTr("Not to mention that many programmers aim to write software that runs on multiple systems to reach a broader audience. This ambition brings the same challenges into focus: different environments and tools each have their own compilers, command-line parameters, architectural design choices, and other complexities. Managing this diversity can be quite overwhelming. Fortunately, we have a solution. These problems led to the development of tools like CMake.")
-                    textFormat: Text.PlainText
-                    elide: Text.ElideRight
-                    font.family: AppFont.titilliumLightFont.family
-                    font.weight: AppFont.titilliumLightFont.weight
-                    font.styleName: AppFont.titilliumLightFont.styleName
-                    font.pixelSize: Qt.application.font.pixelSize * AppFont.scalar0
-                    wrapMode: Text.Wrap
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignLeft
-                }
-
-                Text {
-                    Layout.fillWidth: true
-
-                    text: qsTr("CMake serves as a cross-platform build system generator designed to mitigate these issues. It enables developers to define their project's behavior and build requirements—such as compiler preferences, folder structures, and library dependencies—in a platform-agnostic manner. CMake accomplishes this by generating native build system files tailored to each target platform (e.g., Makefiles for Unix-like systems, Visual Studio project files for Windows). There's a saying in the community that summarizes CMake's role: \"CMake is a tool that builds the build system\".")
+                    text: qsTr("CMake is a cross-platform build system generator. It helps developers define how their project should be built — including compiler preferences, folder structures, and library dependencies — in a way that works across different platforms. CMake then generates the appropriate native build files for each target system. For example, it creates Makefiles for Unix-based systems and Visual Studio project files for Windows.")
                     textFormat: Text.PlainText
                     elide: Text.ElideRight
                     font.family: AppFont.titilliumLightFont.family
@@ -304,7 +244,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
 
-                    text: qsTr("My initial experience with CMake was challenging. The error messages were cryptic, and the documentation was lacking, which deterred me from using it for some time. Despite my reluctance, CMake steadily gained traction among developers until it became the de facto standard for generating C/C++ build systems. Despite these challenges, your experience doesn't have to mirror mine. I'm here to help navigate through these complexities and minimize the headaches associated with build system management—at least as much as possible.")
+                    text: qsTr("CMake has improved a lot over time. Its documentation is better, and many usability problems have been addressed. As I became more familiar with it, I started to appreciate how powerful and flexible it is. Still, CMake has a steep learning curve. It tries to support many different use cases, platforms, and compilers, which adds complexity. On top of that, many tutorials and articles available online are outdated, making it harder to learn.")
                     textFormat: Text.PlainText
                     elide: Text.ElideRight
                     font.family: AppFont.titilliumLightFont.family
